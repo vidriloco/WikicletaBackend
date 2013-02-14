@@ -1,4 +1,6 @@
-<div class="sections to-right">
-	<%= link_to t('pictures.manager.sections.uploads'), '#management/uploads', :class => 'uploads-launcher' %>
-	<%= link_to t('pictures.manager.sections.uploaded'), '#management/uploaded', :class => 'uploaded-launcher' %>
+<div class="sections row-fluid">
+	<ul class="nav nav-pills pull-right">
+		<li class="upload-new"><%= link_to t('pictures.manager.sections.uploads'), '#/pictures/uploads' %></li>
+		<li class="uploaded-list"><%= link_to t('pictures.manager.sections.uploaded'), '#/pictures/uploaded' %></li>
+  </ul>
 </div>

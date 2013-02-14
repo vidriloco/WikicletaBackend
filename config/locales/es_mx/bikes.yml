@@ -83,10 +83,10 @@ es_MX:
         owned_by: "de "
         modify: "Modificar bici"
         likes:
-          some: "chuleadas"
-          one: "chuleada"
-          do: "Haz click para chulear esta bici"
-          undo: "Haz click para des-chulear esta bici"
+          some: "favs"
+          one: "fav"
+          do: "Haz click, si te gusta esta bici"
+          undo: "Haz click, si ya no te gusta esta bici"
           required_to_login: "Necesitas estar registrado para chulear una bici"
         comments:
           some: "comentarios"

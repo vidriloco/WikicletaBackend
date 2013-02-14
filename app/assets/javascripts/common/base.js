@@ -8,7 +8,7 @@
 //= require view_components/blocking.view
 //= require view_components/notification.view
 //= require underscore
-//= require backbone
+//= require path
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {

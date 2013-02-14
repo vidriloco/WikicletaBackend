@@ -3,25 +3,19 @@
 <head>
   <title><%= t('app.name') %></title>
 	  
-	<%= stylesheet_link_tag    "application" %>
+	<%= stylesheet_link_tag    "bikes" %>
   <%= javascript_include_tag "bikes" %>
-	<%= yield(:javascripts) %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	
-<%= render 'layouts/shared/left_bar' %>
 <%= render 'shared/notice' %>
+<div class="background-logo"></div>
+<%= render 'layouts/shared/navbar' %>
 
-<div class="content-container">
-	
-	<%= yield :back_page %>
-
-	<div id="content">
-		<%= yield %>
-	</div>
+<div class="top-spaced-70">
+	<%= yield %>
 </div>
-
 
 </body>
 </html>

@@ -1,13 +1,17 @@
 //= require sections/base
 //= require view_components/confirmation.view
+
 var modal = null;
 $.extend(Sections.Pictures, {
 	
-	index: function() {
+	indexPage: function() {
 		ViewComponents.Blocking.detach();
 	},
 	
 	manageUploads: function() {
+		$('.sections .nav li').removeClass('active');
+		$('.sections .upload-new').addClass('active');
+		
 		$('#container').html($('#origin .uploads').clone());
 		section._loadCommon();
 		$('#menu .uploads-launcher').addClass('selected');
@@ -16,6 +20,8 @@ $.extend(Sections.Pictures, {
 	
 	manageUploaded: function() {
 		section.loadUploaded();
+		$('.sections .nav li').removeClass('active');
+		$('.sections .uploaded-list').addClass('active');
 	},
 	
 	loadUploaded: function() {

@@ -1,0 +1,22 @@
+<div class="navbar navbar-fluid-top navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#"><%= t('app.name') %></a>
+      <div class="container-fluid nav-collapse pull-right span6">
+        <ul class="nav">
+					<li class="<%= 'active' if controller.controller_name.eql?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
+					<li class=""><%= link_to 'Ahora', maps_path %></li>
+					<li><%= link_to 'Mercado', maps_path %></li>
+					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis', bikes_path %></li>
+
+				</ul>
+				<a href="<%= new_user_session_path %>" class="pull-right btn btn-primary" type="button"><i class="icon-user icon-white"></i> Iniciar Sesión</a>
+      </div>
+    </div>
+  </div>
+</div>

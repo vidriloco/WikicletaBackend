@@ -5,37 +5,23 @@
 //= require view_components/form.validator
 //= require comments
 //= require jquery.popover
-
 // For pictures
 //= require common/pictures_base
 //= require sections/pictures
 
 $(document).ready(function() {
 	
-	if($.currentSectionIs('bikes'))  {
-		
-		var BikesRouter = Backbone.Router.extend({
-
-			routes: {
-				".*"													: "index",
-				"management/uploads"					: "manageUploads",
-				"management/uploaded"					: "manageUploaded"
-			},
-			
-			index: 						Sections.Pictures.index,
-			manageUploads: 		Sections.Pictures.manageUploads,
-			manageUploaded:   Sections.Pictures.manageUploaded
-		});
-		window.router = new BikesRouter();
-		Backbone.history.start({pushState : false});
-	}
-	
+	Path.map("#/").to(Sections.Pictures.indexPage);
+	Path.map("#/pictures/uploads").to(Sections.Pictures.manageUploads);
+	Path.map("#/pictures/uploaded").to(Sections.Pictures.manageUploaded);
+	Path.root("#/");
+	Path.listen();
 	
 	// TODO: Make it work with pathjs
-	var hashId = 'bike-'+window.location.hash.split("#")[1];
+	/*var hashId = 'bike-'+window.location.hash.split("#")[1];
 	if ( $.isDefined("#"+hashId) ) {
 		document.getElementById(hashId).scrollIntoView();
-	}
+	}*/
 	
   $('#container').masonry({
     itemSelector : '.bike',

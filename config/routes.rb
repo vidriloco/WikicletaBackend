@@ -67,7 +67,7 @@ Ciudadio::Application.routes.draw do
     get ":place_id/evaluations" => "evaluations#show"
   end
 =end
-
+  resources :maps
   namespace :map do
     resources :streets, :only => [:index]
     resources :street_marks, :only => [:create, :index, :show]

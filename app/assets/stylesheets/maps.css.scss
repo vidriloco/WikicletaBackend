@@ -1,0 +1,22 @@
+// Place all the styles related to the maps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+ *= require_self
+ *= require bootstrap_and_overrides
+ *= require shared/main.css
+**/
+
+body, html {
+	height: 100%;
+	width: 100%;
+	background: #e0ebf6; /* Old browsers */
+	background: -moz-linear-gradient(top,  #e0ebf6 0%, #f2f7fb 54%, #f2f5f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e0ebf6), color-stop(54%,#f2f7fb), color-stop(100%,#f2f5f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #e0ebf6 0%,#f2f7fb 54%,#f2f5f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #e0ebf6 0%,#f2f7fb 54%,#f2f5f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #e0ebf6 0%,#f2f7fb 54%,#f2f5f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #e0ebf6 0%,#f2f7fb 54%,#f2f5f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0ebf6', endColorstr='#f2f5f6',GradientType=0 ); /* IE6-9 */
+}

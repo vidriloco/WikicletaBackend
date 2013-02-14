@@ -9,7 +9,7 @@
 	background: url(/assets/camera.png);
 	float: right;
 	margin-right: 25px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 #picture-manager-modal {
@@ -120,29 +120,8 @@
 		}
 	}
 	
-	.sections {
-		a {
-			font-size: 12px;
-			font-weight: bold;
-			color: #666666;
-			padding: 2px 10px;
-			margin-bottom: 5px;
-		}
-		
-		a.selected, a:hover {
-			background-color: #8CBF78;
-			border-radius: 8px;
-			-moz-border-radius: 8px;
-			-webkit-border-radius: 8px;
-		}
-		
-		a.selected {
-			color: white;
-		}
-		
-		a:hover {
-			color: #585855;
-		}
+	.nav {
+		margin-bottom: 0px !important;
 	}
 	
 	#filelist {

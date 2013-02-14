@@ -1,4 +1,11 @@
-<%= render :partial => 'pictures/index', :locals => { :bike => bike } %>
+<div class="hidden">
+	<div class="gallery">
+		<% bike.pictures.each do |picture| %>
+			<a rel="gallery" href="<%= picture.image.url %>" title="<%= picture.caption %>"></a>
+		<% end %>
+	</div>
+</div>
+
 <% if bike.front_picture.nil? %>
 	<%= image_tag 'no_bike.png', :class => "main-picture" %>
 <% else %>

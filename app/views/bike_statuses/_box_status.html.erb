@@ -1,5 +1,5 @@
 <div id="<%= status %>-box" class="item rounded-5 <%= "on" if bike_status.is_available? %>">
-	<span class="concept rounded-10"><%= Bike.humanized_category_for(:statuses, status) %></span>
+	<span class="label label-info"><%= Bike.humanized_category_for(:statuses, status) %></span>
 	<% if current_user_owns_bike?(bike) %>
 		<%= link_to '', 'javascript:void(0);', :class => "reveals-#{status} edit-glyph" %>
 	<% end %>
