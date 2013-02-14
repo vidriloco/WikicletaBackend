@@ -1,5 +1,5 @@
-.navbar {
-	
+.nav-pills {
+	li { margin-right: 5px; }
 }
 
 body, html {
@@ -124,9 +124,9 @@ a.back {
 }
 
 .shadow-light {
-	-moz-box-shadow: 0 0 5px #808080;
-	-webkit-box-shadow: 0 0 5px #808080;
-	box-shadow: 0 0 5px #808080;
+	-moz-box-shadow: 0 0 2px #A5A5A5;
+	-webkit-box-shadow: 0 0 2px #A5A5A5;
+	box-shadow: 0 0 2px #A5A5A5;
 }
 
 .shadow-lighter {
