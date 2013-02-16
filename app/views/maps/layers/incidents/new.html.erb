@@ -1,0 +1,22 @@
+<div class="altering-action">
+	<div class="row-fluid">
+		<div class="span2">
+			<ul class="nav nav-pills">
+				<li class="active"><%= link_to t('actions.back_arrow').html_safe, maps_layers_incidents_path %></li>
+	    </ul>
+		</div>
+		<div class="span6 pull-right">
+			<h3 class="pull-right">Nuevo Incidente</h3>
+		</div>
+	</div>
+	<p class="instruction">1. Selecciona un punto en el mapa</p>
+	<div id="map" class="show-only edit map-dimensions rounded-5 shadow-light"></div>
+	
+	<p class="instruction">2. Selecciona un tipo de incidente y completa sus campos</p>
+	
+	<div class="well">
+		<%= form_for [:maps, :layers, @incident], :html => { :class => "form-horizontal" } do |f| %>
+			<%= render :partial => 'fields', :locals => {:f => f} %>
+  	<% end %>
+	</div>
+</div>

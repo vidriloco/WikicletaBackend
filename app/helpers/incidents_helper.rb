@@ -14,6 +14,7 @@ module IncidentsHelper
     end
   end
   
+  # PDELETE
   def incidents_for_session_status
     if current_user_has_bikes_to_report?
       Bike.humanized_categories_for(:incidents).invert

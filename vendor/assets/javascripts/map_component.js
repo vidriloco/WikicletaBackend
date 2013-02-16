@@ -6,6 +6,9 @@ var defaultLon = -99.184570;
 $.extend({
 	isDefined: function(dom) {
 		return $(dom).length;
+	},
+	assetsURL: function() {
+		return 'http://127.0.0.1:3000/assets/';
 	}
 });
 
@@ -38,6 +41,7 @@ ViewComponents.Map = function(gMap, opts, callback) {
 			this.editable = false;
 			this.mode = 'points';
 			this.domElementForCoordinates = null;
+			this.markerYourLocation = null;
 			
 			// Setting options
 			this.setMapOptions(opts);
@@ -184,9 +188,22 @@ ViewComponents.Map = function(gMap, opts, callback) {
 			}
 		},
 		
+		addMarkerYourLocation: function(opts) {
+			if(opts.lat=="" || opts.lon=="") {
+				return false;
+			}
+			
+			var map = this.gMap;
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(opts.lat, opts.lon),
+				map: map,
+				icon: $.assetsURL()+'here.png'
+			});
+			this.markerYourLocation = marker;
+		},
+		
 		addCoordinatesAsMarkerToList: function(opts, callback) {
 			if(opts.lat=="" || opts.lon=="") {
-
 				return false;
 			}
 			
@@ -196,7 +213,7 @@ ViewComponents.Map = function(gMap, opts, callback) {
 				map: map//,
 				//icon: $.assetsURL+opts.iconName+'.png'
 			});
-
+			
 			google.maps.event.addListener(marker, 'click', function() {
 				callback(opts.resourceUrl);
 			});

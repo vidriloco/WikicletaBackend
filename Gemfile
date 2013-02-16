@@ -22,7 +22,7 @@ gem 'redis-objects'
 gem 'acts_as_commentable'
 
 gem 'carrierwave', '0.6.2'
-gem 'rmagick'
+gem 'rmagick', '2.13.2'
 gem 'fog'
 
 group :test do

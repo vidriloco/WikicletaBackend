@@ -1,5 +1,7 @@
 //= require common/base
 //= require map_component
+//= require geoposition
+
 var map = null;
 $(document).ready(function(){
 	if($.isDefined('#map')) {
@@ -17,5 +19,17 @@ $(document).ready(function(){
 				$('div.layers').fadeIn();
 			}
 		});
+	}
+	
+	// Attempt to center map on location
+	
+	if (geoPosition.init()) {
+	  geoPosition.getCurrentPosition(function(p) {
+			var lat = p.coords.latitude;
+			var lon = p.coords.longitude;
+			map.addMarkerYourLocation({ lat: lat, lon: lon });
+			map.placeViewportAt({ lat: lat, lon: lon, zoom: defaultMiddleZoom });
+
+			}, null);
 	}
 });

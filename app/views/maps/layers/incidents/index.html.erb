@@ -1,0 +1,35 @@
+<div id="section-incidents"></div>
+
+<%= content_for :section_actions do %>
+	<div class="well section-actions">
+		<p class="main-title">Incidentes</p>
+		<ul>
+			<li>
+				<a class="box" href="">
+					<p class="number">20</p>
+					<p class="title">Robos</p>
+				</a>
+			</li>
+			<li>
+				<a class="box" href="">
+					<p class="number">10</p>
+					<p class="title">Accidentes</p>
+				</a>
+			</li>
+			<li>
+				<a class="box" href="">
+					<p class="number">1</p>
+					<p class="title">Asalto</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+<% end %>
+
+<div class="row-fluid actions">
+	<div class="span3 pull-right">
+		<%= link_to "Buscar", '#/search', :class => "btn" %>
+		<%= link_to "Nuevo", new_maps_layers_incident_path, :class => "btn btn-info" %>
+	</div>
+</div>
+

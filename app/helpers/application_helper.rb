@@ -1,5 +1,9 @@
 module ApplicationHelper
   
+  def is_section_active?(section)
+    "active" if controller.controller_path.split('/')[0].eql?(section)
+  end
+  
   def provider_is?(provider)
     session["devise.oauth_data"][:provider].eql?(provider.to_s)
   end

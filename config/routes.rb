@@ -2,13 +2,8 @@ Ciudadio::Application.routes.draw do
   #mount TransportAdder::Engine => "/mobility"  
   
   devise_for :admins, :only => [:sessions]
-  namespace :admins do
-    get '/' => 'main#index', :as => :index
-    
-    get '/evaluations' => 'evaluations#index', :as => :evaluations_index
-    get '/evaluations/new' => 'evaluations#new', :as => :evaluations_new
-    post '/evaluations' => 'evaluations#create', :as => :evaluations
-  end
+  
+  
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
   
@@ -67,18 +62,15 @@ Ciudadio::Application.routes.draw do
     get ":place_id/evaluations" => "evaluations#show"
   end
 =end
-  resources :maps
-  namespace :map do
-    resources :streets, :only => [:index]
-    resources :street_marks, :only => [:create, :index, :show]
-    resources :highlights, :routes, :places
-    post "street_marks/rankings" => "street_mark_rankings#create"
-    get "street_marks/:street_mark_id/rankings" => "street_marks#rankings"
-    
-    resources :incidents, :except => [:edit, :update] do
-      collection do 
-        get :filtering
+  namespace :maps do
+    get '/' => 'root#index'
+    namespace :layers do
+      resources :incidents, :except => [:edit, :update] do
+        collection do 
+          get :filtering
+        end
       end
+      resources :highlights, :routes, :places
     end
   end
 

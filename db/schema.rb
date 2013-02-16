@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319210639) do
-
-  create_table "admins", :force => true do |t|
-    t.string   "email",                             :default => "", :null => false
-    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-  end
-
-  add_index "admins", ["email"], :name => "admins_idx", :unique => true
+ActiveRecord::Schema.define(:version => 20120122064058) do
 
   create_table "announcements", :force => true do |t|
     t.string   "header"
@@ -162,27 +153,6 @@ ActiveRecord::Schema.define(:version => 20120319210639) do
     t.boolean  "is_verified", :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-  end
-
-  create_table "street_mark_rankings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "street_mark_id"
-    t.integer  "aspect_1"
-    t.integer  "aspect_2"
-    t.integer  "aspect_3"
-    t.integer  "aspect_4"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "street_mark_rankings", ["street_mark_id", "user_id"], :name => "street_mark_rankings_idx", :unique => true
-
-  create_table "street_marks", :force => true do |t|
-    t.string      "name"
-    t.integer     "user_id"
-    t.datetime    "created_at",                  :null => false
-    t.datetime    "updated_at",                  :null => false
-    t.line_string "segment_path", :limit => nil,                 :srid => 4326
   end
 
   create_table "user_like_bikes", :force => true do |t|

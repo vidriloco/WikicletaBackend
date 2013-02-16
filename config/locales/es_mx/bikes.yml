@@ -32,9 +32,8 @@ es_MX:
         ulock: "U-Lock"
       incidents:
         theft: "Robo"
-        assault: "Robo armado o con violencia"
+        assault: "Asalto"
         accident: "Accidente"
-        regulation_infraction: "Infracción al reglamento"
     actions:
       register: "Registra tu bici"
       save: "Registrar bici"

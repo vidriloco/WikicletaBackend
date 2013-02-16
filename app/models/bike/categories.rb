@@ -41,8 +41,9 @@ module Bike::Categories
       { 1 => :none, 2 => :chain, 3 => :cable, 4 => :ulock }
     end
     
+    # PDELETE
     def incidents
-      { 1 => :theft, 2 => :assault, 3 => :accident, 4 => :regulation_infraction }
+      { 1 => :theft, 2 => :assault, 3 => :accident }
     end
     
   end

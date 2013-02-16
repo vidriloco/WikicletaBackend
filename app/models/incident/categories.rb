@@ -14,8 +14,12 @@ module Incident::Categories
     symbol_kind==kind
   end
   
+  def incidents
+    { 1 => :theft, 2 => :assault, 3 => :accident }
+  end
+  
   def symbol_kind
-    Bike.category_symbol_for(:incidents, kind)
+    incidents[kind]
   end
   
   def theft?
