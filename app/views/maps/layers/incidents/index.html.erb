@@ -1,34 +1,44 @@
-<div id="section-incidents"></div>
-
 <%= content_for :section_actions do %>
 	<div class="well section-actions">
-		<p class="main-title">Incidentes</p>
-		<ul>
-			<li>
-				<a class="box" href="">
-					<p class="number">20</p>
-					<p class="title">Robos</p>
-				</a>
-			</li>
-			<li>
-				<a class="box" href="">
-					<p class="number">10</p>
-					<p class="title">Accidentes</p>
-				</a>
-			</li>
-			<li>
-				<a class="box" href="">
-					<p class="number">1</p>
-					<p class="title">Asalto</p>
-				</a>
-			</li>
-			<li>
-				<a class="box" href="">
-					<p class="number">2</p>
-					<p class="title">Averias</p>
-				</a>
-			</li>
-		</ul>
+		<a class="main-title"><i class="icon icon-chevron-down"></i><i class="icon icon-chevron-up"></i> Incidentes</a>
+		
+		<div class="contents">
+			<ul class="stats">
+				<li>
+					<a class="box" href="">
+						<p class="number">20</p>
+						<p class="title">Robos</p>
+					</a>
+				</li>
+				<li>
+					<a class="box" href="">
+						<p class="number">10</p>
+						<p class="title">Accidentes</p>
+					</a>
+				</li>
+				<li>
+					<a class="box" href="">
+						<p class="number">1</p>
+						<p class="title">Asalto</p>
+					</a>
+				</li>
+				<li>
+					<a class="box" href="">
+						<p class="number">2</p>
+						<p class="title">Averias</p>
+					</a>
+				</li>
+			</ul>
+			<div class="separator"></div>
+			<ul class="suggested">
+				<li><%= link_to 'Hoy', '#' %></li>
+				<% if user_signed_in? %>
+					<li><%= link_to 'Tus incidentes', '#' %></li>
+				<% end %>
+				<li><%= link_to 'Más comentados', '#' %></li>
+				<li><%= link_to 'No resueltos', '#' %></li>
+			</ul>
+		</div>
 	</div>
 <% end %>
 

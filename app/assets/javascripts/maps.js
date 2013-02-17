@@ -21,8 +21,24 @@ $(document).ready(function(){
 			
 			if($(this).hasClass('map')) {
 				$('div.map').fadeIn();
+				$('.locate-me').fadeIn();
 			} else if($(this).hasClass('layers')) {
 				$('div.layers').fadeIn();
+				$('.locate-me').hide();
+			}
+		});
+		
+		// Toggle actions list
+		$('.section-actions a').bind('click', function() {
+			if($('.section-actions .contents').is(':visible')) {
+				$('.section-actions .contents').hide();
+				$('.icon-chevron-down').hide();
+				$('.icon-chevron-up').show();
+				
+			} else {
+				$('.section-actions .contents').show();
+				$('.icon-chevron-down').show();
+				$('.icon-chevron-up').hide();
 			}
 		});
 	}

@@ -66,6 +66,9 @@ es_MX:
     close: "Cerrar"
     delete: "Eliminar"
     evaluate: "Calificar"
+    toggle:
+      show: "Mostrar"
+      hide: "Ocultar"
     sessions: 
       first_person:
         start: "Inicia sesión"
