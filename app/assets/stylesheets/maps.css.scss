@@ -6,6 +6,7 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require shared/main.css
+ *= require shared/form.css
 **/
 
 body, html {
@@ -14,7 +15,28 @@ body, html {
 	background: #f2f7fb !important; /* Old browsers */
 }
 
+.dropdown-menu {
+	li {
+		display: block;
+	}
+}
+
 .altering-action {
+	#active-form {
+		display: none;
+		
+		.reduced {
+			select {
+				width: 90px;
+			}
+		}
+		
+		.reduced-more {			
+			select {
+				width: 60px;
+			}
+		}
+	}
 	h3 {
 		font-weight: normal !important;
 		padding:0 !important;

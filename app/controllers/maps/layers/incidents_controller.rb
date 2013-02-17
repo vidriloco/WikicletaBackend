@@ -9,11 +9,11 @@ class Maps::Layers::IncidentsController < Maps::RootController
   
   def create
     @incident = Incident.new_with(params[:incident], params[:coordinates], current_user)
-    @incident.save
-
-    respond_to do |format|
-      format.js
-    end
+    if @incident.save
+      redirect_to maps_layers_incidents_path
+    else
+      render :action => 'new', :layout => 'maps_extended'
+    end  
   end
   
   def index

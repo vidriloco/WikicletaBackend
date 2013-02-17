@@ -51,8 +51,8 @@ font-family: "gothamrndbold-Bold";
 }
 
 .centered {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 
 .centered-text {
@@ -70,6 +70,12 @@ a.personal {
 .centered {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.field-counter {
+	margin-top: 5px;
+	font-size: 13px;
+	color: #D95100;
 }
 
 #floating, #notification {

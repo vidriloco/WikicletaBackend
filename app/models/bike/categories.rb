@@ -43,7 +43,7 @@ module Bike::Categories
     
     # PDELETE
     def incidents
-      { 1 => :theft, 2 => :assault, 3 => :accident }
+      { 1 => :theft, 2 => :assault, 3 => :accident, 4 => :breakdown }
     end
     
   end

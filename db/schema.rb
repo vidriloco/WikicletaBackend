@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20120122064058) do
     t.string   "description"
     t.integer  "kind"
     t.boolean  "complaint_issued"
+    t.boolean  "fixed"
     t.integer  "lock_used"
     t.string   "vehicle_identifier"
     t.date     "date"

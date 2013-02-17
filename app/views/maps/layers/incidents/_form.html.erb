@@ -1,0 +1,36 @@
+<div class='<%= "#{kind}-form" %>'>
+	<% incident ||= Incident.new %>
+	<%= form_for [:maps, :layers, incident], :html => {:class => "form"} do |f| %>
+			<div class="well">
+				<%= render :partial => 'maps/layers/incidents/fields/hiddens', :locals => { :f => f, :incident => incident } %>
+			
+				<% unless kind.eql?(:breakdown) %>
+					<%= render :partial => 'maps/layers/incidents/fields/date_and_time', :locals => { :f => f } %>
+					<div class="separator"></div>
+					<br/>
+				<% end %>
+			
+				<%= render :partial => 'maps/layers/incidents/fields/description', :locals => { :f => f } %>
+				<%= render :partial => 'maps/layers/incidents/fields/bike', :locals => { :incident => incident, :f => f } %>
+			
+				<% if kind.eql?(:breakdown) %>
+					<%= render :partial => 'maps/layers/incidents/fields/fixed', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:theft) %>
+					<%= render :partial => 'maps/layers/incidents/fields/lock', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:theft) || kind.eql?(:assault) || kind.eql?(:accident) %>
+					<%= render :partial => 'maps/layers/incidents/fields/complaint', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:assault) || kind.eql?(:accident) %>
+					<%= render :partial => 'maps/layers/incidents/fields/vehicle_identifier', :locals => { :f => f } %>
+				<% end %>
+			</div>
+			<div class="centered-text">
+				<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+			</div>
+	<% end %>
+</div>

@@ -9,6 +9,7 @@
 //= require view_components/notification.view
 //= require underscore
 //= require path
+//= require twitter/bootstrap
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {
@@ -49,7 +50,7 @@ $.extend({
 $(document).ready(function() {
 	
 	if($.isDefined('.top-message')) {
-		ViewComponents.Notification.append($('.top-message'));
+		//ViewComponents.Notification.append($('.top-message'));
 	}
 	
 });

@@ -77,7 +77,7 @@ ViewComponents.Map = function(gMap, opts, callback) {
 		
 		// using the convention for dom_lat and dom_lon retrieve
 		// the coordinates components for setting them on the map
-		setCoordinatesFromDom: function(coordinates) {
+		setCoordinatesFromDom: function(coordinates, zoom) {
 			var latitude = coordinates+"_lat";
 			var longitude = coordinates+"_lon";
 			if($.isDefined(latitude) && $.isDefined(longitude)) {	
@@ -85,7 +85,10 @@ ViewComponents.Map = function(gMap, opts, callback) {
 				var lon = $(longitude).val();
 				
 				if(lat != "" && lon != "") {
-					this.simulatePinPoint(lat, lon, 18);
+					if(zoom == undefined) {
+						zoom = 18;
+					}
+					this.simulatePinPoint(lat, lon, zoom);
 				}
 			}
 		},
@@ -267,7 +270,7 @@ ViewComponents.Map = function(gMap, opts, callback) {
 			}
 			this.lastMarker = null;
 			
-			this.setEditable(false);
+			//this.setEditable(false);
 			this.placeViewportAt({zoom: defaultZoom });
 		},
 		

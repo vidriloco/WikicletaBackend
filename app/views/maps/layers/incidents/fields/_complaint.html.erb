@@ -1,0 +1,7 @@
+<div class="control-group">
+	<%= f.label :complaint_issued, Incident.human_attribute_name(:complaint_issued), :class => 'control-label' %>
+	
+	<div class="controls">
+		<%= f.check_box :complaint_issued, :checked => incident.complaint_issued || false %>
+	</div>
+</div>

@@ -7,7 +7,7 @@ development:
   host: localhost
   adapter: postgresql
   encoding: unicode
-  database: ciudadio_development
+  database: wikicleta_development
   pool: 5
   username: spalatin
   password:

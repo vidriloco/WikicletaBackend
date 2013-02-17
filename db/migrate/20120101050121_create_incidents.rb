@@ -4,6 +4,7 @@ class CreateIncidents < ActiveRecord::Migration
       t.string :description
       t.integer :kind
       t.boolean :complaint_issued
+      t.boolean :fixed
       t.integer :lock_used
       
       t.string :vehicle_identifier

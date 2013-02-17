@@ -3,12 +3,16 @@
 $.extend(ViewComponents, {
     ValidForm: {
 			
-			set: function(dom, rules, callback) {
+			set: function(dom, rules, callbacks) {
 				this.domElement = dom;
 				this.validationRules = rules;
 				var instance = this;
 				
 				$(this.domElement).submit(function() {
+					if(callbacks.before != undefined) {
+						callbacks.before();
+					}
+					
 					for(var idx in instance.validationRules) {
 						var hash = instance.validationRules[idx];
 						if(!instance.validate(hash)) {
@@ -20,8 +24,8 @@ $.extend(ViewComponents, {
 						}
 					}
 					
-					if(callback != undefined) {
-						callback();
+					if(callbacks.after != undefined) {
+						callbacks.after();
 					}
 					return true;
 				})

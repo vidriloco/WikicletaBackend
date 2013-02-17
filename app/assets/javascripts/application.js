@@ -5,10 +5,3 @@
 // the compiled file.
 //
 //= require common/base
-
-// Handlebars no-conflict with jQuery
-
-//_.templateSettings = {
-//    interpolate: /\{\{\=(.+?)\}\}/g,
-//    evaluate: /\{\{(.+?)\}\}/g
-//};

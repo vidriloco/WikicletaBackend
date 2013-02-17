@@ -60,6 +60,7 @@ es_MX:
     search: "Buscar"
     accept: "Aceptar"
     search: "Buscar"
+    none: "Ninguno"
     back: "Atrás"
     back_arrow: "&larr; Atrás"
     close: "Cerrar"
