@@ -1,5 +1,8 @@
 es_MX:
   comments:
+    count:
+      one: "<b>Un</b> comentario"
+      many: "<b>%{number}</b> comentarios"
     views:
       index:
         title: "Comentarios"

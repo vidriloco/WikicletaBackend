@@ -1,3 +1,8 @@
+/*
+*= require_self
+*= require maps.css
+*/
+
 #new_incident {
 	.note {
 		text-align: center;
@@ -183,77 +188,106 @@
 $accidents: #CE2B28;
 $thefts: #3652AE;
 $assaults: #63A62C;
-$regulation_infractions: #F18706;
+$breakdowns: #F18706;
 
-#paginated-accidents, #paginated-thefts, #paginated-assaults, #paginated-regulation_infractions {
-	.mark {
-		width: 80px;
-		height: 10px;
-		margin-top: -10px;
+.listing-view {
+	margin-top: 20px;
+	
+	.with-focus {
+		border: 2px solid #CEDEFF !important;
+		
+		.signal {
+			opacity: 1 !important;
+		} 
+	}
+	
+	.incident {
+		border: 2px solid transparent;
+		background-color: #FCFAFF;
+		padding: 10px;
+		padding-bottom: 5px;
+		margin: 10px;
+		
+		.title {
+			font-size: 14px;
+		}
+		
+		.signal:hover {
+			opacity: 1;
+		}
+		
+		.signal {
+			width: 100%;
+			height: 20px !important;
+			opacity: 0.5;
+			cursor: pointer;
+		}
+		
+		.contextual-info, .contextual-actions {
+			li {
+				margin-right: 15px;
+			}
+		}
+		
+		.contextual-actions {
+			margin-left: 20px;
+			font-size: 13px;
+			
+			.remarked a {
+				color: #FF4F00;
+			}
+		}	
+			
+		.contextual-info {
+			li {
+				margin-right: 15px;
+			}
+			
+			.time {
+				text-transform: uppercase;
+				font-size: 10px;
+			}
+
+			.reporter {
+				font-size: 11px;
+				color: #3D5FA6;
+			}
+
+			.comments {
+				font-size: 13px;
+				text-decoration: none;
+			}
+		}
+		.description {
+			font-size: 13px;
+			color: #999;
+		}
+	}
+	
+	.accident {
+		.signal {
+			background-color: $accidents;
+		}
+	}
+	
+	.breakdown {
+		.signal {
+			background-color: $breakdowns;
+		}
+	}
+	
+	.assault {
+		.signal {
+			background-color: $assaults;
+		}
+	}
+	
+	.theft {
+		.signal {
+			background-color: $thefts;
+		}
 	}
 }
 
-#paginated-accidents {
-	.mark {
-		background-color: $accidents;
-	}
-}
 
-#paginated-thefts {
-	.mark {
-		background-color: $thefts;
-	}
-}
 
-#paginated-assaults {
-	.mark {
-		background-color: $assaults;
-	}
-}
-
-#paginated-regulation_infractions {
-	.mark {
-		background-color: $regulation_infractions;
-	}
-}
-
-#floating {
-	position: fixed;
-	right: 50%;
-	bottom: 40px;
-	margin-right: -315px;
-	background-color: rgba(1,1,1,0.7);
-	padding: 0px 10px;
-	
-	.regulation_infractions:hover {
-		color: $regulation_infractions;
-	}
-	
-	.regulation_infractions {
-		color: #F1C171;
-	}
-	
-	.thefts:hover {
-		color: $thefts;
-	}
-	
-	.thefts {
-		color: #93B7FB;
-	}
-	
-	.accidents:hover {
-		color: $accidents;
-	}
-	
-	.accidents {
-		color: #FFC6C3;
-	}
-	
-	.assaults:hover {
-		color: $assaults;
-	}
-	
-	.assaults {
-		color: #CCFFAC;
-	}
-}

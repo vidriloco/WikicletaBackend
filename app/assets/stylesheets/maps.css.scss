@@ -21,7 +21,41 @@ body, html {
 	}
 }
 
-.altering-action {
+.actions {
+	
+	.idea {
+		margin-top: 25px;
+		margin-bottom: 40px;
+	}
+	
+	h2, h4 {
+		text-align: right;
+		padding: 0;
+		margin: 0;
+		font-weight: normal;
+	}
+	
+	h2 {
+		margin-top: 20px;
+		font-size: 25px;
+		color: #155AA3;
+	}
+	
+	h4 {
+		color: #FF7403;
+		font-size: 18px;
+	}
+	
+	.filtering-enabled {
+		display: none;
+	}
+	
+	.nav {
+		margin-bottom: 0px;
+	}
+}
+
+.altering-view {
 	#active-form {
 		display: none;
 		
@@ -102,7 +136,16 @@ body, html {
 		margin-top: 10px;
 		text-align: center;
 		li {
+			.active {
+				color: #2C6ECA !important;
+			}
+			
+			.box:hover {
+				color: #FD6500;
+			}
+			
 			.box {
+				color: #4F4F4F;
 				padding: 5px;
 				margin-right: 0px;
 				text-decoration: none;

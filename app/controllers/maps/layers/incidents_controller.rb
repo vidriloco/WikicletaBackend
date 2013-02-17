@@ -1,7 +1,8 @@
 class Maps::Layers::IncidentsController < Maps::RootController
   
-  before_filter :find_incident, :only => [:show]
-    
+  before_filter :find_incident, :only => [:show, :edit]
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   def new
     @incident = Incident.new
     render :layout => 'maps_extended'
@@ -17,10 +18,8 @@ class Maps::Layers::IncidentsController < Maps::RootController
   end
   
   def index
-    respond_to do |format|
-      format.js { @incidents = Incident.categorized_by_kinds }
-      format.html { @incident = Incident.new }
-    end
+    @incidents_count = Incident.categorized_by_kinds
+    @incidents = Incident.all
   end
   
   def destroy
@@ -30,6 +29,9 @@ class Maps::Layers::IncidentsController < Maps::RootController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def edit
   end
   
   def show

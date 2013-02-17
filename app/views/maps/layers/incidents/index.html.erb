@@ -5,28 +5,16 @@
 		<div class="contents">
 			<ul class="stats">
 				<li>
-					<a class="box" href="">
-						<p class="number">20</p>
-						<p class="title">Robos</p>
-					</a>
+					<%= partial_numbers_for(@incidents_count, :theft) %>
 				</li>
 				<li>
-					<a class="box" href="">
-						<p class="number">10</p>
-						<p class="title">Accidentes</p>
-					</a>
+					<%= partial_numbers_for(@incidents_count, :accident) %>
 				</li>
 				<li>
-					<a class="box" href="">
-						<p class="number">1</p>
-						<p class="title">Asalto</p>
-					</a>
+					<%= partial_numbers_for(@incidents_count, :assault) %>
 				</li>
 				<li>
-					<a class="box" href="">
-						<p class="number">2</p>
-						<p class="title">Averias</p>
-					</a>
+					<%= partial_numbers_for(@incidents_count, :breakdown) %>
 				</li>
 			</ul>
 			<div class="separator"></div>
@@ -35,17 +23,36 @@
 				<% if user_signed_in? %>
 					<li><%= link_to 'Tus incidentes', '#' %></li>
 				<% end %>
-				<li><%= link_to 'Más comentados', '#' %></li>
-				<li><%= link_to 'No resueltos', '#' %></li>
+				<li><%= link_to 'Bicis robadas sin aparecer', '#' %></li>
+				<li><%= link_to 'Bicis blancas', '#' %></li>
 			</ul>
 		</div>
 	</div>
 <% end %>
 
-<div class="row-fluid actions">
-	<div class="span3 pull-right">
-		<%= link_to "Buscar", '#/search', :class => "btn" %>
-		<%= link_to "Nuevo", new_maps_layers_incident_path, :class => "btn btn-info" %>
+<div class="actions">
+	<div class="row-fluid idea">
+		<h2>¿Te robaron la bici? ¿Te aventaron lámina? ó ¿Se ponchó tu bici?</h2>
+		<h4>Reporta tu incidente, contribuye a la comunidad y recibe ayuda</h4>
 	</div>
+	<div class="row-fluid">
+		<div class="span9">
+			<ul class="nav nav-pills filtering-enabled">
+	    	<li>
+		    	<%= link_to "Mostrar todos", '#/', :class => 'turn-off-filtering' %>
+		    </li>
+	    </ul>
+		</div>
+		<div class="span3">
+			<div class="pull-right">
+				<%= link_to "Buscar", '#/search', :class => "btn" %>
+				<%= link_to "Nuevo", new_maps_layers_incident_path, :class => "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="listing-view">
+	<%= render :partial => 'maps/layers/incidents/incident', :collection => @incidents %>
 </div>
 

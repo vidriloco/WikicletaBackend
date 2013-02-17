@@ -32,40 +32,11 @@ Ciudadio::Application.routes.draw do
     get "profile", :via => :get
     put "changed", :via => :put
   end
-
-=begin  
-  get '/places/' => 'places#index'
-  post "/places/" => "places#create"
-  put "/places/:id" => "places#update"
-  get "/places/new" => 'places#new', :as => "new_place"
   
-  namespace :places do
-    get 'search' => 'searches#main'
-    post 'search' => 'searches#execute_main'
-    
-    get ":place_id/announcements" => 'announcements#index', :as => "announcements"
-    post ":place_id/announcements" => 'announcements#create'
-    delete ":place_id/announcements/:id" => 'announcements#destroy', :as => "delete_announcement"
-    
-    get ":place_id/comments" => 'comments#index', :as => "comments"
-    post ":place_id/comments" => 'comments#create'
-    delete ":place_id/comments/:id" => 'comments#destroy', :as => "delete_comment"
-    
-    get ":place_id/recommendations" => 'recommendations#index', :as => "recommendations"
-    put ":place_id/recommendations/on" => 'recommendations#update', :as => 'recommendation_on', :defaults => { :recommend => 'on' }
-    put ":place_id/recommendations/off" => 'recommendations#update', :as => 'recommendation_off', :defaults => { :recommend => 'off' }
-    
-    post ':place_id/evaluations/' => 'evaluations#create', :as => "evaluations"
-    put ":place_id/evaluations/:id" => "evaluations#update", :as => "evaluation"
-    get ':place_id/evaluations/new' => 'evaluations#new', :as => 'new_evaluation'
-    get ":place_id/evaluations/edit/:id" => "evaluations#edit", :as => "edit_evaluation"
-    get ":place_id/evaluations" => "evaluations#show"
-  end
-=end
   namespace :maps do
     get '/' => 'root#index'
     namespace :layers do
-      resources :incidents, :except => [:edit, :update] do
+      resources :incidents do
         collection do 
           get :filtering
         end

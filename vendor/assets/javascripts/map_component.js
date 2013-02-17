@@ -209,13 +209,18 @@ ViewComponents.Map = function(gMap, opts, callback) {
 			if(opts.lat=="" || opts.lon=="") {
 				return false;
 			}
-			
 			var map = this.gMap;
-			var marker = new google.maps.Marker({
+			
+			var markerOpts = {
 				position: new google.maps.LatLng(opts.lat, opts.lon),
-				map: map//,
-				//icon: $.assetsURL+opts.iconName+'.png'
-			});
+				map: map
+			};
+			
+			if(opts.iconName != undefined) {
+				markerOpts = $.extend(markerOpts, {	icon: $.assetsURL() + opts.iconName + '.png'})
+			}
+			
+			var marker = new google.maps.Marker(markerOpts);
 			
 			google.maps.event.addListener(marker, 'click', function() {
 				callback(opts.resourceUrl);

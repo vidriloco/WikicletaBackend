@@ -28,8 +28,8 @@ $(document).ready(function(){
 			}
 		});
 		
-		// Toggle actions list
-		$('.section-actions a').bind('click', function() {
+		// Toggle actions list from title
+		$('.section-actions a.main-title').bind('click', function() {
 			if($('.section-actions .contents').is(':visible')) {
 				$('.section-actions .contents').hide();
 				$('.icon-chevron-down').hide();
@@ -58,7 +58,87 @@ $(document).ready(function(){
 		}
 	});
 	
-	if($.isDefined('.altering-action')) {
+	// JS Subroutes for listing views
+	if($.isDefined('.listing-view')) {
+		
+		// Responds to clicks on incidents
+		$('.incident').bind('click', function() {
+			if($(this).hasClass('with-focus')) {
+				$(this).removeClass('with-focus');
+				map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+			} else {
+				// Show map if not visible
+				if($('.layers').is(':visible')) {
+					$('.section-switcher .map').click();
+				}
+				$('.incident').removeClass('with-focus');
+				$(this).addClass('with-focus');
+				map.placeViewportAt({ lat: $(this).attr('data-lat'), lon: $(this).attr('data-lon'), zoom: defaultMiddleZoom });
+			}			
+		});
+		
+		var Incidents = {};
+		Incidents.Routes = function() {
+			
+			var thisInstance = null;
+			
+			var obj = {
+				initialize: function() {
+					thisInstance = this;
+					return this;
+				},
+
+				onIndex : function() {
+					$('.incident').fadeIn();
+					$('.stats .box').addClass('active');
+					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
+					
+					thisInstance.drawSelectedIncidents($('.listing-view .incident'));
+				},
+				
+				onFilter : function() {
+					var aspect = this.params['aspect'].slice(0,-1);
+					// Deactivate filter if location hash is on filter aspect
+					$('.incident').fadeOut();
+					$('.'+aspect).fadeIn();
+					$('.stats .box').removeClass('active');
+					$('.stats .'+aspect).addClass('active');
+					$('.actions .filtering-enabled').fadeIn();
+					$('.actions .filtering-enabled .turn-off-filtering').fadeIn();
+
+					$('.actions .filtering-enabled .turn-off-filtering').bind('click', function() {
+						window.location.hash = "#/";
+					});
+					thisInstance.drawSelectedIncidents($('.listing-view .'+aspect));
+				},
+				
+				drawSelectedIncidents : function(incidents) {
+					map.resetMarkersList();
+					for(var idx in incidents) {
+						var lat = parseFloat($(incidents[idx]).attr('data-lat'));
+						var lon = parseFloat($(incidents[idx]).attr('data-lon'));
+						var kind = $(incidents[idx]).attr('data-kind');
+						var idD = $(incidents[idx]).attr('id');
+						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(id) {
+							$('.listing-view #'+id).click();
+						});
+					}
+				}
+			
+			}
+			return obj.initialize();
+		}
+		
+		var incidentsRoutes = new Incidents.Routes();
+		Path.map("#/").to(incidentsRoutes.onIndex);
+		Path.map("#/filter/:aspect").to(incidentsRoutes.onFilter);
+		
+		Path.root("#/");
+		Path.listen();
+	}
+	
+	// JS Subroutes for new and edit views
+	if($.isDefined('.altering-view')) {
 		
 		var Incidents = {};
 		Incidents.Routes = function() {

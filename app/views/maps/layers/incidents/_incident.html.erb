@@ -1,21 +1,46 @@
-<div class="<%= incident.symbol_kind.to_s.pluralize %>">
-	<div id="<%= incident.id %>" class="item rounded-5">
-		<% if incident.is_bike_related? %>
-			<%= info_for(incident.bike) %>
-		<% end %>
-		<div class="description"><%= shrink_text incident.description %></div>
-		
-		<div class="to-right">
-			<span class="time"><%= distance_of_time_in_words(incident.date, Time.now, true) %></span> 
-			<span class="reporter"><%= reporter_of(incident) %></span>
+<div id="<%= incident.id %>" class="rounded-5 incident <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
+	<div class="row-fluid">
+		<div class="row-fluid">
+			<div class="span1"><div class="signal"></div></div>
+			<p class="title span3"><%= Bike.humanized_category_for(:incidents, incident.kind) %></p>
+			<div class="span8">
+				<div class="pull-right">
+					<% if incident.bike.nil? %>
+						<% if incident.theft? %>
+							<%= t('incidents.views.index.bicycle.not_given', :event => t('incidents.connectives.of')) %>
+						<% else %>
+							<%= t('incidents.views.index.bicycle.not_given', :event => t('incidents.connectives.by')) %>
+						<% end %>
+					<% else %>
+						<% if incident.theft? %>
+							<%= t('incidents.views.index.bicycle.given', :event => t('incidents.connectives.of'), :brand => link_to(incident.bike.brand, bike_path(incident.bike))).html_safe %>
+						<% else %>
+							<%= t('incidents.views.index.bicycle.given', :event => t('incidents.connectives.by'), :brand => link_to(incident.bike.brand, bike_path(incident.bike))).html_safe %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 		</div>
-	
-		<div class="clear"></div>
-
-	
-		<div class="lat hidden"><%= incident.coordinates.lat %></div>
-		<div class="lon hidden"><%= incident.coordinates.lon %></div>
-	
-	
-	</div>
+		<div class="row-fluid">
+			<p class="centered-text description"><%= incident.description %></p>
+		</div>
+		
+		<div class="separator"></div>
+		<div class="row-fluid">
+			<ul class="pull-left contextual-actions">
+				<li class="remarked"><i class="icon icon-eye-open"></i> <%= link_to 'Detalles', '#' %></li>
+				<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', '#' %></li>
+				<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_layers_incident_path(incident) %></li>
+			</ul>
+			<ul class="pull-right contextual-info">
+				<li class="comments"><%= number_of_comments_for(incident) %></li>
+				<li>
+					<div>
+						<span class="time"><%= distance_of_time_in_words(incident.date || Date.today, Time.now, true) %></span> 
+						<span class="reporter"><%= reporter_of(incident) %></span>
+					</div>
+				</li>
+			</ul>
+		</div>		
+	</div>	
 </div>

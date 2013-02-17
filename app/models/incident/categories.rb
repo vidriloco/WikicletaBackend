@@ -15,7 +15,7 @@ module Incident::Categories
   end
   
   def incidents
-    { 1 => :theft, 2 => :assault, 3 => :accident }
+    { 1 => :theft, 2 => :assault, 3 => :accident, 4 => :breakdown }
   end
   
   def symbol_kind
@@ -34,16 +34,16 @@ module Incident::Categories
     is_of_kind?(:accident)
   end
   
-  def regulation_infraction?
-    is_of_kind?(:regulation_infraction)
+  def breakdown?
+    is_of_kind?(:breakdown)
   end
   
-  def theft_or_assault?
-    theft? || assault?
+  def theft_or_assault_or_breakdown?
+    theft? || assault? || breakdown?
   end
   
-  def accident_or_regulation_infraction?
-    regulation_infraction? || accident?
+  def accident_or_breakdown?
+    breakdown? || accident?
   end
   
   def accident_or_theft_or_assault?

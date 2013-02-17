@@ -30,12 +30,12 @@ module IncidentsHelper
     end
   end
   
-  def partial_numbers_for(ocurrences, kind)
-    count = ocurrences == nil ? 0 : ocurrences.count
-    text = count == 1 ? t("incidents.views.index.numbers.#{kind}.one") : t("incidents.views.index.numbers.#{kind}.other")
-    result = "<a href='#{hash_link_for(map_incidents_path, kind.to_s.pluralize)}' class='group-toggle #{kind.to_s.pluralize}' id='#{kind}'>
-    <span class='number'>#{count}</span><span class='text'>#{text}</span>
-    </a>"    
+  def partial_numbers_for(collection, kind)
+    text = collection[kind] == 1 ? t("incidents.kinds.#{kind}.one") : t("incidents.kinds.#{kind}.many")
+    result = "<a class='box #{kind}' href='#{maps_layers_incidents_path.concat('#/filter/').concat(kind.to_s.pluralize)}'>
+			<p class='number'>#{collection[kind]}</p>
+			<p class='title'>#{text}</p>
+		</a>"   
     result.html_safe
   end
   
@@ -49,10 +49,15 @@ module IncidentsHelper
   end
   
   def reporter_of(incident)
-    if incident.user.nil?
-      t('incidents.views.index.list.item.reporter.anonymous')
-    else
-      t('incidents.views.index.list.item.reporter.user', :user => incident.user.username)
+    if(incident.user != nil)
+      link_to t('incidents.views.index.list.item.reporter.user', :user => incident.user.username), user_profile_path(incident.user)
     end
+  end
+  
+  def number_of_comments_for(incident)
+    count = incident.comments.count
+    text = count == 1 ? t('comments.count.one') : t('comments.count.many', :number => count)
+    "<i class='icon-comment'></i> ".html_safe + link_to("#{text}".html_safe, maps_layers_incident_path(incident).concat('#/comments'))
+    
   end
 end

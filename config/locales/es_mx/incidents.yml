@@ -13,6 +13,9 @@ es_MX:
         fixed: "¿Averia reparada?"
         vehicle_identifier: "Placa del vehículo"
   incidents:
+    connectives:
+      of: "de"
+      by: "en"
     kinds:
       assault: 
         one: "Asalto"
@@ -38,33 +41,9 @@ es_MX:
     views:          
       index:
         empty: "No hay reportes de este tipo"
-        numbers:
-          total:
-            one: "incidente"
-            other: "incidentes"
-          assault: 
-            one: "asalto"
-            other: "asaltos"
-          theft:
-            one: "robo"
-            other: "robos"
-          accident:
-            one: "accidente"
-            other: "accidentes"
-          regulation_infraction:
-            one: "infracción"
-            other: "infracciones"
-        listing:
-          singular:
-            assault: "Asalto"
-            regulation_infraction: "Infracción al reglamento"
-            accident: "Accidente"
-            theft: "Robo"
-          plural:
-            assault: "Asaltos"
-            regulation_infraction: "Infracciones al reglamento"
-            accident: "Accidentes"
-            theft: "Robos"
+        bicycle: 
+          given: "%{event} bici %{brand}"
+          not_given: "%{event} bici desconocida"
         list:
           close: "Ocultar"
           item:
