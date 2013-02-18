@@ -3,8 +3,6 @@ Ciudadio::Application.routes.draw do
   
   devise_for :admins, :only => [:sessions]
   
-  
-  
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
   
   devise_scope :user do
@@ -32,6 +30,8 @@ Ciudadio::Application.routes.draw do
     get "profile", :via => :get
     put "changed", :via => :put
   end
+  
+  resources :trips
   
   namespace :maps do
     get '/' => 'root#index'

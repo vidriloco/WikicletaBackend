@@ -4,6 +4,17 @@
 
 body, html {
 	font-family: "gothamrndbook-Book";
+	
+	height: 100%;
+	width: 100%;
+	background: #f2f7fb !important; /* Old browsers */
+}
+
+h3 {
+	font-weight: normal !important;
+	padding:0 !important;
+	margin:0 !important;
+	color: #FB5A00 !important;
 }
 
 ul {
@@ -389,4 +400,9 @@ p.empty {
 	font-size: 11px;
 	font-weight: bold;
 	color: #4B4B4B;
+}
+
+.footer {
+	height: 100px;
+	background-color: #FFE9DD;
 }

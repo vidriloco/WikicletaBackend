@@ -9,12 +9,6 @@
  *= require shared/form.css
 **/
 
-body, html {
-	height: 100%;
-	width: 100%;
-	background: #f2f7fb !important; /* Old browsers */
-}
-
 .dropdown-menu {
 	li {
 		display: block;
@@ -70,12 +64,6 @@ body, html {
 				width: 60px;
 			}
 		}
-	}
-	h3 {
-		font-weight: normal !important;
-		padding:0 !important;
-		margin:0 !important;
-		color: #FB5A00 !important;
 	}
 
 	ul {
