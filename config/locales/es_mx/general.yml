@@ -92,9 +92,9 @@ es_MX:
     masc: "No proporcionado"
     fem: "No proporcionada"
     
-  common_answers:
-    yes: "Si"
-    no: "No"
+  boolean_answers:
+    accept: "Si"
+    decline: "No"
   
   currency:
     symbol:

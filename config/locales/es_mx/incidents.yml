@@ -67,6 +67,10 @@ es_MX:
           aspect: "Reportado por:"
           anonymous: "usuario anónimo"
       edit:
+        title: "Modificar Incidente"
+        steps:
+          one: "Confirma o selecciona un punto en el mapa"
+          two: "Ajusta los campos del incidente"
         destroy: "Eliminar este incidente"
       filtering:
         title: "Búsqueda"
@@ -83,6 +87,9 @@ es_MX:
         
       new:
         title: "Nuevo Incidente"
+        steps:
+          one: "Selecciona un punto en el mapa"
+          two: "Selecciona un tipo de incidente"
         bike: "Bicicleta"
         form:
           validations:

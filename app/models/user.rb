@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   
   before_validation :validate_format_of_username
   
+  def owns?(object)
+    return if object.nil?
+    object.send(:user) == self
+  end
+  
   def owns_comment?(comment)
     return false if comment.nil?
     comment.user == self

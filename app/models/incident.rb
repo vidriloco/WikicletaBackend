@@ -17,9 +17,14 @@ class Incident < ActiveRecord::Base
   attr_protected :user_id
   
   def self.new_with(params, coordinates, user)
-    user = new(params.merge(:user => user)) 
-    user.apply_geo(coordinates)
-    user
+    incident = new(params.merge(:user => user)) 
+    incident.apply_geo(coordinates)
+    incident
+  end
+  
+  def update_with(params, coordinates, user)
+    self.apply_geo(coordinates)
+    self.update_attributes(params.merge(:user => user))
   end
   
   def self.categorized_by_kinds

@@ -194,15 +194,14 @@ $breakdowns: #F18706;
 	margin-top: 20px;
 	
 	.with-focus {
-		border: 2px solid #CEDEFF !important;
-		
+		border: 2px solid #0F527C !important;
 		.signal {
 			opacity: 1 !important;
 		} 
 	}
 	
 	.incident {
-		border: 2px solid transparent;
+		border: 2px solid #CEDEFF;
 		background-color: #FCFAFF;
 		padding: 10px;
 		padding-bottom: 5px;

@@ -162,18 +162,22 @@ $(document).ready(function(){
 			
 				onAccidents : function() {
 					thisInstance.mountFieldsFor('accident');
+					map.setCoordinatesFromDom('#coordinates', 16);
 				},
 				
 				onThefts : function() {
 					thisInstance.mountFieldsFor('theft');
+					map.setCoordinatesFromDom('#coordinates', 16);
 				},
 				
 				onAssaults : function() {
 					thisInstance.mountFieldsFor('assault');
+					map.setCoordinatesFromDom('#coordinates', 16);
 				},
 				
 				onBreakDown : function() {
 					thisInstance.mountFieldsFor('breakdown');
+					map.setCoordinatesFromDom('#coordinates', 16);
 				},
 				
 				onEmpty : function() {
@@ -191,16 +195,21 @@ $(document).ready(function(){
 					// Setup constraints and validations for fields
 					ViewComponents.Counter.forDomElement('#incident_description', 250);
 					
-					ViewComponents.ValidForm.set('#active-form form', [
-						{id: '#incident_kind', condition: 'not_empty' }, 
-						{id: '#incident_start_hour', respect: '#incident_final_hour', condition: 'before_than', special: true }, 
+					var conditions = [{id: '#incident_kind', condition: 'not_empty' }, 
 						{id: '#incident_description', condition: 'min', value: 60 },
-						{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }, 
-						{id: '#incident_vehicle_identifier', condition: 'regexp', regexp: /^[^-]([A-Z0-9\-]){3,}[^-]$/ }], {
+						{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
+						
+					// Add extra validations if incident is not a breakdown
+					if(kind != "breakdown") {
+						conditions.push({id: '#incident_start_hour', respect: '#incident_final_hour', condition: 'before_than', special: true });
+						conditions.push({id: '#incident_vehicle_identifier', condition: 'regexp', regexp: /^[^-]([A-Z0-9\-]){3,}[^-]$/ });
+					} 
+					
+					ViewComponents.ValidForm.set('#active-form form', conditions, {
 							before: function() {
 								map.setCoordinatesFromDom('#coordinates', 16);
 							}
-						});
+					});
 				}
 			}
 			return obj.initialize();

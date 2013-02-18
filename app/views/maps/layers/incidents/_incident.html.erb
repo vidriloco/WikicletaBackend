@@ -26,11 +26,14 @@
 		</div>
 		
 		<div class="separator"></div>
+		<!-- Render actions that appear below the separator -->
 		<div class="row-fluid">
 			<ul class="pull-left contextual-actions">
 				<li class="remarked"><i class="icon icon-eye-open"></i> <%= link_to 'Detalles', '#' %></li>
-				<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', '#' %></li>
-				<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_layers_incident_path(incident) %></li>
+				<% if current_user && current_user.owns?(incident) %>
+					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', '#', "data-toggle"=>"modal", "data-target"=>"#dialog" %></li>
+					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_layers_incident_path(incident) %></li>
+				<% end %>
 			</ul>
 			<ul class="pull-right contextual-info">
 				<li class="comments"><%= number_of_comments_for(incident) %></li>
@@ -42,5 +45,8 @@
 				</li>
 			</ul>
 		</div>		
-	</div>	
+	</div>
+	<!-- Render incident delete dialog -->
+	<%= render :partial => 'shared/modal_dialog', :locals => { 
+		:record => "incidente", :accept => link_to(t('actions.delete'), maps_layers_incident_path(incident), :method => :delete, :class => "btn btn-danger", :remote => true)} %>
 </div>
