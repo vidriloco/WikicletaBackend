@@ -8,7 +8,6 @@ Ciudadio::Application.routes.draw do
   devise_scope :user do
     get "/sign_up", :to => "devise/registrations#new"
     get "/sign_in", :to => "devise/sessions#new", :as => "new_user_session"
-    delete "/sign_out", :to => "devise/sessions#destroy", :as => "destroy_user_session"
     
     namespace :users do
       post '/auth/create', :to => "omniauth_callbacks#create", :as => :auth_sign_up
@@ -22,6 +21,8 @@ Ciudadio::Application.routes.draw do
     get "/account/reset_password", :to => "devise/passwords#edit", :as => "edit_user_password"
 
     post "/log_in", :to => "devise/sessions#create", :as => "user_session"
+    delete "/log_out", :to => "devise/sessions#destroy", :as => "destroy_user_session"
+    
   end
   
   namespace :settings do

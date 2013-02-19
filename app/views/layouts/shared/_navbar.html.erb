@@ -10,13 +10,28 @@
       <div class="container-fluid nav-collapse pull-right span7">
         <ul class="nav">
 					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Tu ciudad en bici', trips_path  %></li>
-					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
-					<li class=""><%= link_to 'Ahora', maps_path %></li>
+					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa de todos', maps_path %></li>
 					<li><%= link_to 'Mercado', maps_path %></li>
-					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis', bikes_path %></li>
-
+					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Pasarela de bicis', bikes_path %></li>
 				</ul>
-				<a href="<%= new_user_session_path %>" class="pull-right btn btn-primary" type="button"><i class="icon-user icon-white"></i> Iniciar Sesión</a>
+				
+				<% if user_signed_in? %>
+					<ul class="nav">
+						<li class="user-logged-in dropdown">
+							<%= link_to "<i class='icon-chevron-down'></i> #{current_user.username}".html_safe, '#', :class => "dropdown-toggle", "data-toggle"=>"dropdown" %>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<li><%= link_to 'Perfil', user_profile_path(current_user) %></li>
+								<li><%= link_to 'Tus bicis', '#' %></li>
+								<li class="divider"></li>
+								<li><%= link_to 'Cerrar Sesión', destroy_user_session_path, :method => :delete %></li>
+					    </ul>
+						</li>
+					</ul>
+				<% else %>
+					<a href="<%= new_user_session_path %>" class="pull-right btn btn-primary" type="button">
+						 <i class='icon-user'></i> Iniciar Sesión
+					</a>
+				<% end %>
       </div>
     </div>
   </div>

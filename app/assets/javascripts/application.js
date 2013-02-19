@@ -4,9 +4,3 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require common/base
-//= require jquery.superslides.min
-
-$(document).ready(function() {
-	$('#slides').superslides({ play: 5000, slide_speed: 'normal', slide_easing: 'linear', hashchange: true, pagination: true });
-});

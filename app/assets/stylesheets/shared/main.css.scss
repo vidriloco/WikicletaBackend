@@ -14,7 +14,6 @@ h3 {
 	font-weight: normal !important;
 	padding:0 !important;
 	margin:0 !important;
-	color: #FB5A00 !important;
 }
 
 ul {
@@ -405,4 +404,12 @@ p.empty {
 .footer {
 	height: 100px;
 	background-color: #FFE9DD;
+}
+
+.user-logged-in {
+	font-weight: bold;
+	
+	> a {
+		color: #FF5800 !important;
+	}
 }
