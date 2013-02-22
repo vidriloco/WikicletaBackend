@@ -66,6 +66,12 @@ $(document).ready(function(){
 			window.location.hash = "#/";
 		});
 		
+		$('.delete-incident').bind('click', function() {
+			$('#dialog').modal();
+			$('#dialog .dialog-yes').attr('href', '/maps/layers/incidents/'+$(this).attr('data-id'));
+			return false;
+		});
+		
 		// Routes sub-urls depending on the selection status
 		var incidentUrlSwitch = function(domElement, id) {
 			if(domElement.hasClass('with-focus')) {
@@ -95,8 +101,8 @@ $(document).ready(function(){
 					$('.stats .box').addClass('active');
 					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
 					
-					thisInstance.drawSelectedIncidents($('.listing-view .incident'));
 					thisInstance.showEmptyLegendFor('.incident');
+					thisInstance.drawSelectedIncidents($('.listing-view .incident'));
 					
 					$('.listing-view .incident').removeClass('with-focus');
 					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
@@ -123,6 +129,7 @@ $(document).ready(function(){
 					if($('.layers').is(':visible')) {
 						$('.section-switcher .map').click();
 					}
+					
 					$('.incident').removeClass('with-focus');
 					$(domElement).addClass('with-focus');
 					thisInstance.drawSelectedIncidents([domElement]);
@@ -131,13 +138,14 @@ $(document).ready(function(){
 				
 				drawSelectedIncidents : function(incidents) {
 					map.resetMarkersList();
-					for(var idx in incidents) {
+					for(idx = 0 ; idx<incidents.length ; idx++) {
 						var lat = parseFloat($(incidents[idx]).attr('data-lat'));
 						var lon = parseFloat($(incidents[idx]).attr('data-lon'));
 						var kind = $(incidents[idx]).attr('data-kind');
 						var idD = $(incidents[idx]).attr('id');
-						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(idD) {
-							incidentUrlSwitch($('.listing-view #'+idD), idD);
+						
+						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(urlID) {
+							incidentUrlSwitch($('.listing-view #'+urlID), urlID);
 						});
 					}
 				},

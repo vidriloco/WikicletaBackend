@@ -11,7 +11,7 @@
 		<% if defined?(accept) %>
 			<%= accept %>
 		<% else %>
-			<button class="btn btn-danger dialog-yes"><%= t('boolean_answers.accept') %></button>
+			<%= link_to t('boolean_answers.accept'), '#', :class => "btn btn-danger dialog-yes", :method => :delete %>
 		<% end %>
 	</div>
 </div>

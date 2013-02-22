@@ -32,10 +32,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   
   def destroy
     @incident.destroy
-    
-    respond_to do |format|
-      format.js
-    end
+    redirect_to maps_layers_incidents_path
   end
   
   def edit
