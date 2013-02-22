@@ -1,15 +1,13 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-min
 //= require jquery.tipsy
 //= require jquery.reveal
 //= require jquery.editable.min
-//= require quickpager.jquery
 //= require view_components/blocking.view
 //= require view_components/notification.view
-//= require underscore
 //= require path
 //= require twitter/bootstrap
+//= require bootbox
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {

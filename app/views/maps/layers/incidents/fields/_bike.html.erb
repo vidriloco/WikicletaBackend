@@ -4,5 +4,5 @@
 		<div class="controls">
 			<%= f.select :bike_id, options_from_collection_for_select(current_user.bikes, :id, :name, incident.bike_id), {:include_blank => true} %>
 		</div>
-	</div>
+	</div>	
 <% end %>

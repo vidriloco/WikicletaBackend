@@ -10,7 +10,7 @@ class Incident < ActiveRecord::Base
   
   validates_presence_of :coordinates, :kind, :description
   validates_presence_of :lock_used, :if => :theft?
-  validates_presence_of :bike, :if => :theft_or_assault_or_breakdown?
+  validates_presence_of :bike, :if => :theft_or_breakdown?
   validates_presence_of :user
   validates :vehicle_identifier, :format => /^[^-]([A-Z0-9\-]){3,}[^-]$/, :allow_blank => true
   

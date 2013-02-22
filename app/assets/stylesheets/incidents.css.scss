@@ -200,12 +200,26 @@ $breakdowns: #F18706;
 		} 
 	}
 	
+	.empty {
+		text-align: center;
+	}
+	
+	.with-focus {
+		.extras {
+			display: block !important;
+		}
+	}
+	
 	.incident {
 		border: 2px solid #CEDEFF;
 		background-color: #FCFAFF;
 		padding: 10px;
 		padding-bottom: 5px;
 		margin: 10px;
+		
+		.extras {
+			display: none;
+		}
 		
 		.title {
 			font-size: 14px;

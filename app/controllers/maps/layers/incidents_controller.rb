@@ -42,12 +42,6 @@ class Maps::Layers::IncidentsController < Maps::RootController
     render :layout => 'maps_extended'
   end
   
-  def show
-    respond_to do |format|
-      format.js
-    end
-  end
-  
   def filtering
     @incidents = Incident.filtering_with(params[:incident])
     @filtering = true

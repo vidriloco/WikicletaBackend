@@ -39,7 +39,9 @@
 		<div class="span9">
 			<ul class="nav nav-pills filtering-enabled">
 	    	<li>
-		    	<%= link_to "Mostrar todos", '#/', :class => 'turn-off-filtering' %>
+					<a href="javascript:void(0);" class="turn-off-filtering">
+						<i class="icon-resize-full"></i>  Mostrar todos
+					</a>
 		    </li>
 	    </ul>
 		</div>
@@ -62,6 +64,7 @@
 </div>
 
 <div class="listing-view">
+	<div class="empty hidden"><i class="icon-ok-sign"></i> <%= t('incidents.views.index.empty') %></div>
 	<%= render :partial => 'maps/layers/incidents/incident', :collection => @incidents %>	
 </div>
 

@@ -40,7 +40,7 @@ es_MX:
 
     views:          
       index:
-        empty: "No hay reportes de este tipo"
+        empty: "Sin incidentes"
         bicycle: 
           given: "%{event} bici %{brand}"
           not_given: "%{event} bici desconocida"

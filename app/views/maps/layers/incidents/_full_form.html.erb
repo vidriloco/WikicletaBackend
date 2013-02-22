@@ -18,6 +18,13 @@
 		</div>
 	</div>
 	<div id="map" class="show-only editable map-dimensions rounded-5 shadow-light"></div>
+	<br/>
+	<% if !current_user_has_bikes_to_report? %>
+		<div id="bike-required-alert" class="alert alert-error ">
+			<span><i class="icon-exclamation-sign"></i> Necesitas registrar tu bici para reportar su <b>robo</b> o <b>avería</b></span> 
+			<%= link_to 'Añadir bici', new_bike_path, :class => "pull-right" %>
+		</div>
+	<% end %>
 	
 	<div class="row-fluid instruction">
 		<div class="span6">

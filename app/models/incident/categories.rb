@@ -38,8 +38,8 @@ module Incident::Categories
     is_of_kind?(:breakdown)
   end
   
-  def theft_or_assault_or_breakdown?
-    theft? || assault? || breakdown?
+  def theft_or_breakdown?
+    theft? || breakdown?
   end
   
   def accident_or_breakdown?

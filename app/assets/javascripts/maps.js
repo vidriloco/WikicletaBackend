@@ -61,20 +61,22 @@ $(document).ready(function(){
 	// JS Subroutes for listing views
 	if($.isDefined('.listing-view')) {
 		
+		// Turns off the filtering allowing all the incidents to become visible
+		$('.actions .filtering-enabled .turn-off-filtering').bind('click', function() {
+			window.location.hash = "#/";
+		});
+		
+		// Routes sub-urls depending on the selection status
+		var incidentUrlSwitch = function(domElement, id) {
+			if(domElement.hasClass('with-focus')) {
+				window.location.hash="#/";
+			} else {
+				window.location.hash="#/details/"+id;			
+			}
+		}
 		// Responds to clicks on incidents
 		$('.incident').bind('click', function() {
-			if($(this).hasClass('with-focus')) {
-				$(this).removeClass('with-focus');
-				map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
-			} else {
-				// Show map if not visible
-				if($('.layers').is(':visible')) {
-					$('.section-switcher .map').click();
-				}
-				$('.incident').removeClass('with-focus');
-				$(this).addClass('with-focus');
-				map.placeViewportAt({ lat: $(this).attr('data-lat'), lon: $(this).attr('data-lon'), zoom: defaultMiddleZoom });
-			}			
+			incidentUrlSwitch($(this), $(this).attr('id'));
 		});
 		
 		var Incidents = {};
@@ -94,6 +96,10 @@ $(document).ready(function(){
 					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
 					
 					thisInstance.drawSelectedIncidents($('.listing-view .incident'));
+					thisInstance.showEmptyLegendFor('.incident');
+					
+					$('.listing-view .incident').removeClass('with-focus');
+					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
 				},
 				
 				onFilter : function() {
@@ -105,11 +111,22 @@ $(document).ready(function(){
 					$('.stats .'+aspect).addClass('active');
 					$('.actions .filtering-enabled').fadeIn();
 					$('.actions .filtering-enabled .turn-off-filtering').fadeIn();
-
-					$('.actions .filtering-enabled .turn-off-filtering').bind('click', function() {
-						window.location.hash = "#/";
-					});
 					thisInstance.drawSelectedIncidents($('.listing-view .'+aspect));
+					thisInstance.showEmptyLegendFor('.'+aspect);
+				},
+				
+				details : function() {
+					var id = this.params['id'];
+					var domElement = '.listing-view #'+id;
+										
+					// Show map if not visible
+					if($('.layers').is(':visible')) {
+						$('.section-switcher .map').click();
+					}
+					$('.incident').removeClass('with-focus');
+					$(domElement).addClass('with-focus');
+					thisInstance.drawSelectedIncidents([domElement]);
+					map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
 				},
 				
 				drawSelectedIncidents : function(incidents) {
@@ -119,9 +136,17 @@ $(document).ready(function(){
 						var lon = parseFloat($(incidents[idx]).attr('data-lon'));
 						var kind = $(incidents[idx]).attr('data-kind');
 						var idD = $(incidents[idx]).attr('id');
-						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(id) {
-							$('.listing-view #'+id).click();
+						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(idD) {
+							incidentUrlSwitch($('.listing-view #'+idD), idD);
 						});
+					}
+				},
+				
+				showEmptyLegendFor : function(domElement) {
+					if($('.listing-view').children(domElement).length == 0) {
+						$('.listing-view .empty').removeClass('hidden');
+					} else {
+						$('.listing-view .empty').addClass('hidden');
 					}
 				}
 			
@@ -132,7 +157,7 @@ $(document).ready(function(){
 		var incidentsRoutes = new Incidents.Routes();
 		Path.map("#/").to(incidentsRoutes.onIndex);
 		Path.map("#/filter/:aspect").to(incidentsRoutes.onFilter);
-		
+		Path.map('#/details/:id').to(incidentsRoutes.details);
 		Path.root("#/");
 		Path.listen();
 	}
@@ -163,21 +188,37 @@ $(document).ready(function(){
 				onAccidents : function() {
 					thisInstance.mountFieldsFor('accident');
 					map.setCoordinatesFromDom('#coordinates', 16);
+					thisInstance.toggleAlert('#bike-required-alert', false);
 				},
 				
 				onThefts : function() {
 					thisInstance.mountFieldsFor('theft');
 					map.setCoordinatesFromDom('#coordinates', 16);
+					thisInstance.toggleAlert('#bike-required-alert', true);
 				},
 				
 				onAssaults : function() {
 					thisInstance.mountFieldsFor('assault');
 					map.setCoordinatesFromDom('#coordinates', 16);
+					thisInstance.toggleAlert('#bike-required-alert', false);
 				},
 				
 				onBreakDown : function() {
 					thisInstance.mountFieldsFor('breakdown');
 					map.setCoordinatesFromDom('#coordinates', 16);
+					thisInstance.toggleAlert('#bike-required-alert', true);
+				},
+				
+				toggleAlert : function(dom, show) {
+					if(!$.isDefined(dom)) {
+						return false;
+					}
+					
+					if(show) {
+						$(dom).removeClass('hidden');
+					} else {
+						$(dom).addClass('hidden');
+					}
 				},
 				
 				onEmpty : function() {
