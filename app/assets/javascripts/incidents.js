@@ -1,5 +1,5 @@
 //= require common/base
-//= require map_component
+//= require view_components/map.view
 //= require geoposition
 //= require view_components/counter.view
 //= require view_components/form.validator

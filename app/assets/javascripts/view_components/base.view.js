@@ -1,3 +1,4 @@
 var ViewComponents = {
-	Geo : {}
+	Geo : {},
+	Map: {}
 };

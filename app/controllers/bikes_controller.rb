@@ -1,5 +1,5 @@
 class BikesController < ApplicationController
-  layout 'application'
+  layout 'extended'
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :mine] 
   before_filter :find_bike, :only => [:edit, :update, :show, :destroy]
   

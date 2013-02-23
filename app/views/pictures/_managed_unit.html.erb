@@ -14,8 +14,8 @@
 		</div>
 		<div class="confirmation">			
 			<span class="message"><%= t('pictures.manager.messages.delete.confirm')%></span>
-			<%= link_to t('common_answers')[true], picture_path(picture), :remote => true, :method => :delete, :class => "accepts" %>
-			<%= link_to t('common_answers')[false], 'javascript:void(0);', :class => "declines" %>
+			<%= link_to t('boolean_answers.accept'), picture_path(picture), :remote => true, :method => :delete, :class => "accepts" %>
+			<%= link_to t('boolean_answers.decline'), 'javascript:void(0);', :class => "declines" %>
 		</div>
 	</div>
 </div>

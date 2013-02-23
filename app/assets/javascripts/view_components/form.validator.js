@@ -9,7 +9,7 @@ $.extend(ViewComponents, {
 				var instance = this;
 				
 				$(this.domElement).submit(function() {
-					if(callbacks.before != undefined) {
+					if(callbacks!= undefined && callbacks.before != undefined) {
 						callbacks.before();
 					}
 					
@@ -24,7 +24,7 @@ $.extend(ViewComponents, {
 						}
 					}
 					
-					if(callbacks.after != undefined) {
+					if(callbacks!= undefined && callbacks.after != undefined) {
 						callbacks.after();
 					}
 					return true;

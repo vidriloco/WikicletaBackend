@@ -5,6 +5,7 @@
 //= require view_components/form.validator
 //= require comments
 //= require jquery.popover
+//= require quickpager.jquery.js
 // For pictures
 //= require common/pictures_base
 //= require sections/pictures
@@ -34,8 +35,6 @@ $(document).ready(function() {
 	  }
   });
 	
-	ViewComponents.Counter.forDomElement('#bike_description');
-	//$('.requires_login')
 	$('.heart').live('click', function() {
 		$('.tipsy').fadeOut();
 		if($(this).hasClass('requires_login')) {
@@ -54,16 +53,6 @@ $(document).ready(function() {
 		  data: { format : "js" }
 		});
 	});
-	
-	// Validation for new and edit bike form
-	var validateFields = [
-		{id: '#bike_name', condition: 'not_empty' },
-		{id: '#bike_description', condition: 'not_empty' },
-		{id: "#bike_weight", condition: "regexp", regexp: /^\d{1,2}(\.*\d+)?$/ },
-		{id: '#bike_kind', condition: 'not_empty' },
-		{id: '#bike_bike_brand_id', condition: 'not_empty' }];
-	
-	ViewComponents.ValidForm.set('.bike-upload', validateFields);
 	
 	$('.reveals-share').live('click', function(e) {
 		e.preventDefault();
@@ -104,7 +93,17 @@ $(document).ready(function() {
 	$('.contact').tipsy({gravity: 's', live: true, fade: true, delayIn: 100, delayOut: 60 });
 	$('.value').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 60 });
 	
-	if($.isDefined('#bike_frame_number')) {
-		$('#bike_frame_number').popover({ content: $('.frame_number_help').text(), title: 'Ayuda', position: 'right' });
-	}	
+	if($.isDefined('.bike-upload')) {
+		ViewComponents.Counter.forDomElement('#bike_name', 25);
+		ViewComponents.Counter.forDomElement('#bike_description');
+		// Validation for new and edit bike form
+		var validateFields = [
+			{id: '#bike_name', condition: 'not_empty' },
+			{id: '#bike_description', condition: 'not_empty' },
+			{id: "#bike_weight", condition: "regexp", regexp: /^\d{1,2}(\.*\d+)?$/ },
+			{id: '#bike_kind', condition: 'not_empty' },
+			{id: '#bike_bike_brand_id', condition: 'not_empty' }];
+
+		ViewComponents.ValidForm.set('.bike-upload', validateFields);
+	}
 });

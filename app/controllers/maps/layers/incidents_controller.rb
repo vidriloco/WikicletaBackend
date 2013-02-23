@@ -5,7 +5,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   
   def new
     @incident = Incident.new
-    render :layout => 'maps_extended'
+    render :layout => 'extended'
   end  
   
   def create
@@ -13,7 +13,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
     if @incident.save
       redirect_to maps_layers_incidents_path
     else
-      render :action => 'new', :layout => 'maps_extended'
+      render :action => 'new', :layout => 'extended'
     end  
   end
   
@@ -21,7 +21,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
     if @incident.update_with(params[:incident], params[:coordinates], current_user)
       redirect_to maps_layers_incidents_path
     else
-      render :action => 'ed', :layout => 'maps_extended'
+      render :action => 'ed', :layout => 'extended'
     end
   end
   
@@ -36,7 +36,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   end
   
   def edit
-    render :layout => 'maps_extended'
+    render :layout => 'extended'
   end
   
   def filtering

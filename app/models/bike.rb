@@ -7,7 +7,8 @@ class Bike < ActiveRecord::Base
   has_many :user_like_bikes, :dependent => :destroy
   has_many :bike_statuses, :dependent => :destroy
   has_many :pictures, :as => :imageable, :dependent => :destroy
-
+  
+  has_many :incidents, :dependent => :nullify
   #has_many :tweaks
   #has_many :borrows
   #has_many :usage_days

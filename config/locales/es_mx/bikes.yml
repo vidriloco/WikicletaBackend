@@ -50,14 +50,20 @@ es_MX:
       errors:
         on_save: "Chispas, Wikicleta no ha podido registrar tu bici"
       form:
-        name: "Pónle un nombre"
-        description: "¿Que es tu bici para ti?"
-        frame_number: "El número del cuadro"
+        name: "Nombre"
+        description: "Algo sobre tu bici"
+        frame_number: "Número del cuadro"
         kind: "Tipo"
         brand: "Marca"
         main_photo: "Foto"
         weight: "Peso (kg)"
+        placeholders:
+          name: "Toda bici merece un nombre"
+          weight: "¿Cuanto pesa tu bici?"
+          frame_number: "Es bueno saberlo en caso de robo"
+          description: "Escribelo aquí"
         validations:
+          name_short: "Un nombre corto"
           name: "Pónle un nombre a tu bici"
           description: "Te falta escribir algo sobre tu bici o su descripción"
           kind: "Te falta seleccionar un tipo de bici"
@@ -70,13 +76,13 @@ es_MX:
       index:
         empty: 
           message: "No hay bicis registradas todavía"
-          invite: "¡Agrega la tuya!"
+          invite: "¡Sé el primero en agregar la tuya!"
       edit:
         title: "Modificar bici"
         change_photo: "Por si quieres cambiar la foto actual de tu bici:"
         destroy: "Eliminar a esta bici de Wikicleta "
       new:
-        title: "Nueva bici"
+        title: "Registrando una bici"
       show:
         photos: 
           show: "Ver fotos"

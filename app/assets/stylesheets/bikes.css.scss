@@ -16,12 +16,26 @@ body {
 }
 
 .bike {
+	h3 {
+		font-size: 20px;
+		a{
+			text-decoration: none;
+		}
+	}
+	
+	h3:hover {
+		a {
+			color: #FF5F00;
+		}
+	}
+}
+
+.bike {
 	padding: 14px;
 	border: 1px solid #E3E3E3;
 	background-color: #F4F4F4;
   width: 250px;
-	margin-right: 0px !important;
-  margin: 10px;
+  margin: 27px;
   float: left;
 	border: 1px solid #BABABA;
 	font-size: 12px;
@@ -72,13 +86,6 @@ body {
 		}
 	}
 	
-	h2 {
-		a {
-			color: #2B2B2B
-		}
-		margin: 0px;
-	}
-	
 	.owner {
 		margin-top: -5px;
 		padding-bottom: 5px;
@@ -88,6 +95,12 @@ body {
 }
 
 .bike-details, .bike-statuses, .bike-comments, .bike-description, .bike-photos {
+	
+	h3{
+		color: #FF5F00;
+		font-size: 35px;
+	}
+	
 	.edit:hover {
 		background-color: #40A23E;
 		
@@ -254,24 +267,12 @@ body {
 		text-align: left;
 	}
 	
-	h1 {
-		text-align: right;
-		color: #2A2A2A;
-		margin-bottom: 5px;
-		margin-top: 0px;
-	}
-	
 	.owner {
 		text-align: right;
 	}
 }
 
 .bike-statuses {
-	
-	h2 {
-		padding: 0px;
-		margin: -10px 0px 10px 0px;
-	}
 	
 	.item {
 		padding: 10px;

@@ -94,7 +94,7 @@ module ApplicationHelper
   
   def boolean_options_for_select(selected)
     selected = selected ? "1" : "0"
-    options_for_select({ t('common_answers')[true] => 1, t('common_answers')[false] => 0}, selected)
+    options_for_select({ t('boolean_answers.accept') => 1, t('boolean_answers.decline') => 0}, selected)
   end
   
   def currency_field_for(f, attribute, value, placeholder)
