@@ -7,15 +7,12 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="#"><%= t('app.name') %></a>
-      <div class="container-fluid nav-collapse pull-right span7">
-        <ul class="nav">
+      <div class="container-fluid nav-collapse">
+        <ul class="nav pull-right">
 					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Tu ciudad en bici', trips_path  %></li>
 					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
 					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Retos', bikes_path %></li>
-				</ul>
-				
-				<% if user_signed_in? %>
-					<ul class="nav">
+					<% if user_signed_in? %>
 						<li class="user-logged-in dropdown">
 							<%= link_to "<i class='icon-chevron-down'></i> #{current_user.username}".html_safe, '#', :class => "dropdown-toggle", "data-toggle"=>"dropdown" %>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -24,12 +21,14 @@
 								<li><%= link_to 'Cerrar Sesión', destroy_user_session_path, :method => :delete %></li>
 					    </ul>
 						</li>
-					</ul>
-				<% else %>
-					<a href="<%= new_user_session_path %>" class="pull-right btn btn-primary" type="button">
-						 <i class='icon-user'></i> Iniciar Sesión
-					</a>
-				<% end %>
+					<% else %>
+						<li>
+							<a href="<%= new_user_session_path %>" class="login-link" type="button">
+								 <i class='icon-user'></i> Iniciar Sesión
+							</a>
+						</li>
+					<% end %>
+				</ul>
       </div>
     </div>
   </div>

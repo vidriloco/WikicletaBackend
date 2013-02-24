@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def validate_format_of_username
+    return if self.username.nil?
     errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{5,}$/).nil?
   end
 end

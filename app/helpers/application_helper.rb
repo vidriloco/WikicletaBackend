@@ -104,6 +104,22 @@ module ApplicationHelper
 		out.html_safe
   end
   
+  def devise_error_messages_for(action)
+    return "" if resource.errors.empty?
+
+    messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    sentence = I18n.t("user_accounts.errors_on.#{action}.title")
+
+    html = <<-HTML
+      <div id="error_explanation" class="alert alert-error error-explained">
+        <h4 class="centered-text">#{sentence}</h4><br/>
+        <ul>#{messages}</ul>
+      </div>
+    HTML
+
+    html.html_safe
+  end
+  
   private
   def current_action_matches?(action)
     {:class => "selected"} if action == controller.action_name

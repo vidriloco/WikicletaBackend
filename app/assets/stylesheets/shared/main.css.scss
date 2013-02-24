@@ -395,6 +395,10 @@ p.empty {
 	}
 }
 
+.login-link {
+	color: #FF5800 !important;
+}
+
 .emphasize {
 	color: #FF6800;
 }
@@ -415,5 +419,13 @@ p.empty {
 	
 	> a {
 		color: #FF5800 !important;
+	}
+}
+
+.error-explained {
+	ul {
+		li {
+			display: block;
+		}
 	}
 }

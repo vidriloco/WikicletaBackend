@@ -4,7 +4,7 @@ es_MX:
       user: "Usuario"
     attributes:
       user:
-        full_name: "Nombre completo" 
+        full_name: "Nombre" 
         password: "Contraseña"
         password_confirmation: "Confirmación de la contraseña"
         username: "Nombre de usuario"
@@ -17,6 +17,13 @@ es_MX:
         email_visible: "¿Mostrar mi correo en mi perfil?"
         reset_password_token: "El token para reestablecer contraseña"
   user_accounts:
+    errors_on:
+      registration:
+        title: "Lo sentimos, no hemos podido registrarte"
+      password_recovery:
+        title: "No hemos podido recuperar tu contraseña"
+      
+      
     validations:
       invalid_username: "debe ser alfanumérico y tener más de 5 letras"
     omniauth:
