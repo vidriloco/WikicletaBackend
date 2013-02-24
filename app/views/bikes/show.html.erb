@@ -1,6 +1,6 @@
-<div id="section-bikes">
-	<div id="<%= @bike.id %>">
-		<div class="bike-details shadow-light centered">
+<div id="section-bikes" class="show">
+	<div id="<%= @bike.id %>" class="bike board rounded-top-5 shadow-light centered">
+		<div class="details">
 			<div class="row-fluid">
 				<div class="pull-right">
 					<h3><%= @bike.name %></h3>
@@ -12,7 +12,6 @@
 							<li class="active"><%= link_to t('bikes.views.show.modify'), edit_bike_path(@bike) %></li>
 						<% end %>
 			    </ul>
-					
 				</div>
 			</div>
 			
@@ -26,12 +25,12 @@
 			
 		</div>
 
-		<div class="bike-photos imageable-photos shadow-light centered">
+		<div class="photos imageable-photos centered">
 			<%= render :partial => "bikes/pictures", :locals => {:bike => @bike } %>
 			<%= render :partial => "pictures/management_panel", :locals => {:bike => @bike} %>
 		</div>
 	
-		<div class="bike-description shadow-light centered">
+		<div class="description centered">
 			<p class="main">
 				<%= @bike.description %>
 			</p>
@@ -42,11 +41,11 @@
 			</div>
 		</div>
 	
-		<div class="bike-statuses shadow-light centered">
+		<div class="statuses centered">
 			<%= render :partial => 'bike_statuses/index', :locals => { :bike => @bike } %>
 		</div>
 
-		<div class="bike-comments sheet shadow-light centered">
+		<div class="comments centered">
 			<%= render :partial => 'comments/index', :locals => { :commentable => @bike } %>
 		</div>
 	</div>

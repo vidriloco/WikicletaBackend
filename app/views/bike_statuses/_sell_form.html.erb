@@ -1,9 +1,12 @@
-<div class="styled-form">
-	
-	<%= f.select :availability, boolean_options_for_select(status.availability), {}, :class => 'bike_statuses_availability' %>
-	<%= f.hidden_field :concept, :value => Bike.category_for(:statuses, :sell) %>
-	<div class="dependent-fields <%= "hidden" unless status.availability %>">
-		<%= currency_field_for(f, :price, status.price, t('bike_statuses.views.form.price')) %>		
+<div class="control-group trigger-parent">
+	<%= f.label :availability, t("bike_statuses.views.modal.#{status_category}.title"), :class => 'control-label' %>
+	<div class="controls">
+		<%= f.select :availability, boolean_options_for_select(status.availability), {}, :class => 'bike_statuses_availability' %>
 	</div>
-	<%= f.submit t('actions.save') %>
 </div>
+
+<%= f.hidden_field :concept, :value => Bike.category_for(:statuses, :sell) %>
+<div class="dependent-fields control-group <%= "hidden" unless status.availability %>">
+	<%= currency_field_for(f, :price, status.price, t('bike_statuses.views.form.price')) %>
+</div>
+<%= f.submit t('actions.save'), :class => 'btn btn-primary' %>

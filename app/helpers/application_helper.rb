@@ -98,10 +98,16 @@ module ApplicationHelper
   end
   
   def currency_field_for(f, attribute, value, placeholder)
-    out = "<span class='prefix'>$</span>" 
-		out += f.text_field(attribute, :value => value, :placeholder => placeholder, :class => "inlined")
-		out += "<span class='postfix'>#{t('currency.symbol.mexico')}</span><br/>"
-		out.html_safe
+    html = <<-HTML
+      <div class="control-group">
+        <div class="controls">
+          <span class='prefix'>$ </span>#{f.text_field(attribute, :value => value, :placeholder => placeholder, :class => "inlined")}
+          <span class='postfix'>#{t('currency.symbol.mexico')}</span>
+      	</div>
+    	</div>
+    HTML
+
+    html.html_safe
   end
   
   def devise_error_messages_for(action)

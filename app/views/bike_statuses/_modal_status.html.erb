@@ -1,14 +1,21 @@
-<div id="<%= status %>-modal" class="reveal-modal modalview-bar-relative-centered">
-	<a class="close-reveal-modal">&#215;</a>
-	<h2><%= t("bike_statuses.views.modal.#{status}.title") %></h2>
+<div id="<%= status %>-modal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Pregunta</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-horizontal">	
+			<% if bike_status.persisted? %>
+				<%= form_for [bike, bike_status], :method => :put, :remote => true do |f| %>
+					<%= render :partial => "bike_statuses/#{status}_form", :locals => {:bike => bike, :f => f, :status => bike_status, :status_category => status} %>
+				<% end %>
+			<% else %>
+				<%= form_for [bike, BikeStatus.new], :remote => true do |f| %>
+						<%= render :partial => "bike_statuses/#{status}_form", :locals => {:bike => bike, :f => f, :status => bike_status, :status_category => status} %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 	
-	<% if bike_status.persisted? %>
-		<%= form_for [bike, bike_status], :method => :put, :remote => true do |f| %>
-			<%= render :partial => "bike_statuses/#{status}_form", :locals => {:bike => bike, :f => f, :status => bike_status} %>
-		<% end %>
-	<% else %>
-		<%= form_for [bike, BikeStatus.new], :remote => true do |f| %>
-			<%= render :partial => "bike_statuses/#{status}_form", :locals => {:bike => bike, :f => f, :status => bike_status} %>
-		<% end %>
-	<% end %>
+	
 </div>

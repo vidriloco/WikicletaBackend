@@ -9,8 +9,8 @@
 			<span class="link"><%= link_to t('actions.register_or_login'), new_user_session_path %></span>
 		</p>
 	<% end %>
-	
-	<div id="comments-listing">
+	<div class="separator"></div>
+	<div id="comments-listing" class="list">
 		<%= render commentable.comments.order %>
 	</div>
 </div>

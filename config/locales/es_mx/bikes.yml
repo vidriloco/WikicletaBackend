@@ -94,7 +94,7 @@ es_MX:
           one: "fav"
           do: "Haz click, si te gusta esta bici"
           undo: "Haz click, si ya no te gusta esta bici"
-          required_to_login: "Necesitas estar registrado para chulear una bici"
+          required_to_login: "Necesitas estar registrado para hacer favs"
         comments:
           some: "comentarios"
           one: "comentario"

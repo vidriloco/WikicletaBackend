@@ -26,9 +26,11 @@
 					<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
 				</div>
 			<% else %>
-				<% @bikes.each do |bike| %>
-					<%= render bike %>
-				<% end %>
+				<div class="index">
+					<% @bikes.each do |bike| %>
+						<%= render bike %>
+					<% end %>
+				</div>
 			<% end %>
 		</div>
 	</div>

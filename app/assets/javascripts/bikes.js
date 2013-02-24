@@ -56,36 +56,35 @@ $(document).ready(function() {
 	
 	$('.reveals-share').live('click', function(e) {
 		e.preventDefault();
-		$('#share-modal').reveal();
+		$('#share-modal').modal();
 	});
 	
 	$('.reveals-rent').live('click', function(e) {
 		e.preventDefault();
-		$('#rent-modal').reveal();
+		$('#rent-modal').modal();
 	});
 	
 	$('.reveals-sell').live('click', function(e) {
 		e.preventDefault();
-		$('#sell-modal').reveal();
+		$('#sell-modal').modal();
 	});
 	
 	$('.bike_statuses_availability').live('change', function() {
-		var element = $(this).parent().children('.dependent-fields')[0];
-		
+		var element = $(this).parent().parent().parent().children('.dependent-fields')[0];
 		if($(this).val() == "1") {
-			$(element).fadeIn();
+			$(element).removeClass('hidden');
 		} else  {
-			$(element).fadeOut();
+			$(element).addClass('hidden');
 			$(element).children('input:checkbox').attr('checked', false);
 			$(element).children('input:text').val('');
 		}
 	}); 
 
 	// over photo bike info and photo links
-	$('.bike-photos').hover(function() {
-		$('.bike-photos .info').fadeIn('slow');
+	$('.bike .photos').hover(function() {
+		$('.bike .photos .info').fadeIn('slow');
 	}, function() {
-		$('.bike-photos .info').fadeOut('slow');
+		$('.bike .photos .info').fadeOut('slow');
 	});
 	
 	// tipsy hovers
