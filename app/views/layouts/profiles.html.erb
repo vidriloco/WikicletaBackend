@@ -8,16 +8,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
+
 <%= render 'shared/notice' %>
+<div class="background-logo"></div>
+<%= render 'layouts/shared/navbar' %>
 
-<div class="content-container">
-	
-	<%= yield :back_page %>
-
-	<div id="content">
-		<%= yield %>
+<div class="row-fluid top-spaced-70 profile">
+	<div class="span1"></div>
+	<div class="span2">
+		<div class="avatar-img centered centered-text"><i class="icon-user"></i></div>
+		<div>
+			<h3 class="centered-text"><%= @user.username %></h3>
+		</div>
+		<div class="well menu">
+			<ul class="nav nav-list">
+	    	<li class="nav-header">Tú</li>
+	    	<li class="active"><a href="#">Tu actividad</a></li>
+	    	<li><a href="#">Tus bicis</a></li>
+	    	<li><a href="#">Cerca de ti</a></li>
+	    	<li><a href="#">Mensajes</a></li>
+	    	<li><a href="#">Boletín Semanal</a></li>
+	    	<li class="nav-header">Tu Wikicleta</li>
+				<li><%= link_to 'Cuenta', settings_account_path %></li>
+				<li><%= link_to 'Acceso', settings_access_path %></li>
+				<li><%= link_to 'Preferencias', settings_profile_path %></li>			
+	    </ul>
+		</div>
 	</div>
+	<div class="span8"><%= yield %></div>
+	<div class="span1"></div>
 </div>
 
 

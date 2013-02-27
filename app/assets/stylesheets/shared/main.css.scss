@@ -1,3 +1,23 @@
+@font-face{
+font-family: "gothamrndbook-Book";
+   font-style: normal;
+   font-weight: normal;
+   src:url("/assets/gothamrndbook.ttf");
+}
+
+@font-face{
+font-family: "gothamrndbold-Bold";
+   font-style: normal;
+   font-weight: normal;
+   src:url("/assets/gothamrndbold.ttf");
+}
+
+.dropdown-menu {
+	li {
+		display: block;
+	}
+}
+
 .nav-pills {
 	li { margin-right: 5px; }
 }
@@ -19,19 +39,6 @@ h3 {
 ul {
 	margin: 0;
 	padding: 0;
-}
-
-@font-face{
-font-family: "gothamrndbook-Book";
-   font-style: normal;
-   font-weight: normal;
-   src:url("/assets/gothamrndbook.ttf");
-}
-@font-face{
-font-family: "gothamrndbold-Bold";
-   font-style: normal;
-   font-weight: normal;
-   src:url("/assets/gothamrndbold.ttf");
 }
 
 .background-logo {
@@ -347,7 +354,7 @@ a.back {
 	padding: 0px 5px;
 }
 
-ul li, ul li * { display: inline-block }
+ul.inlined-list li, ul.inlined-list li * { display: inline-block; }
 
 .highest {
 	background-color: #797979 !important;

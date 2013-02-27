@@ -32,18 +32,17 @@ $(document).ready(function(){
 		$('.section-actions a.main-title').bind('click', function() {
 			if($('.section-actions .contents').is(':visible')) {
 				$('.section-actions .contents').hide();
-				$('.icon-chevron-down').hide();
-				$('.icon-chevron-up').show();
+				$('.section-actions .icon-chevron-down').hide();
+				$('.section-actions .icon-chevron-up').show();
 				
 			} else {
 				$('.section-actions .contents').show();
-				$('.icon-chevron-down').show();
-				$('.icon-chevron-up').hide();
+				$('.section-actions .icon-chevron-down').show();
+				$('.section-actions .icon-chevron-up').hide();
 			}
 		});
 	}
-	
-	$('.dropdown-toggle').dropdown();
+		
 	// Attempt to center map on location
 	
 	$('.locate-me').bind('click', function() {

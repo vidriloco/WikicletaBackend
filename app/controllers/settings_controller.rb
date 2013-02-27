@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  layout 'settings'
+  layout 'profiles'
   
   before_filter :authenticate_user!
   before_filter :expose_user

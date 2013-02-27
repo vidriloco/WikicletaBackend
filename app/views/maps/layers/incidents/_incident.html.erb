@@ -44,13 +44,13 @@
 		<div class="separator"></div>
 		<!-- Render actions that appear below the separator -->
 		<div class="row-fluid">
-			<ul class="pull-left contextual-actions">
+			<ul class="pull-left contextual-actions inlined-list">
 				<% if current_user && current_user.owns?(incident) %>
 					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => incident.id, :class => "delete-incident" %></li>
 					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_layers_incident_path(incident) %></li>
 				<% end %>
 			</ul>
-			<ul class="pull-right contextual-info">
+			<ul class="pull-right contextual-info inlined-list">
 				<li>
 					<div>
 						<span class="time"><%= distance_of_time_in_words(incident.date || Date.today, Time.now, true) %></span> 
