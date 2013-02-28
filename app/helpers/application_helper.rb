@@ -1,5 +1,9 @@
 module ApplicationHelper
   
+  def on_path?(path)
+    "active" if path==request.env['PATH_INFO']
+  end
+  
   def is_section_active?(section)
     "active" if controller.controller_path.split('/')[0].eql?(section)
   end
@@ -10,16 +14,6 @@ module ApplicationHelper
   
   def errors_for(field, object)
     return "field-with-errors" unless object.errors[field].empty? 
-  end
-  
-  def menu_section_for(section, namespace=nil)
-    namespace = "#{namespace}_" if namespace
-    selected = controller.controller_name=="#{section}" ? "selected" : ""
-    out=content_tag(:p, link_to(t("app.sections.#{section}.title"), hash_link_for(eval("#{namespace}#{section}_path")), :class => selected))
-    unless selected.blank?
-      out += content_tag(:div, self.send("links_for_#{section}"), :class => "options")
-    end
-    out
   end
   
   def hash_link_for(path, section=nil, resource=nil)
