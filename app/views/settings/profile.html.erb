@@ -1,34 +1,96 @@
-<%= content_for :menu do %>
-	<%= render :partial => 'shared_actions', :locals => {:menu => {:profile => 'selected'}} %>
-<% end %>
 
-<div class="name rounded-5">
-	<span class="name"><%= @user.full_name %></span> <%=link_to t("user_accounts.settings.sections.profile.change_name"), settings_account_path %>
+<div class="row">
+	<h3 class="pull-right">Tu perfil</h3>
+</div>
+<div class="well top-spaced">
+	<h4>Basicos</h4>
+	<p>Si lo necesitas, cambia tu nombre de usuario, nombre o e-mail</p>
+	<div class="separator"></div>
+	<div class="row">
+		<div class="span2"></div>
+		<div class="span8">
+		<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put, :class => "form-horizontal top-spaced" }) do |f| %>
+		
+			<div class="control-group">
+				<%= f.label :username, :class => "control-label" %>
+				<div class="controls">
+				  <%= f.text_field :username %>
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<%= f.label :full_name, :class => "control-label" %>
+				<div class="controls">
+					<%= f.text_field :full_name %>
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<%= f.label :email, :class => "control-label" %>
+				<div class="controls">
+				  <%= f.email_field :email %>
+				</div>
+			</div>
+		
+			<div class="centered-text">
+				<%= f.submit t('user_accounts.settings.save'), :class => 'btn btn-primary' %>
+			</div>
+		<% end %>
+		</div>
+		<div class="span2"></div>
+	</div>
 </div>
 
-<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put }) do |f| %>
+<div class="well top-spaced">
+	<h4>Cuéntanos de ti</h4>
+	<p>¿Quién eres? ¿Por que te gusta la bici? ¿Desde cuando la usas?</p>
+	<div class="separator"></div>
+	<div class="row top-spaced">
+		<div class="span2"></div>
+		<div class="span8">
+		<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put, :class => "form-horizontal top-spaced" }) do |f| %>
+			
+			<div class="control-group">
+				<%= f.label :bio, :class => "control-label" %>
+				<div class="controls">
+			  	<%= f.text_area :bio, :rows => 5, :cols => 30 %>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<%= f.label :personal_page, :class => "control-label" %>
+				<div class="controls">
+			  	<%= f.text_field :personal_page %>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<%= f.label :started_cycling_date, :class => "control-label" %>
+				<div class="controls">
+					<%= f.date_select :started_cycling_date, :discard_day => true, :html_options => {:class => 'input-small'} %>
+				</div>
+			</div>
 
-	<div class="field">
-		<%= f.label :bio %>
-  	<%= f.text_area :bio, :rows => 5, :cols => 30 %>
+			<div class="centered-text">
+				<%= f.submit t("user_accounts.settings.save"), :class => 'btn btn-primary' %>
+			</div>
+		<% end %>
+		</div>
+		<div class="span2"></div>
 	</div>
-	
-	<div class="field">
-		<%= f.label :personal_page %>
-  	<%= f.text_field :personal_page %>
+</div>
+
+<div class="well top-spaced">
+	<h4>Desactivar</h4>
+	<p>¿Por alguna razón deseas dar de baja tu cuenta?</p>
+	<div class="separator"></div>
+	<div class="row top-spaced">
+		<div class="span12">
+			<p class="pull-right">
+			<%= link_to t("user_accounts.settings.sections.account.deactivate"), account_deactivate_path, 
+				:confirm => t("user_accounts.settings.sections.account.deactivate_confirmation"), :method => :delete, :class => "btn btn-danger" %>
+			</p>
+		</div>
 	</div>
-	
-	<div class="field">
-		<%= f.label :email_visible %>
-		<%= f.check_box :email_visible %>
-	</div>
-	
-	<div class="field">
-		<%= f.label :started_cycling_date %>
-		<%= f.date_select :started_cycling_date %>
-	</div>
-	<div class="actions to-right">
-		<%= f.submit t("user_accounts.settings.save") %>
-	</div>
-	<div class="clear"></div>
-<% end %>
+</div>
+

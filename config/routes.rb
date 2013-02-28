@@ -26,9 +26,8 @@ Ciudadio::Application.routes.draw do
   end
   
   namespace :settings do
-    get "account", :via => :get
-    get "access", :via => :get
     get "profile", :via => :get
+    get "access", :via => :get
     put "changed", :via => :put
   end
   
@@ -56,9 +55,7 @@ Ciudadio::Application.routes.draw do
     resources :pictures, :only => [:create]
     resources :bike_statuses, :controller => 'bikes/statuses', :only => [:create, :update]
   end
-  
-  resources :friendships, :only => [:create, :destroy]
-  
+    
   resources :pictures, :only => [:destroy] do
     member do
       put :set_main

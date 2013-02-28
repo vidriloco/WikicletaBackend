@@ -4,13 +4,10 @@ class SettingsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :expose_user
   
-  def account
+  def profile
   end
   
   def access
-  end
-  
-  def profile
   end
   
   def changed    

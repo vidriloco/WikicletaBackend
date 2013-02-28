@@ -1,42 +1,58 @@
-<%= content_for :menu do %>
-	<%= render :partial => 'shared_actions', :locals => {:menu => {:access => 'selected'}} %>
-<% end %>
-
-<%= render 'password_reset' %>
-<div class="separator"></div>
-
-<div class="authorizations">
-	<h2><%= t('user_accounts.settings.authorizations.title') %></h2>
-	<p class="centered-text"><%= t('user_accounts.settings.sections.access.social_networks') %></p>
-	
-	<div class="list">
-		<% Authorization.supported.each do |auth| %>
-			<%= render :partial => 'authorization', :locals => { :auth => auth } %>
-		<% end %>
+<div class="row">
+	<h3 class="pull-right">Acceso</h3>
+</div>
+<div class="well top-spaced">
+	<h4>Redes Sociales</h4>
+	<p>Wikicleta te puede dar acceso a través de tu cuenta de Twitter o Facebook</p>
+	<div class="separator"></div>
+	<div class="row top-spaced">
+		<div class="span1"></div>
+		<div class="span10">
+			<%= render 'settings/authorization' %>
+		</div>
+		<div class="span1"></div>
 	</div>
-	
 </div>
 
-<div class="separator"></div>
-<br/>
-<p class="centered-text"><%= t('user_accounts.settings.sections.access.reset_password') %></p>
-<% if @user.externally_registered %>
-	<p class="centered-text emph-small centered"><%= t('user_accounts.settings.sections.access.change_password_for_external_registration') %></p>
-<% end %>
-<br/>
-<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put }) do |f| %>
-		
-	<%= f.label :password %>
-  <%= f.password_field :password %>
+<% unless @user.externally_registered %>
+	<div class="well top-spaced">
+		<h4>Cambio de contraseña</h4>
+		<p>Puedes cambiar tu contraseña aquí</p>
+		<div class="separator"></div>
+		<div class="row">
+			<div class="span2"></div>
+			<div class="span8">
+				<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
+					
+					<div class="control-group">
+						<%= f.label :password, :class => "control-label" %>
+						<div class="controls">
+						  <%= f.password_field :password %>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<%= f.label :password_confirmation, :class => "control-label" %>
+						<div class="controls">
+						  <%= f.password_field :password_confirmation %>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label"><%= t('user_accounts.settings.sections.access.current_password') %></label>
+						<div class="controls">
+						  <%= password_field_tag :current_password %>
+						</div>
+					</div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-	
-	<label><%= t('user_accounts.settings.sections.access.current_password') %></label>
-  <%= password_field_tag :current_password %>
-	<br/>
-	<div class="actions to-right">
-		<%= f.submit t("user_accounts.settings.save") %>
+					<div class="row">
+						<div class="pull-right">
+							<%= f.submit t("user_accounts.settings.save"), :class => "btn btn-primary" %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="span2"></div>
+		</div>
 	</div>
-	<div class="clear"></div>
 <% end %>
