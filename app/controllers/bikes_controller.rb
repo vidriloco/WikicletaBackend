@@ -15,11 +15,6 @@ class BikesController < ApplicationController
     render :action => 'index'
   end
   
-  def mine
-    @bikes = Bike.all_from_user(current_user)
-    render :action => 'index'
-  end
-  
   def new
     @bike = Bike.new
   end

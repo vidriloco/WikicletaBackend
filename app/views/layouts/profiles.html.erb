@@ -23,14 +23,20 @@
 		<div class="well menu">
 			<ul class="nav nav-list">
 	    	<li class="nav-header">Tú</li>
-	    	<li class="active"><%= link_to 'Tu actividad', user_profile_path(@user.username) %></li>
-	    	<li><a href="#">Tus bicis</a></li>
-	    	<li><a href="#">Cerca de ti</a></li>
-	    	<li><a href="#">Mensajes</a></li>
-	    	<li><a href="#">Boletín Semanal</a></li>
-	    	<li class="nav-header">Tu Wikicleta</li>
-				<li><%= link_to 'Perfil', settings_profile_path %></li>
-				<li><%= link_to 'Acceso', settings_access_path %></li>
+	    	<li class="active">
+					<%= link_to (user_signed_in? ? 'Tu actividad' : 'Actividad reciente'), user_profile_path(@user.username) %>
+				</li>
+	    	<li>
+					<%= link_to (user_signed_in? ? 'Tus bicis' : 'Bicis'), user_bikes_path(@user.username) %>
+				</li>
+				<% if user_signed_in? %>
+					<li><a href="#">Cerca de ti</a></li>
+		    	<li><a href="#">Mensajes</a></li>
+		    	<li><a href="#">Boletín Semanal</a></li>
+	    		<li class="nav-header">Tu Wikicleta</li>
+					<li><%= link_to 'Perfil', settings_profile_path %></li>
+					<li><%= link_to 'Acceso', settings_access_path %></li>
+				<% end %>
 	    </ul>
 		</div>
 	</div>

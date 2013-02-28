@@ -49,7 +49,6 @@ Ciudadio::Application.routes.draw do
     collection do 
       get :search
       get :popular
-      get :mine
     end
     
     resources :pictures, :only => [:create]
@@ -72,6 +71,7 @@ Ciudadio::Application.routes.draw do
   resources :comments, :only => [:create, :destroy]
   
   get '/profile/:username' => 'profiles#index', :as => "user_profile"
+  get '/profile/:username/bikes' => 'profiles#bikes', :as => 'user_bikes'
   get '/profile/:username/friends' => 'profiles#friends', :as => "friends_of_user_profile"
 #  get "/places/:id" => 'places#show', :as => "place"
 #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

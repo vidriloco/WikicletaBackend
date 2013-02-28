@@ -1,0 +1,52 @@
+
+<div class="row top-spaced">
+	<div class="span1"></div>
+	<div class="span10">
+		<div class="row">
+			<h3 class="pull-right">
+				<%= current_user_can(@user) ? 'Tus Bicis' : 'Sus Bicis' %>
+			</h3>
+		</div>
+	</div>
+	<div class="span1"></div>
+</div>
+
+<div class="row top-spaced">
+	<div class="span1"></div>
+	<div class="span10">
+		<div class="well well-small">
+			<div class="row">
+				<div class="span1"></div>
+				<div class="span5">
+					
+					<div class="btn-group pull-left">
+			    	<button class="btn">Robadas</button>
+			    	<button class="btn">Averiadas</button>
+			    	<button class="btn">Todas</button>
+			    </div>
+				</div>
+				<div class="span6">
+					<%= link_to 'Añadir nueva', new_bike_path, :class => 'btn btn-primary pull-right' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span1"></div>
+</div>
+
+<div class="container-fluid top-spaced">
+	<div class="span12 masonry">
+		<% if @bikes.empty? %>
+			<div class="top-spaced">
+				<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
+				<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
+			</div>
+		<% else %>
+			<div class="index">
+				<% @bikes.each do |bike| %>
+					<%= render bike %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

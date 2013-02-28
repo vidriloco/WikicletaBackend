@@ -22,55 +22,6 @@ module ApplicationHelper
     out
   end
   
-  def links_for_bikes
-    out=  link_to(t('app.sections.bikes.subsections.new'), new_bike_path, current_action_matches?("new"))
-    out+= link_to(t('app.sections.bikes.subsections.popular'), popular_bikes_path, current_action_matches?("popular"))
-    #out+= link_to(t('app.sections.bikes.subsections.search'), search_bikes_path, class_selected.call("search"))
-    out+= link_to(t('app.sections.bikes.subsections.mine'), mine_bikes_path, current_action_matches?("mine")) if user_signed_in?
-    out
-  end
-  
-  def links_for_places
-    out=  link_to(t('app.sections.places.subsections.parking'), root_path, current_action_matches?("parking"))
-    out+=  link_to(t('app.sections.places.subsections.bike_friendly'), root_path, current_action_matches?("bike_friendly"))
-    out+= link_to(t('app.sections.places.subsections.search'), hash_link_for(map_incidents_path, 'search'), :id => 'places-search', :class => "highlighted")
-    
-    out
-  end
-  
-  def links_for_routes
-    out=  link_to(t('app.sections.routes.subsections.featured'), root_path, current_action_matches?("featured"))
-    out+=  link_to(t('app.sections.routes.subsections.pooling'), root_path, current_action_matches?("pooling"))
-    out+= link_to(t('app.sections.routes.subsections.search'), hash_link_for(map_incidents_path, 'search'), :id => 'routes-search', :class => "highlighted")
-        
-    out
-  end
-    
-  def links_for_welcome
-    out=  link_to(t('app.sections.welcome.subsections.about'), about_path, current_action_matches?("about"))
-    out
-  end
-  
-  def links_for_incidents  
-    out= link_to(t('app.sections.incidents.subsections.stolen'), hash_link_for(map_incidents_path, 'thefts'), :id => 'incidents-thefts') 
-    out+= link_to(t('app.sections.incidents.subsections.accidents'), hash_link_for(map_incidents_path, 'accidents'), :id => 'incidents-accidents')
-    out+= link_to(t('app.sections.incidents.subsections.assaults'), hash_link_for(map_incidents_path, 'assaults'), :id => 'incidents-assaults') 
-    out+= link_to(t('app.sections.incidents.subsections.regulation_infractions'), hash_link_for(map_incidents_path, 'regulation_infractions'), :id => 'incidents-regulation_infractions') 
-    out+= link_to(t('app.sections.incidents.subsections.search'), hash_link_for(map_incidents_path, 'search'), :id => 'incidents-search', :class => "highlighted")
-    out+= link_to(t('app.sections.incidents.subsections.new'), hash_link_for(map_incidents_path, 'new'), :id => 'incidents-new', :class => "highlighted")
-    
-    out
-  end
-  
-  def links_for_highlights 
-    out=  link_to(t('app.sections.highlights.subsections.recent'), root_path, current_action_matches?("featured"))
-    out+=  link_to(t('app.sections.highlights.subsections.add'), root_path, current_action_matches?("pooling"))
-    out+= link_to(t('app.sections.highlights.subsections.search'), hash_link_for(map_incidents_path, 'search'), :id => 'highlights-search', :class => "highlighted")
-    out+= link_to(t('app.sections.highlights.subsections.new'), hash_link_for(map_incidents_path, 'new'), :id => 'highlights-new', :class => "highlighted")
-    
-    out
-  end
-  
   def hash_link_for(path, section=nil, resource=nil)
     return path+"#" if section.nil? && resource.nil?
     return path+"##{section}/#{resource}" unless resource.nil?
@@ -124,6 +75,10 @@ module ApplicationHelper
     HTML
 
     html.html_safe
+  end
+  
+  def current_user_can(user)
+    (user_signed_in? && user == current_user)
   end
   
   private

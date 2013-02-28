@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   layout 'profiles'
   
-  before_filter :find, :only => [:index, :friends]
+  before_filter :find
   
   def index
     render(:template => 'profiles/not_found') && return if @user.nil?
@@ -9,6 +9,10 @@ class ProfilesController < ApplicationController
   
   def friends
     render(:template => 'profiles/not_found') && return if @user.nil?
+  end
+  
+  def bikes
+    @bikes = Bike.all_from_user(@user)
   end
   
   private 
