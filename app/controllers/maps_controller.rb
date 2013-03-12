@@ -1,3 +1,6 @@
 class MapsController < ApplicationController
-  layout 'map'
+  layout 'maps'
+  
+  def index
+  end
 end

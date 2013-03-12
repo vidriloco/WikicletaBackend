@@ -1,4 +1,4 @@
-<div id="<%= incident.id %>" class="rounded-5 incident <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
+<div id="<%= incident.id %>" class="<%= 'first' if(incident_counter == 0) %> centered rounded-5 incident <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
 	<div class="row-fluid">
 		<div class="row-fluid">
 			<div class="span1"><div class="signal"></div></div>
@@ -54,7 +54,9 @@
 				<li>
 					<div>
 						<span class="time"><%= distance_of_time_in_words(incident.date || Date.today, Time.now, true) %></span> 
-						<span class="reporter"><%= reporter_of(incident) %></span>
+						<% unless current_user_equals(@user) %>
+							<span class="reporter"><%= reporter_of(incident) %></span>
+						<% end %>
 					</div>
 				</li>
 			</ul>

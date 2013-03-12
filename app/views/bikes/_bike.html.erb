@@ -1,8 +1,14 @@
 <div id="<%= bike.id %>" class="bike board rounded-5 shadow-light">
 	<h3><%= link_to bike.name, bike_path(bike) %></h3>
 	<p class="brand"><%= bike.brand %></p>
-	<div class="owner">
-		<%= t('bikes.views.show.owned_by') %><%= contact_for(bike) %><% sharing_for(bike) %>
+	<div class="owner">	
+		<% if showing_bike_owner %>
+			<% if current_user_equals(@user) %>
+				<span>Tu bici</span>
+			<% else %>
+				<span><%= t('bikes.views.show.owned_by') %><%= contact_for(bike) %><% sharing_for(bike) %></span>
+			<% end %>
+		<% end %>
 	</div>
 	<div class="photo">
 		<% if bike.front_picture.nil? %>

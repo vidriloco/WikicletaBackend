@@ -4,7 +4,10 @@ class ProfilesController < ApplicationController
   before_filter :find
   
   def index
-    render(:template => 'profiles/not_found') && return if @user.nil?
+    if @user.nil?
+      redirect_to root_path
+      return
+    end
   end
   
   def friends

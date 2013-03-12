@@ -1,3 +1,5 @@
+//= require view_components/base.view
+
 var defaultZoom = 8;
 var defaultMiddleZoom = 16;
 var defaultLat = 19.322721;
@@ -27,7 +29,6 @@ $(document).ready(function() {
 	};
 });
 
-
 $.extend(ViewComponents, {
 	Map : function(gMap, opts, callback) {
 		var obj = {
@@ -53,8 +54,14 @@ $.extend(ViewComponents, {
 						instance.propagateClickEvent(event.latLng);
 					} 
 				});
-
+								
 				return this;
+			},
+
+			resize: function() {
+				var center = this.gMap.getCenter();
+				google.maps.event.trigger(this.gMap, 'resize');
+				this.gMap.setCenter(center);
 			},
 
 			setMapOptions: function(opts) {

@@ -1,37 +1,30 @@
 <div class="container-fluid">
-	<div class="row-fluid top-spaced">
-		<div class="span12">
-			<div class="span7">
-				<ul class="nav nav-pills pull-right">
-		    	<li><%= link_to 'Lo + popular', '#' %></li>
-					<li><%= link_to 'Bicis robadas', '#' %></li>
-					<li><%= link_to 'En venta', '#' %></li>
-					<li><%= link_to 'En renta', '#' %></li>
-					<li><%= link_to 'Retos', '#' %></li>
-		    </ul>
-			</div>
-			<div class="span5">
-				<form class="form-search">
-		    	<input type="text" class="input-large search-query">
-		    	<button type="submit" class="btn">Buscar</button>
-		    </form>
-			</div>
-		</div>
+	<h3 class="centered-text">Bicis y Retos</h3>
+	<div class="separator"></div>
+	<div class="row-fluid">
+		<ul class="nav nav-pills pull-right">
+    	<li><%= link_to 'Lo + popular', '#' %></li>
+			<li><%= link_to 'Bicis robadas', '#' %></li>
+			<li><%= link_to 'En venta', '#' %></li>
+			<li><%= link_to 'En renta', '#' %></li>
+			<li><%= link_to 'Retos', '#' %></li>
+			<li><a href="#"><i class="icon-search"></i> Filtrar</a></li>
+    </ul>
 	</div>
-	<div class="row-fluid top-spaced">
-		<div class="span12 masonry">
-			<% if @bikes.empty? %>
-				<div class="top-spaced">
+	<div>
+		<% if @bikes.empty? %>
+			<div class="row-fluid top-spaced">
+				<div class="span12">
 					<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
 					<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
-				</div>
-			<% else %>
-				<div class="index">
-					<% @bikes.each do |bike| %>
-						<%= render bike %>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
+				</span>
+			</div>
+		<% else %>
+			<div id="masonry" class="index centered">
+				<% @bikes.each do |bike| %>
+					<%= render :partial => 'bikes/bike', :locals => { :bike => bike, :showing_bike_owner => true } %>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>

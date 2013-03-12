@@ -5,7 +5,6 @@ var modal = null;
 $.extend(Sections.Pictures, {
 	
 	indexPage: function() {
-		ViewComponents.Blocking.detach();
 	},
 	
 	manageUploads: function() {

@@ -13,6 +13,11 @@ es_MX:
         unsuccessful_remove: "No fue posible enviar solicitud de amistad"
         removed: "%{user} y %{friend} han dejado de ser amigos"
     views:
+      incidents:
+        subsection:
+          title: 
+            logged_in: "Reportes de este usuario"
+            logged_out: "Tus reportes"  
       social_nets:
         none: "no ha registrado redes sociales"
       user_info:

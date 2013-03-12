@@ -1,5 +1,5 @@
 <%= content_for :section_actions do %>
-	<div class="well section-actions">
+	<div class="well sections">
 		<a class="main-title"><i class="icon icon-chevron-down"></i><i class="icon icon-chevron-up"></i> Incidentes</a>
 		
 		<div class="contents">
@@ -30,38 +30,7 @@
 	</div>
 <% end %>
 
-<div class="actions">
-	<div class="row-fluid idea">
-		<h2>¿Qué ocurrió?</h2>
-		<h4>Reporta un incidente y recibe ayuda de la comunidad</h4>
-	</div>
-	<div class="row-fluid">
-		<div class="span9">
-			<ul class="nav nav-pills filtering-enabled">
-	    	<li>
-					<a href="javascript:void(0);" class="turn-off-filtering">
-						<i class="icon-resize-full"></i>  Mostrar todos
-					</a>
-		    </li>
-	    </ul>
-		</div>
-		<div class="span3">
-			<div class="pull-right">
-				<div class="dropdown">
-					<%= link_to "Buscar", '#/search', :class => "btn" %>
-					
-		    	<a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Reportar</a>
-			    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li><%= link_to 'Accidente', new_maps_layers_incident_path.concat('#/accident') %></li>
-						<li><%= link_to 'Robo de bici', new_maps_layers_incident_path.concat('#/theft') %></li>
-						<li><%= link_to 'Asalto', new_maps_layers_incident_path.concat('#/assault') %></li>
-						<li><%= link_to 'Averia', new_maps_layers_incident_path.concat('#/breakdown') %></li>
-			    </ul>
-		    </div>
-			</div>
-		</div>
-	</div>
-</div>
+<%= render 'maps/layers/incidents/actions' %>
 
 <div class="listing-view">
 	<div class="empty hidden"><i class="icon-ok-sign"></i> <%= t('incidents.views.index.empty') %></div>

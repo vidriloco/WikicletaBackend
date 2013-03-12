@@ -4,7 +4,6 @@
 //= require view_components/counter.view
 //= require view_components/form.validator
 //= require comments
-//= require jquery.popover
 //= require quickpager.jquery.js
 // For pictures
 //= require common/pictures_base
@@ -24,15 +23,10 @@ $(document).ready(function() {
 		document.getElementById(hashId).scrollIntoView();
 	}*/
 	
-  $('#container').masonry({
+  $('#masonry').masonry({
     itemSelector : '.bike',
-    columnWidth : 160,
-		isAnimated: true,
-	  animationOptions: {
-	    duration: 750,
-	    easing: 'linear',
-	    queue: false
-	  }
+		isAnimated: false,
+		isFitWidth: true
   });
 	
 	$('.heart').live('click', function() {

@@ -31,19 +31,9 @@ Ciudadio::Application.routes.draw do
     put "changed", :via => :put
   end
   
-  resources :trips
+  resources :neighbourhoods
   
-  namespace :maps do
-    get '/' => 'root#index'
-    namespace :layers do
-      resources :incidents do
-        collection do 
-          get :filtering
-        end
-      end
-      resources :highlights, :routes, :places
-    end
-  end
+  resources :maps, :only => [:index]
 
   resources :bikes do
     collection do 

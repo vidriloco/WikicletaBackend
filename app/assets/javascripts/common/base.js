@@ -3,11 +3,8 @@
 //= require jquery.tipsy
 //= require jquery.reveal
 //= require jquery.editable.min
-//= require view_components/blocking.view
-//= require view_components/notification.view
 //= require path
 //= require twitter/bootstrap
-//= require bootbox
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {
@@ -28,13 +25,23 @@ $.extend({
 	isDefined: function(dom) {
 		return $(dom).length;
 	},
+	
 	currentSectionIs: function(dom) {
 		return $.isDefined("#section-"+dom);
 	},
+	
 	visit: function(hashedUrl) {
 		window.location.hash = hashedUrl;
-		//window.router.navigate(hashedUrl);
 	},
+	
+	scrollFromMapToDom: function(dom, offset) {
+		$('html,body').animate({scrollTop: $(dom).offset().top-offset}, 'slow');
+	},
+	
+	scrollToTop: function() {
+		$('html,body').animate({scrollTop: $('#top-container').offset()}, 'slow');
+	},
+	
 	buildUrlFrom: function(section, id) {
 		if(id === undefined) {
 			return "#"+section;

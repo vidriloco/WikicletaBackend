@@ -1,52 +1,41 @@
-
-<div class="row top-spaced">
-	<div class="span1"></div>
-	<div class="span10">
-		<div class="row">
-			<h3 class="pull-right">
-				<%= current_user_can(@user) ? 'Tus Bicis' : 'Sus Bicis' %>
-			</h3>
+<% if current_user_equals(@user) %>
+	<div class="row-fluid top-spaced-70">
+		<div class="span10 actions">
+			<div class="row-fluid">
+				<h2>¿Te gusta tu bici?</h2>
+				<h4>Presúmela</h4>
+			</div>
+		</div>
+		<div class="span2 top-spaced">
+			<%= link_to 'Añadir nueva', new_bike_path, :class => 'btn btn-primary' %>
 		</div>
 	</div>
-	<div class="span1"></div>
-</div>
-
-<div class="row top-spaced">
-	<div class="span1"></div>
-	<div class="span10">
-		<div class="well well-small">
-			<div class="row">
-				<div class="span1"></div>
-				<div class="span5">
-					
-					<div class="btn-group pull-left">
-			    	<button class="btn">Robadas</button>
-			    	<button class="btn">Averiadas</button>
-			    	<button class="btn">Todas</button>
-			    </div>
-				</div>
-				<div class="span6">
-					<%= link_to 'Añadir nueva', new_bike_path, :class => 'btn btn-primary pull-right' %>
-				</div>
+<% else %>
+	<div class="row-fluid top-spaced-70">
+		<div class="span12 actions">
+			<div class="row-fluid">
+				<h2>Las bicis de <%= @user.username %></h2>
+				<h4>Quizás alguna la rente, o venda. Si no, ¡dale fav a la que te guste!</h4>
 			</div>
 		</div>
 	</div>
-	<div class="span1"></div>
+<% end %>
+<br/>
+<div class="row-fluid">
+	<%= subsection_with("Tus bicis", "Sus bicis") %>
 </div>
 
-<div class="container-fluid top-spaced">
-	<div class="span12 masonry">
-		<% if @bikes.empty? %>
-			<div class="top-spaced">
-				<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
-				<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
-			</div>
-		<% else %>
-			<div class="index">
-				<% @bikes.each do |bike| %>
-					<%= render bike %>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+<div class="top-spaced">	
+	<% if @bikes.empty? %>
+		<div class="top-spaced">
+			<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
+			<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
+		</div>
+	<% else %>
+		<div id="masonry" class="index centered">
+			<% @bikes.each do |bike| %>
+				<%= render :partial => 'bikes/bike', :locals => { :bike => bike, :showing_bike_owner => false } %>
+			<% end %>
+		</div>
+	<% end %>
 </div>

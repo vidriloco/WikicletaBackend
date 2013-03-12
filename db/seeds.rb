@@ -27,6 +27,12 @@ BikeBrand.create(:name => "Cervelo")
 BikeBrand.create(:name => "BH")
 BikeBrand.create(:name => "Otra")
 
+City.create(:code => "mx_df", :coordinates => Point.from_lon_lat(-99.40, 19.13))
+City.create(:code => "mx_gdl", :coordinates => Point.from_lon_lat(-103.3519, 20.6661))
+City.create(:code => "mx_mty", :coordinates => Point.from_lon_lat(-100.3000, 25.6667))
+City.create(:code => "mx_ag", :coordinates => Point.from_lon_lat(-102.2911, 21.8842))
+
+
 
 
 

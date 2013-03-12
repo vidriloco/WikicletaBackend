@@ -17,4 +17,13 @@ module ProfilesHelper
     "#{out}</br>".html_safe
     
   end
+  
+  def subsection_with(message_logged_out, message_logged_in)
+    html = <<-HTML
+      <ul class="subsection rounded-5">
+		  	<li class="active"><i class="icon-chevron-right"></i> #{ current_user_equals(@user) ? message_logged_out : message_logged_in }</li>
+		  </ul>
+    HTML
+    html.html_safe
+  end
 end

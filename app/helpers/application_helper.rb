@@ -71,7 +71,8 @@ module ApplicationHelper
     html.html_safe
   end
   
-  def current_user_can(user)
+  def current_user_equals(user)
+    return false if user.nil?
     (user_signed_in? && user == current_user)
   end
   

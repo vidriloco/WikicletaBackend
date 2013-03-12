@@ -13,18 +13,15 @@
 
 <body>
 	<%= render 'shared/notice' %>
-	<div class="background-logo"></div>
 	<%= render 'layouts/shared/navbar' %>
 	
-	<div class="row-fluid top-spaced-90">
-		<div class="span1"></div>
-		<div class="span3">
-			<%= yield :section_actions %>
-			<%= render 'layouts/maps/submenu' %>
-		</div>
-		<div class="span7 right-content"><%= yield %></div>
-		<div class="span1"></div>
-	</div>	
+	<div class="content-fluid">
+		<div class="row-fluid top-spaced-70">
+			<div class="span1"></div>
+			<div class="span10"><%= yield %></div>
+			<div class="span1"></div>
+		</div>	
+	</div>
 </body>
 
 </html>
