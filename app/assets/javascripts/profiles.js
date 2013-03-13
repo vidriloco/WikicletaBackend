@@ -24,7 +24,7 @@ $(document).ready(function() {
 	// Events for incidents
 	$('.delete-incident').bind('click', function() {
 		$('#dialog').modal();
-		$('#dialog .dialog-yes').attr('href', '/maps/layers/incidents/'+$(this).attr('data-id'));
+		$('#dialog .dialog-yes').attr('href', '/maps/incidents/'+$(this).attr('data-id'));
 		return false;
 	});
 	

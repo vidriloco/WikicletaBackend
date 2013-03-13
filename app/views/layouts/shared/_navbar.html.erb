@@ -11,7 +11,7 @@
         <ul class="nav pull-right">
 					<li class="<%= is_section_active?('neighbourhoods') %>"><%= link_to 'Tu ciudad en bici', neighbourhoods_path  %></li>
 					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
-					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Retos', bikes_path %></li>
+					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Más', bikes_path %></li>
 					<% if user_signed_in? %>
 						<li class="user-logged-in dropdown">
 							<%= link_to "<i class='icon-chevron-down'></i> #{current_user.username}".html_safe, '#', :class => "dropdown-toggle", "data-toggle"=>"dropdown" %>

@@ -30,11 +30,11 @@
 	</div>
 <% end %>
 
-<%= render 'maps/layers/incidents/actions' %>
+<%= render 'maps/incidents/actions' %>
 
 <div class="listing-view">
 	<div class="empty hidden"><i class="icon-ok-sign"></i> <%= t('incidents.views.index.empty') %></div>
-	<%= render :partial => 'maps/layers/incidents/incident', :collection => @incidents %>
+	<%= render :partial => 'maps/incidents/incident', :collection => @incidents %>
 	<%= render :partial => 'shared/modal_dialog', :locals => {:record => "incidente"} %>
 </div>
 

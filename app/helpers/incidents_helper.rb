@@ -32,7 +32,7 @@ module IncidentsHelper
   
   def partial_numbers_for(collection, kind)
     text = collection[kind] == 1 ? t("incidents.kinds.#{kind}.one") : t("incidents.kinds.#{kind}.many")
-    result = "<a class='box #{kind}' href='#{maps_layers_incidents_path.concat('#/filter/').concat(kind.to_s.pluralize)}'>
+    result = "<a class='box #{kind}' href='#{maps_incidents_path.concat('#/filter/').concat(kind.to_s.pluralize)}'>
 			<p class='number'>#{collection[kind]}</p>
 			<p class='title'>#{text}</p>
 		</a>"   
@@ -57,7 +57,7 @@ module IncidentsHelper
   def number_of_comments_for(incident)
     count = incident.comments.count
     text = count == 1 ? t('comments.count.one') : t('comments.count.many', :number => count)
-    "<i class='icon-comment'></i> ".html_safe + link_to("#{text}".html_safe, maps_layers_incident_path(incident).concat('#/comments'))
+    "<i class='icon-comment'></i> ".html_safe + link_to("#{text}".html_safe, maps_incident_path(incident).concat('#/comments'))
     
   end
 end

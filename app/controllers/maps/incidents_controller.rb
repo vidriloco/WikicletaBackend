@@ -1,4 +1,4 @@
-class Maps::Layers::IncidentsController < Maps::RootController
+class Maps::IncidentsController < MapsController
   
   before_filter :find_incident, :only => [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
@@ -11,7 +11,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   def create
     @incident = Incident.new_with(params[:incident], params[:coordinates], current_user)
     if @incident.save
-      redirect_to maps_layers_incidents_path
+      redirect_to maps_incidents_path
     else
       render :action => 'new', :layout => 'extended'
     end  
@@ -19,7 +19,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   
   def update
     if @incident.update_with(params[:incident], params[:coordinates], current_user)
-      redirect_to maps_layers_incidents_path
+      redirect_to maps_incidents_path
     else
       render :action => 'ed', :layout => 'extended'
     end
@@ -32,7 +32,7 @@ class Maps::Layers::IncidentsController < Maps::RootController
   
   def destroy
     @incident.destroy
-    redirect_to maps_layers_incidents_path
+    redirect_to maps_incidents_path
   end
   
   def edit

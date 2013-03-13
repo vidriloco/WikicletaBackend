@@ -3,7 +3,7 @@
 <div class="altering-view span8">
 	<div class="row-fluid">
 		<ul class="nav nav-pills pull-left">
-			<li class="active"><%= link_to t('actions.back_arrow').html_safe, maps_layers_incidents_path %></li>
+			<li class="active"><%= link_to t('actions.back_arrow').html_safe, maps_incidents_path %></li>
     </ul>
 		<div class="pull-right">
 			<h3><%= t("incidents.views.#{mode}.title") %></h3>
@@ -48,14 +48,14 @@
 	</div>
 	
 	<div id="active-form" class="form-horizontal">
-		<%= render :partial => 'maps/layers/incidents/form', :locals => {:incident => @incident, :kind => Bike.category_symbol_for(:incidents, @incident.kind) } %>
+		<%= render :partial => 'maps/incidents/form', :locals => {:incident => @incident, :kind => Bike.category_symbol_for(:incidents, @incident.kind) } %>
 	</div>
 	
 	<div class="hidden">
-		<%= render :partial => 'maps/layers/incidents/form', :locals => {:kind => :theft } %>
-		<%= render :partial => 'maps/layers/incidents/form', :locals => {:kind => :assault } %>
-		<%= render :partial => 'maps/layers/incidents/form', :locals => {:kind => :accident } %>
-		<%= render :partial => 'maps/layers/incidents/form', :locals => {:kind => :breakdown } %>
+		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :theft } %>
+		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :assault } %>
+		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :accident } %>
+		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :breakdown } %>
 	</div>
 </div>
 <div class="span2"></div>

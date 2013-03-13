@@ -34,6 +34,9 @@ Ciudadio::Application.routes.draw do
   resources :neighbourhoods
   
   resources :maps, :only => [:index]
+  namespace :maps do 
+    resources :incidents
+  end
 
   resources :bikes do
     collection do 
