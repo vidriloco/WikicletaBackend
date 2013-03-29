@@ -10,10 +10,6 @@ class ProfilesController < ApplicationController
     end
   end
   
-  def friends
-    render(:template => 'profiles/not_found') && return if @user.nil?
-  end
-  
   def bikes
     @bikes = Bike.all_from_user(@user)
   end

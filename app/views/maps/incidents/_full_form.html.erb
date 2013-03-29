@@ -3,7 +3,7 @@
 <div class="altering-view span8">
 	<div class="row-fluid">
 		<ul class="nav nav-pills pull-left">
-			<li class="active"><%= link_to t('actions.back_arrow').html_safe, maps_incidents_path %></li>
+			<li class="active"><%= link_to t('actions.back_arrow').html_safe, user_profile_path(current_user.username).concat('#/incidents') %></li>
     </ul>
 		<div class="pull-right">
 			<h3><%= t("incidents.views.#{mode}.title") %></h3>

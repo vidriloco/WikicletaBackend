@@ -1,15 +1,15 @@
-Ciudadio::Application.routes.draw do
-  #mount TransportAdder::Engine => "/mobility"  
-  
+Ciudadio::Application.routes.draw do  
   devise_for :admins, :only => [:sessions]
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
-  
+
   devise_scope :user do
+    
     get "/sign_up", :to => "devise/registrations#new"
     get "/sign_in", :to => "devise/sessions#new", :as => "new_user_session"
     
     namespace :users do
+      
       post '/auth/create', :to => "omniauth_callbacks#create", :as => :auth_sign_up
       delete '/auth/cancel', :to => "omniauth_callbacks#cancel", :as => :cancel_auth_sign_up
       delete '/auth/:id', :to => 'omniauth_callbacks#destroy', :as => :auth
@@ -31,12 +31,17 @@ Ciudadio::Application.routes.draw do
     put "changed", :via => :put
   end
   
-  resources :neighbourhoods
+  namespace :profiles do
+    resources :incidents, :only => [:index]
+  end
   
-  resources :maps, :only => [:index]
   namespace :maps do 
     resources :incidents
   end
+  
+  resources :neighbourhoods
+  
+  resources :maps, :only => [:index]
 
   resources :bikes do
     collection do 
@@ -65,7 +70,6 @@ Ciudadio::Application.routes.draw do
   
   get '/profile/:username' => 'profiles#index', :as => "user_profile"
   get '/profile/:username/bikes' => 'profiles#bikes', :as => 'user_bikes'
-  get '/profile/:username/friends' => 'profiles#friends', :as => "friends_of_user_profile"
 #  get "/places/:id" => 'places#show', :as => "place"
 #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  
   

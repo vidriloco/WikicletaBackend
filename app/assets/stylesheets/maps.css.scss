@@ -91,66 +91,39 @@
 	height: 400px !important;
 }
 
-.section-actions {
-	margin-bottom: 15px !important;
-	
-	.main-title {
-		text-decoration: none;
-		cursor: pointer;
-		font-size: 20px;
-		color: #FF6109;
-		margin: 0;
+ul.stats {
+
+	li {
+		.active {
+			color: #2C6ECA !important;
+		}
 		
-		.icon-chevron-up {
-			display: none;
+		.box:hover {
+			color: #FD6500;
 		}
-	}
-	
-	ul.suggested {
-		li {
-			display: block !important;
-			padding: 3px 10px;
-			text-align: right;
-			a {
-				font-size: 13px;
-				text-decoration: none;
-				color: black;
-			}
+		
+		.with-border {
+			border-left: 1px solid #C1C1C1;
 		}
-	}
-	
-	ul.stats {
-		margin-top: 10px;
-		text-align: center;
-		li {
-			.active {
-				color: #2C6ECA !important;
+		
+		.box {
+			color: #4F4F4F;
+			padding: 10px;
+			margin-right: 0px;
+			text-decoration: none;
+			
+			.title, .number { 
+				padding: 0;
+				margin: 0;
 			}
 			
-			.box:hover {
-				color: #FD6500;
+			.title {
+				font-size: 10px;
+				text-transform: uppercase;
 			}
 			
-			.box {
-				color: #4F4F4F;
-				padding: 5px;
-				margin-right: 0px;
-				text-decoration: none;
-				
-				.title, .number { 
-					padding: 0;
-					margin: 0;
-					display: block; 
-				}
-				
-				.title {
-					font-size: 10px;
-					text-transform: uppercase;
-				}
-				
-				.number {
-					font-size: 17px;
-				}
+			.number {
+				font-size: 20px;
 			}
 		}
 	}

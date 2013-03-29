@@ -21,7 +21,7 @@ class Maps::IncidentsController < MapsController
     if @incident.update_with(params[:incident], params[:coordinates], current_user)
       redirect_to maps_incidents_path
     else
-      render :action => 'ed', :layout => 'extended'
+      render :action => 'edit', :layout => 'extended'
     end
   end
   

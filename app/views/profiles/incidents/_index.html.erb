@@ -1,0 +1,37 @@
+<div id="incidents" class="span12 section incidents">
+	<% if current_user_equals(user) %>
+		<div class="row-fluid">
+			<div class="span10 actions">
+				<div class="row-fluid">
+					<h2>¿Te pasó algo?</h2>
+					<h4>Reportalo y recibe ayuda de la comunidad</h4>
+				</div>
+			</div>
+			<div class="span2 top-spaced">
+				<%= render 'maps/incidents/report_button' %>
+			</div>
+		</div>
+		<br/>
+	<% end %>
+	
+	<div class="row-fluid">
+		<% if incidents.empty? %>
+			<%= subsection_with(
+				t('user_profiles.views.incidents.subsection.title.logged_out'),  
+				t('user_profiles.views.incidents.subsection.title.logged_in')) %>
+			<div class="centered-text well well-small">
+				<p>No hay reportes que mostrar, lo cual es muy bueno</p>
+			</div>
+		<% else %>
+			<div class="listing-view">
+				<%= subsection_with(
+					t('user_profiles.views.incidents.subsection.title.logged_out'),  
+					t('user_profiles.views.incidents.subsection.title.logged_in')) %>
+				<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
+				<%= render :partial => 'maps/incidents/incident', :collection => incidents %>
+			</div>
+		<% end %>
+	</div>
+	
+	<%= render :partial => 'shared/modal_dialog', :locals => {:record => "incidente"} %>
+</div>

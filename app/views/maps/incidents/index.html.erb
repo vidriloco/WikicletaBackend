@@ -1,40 +1,50 @@
-<%= content_for :section_actions do %>
-	<div class="well sections">
-		<a class="main-title"><i class="icon icon-chevron-down"></i><i class="icon icon-chevron-up"></i> Incidentes</a>
-		
-		<div class="contents">
-			<ul class="stats inlined-list">
-				<li>
-					<%= partial_numbers_for(@incidents_count, :theft) %>
-				</li>
-				<li>
-					<%= partial_numbers_for(@incidents_count, :accident) %>
-				</li>
-				<li>
-					<%= partial_numbers_for(@incidents_count, :assault) %>
-				</li>
-				<li>
-					<%= partial_numbers_for(@incidents_count, :breakdown) %>
-				</li>
-			</ul>
-			<div class="separator"></div>
-			<ul class="suggested">
-				<li><%= link_to 'Hoy', '#' %></li>
-				<% if user_signed_in? %>
-					<li><%= link_to 'Tus incidentes', '#' %></li>
-				<% end %>
-				<li><%= link_to 'Bicis robadas sin aparecer', '#' %></li>
-				<li><%= link_to 'Bicis blancas', '#' %></li>
-			</ul>
-		</div>
+<h3 class="centered-text">Mapa de tu ciudad</h3>
+<div class="separator"></div>
+<div>	
+	<div class="pull-right">
+		<ul class="nav nav-pills">
+			<li class="active"><a href="#">Incidentes</a></li>
+	  	<li class="dropdown">
+	  		<a class="dropdown-toggle"
+	  		data-toggle="dropdown"
+	  		href="#">Otras capas<b class="caret"></b></a>
+	  <ul class="dropdown-menu">
+			<li><a href="#">Rutas y Bicibuses</a></li>
+			<li><a href="#">Ciclovias y Bicis Públicas</a></li>
+			<li><a href="#">Tips</a></li>
+			<li><a href="#">Lugares</a></li>
+	  </ul>
+		<li><a href="#"><i class="icon-search"></i> Filtrar</a></li>
+	  </li>
+	  </ul>
 	</div>
-<% end %>
-
-<%= render 'maps/incidents/actions' %>
-
-<div class="listing-view">
-	<div class="empty hidden"><i class="icon-ok-sign"></i> <%= t('incidents.views.index.empty') %></div>
-	<%= render :partial => 'maps/incidents/incident', :collection => @incidents %>
-	<%= render :partial => 'shared/modal_dialog', :locals => {:record => "incidente"} %>
+	<div class="pull-left">
+		<ul class="stats inlined-list">
+			<li>
+				<%= partial_numbers_for(@incidents_count, :theft) %>
+			</li>
+			<li>
+				<%= partial_numbers_for(@incidents_count, :accident) %>
+			</li>
+			<li>
+				<%= partial_numbers_for(@incidents_count, :assault) %>
+			</li>
+			<li>
+				<%= partial_numbers_for(@incidents_count, :breakdown) %>
+			</li>
+			<li class="action-link">
+				<a class="box theft active" href="/maps/incidents#/">
+					<p class="title">Mostrar todos</p>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
+<div id="map" class="show-only edit map-dimensions map-big shadow-light rounded-5"></div>
+<br>
+<div class="content-fluid">
+	<div class="listing-view">
+		<%= render :partial => 'maps/incidents/incident', :collection => @incidents %>
+	</div>
+</div>

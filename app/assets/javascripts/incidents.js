@@ -100,11 +100,16 @@ $(document).ready(function(){
 					$('.stats .box').addClass('active');
 					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
 					
+					$('.stats .action-link').fadeOut();
 					thisInstance.showEmptyLegendFor('.incident');
 					thisInstance.drawSelectedIncidents($('.listing-view .incident'));
 					
 					$('.listing-view .incident').removeClass('with-focus');
 					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+					
+					// insert map at top of the listing
+					$('#map').insertBefore('.listing-view .first');
+					$.scrollToTop();
 				},
 				
 				onFilter : function() {
@@ -114,6 +119,7 @@ $(document).ready(function(){
 					$('.'+aspect).fadeIn();
 					$('.stats .box').removeClass('active');
 					$('.stats .'+aspect).addClass('active');
+					$('.stats .action-link').fadeIn();
 					$('.actions .filtering-enabled').fadeIn();
 					$('.actions .filtering-enabled .turn-off-filtering').fadeIn();
 					thisInstance.drawSelectedIncidents($('.listing-view .'+aspect));
@@ -133,6 +139,12 @@ $(document).ready(function(){
 					$(domElement).addClass('with-focus');
 					thisInstance.drawSelectedIncidents([domElement]);
 					map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
+					
+					// dom element for incident
+					var domElement = '.listing-view #'+id;
+					// move map above incident
+					$('#map').insertBefore(domElement);
+					$.scrollFromMapToDom(domElement, 40);
 				},
 				
 				drawSelectedIncidents : function(incidents) {

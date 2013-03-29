@@ -1,4 +1,4 @@
-<div class"row-fluid">
+<div class="row-fluid">
 	<div class="span12">
 		<div class="activities rounded-10">
 			<% if 1==0 %>
@@ -50,7 +50,7 @@
 					</a>
 				</li>
 				<li class="centered-text">
-					<a href="" original-title="Deja sugerencias para rodar mejor">
+					<a href="<%= hash_link_for(user_profile_path(@user.username), '/tips') %>" original-title="Deja sugerencias útiles para la comunidad">
 						<%= image_tag('/assets/highlights_icon.png', :size => '45x45') %>
 						<span class="title">Tips</span>
 					</a>
@@ -60,7 +60,5 @@
 	</div>
 </div>
 
-<div class="content-fluid">
-	<%= render 'profiles/sections/incidents' %>
-</div>
+<div id="contents-area" class="content-fluid" data-username="<%= @user.username %>"></div>
 
