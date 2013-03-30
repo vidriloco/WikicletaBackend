@@ -33,13 +33,14 @@ Ciudadio::Application.routes.draw do
   
   namespace :profiles do
     resources :incidents, :only => [:index]
+    resources :tips
   end
   
   namespace :maps do 
     resources :incidents
   end
   
-  resources :neighbourhoods
+  resources :trips
   
   resources :maps, :only => [:index]
 
