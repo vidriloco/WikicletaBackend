@@ -19,7 +19,7 @@
 					<div>
 						<span class="time"><%= distance_of_time_in_words(tip.updated_at || Date.today, Time.now, true) %></span> 
 						<% unless current_user_equals(@user) %>
-							<span class="reporter"><%= reporter_of(tip) %></span>
+							<span class="reporter"><%= reporter_of(tip, "/#/tips/#{tip.id}") %></span>
 						<% end %>
 					</div>
 				</li>

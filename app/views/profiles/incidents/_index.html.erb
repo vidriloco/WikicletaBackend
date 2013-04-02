@@ -8,7 +8,15 @@
 				</div>
 			</div>
 			<div class="span2 top-spaced">
-				<%= render 'maps/incidents/report_button' %>
+				<div class="dropdown pull-right">	
+					<a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Reportar</a>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><%= link_to 'Accidente', new_profiles_incident_path.concat('#/accident') %></li>
+						<li><%= link_to 'Robo de bici', new_profiles_incident_path.concat('#/theft') %></li>
+						<li><%= link_to 'Asalto', new_profiles_incident_path.concat('#/assault') %></li>
+						<li><%= link_to 'Averia', new_profiles_incident_path.concat('#/breakdown') %></li>
+				  </ul>
+				</div>
 			</div>
 		</div>
 		<br/>
@@ -29,7 +37,7 @@
 				t('user_profiles.views.incidents.subsection.title.logged_out'),  
 				t('user_profiles.views.incidents.subsection.title.logged_in')) %>
 			<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
-			<%= render :partial => 'maps/incidents/incident', :collection => incidents, :locals => {:show_actions => true} %>
+			<%= render :partial => 'profiles/incidents/incident', :collection => incidents, :locals => {:show_actions => true} %>
 		<% end %>
 		</div>
 	</div>

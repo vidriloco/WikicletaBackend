@@ -42,6 +42,12 @@ module ApplicationHelper
     options_for_select({ t('boolean_answers.accept') => 1, t('boolean_answers.decline') => 0}, selected)
   end
   
+  def reporter_of(incident, extra="")
+    if(incident.user != nil)
+      link_to t('incidents.views.index.list.item.reporter.user', :user => incident.user.username), user_profile_path(incident.user.username).concat(extra)
+    end
+  end
+  
   def currency_field_for(f, attribute, value, placeholder)
     html = <<-HTML
       <div class="control-group">

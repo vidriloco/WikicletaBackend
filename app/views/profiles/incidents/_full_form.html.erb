@@ -1,6 +1,5 @@
-
-<div class="span2"></div>
-<div class="altering-view span8">
+<div class="span1"></div>
+<div class="altering-view altering-incident span10">
 	<div class="row-fluid">
 		<ul class="nav nav-pills pull-left">
 			<li class="active"><%= link_to t('actions.back_arrow').html_safe, user_profile_path(current_user.username).concat('#/incidents') %></li>
@@ -14,7 +13,7 @@
 			<p>1. <%= t("incidents.views.#{mode}.steps.one") %></p>
 		</div>
 		<div class="span6">
-			<a class="btn btn-inverse pull-right locate-me"><i class="icon icon-map-marker"></i> Ubicarme</a>
+			<a class="btn btn-inverse pull-right locate-me"><i class="icon icon-map-marker"></i> <%= t('actions.locate_me') %></a>
 		</div>
 	</div>
 	<div id="map" class="show-only editable map-dimensions rounded-5 shadow-light"></div>
@@ -22,7 +21,7 @@
 	<% if !current_user_has_bikes_to_report? %>
 		<div id="bike-required-alert" class="alert alert-error ">
 			<span><i class="icon-exclamation-sign"></i> Necesitas registrar tu bici para reportar su <b>robo</b> o <b>avería</b></span> 
-			<%= link_to 'Añadir bici', new_bike_path, :class => "pull-right" %>
+			<%= link_to 'Añadir bici', profiles_new_bike_path, :class => "pull-right" %>
 		</div>
 	<% end %>
 	
@@ -48,14 +47,14 @@
 	</div>
 	
 	<div id="active-form" class="form-horizontal">
-		<%= render :partial => 'maps/incidents/form', :locals => {:incident => @incident, :kind => Bike.category_symbol_for(:incidents, @incident.kind) } %>
+		<%= render :partial => 'profiles/incidents/form', :locals => {:incident => @incident, :kind => Bike.category_symbol_for(:incidents, @incident.kind) } %>
 	</div>
 	
 	<div class="hidden">
-		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :theft } %>
-		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :assault } %>
-		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :accident } %>
-		<%= render :partial => 'maps/incidents/form', :locals => {:kind => :breakdown } %>
+		<%= render :partial => 'profiles/incidents/form', :locals => {:incident => @incident, :kind => :theft } %>
+		<%= render :partial => 'profiles/incidents/form', :locals => {:incident => @incident, :kind => :assault } %>
+		<%= render :partial => 'profiles/incidents/form', :locals => {:incident => @incident, :kind => :accident } %>
+		<%= render :partial => 'profiles/incidents/form', :locals => {:incident => @incident, :kind => :breakdown } %>
 	</div>
 </div>
-<div class="span2"></div>
+<div class="span1"></div>

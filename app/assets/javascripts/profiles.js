@@ -23,21 +23,9 @@ $(document).ready(function() {
 
 
 	if($.isDefined('.altering-view')) {
+		// Common actions for incidents and tips
 		initializeMap();
 		map.setCoordinatesFromDom('#coordinates', 16);
-		
-		// Setup constraints and validations for fields
-		ViewComponents.Counter.forDomElement('#tip_content', 250);
-		
-		var conditions = [{id: '#tip_category', condition: 'not_empty' }, 
-			{id: '#tip_content', condition: 'min', value: 60 },
-			{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
-		ViewComponents.ValidForm.set('#tips-form form', conditions, {
-				before: function() {
-					map.setCoordinatesFromDom('#coordinates', 16);
-				}
-		});
-			
 		// Attempt to get my location
 		$('.locate-me').bind('click', function() {
 			if (geoPosition.init()) {
@@ -50,8 +38,128 @@ $(document).ready(function() {
 					}, null);
 			}
 		});
-
 		
+		// JS Subroutes for new and edit views
+		if($.isDefined('.altering-incident')) {
+			// Actions for incidents
+
+			var Incidents = {};
+			Incidents.Routes = function() {
+
+				var thisInstance = null;
+
+				var obj = {
+					initialize: function() {
+						thisInstance = this;
+						return this;
+					},
+
+					onIndex : function() {
+						$('.current-incident').html($('.incident-selector').attr('data-text'));
+						var kindId = parseInt($('#active-form #incident_kind').val());
+						if(kindId > 0) {
+							var incidentType = $('.incident-types #'+kindId).attr('data-subroute');
+							window.location.hash = '#/'+incidentType;
+						} 
+					},
+
+					onAccidents : function() {
+						thisInstance.mountFieldsFor('accident');
+						map.setCoordinatesFromDom('#coordinates', 16);
+						thisInstance.toggleAlert('#bike-required-alert', false);
+					},
+
+					onThefts : function() {
+						thisInstance.mountFieldsFor('theft');
+						map.setCoordinatesFromDom('#coordinates', 16);
+						thisInstance.toggleAlert('#bike-required-alert', true);
+					},
+
+					onAssaults : function() {
+						thisInstance.mountFieldsFor('assault');
+						map.setCoordinatesFromDom('#coordinates', 16);
+						thisInstance.toggleAlert('#bike-required-alert', false);
+					},
+
+					onBreakDown : function() {
+						thisInstance.mountFieldsFor('breakdown');
+						map.setCoordinatesFromDom('#coordinates', 16);
+						thisInstance.toggleAlert('#bike-required-alert', true);
+					},
+
+					toggleAlert : function(dom, show) {
+						if(!$.isDefined(dom)) {
+							return false;
+						}
+
+						if(show) {
+							$(dom).removeClass('hidden');
+						} else {
+							$(dom).addClass('hidden');
+						}
+					},
+
+					onEmpty : function() {
+						$('#active-form').empty();
+						map.reset();
+						window.location.hash = '#/';
+					},
+
+					mountFieldsFor : function(kind) {
+						$('.current-incident').html($('.'+kind+'-selector').attr('data-text'));
+						$('#active-form').html($('.'+kind+'-form').html());
+						$('#active-form #incident_kind').val($('.'+kind+'-selector').attr('id'));
+						$('#active-form').fadeIn();
+
+						// Setup constraints and validations for fields
+						ViewComponents.Counter.forDomElement('#incident_description', 250);
+
+						var conditions = [{id: '#incident_kind', condition: 'not_empty' }, 
+							{id: '#incident_description', condition: 'min', value: 60 },
+							{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
+
+						// Add extra validations if incident is not a breakdown
+						if(kind != "breakdown") {
+							conditions.push({id: '#incident_start_hour', respect: '#incident_final_hour', condition: 'before_than', special: true });
+							conditions.push({id: '#incident_vehicle_identifier', condition: 'regexp', regexp: /^[^-]([A-Z0-9\-]){3,}[^-]$/ });
+						} 
+
+						ViewComponents.ValidForm.set('#active-form form', conditions, {
+								before: function() {
+									map.setCoordinatesFromDom('#coordinates', 16);
+								}
+						});
+					}
+				}
+				return obj.initialize();
+			}
+
+			var incidentsRoutes = new Incidents.Routes();
+			Path.map("#/").to(incidentsRoutes.onIndex);
+			Path.map("#/accident").to(incidentsRoutes.onAccidents);
+			Path.map("#/theft").to(incidentsRoutes.onThefts);
+			Path.map("#/assault").to(incidentsRoutes.onAssaults);
+			Path.map("#/breakdown").to(incidentsRoutes.onBreakDown);
+			Path.map("#/none").to(incidentsRoutes.onEmpty);
+
+			Path.root("#/");
+			Path.listen();
+		} else {
+			// Actions for tips 
+			
+			// Setup constraints and validations for fields
+			ViewComponents.Counter.forDomElement('#tip_content', 250);
+
+			var conditions = [{id: '#tip_category', condition: 'not_empty' }, 
+				{id: '#tip_content', condition: 'min', value: 60 },
+				{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
+			ViewComponents.ValidForm.set('#tips-form form', conditions, {
+					before: function() {
+						map.setCoordinatesFromDom('#coordinates', 16);
+					}
+			});
+		}
+	
 	} else {
 		
 		// for user bikes listing 
@@ -93,7 +201,7 @@ $(document).ready(function() {
 
 		$('.delete-incident').live('click', function() {
 			$('#dialog').modal();
-			$('#dialog .dialog-yes').attr('href', '/maps/incidents/'+$(this).attr('data-id'));
+			$('#dialog .dialog-yes').attr('href', '/profiles/incidents/'+$(this).attr('data-id'));
 			return false;
 		});
 

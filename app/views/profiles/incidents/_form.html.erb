@@ -1,0 +1,36 @@
+<div class='<%= "#{kind}-form" %>'>
+	
+	<%= form_for [:profiles, incident], :html => {:class => "form"} do |f| %>
+			<div class="well">
+				<%= render :partial => 'profiles/incidents/fields/hiddens', :locals => { :f => f, :incident => incident } %>
+			
+				<% unless kind.eql?(:breakdown) %>
+					<%= render :partial => 'profiles/incidents/fields/date_and_time', :locals => { :f => f } %>
+					<div class="separator"></div>
+					<br/>
+				<% end %>
+			
+				<%= render :partial => 'profiles/incidents/fields/description', :locals => { :f => f } %>
+				<%= render :partial => 'profiles/incidents/fields/bike', :locals => { :incident => incident, :f => f } %>
+			
+				<% if kind.eql?(:breakdown) %>
+					<%= render :partial => 'profiles/incidents/fields/fixed', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:theft) %>
+					<%= render :partial => 'profiles/incidents/fields/lock', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:theft) || kind.eql?(:assault) || kind.eql?(:accident) %>
+					<%= render :partial => 'profiles/incidents/fields/complaint', :locals => { :incident => incident, :f => f } %>
+				<% end %>
+			
+				<% if kind.eql?(:assault) || kind.eql?(:accident) %>
+					<%= render :partial => 'profiles/incidents/fields/vehicle_identifier', :locals => { :f => f } %>
+				<% end %>
+			</div>
+			<div class="centered-text">
+				<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+			</div>
+	<% end %>
+</div>

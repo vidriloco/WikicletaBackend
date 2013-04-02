@@ -29,7 +29,7 @@
 				<% if incident.is_of_kind?(:theft) %>				
 					<span class="emphasize"><%= t('incidents.views.show.attacher_used') %></span> 
 					<%= Bike.humanized_category_for(:locks, incident.lock_used) %>
-				<% elsif incident.is_of_kind?(:accident) || incident.is_of_kind?(:regulation_infraction) %>
+				<% elsif incident.is_of_kind?(:accident) %>
 					<span class="emphasize"><%= t('incidents.views.show.vehicle_identifier') %></span>
 					<%= incident.vehicle_identifier.blank? ? t('missing.fem') : incident.vehicle_identifier %>
 				<% elsif incident.is_of_kind?(:breakdown) %>
@@ -37,7 +37,9 @@
 				<% end %>
 			</div>
 			<div class="span6 complaint-issued">
-				<span class="emphasize"><%= t('incidents.views.index.list.item.complaint_issued')[incident.complaint_issued] %></span>
+				<% if !incident.is_of_kind?(:breakdown) %>
+					<span class="emphasize"><%= t('incidents.views.index.list.item.complaint_issued')[incident.complaint_issued] %></span>
+				<% end %>
 			</div>
 		</div>
 		
@@ -47,7 +49,7 @@
 			<ul class="pull-left contextual-actions inlined-list">
 				<% if current_user && current_user.owns?(incident) && show_actions %>
 					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => incident.id, :class => "delete-incident" %></li>
-					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_incident_path(incident) %></li>
+					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_profiles_incident_path(incident) %></li>
 				<% end %>
 			</ul>
 			<ul class="pull-right contextual-info inlined-list">
@@ -55,7 +57,7 @@
 					<div>
 						<span class="time"><%= distance_of_time_in_words(incident.date || Date.today, Time.now, true) %></span> 
 						<% unless current_user_equals(@user) %>
-							<span class="reporter"><%= reporter_of(incident) %></span>
+							<span class="reporter"><%= reporter_of(incident, "/#/incidents/#{incident.id}") %></span>
 						<% end %>
 					</div>
 				</li>

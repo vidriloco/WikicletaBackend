@@ -32,12 +32,12 @@ Ciudadio::Application.routes.draw do
   end
   
   namespace :profiles do
-    resources :incidents, :only => [:index]
+    resources :incidents
     resources :tips
   end
   
   namespace :maps do 
-    resources :incidents
+    resources :incidents, :only => [:index]
     resources :tips, :only => [:index]
     resources :lanes, :only => [:index]
     resources :routes, :only => [:index]

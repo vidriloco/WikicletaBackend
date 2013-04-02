@@ -17,7 +17,7 @@
 				<%= partial_numbers_for(:incidents, @incidents_count, :breakdown) %>
 			</li>
 			<li class="action-link">
-				<a class="box theft active" href="/maps/incidents#/">
+				<a class="box theft active" href="/profiles/incidents#/">
 					<p class="title">Mostrar todos</p>
 				</a>
 			</li>
@@ -29,6 +29,6 @@
 <br>
 <div class="content-fluid">
 	<div class="listing-view">
-		<%= render :partial => 'maps/incidents/incident', :collection => @incidents, :locals => {:show_actions => false} %>
+		<%= render :partial => 'profiles/incidents/incident', :collection => @incidents, :locals => {:show_actions => false} %>
 	</div>
 </div>

@@ -39,12 +39,6 @@ module IncidentsHelper
     </div><div class='clear'></div>".html_safe
   end
   
-  def reporter_of(incident)
-    if(incident.user != nil)
-      link_to t('incidents.views.index.list.item.reporter.user', :user => incident.user.username), user_profile_path(incident.user)
-    end
-  end
-  
   def number_of_comments_for(incident)
     count = incident.comments.count
     text = count == 1 ? t('comments.count.one') : t('comments.count.many', :number => count)
