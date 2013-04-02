@@ -10,5 +10,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
   inflect.irregular 'seguidor', 'seguidores'
-  inflect.irregular 'evaluación', 'evaluaciones'
+  inflect.irregular 'alerta', 'alertas'
+  inflect.irregular 'avería', 'averías'
 end

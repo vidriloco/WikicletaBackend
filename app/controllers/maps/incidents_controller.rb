@@ -32,7 +32,7 @@ class Maps::IncidentsController < MapsController
   
   def destroy
     @incident.destroy
-    redirect_to maps_incidents_path
+    redirect_to user_profile_path(current_user.username).concat('#/incidents')
   end
   
   def edit

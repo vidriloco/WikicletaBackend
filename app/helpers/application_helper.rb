@@ -76,6 +76,38 @@ module ApplicationHelper
     (user_signed_in? && user == current_user)
   end
   
+  def header_for_form(back_url, title)
+    link_back = link_to(t('actions.back_arrow').html_safe, back_url)
+    html = <<-HTML 
+      <div class="row-fluid">
+  			<ul class="nav nav-pills pull-left">
+  				<li class="active">#{link_back}</li>
+  	    </ul>
+  			<div class="pull-right">
+  				<h3>#{title}</h3>
+  			</div>
+  		</div>
+    HTML
+    
+    html.html_safe
+  end
+  
+  def instruction_for_form(title, extra)
+    
+    html = <<-HTML
+      <div class="row-fluid instruction">
+  			<div class="span6">
+  				<p>#{title}</p>
+  			</div>
+  			<div class="span6">
+  				#{extra}
+  			</div>
+  		</div>
+    HTML
+    
+    html.html_safe
+  end
+  
   private
   def current_action_matches?(action)
     {:class => "selected"} if action == controller.action_name

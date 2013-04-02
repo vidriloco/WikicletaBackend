@@ -1,0 +1,29 @@
+<div id="<%= tip.id %>" class="<%= 'first' if(tip_counter == 0) %> centered tip item-on-list rounded-5 <%= tip.category_symbol %>" data-kind="<%= tip.category_symbol %>" data-lat="<%= tip.lat %>" data-lon="<%= tip.lon %>">
+	<div class="content-fluid">
+		<div class="row-fluid">
+			<div class="span1"><div class="signal"></div></div>
+			<div class="span2"><p><%= tip.humanized_category %></p></div>
+			<div class="span9"><p><%= tip.content %></p></div>
+		</div>
+		<div class="separator"></div>
+		<!-- Render actions that appear below the separator -->
+		<div class="row-fluid">
+			<ul class="pull-left contextual-actions inlined-list">
+				<% if current_user && current_user.owns?(tip) && show_actions %>
+					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => tip.id, :class => "delete-tip" %></li>
+					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_profiles_tip_path(tip) %></li>
+				<% end %>
+			</ul>
+			<ul class="pull-right contextual-info inlined-list">
+				<li>
+					<div>
+						<span class="time"><%= distance_of_time_in_words(tip.updated_at || Date.today, Time.now, true) %></span> 
+						<% unless current_user_equals(@user) %>
+							<span class="reporter"><%= reporter_of(tip) %></span>
+						<% end %>
+					</div>
+				</li>
+			</ul>
+		</div>		
+	</div>
+</div>

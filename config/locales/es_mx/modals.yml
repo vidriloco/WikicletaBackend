@@ -1,5 +1,0 @@
-es_MX:
-  modals:
-    default:
-      title: "Confirmar acción"
-      body: "¿Deseas eliminar este %{record}?"

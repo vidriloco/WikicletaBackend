@@ -49,7 +49,7 @@
 						<span class="title">Bicibus</span>
 					</a>
 				</li>
-				<li class="centered-text">
+				<li id="tips-section" class="centered-text">
 					<a href="<%= hash_link_for(user_profile_path(@user.username), '/tips') %>" original-title="Deja sugerencias útiles para la comunidad">
 						<%= image_tag('/assets/highlights_icon.png', :size => '45x45') %>
 						<span class="title">Tips</span>
@@ -60,5 +60,5 @@
 	</div>
 </div>
 
-<div id="contents-area" class="content-fluid" data-username="<%= @user.username %>"></div>
+<div id="contents-area" class="content-fluid" data-section-enabled="" data-username="<%= @user.username %>"></div>
 

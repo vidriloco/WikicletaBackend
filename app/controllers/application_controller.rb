@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller?
-      "plain"
+      "no_bar"
     else
       "application"
     end

@@ -1,8 +1,3 @@
-/*
-*= require_self
-*= require maps.css
-*/
-
 #new_incident {
 	.note {
 		text-align: center;
@@ -191,91 +186,6 @@ $assaults: #63A62C;
 $breakdowns: #F18706;
 
 .listing-view {
-	margin-top: 20px;
-	
-	.with-focus {
-		border: 2px solid #0F527C !important;
-		.signal {
-			opacity: 1 !important;
-		} 
-	}
-	
-	.empty {
-		text-align: center;
-	}
-	
-	.with-focus {
-		.extras {
-			display: block !important;
-		}
-	}
-	
-	.incident {
-		border: 2px solid #CEDEFF;
-		background-color: #FCFAFF;
-		padding: 10px;
-		padding-bottom: 5px;
-		margin: 10px;
-		
-		.extras {
-			display: none;
-		}
-		
-		.title {
-			font-size: 14px;
-		}
-		
-		.signal:hover {
-			opacity: 1;
-		}
-		
-		.signal {
-			width: 100%;
-			height: 20px !important;
-			opacity: 0.5;
-			cursor: pointer;
-		}
-		
-		.contextual-info, .contextual-actions {
-			li {
-				margin-right: 15px;
-			}
-		}
-		
-		.contextual-actions {
-			margin-left: 20px;
-			font-size: 13px;
-			
-			.remarked a {
-				color: #FF4F00;
-			}
-		}	
-			
-		.contextual-info {
-			li {
-				margin-right: 15px;
-			}
-			
-			.time {
-				text-transform: uppercase;
-				font-size: 10px;
-			}
-
-			.reporter {
-				font-size: 11px;
-				color: #3D5FA6;
-			}
-
-			.comments {
-				font-size: 13px;
-				text-decoration: none;
-			}
-		}
-		.description {
-			font-size: 13px;
-			color: #999;
-		}
-	}
 	
 	.accident {
 		.signal {

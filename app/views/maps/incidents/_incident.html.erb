@@ -1,4 +1,4 @@
-<div id="<%= incident.id %>" class="<%= 'first' if(incident_counter == 0) %> centered rounded-5 incident <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
+<div id="<%= incident.id %>" class="<%= 'first' if(incident_counter == 0) %> centered rounded-5 incident item-on-list <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
 	<div class="row-fluid">
 		<div class="row-fluid">
 			<div class="span1"><div class="signal"></div></div>
@@ -45,7 +45,7 @@
 		<!-- Render actions that appear below the separator -->
 		<div class="row-fluid">
 			<ul class="pull-left contextual-actions inlined-list">
-				<% if current_user && current_user.owns?(incident) %>
+				<% if current_user && current_user.owns?(incident) && show_actions %>
 					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => incident.id, :class => "delete-incident" %></li>
 					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_maps_incident_path(incident) %></li>
 				<% end %>

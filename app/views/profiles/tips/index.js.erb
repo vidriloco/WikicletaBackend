@@ -1,0 +1,2 @@
+$('#contents-area').html('<%= escape_javascript(render :partial => "profiles/tips/index", :locals => {:user => @user, :tips => @tips}) %>');
+$('#contents-area').attr('data-section-enabled', 'tips');

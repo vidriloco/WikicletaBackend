@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   layout 'profiles'
   
-  before_filter :find
+  before_filter :find_user
   
   def index
     if @user.nil?
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   
   private 
   
-  def find
+  def find_user
     @user = User.find_by_username(params[:username])
   end
 end

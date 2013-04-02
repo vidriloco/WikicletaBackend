@@ -3,6 +3,7 @@
  *= require bikes
  *= require bootstrap_and_overrides
  *= require shared/main
+ *= require tips
  */
 
 .profile {
@@ -108,10 +109,9 @@
 		}
 	}
 	
-	.sections {
-		.incidents {
-			
-		}
+	p {
+		margin:0;
+		padding: 0;
 	}
 }
 

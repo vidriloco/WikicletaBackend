@@ -1,0 +1,26 @@
+es_MX:
+  activerecord:
+    models:
+      tip: "Tip"
+    attributes:
+      incident: 
+        kind: "Tipo"
+  tips:
+    views:
+      form:
+        content: "Contenido"
+        category: "Categoría"
+        validations:
+          content: "El contenido del tip debe ser de al menos 60 caracteres"
+          category: "Debes seleccionar una categoría para el tip"
+          coordinates: "No has seleccionado un punto en el mapa"
+      edit:
+        title: "Modificar tip"
+        steps:
+          one: "1. Realiza ajustes en la ubicación del tip"
+          two: "2. Realiza cambios en los detalles de tu tip"
+      new:
+        title: "Nuevo Tip"
+        steps:
+          one: "1. Selecciona un punto en el mapa"
+          two: "2. Escribe tu tip y selecciona una categoria"

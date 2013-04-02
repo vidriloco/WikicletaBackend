@@ -1,0 +1,26 @@
+// Tips styling
+$sightseeing: #33992A;
+$danger: #991A00;
+$alert: #D59700;
+
+.listing-view {
+	.sightseeing {
+		.signal {
+			background-color: $sightseeing;
+		}
+	}
+	
+	.danger {
+		.signal {
+			background-color: $danger;
+		}
+	}
+	
+	.alert {
+		color: black !important;
+		
+		.signal {
+			background-color: $alert;
+		}
+	}
+}

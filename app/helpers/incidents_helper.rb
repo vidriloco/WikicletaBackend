@@ -30,15 +30,6 @@ module IncidentsHelper
     end
   end
   
-  def partial_numbers_for(collection, kind)
-    text = collection[kind] == 1 ? t("incidents.kinds.#{kind}.one") : t("incidents.kinds.#{kind}.many")
-    result = "<a class='box #{kind}' href='#{maps_incidents_path.concat('#/filter/').concat(kind.to_s.pluralize)}'>
-			<p class='number'>#{collection[kind]}</p>
-			<p class='title'>#{text}</p>
-		</a>"   
-    result.html_safe
-  end
-  
   def info_for(bike)
     "<div class='info to-left'>
     <span class='aspect'>#{t('bikes.views.preview.frame_number')}</span>

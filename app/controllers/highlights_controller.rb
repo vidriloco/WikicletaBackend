@@ -1,2 +1,0 @@
-class HighlightsController < ApplicationController
-end

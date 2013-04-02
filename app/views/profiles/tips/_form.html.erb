@@ -1,0 +1,33 @@
+<div class="well">
+	<div class="control-group">
+		<div id="coordinates_lat_both" class="alert alert-error error">
+			<%= t('tips.views.form.validations.coordinates') %>
+		</div>
+		<%= hidden_field_tag "coordinates[lat]", tip.coordinates.nil? ? "" : tip.coordinates.lat %>
+		<%= hidden_field_tag "coordinates[lon]", tip.coordinates.nil? ? "" : tip.coordinates.lon %>
+	</div>
+	
+	<div class="control-group">
+		<div id="tip_category_not_empty" class="alert alert-error error">
+			<%= t('tips.views.form.validations.category') %>
+		</div>
+		<%= f.label :category, t('tips.views.form.category'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :category, options_for_select(Tip.humanized_categories_for(:categories).invert, tip.category), {:include_blank => true} %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div id="tip_content_min" class="alert alert-error error">
+			<%= t('tips.views.form.validations.content') %>
+		</div>
+		<%= f.label :content, t('tips.views.form.content'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :content, :rows => 2, :class => "span5" %>
+			<div id="tip_content_count" class="field-counter"></div>
+		</div>
+	</div>
+</div>
+<div class="centered-text">
+	<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+</div>

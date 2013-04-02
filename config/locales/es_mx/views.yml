@@ -1,0 +1,18 @@
+es_MX:
+  modals:
+    default:
+      title: "Confirmar acción"
+      body: "¿Deseas eliminar este %{record}?"
+  navbars:
+    others: "Otras capas"
+    actions:
+      filtering: "Filtrar"
+    maps:
+      sections: 
+        incidents: "Incidentes"
+        tips: "Tips"
+        parkings: "Bici-estacionamientos"
+        routes: "Rutas y Bici-buses"
+        places: "Lugares bici-amigables"
+        lanes: "Ciclovias"
+      

@@ -1,0 +1,20 @@
+<div class="content-fluid">
+	<div class="span1"></div>
+	<div class="altering-view span10">
+		<%= header_for_form(user_profile_path(@user.username).concat('#/tips'), t("tips.views.new.title")) %>
+		
+		<%= instruction_for_form(t("tips.views.new.steps.one"), 
+		"<a class='btn btn-inverse pull-right locate-me'><i class='icon icon-map-marker'></i> #{t('actions.locate_me')}</a>") %>
+		<div id="map" class="show-only editable map-dimensions rounded-5 shadow-light"></div>
+		<br/>
+
+	  <%= instruction_for_form(t("tips.views.new.steps.two"), nil) %>
+	
+		<div id="tips-form" class="form-horizontal">
+			<%= form_for [:profiles, @tip], :html => {:class => "form"} do |f| %>
+				<%= render :partial => 'profiles/tips/form', :locals => {:tip => @tip, :f => f} %>
+			<% end %>
+		</div>
+	</div>
+	<div class="span1"></div>
+</div>

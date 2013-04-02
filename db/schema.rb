@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122064058) do
+ActiveRecord::Schema.define(:version => 20130329062249) do
 
   create_table "announcements", :force => true do |t|
     t.string   "header"
@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(:version => 20120122064058) do
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
     t.point    "coordinates",   :limit => nil,                                :srid => 4326
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "code"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.point    "coordinates", :limit => nil,                 :srid => 4326
   end
 
   create_table "comments", :force => true do |t|
@@ -154,6 +161,16 @@ ActiveRecord::Schema.define(:version => 20120122064058) do
     t.boolean  "is_verified", :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "tips", :force => true do |t|
+    t.string   "content"
+    t.integer  "category"
+    t.integer  "likes_count",                :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.point    "coordinates", :limit => nil,                                :srid => 4326
   end
 
   create_table "user_like_bikes", :force => true do |t|

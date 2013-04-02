@@ -13,6 +13,12 @@ es_MX:
         unsuccessful_remove: "No fue posible enviar solicitud de amistad"
         removed: "%{user} y %{friend} han dejado de ser amigos"
     views:
+      tips:
+        new: "Escribir tip"
+        subsection:
+          title:
+            logged_in: "Tips compartidos por este usuario"
+            logged_out: "Tips que has compartido"
       incidents:
         subsection:
           title: 

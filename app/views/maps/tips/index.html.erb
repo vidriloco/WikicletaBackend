@@ -5,19 +5,16 @@
 	<div class="pull-left">
 		<ul class="stats inlined-list">
 			<li>
-				<%= partial_numbers_for(:incidents, @incidents_count, :theft) %>
+				<%= partial_numbers_for(:tips, @tips_count, :sightseeing) %>
 			</li>
 			<li>
-				<%= partial_numbers_for(:incidents, @incidents_count, :accident) %>
+				<%= partial_numbers_for(:tips, @tips_count, :alert) %>
 			</li>
 			<li>
-				<%= partial_numbers_for(:incidents, @incidents_count, :assault) %>
-			</li>
-			<li>
-				<%= partial_numbers_for(:incidents, @incidents_count, :breakdown) %>
+				<%= partial_numbers_for(:tips, @tips_count, :danger) %>
 			</li>
 			<li class="action-link">
-				<a class="box theft active" href="/maps/incidents#/">
+				<a class="box active" href="/maps/tips#/">
 					<p class="title">Mostrar todos</p>
 				</a>
 			</li>
@@ -29,6 +26,6 @@
 <br>
 <div class="content-fluid">
 	<div class="listing-view">
-		<%= render :partial => 'maps/incidents/incident', :collection => @incidents, :locals => {:show_actions => false} %>
+		<%= render :partial => 'profiles/tips/tip', :collection => @tips, :locals => {:show_actions => false} %>
 	</div>
 </div>

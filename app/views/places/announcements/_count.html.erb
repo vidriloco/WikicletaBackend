@@ -1,4 +1,0 @@
-<a data-remote="true" href="<%= places_announcements_path(@place) %>">
-	<span class='count'><%= @place.announcements.count %></span>
-	<span class='saying'><%= @place.announcements.count == 1 ? t('places.views.show.announcements').singularize : t('places.views.show.announcements') %></span>
-</a>

@@ -4,19 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_like_bikes, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   
-  has_many :recommendations
-  has_many :places, :through => :recommendations
-  
-  has_many :place_comments
-  has_many :places_commented, :through => :place_comments
-  has_many :surveys
-  
   has_many :incidents, :dependent => :destroy
-  has_many :street_marks
-  has_many :street_mark_rankings
-  
-  has_many :friendships
-  has_many :friends, :through => :friendships
+  has_many :tips, :dependent => :nullify
   
   belongs_to :city
   
@@ -49,14 +38,6 @@ class User < ActiveRecord::Base
   
   def email_visible?
     email_visible
-  end
-  
-  def friendship_with(user=nil)
-    Friendship.where('user_id = :me OR friend_id = :friend OR user_id = :friend OR user_id = :me', {:me => self.id, :friend => user.id}).first
-  end
-  
-  def all_friendships
-    Friendship.where('user_id = :me OR friend_id = :me', {:me => self.id})
   end
   
   def self.find_for_database_authentication(warden_conditions)
