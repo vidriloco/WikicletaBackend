@@ -34,6 +34,8 @@ Ciudadio::Application.routes.draw do
   namespace :profiles do
     resources :incidents
     resources :tips
+    resources :places
+    resources :workshops
   end
   
   namespace :maps do 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329062249) do
+ActiveRecord::Schema.define(:version => 20130402055853) do
 
   create_table "announcements", :force => true do |t|
     t.string   "header"
@@ -207,5 +207,21 @@ ActiveRecord::Schema.define(:version => 20130329062249) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workshops", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.boolean  "store"
+    t.integer  "phone"
+    t.integer  "cell_phone"
+    t.string   "webpage"
+    t.string   "twitter"
+    t.string   "horary"
+    t.boolean  "others_can_edit_it"
+    t.integer  "user_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.point    "coordinates",        :limit => nil,                 :srid => 4326
+  end
 
 end

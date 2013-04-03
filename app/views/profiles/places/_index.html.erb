@@ -1,0 +1,44 @@
+<div id="incidents" class="span12 section incidents">
+	<% if current_user_equals(user) %>
+		<div class="row-fluid">
+			<div class="span10 actions">
+				<div class="row-fluid">
+					<h2>Lugares que te interesan</h2>
+					<h4>Comparte y encuentra lugares bici-amigables, talleres y donde dejar tu bicicleta.</h4>
+				</div>
+			</div>
+			<div class="span2 top-spaced">
+				<div class="dropdown pull-right">	
+					<a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Nuevo Lugar</a>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><%= link_to 'Taller/Tienda de bicis', new_profiles_workshop_path %></li>
+						<li><%= link_to 'Bici-estacionamiento', new_profiles_workshop_path %></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<br/>
+	<% end %>
+	
+	<div class="row-fluid">
+		<div class="listing-view">		
+			<% if places.empty? %>
+				<%= subsection_with(
+					t('user_profiles.views.tips.subsection.title.logged_out'),  
+					t('user_profiles.views.tips.subsection.title.logged_in')) %>
+				<br/>
+				<div class="centered-text well">
+					<p>No has compartido ni seguido algún lugar aún</p>
+				</div>
+			<% else %>
+					<%= subsection_with(
+						t('user_profiles.views.tips.subsection.title.logged_out'),  
+						t('user_profiles.views.tips.subsection.title.logged_in')) %>
+					<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
+					<%= render :partial => 'profiles/places/place', :collection => tips, :locals => {:show_actions => true} %>
+			<% end %>
+		</div>
+	</div>
+	
+	<%= render :partial => 'shared/modal_dialog', :locals => {:record => "lugar"} %>
+</div>

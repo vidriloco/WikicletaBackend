@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   
   has_many :incidents, :dependent => :destroy
   has_many :tips, :dependent => :nullify
+  has_many :workshops, :dependent => :nullify
   
   belongs_to :city
   

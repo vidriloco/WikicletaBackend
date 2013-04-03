@@ -1,0 +1,2 @@
+$('#contents-area').html('<%= escape_javascript(render :partial => "profiles/places/index", :locals => {:user => @user, :places => @places}) %>');
+$('#contents-area').attr('data-section-enabled', 'places');

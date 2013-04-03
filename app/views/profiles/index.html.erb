@@ -25,32 +25,32 @@
 			<% end %>
 			<ul class="actions">
 				<li class="centered-text">
-					<a href="" original-title="Traza, comparte, rankea y mide tu rendimiento">
+					<a href="" original-title="<%= t('user_profiles.actions.routes') %>">
 						<%= image_tag('/assets/routes_icon.png', :size => '45x45') %>
 						<span class="title">Rutas</span>
 					</a>
 				</li>
-				<li class="centered-text">
-					<a href="" original-title="Marca lugares bici-amigables">
+				<li id="places-section" class="centered-text">
+					<a href="<%= hash_link_for(user_profile_path(@user.username), '/places') %>" original-title="<%= t('user_profiles.actions.places') %>">
 						<%= image_tag('/assets/places_icon.png', :size => '45x45') %>
 						<span class="title">Lugares</span>
 					</a>
 				</li>
 				<li id="incidents-section" class="centered-text">
 					<a href="<%= hash_link_for(user_profile_path(@user.username), '/incidents') %>" 
-						 original-title="Reporta una bici robada, accidente, avería o asalto">
+						 original-title="<%= t('user_profiles.actions.help') %>">
 						<%= image_tag('/assets/help_icon.png', :size => '45x45') %>
 						<span class="title">Ayuda</span>
 					</a>
 				</li>
 				<li class="centered-text">
-					<a href="" original-title="Haz check-in en rutas, rueda con amigos">
+					<a href="" original-title="<%= t('user_profiles.actions.bicibus') %>">
 						<%= image_tag('/assets/bicibus_icon.png', :size => '45x45') %>
 						<span class="title">Bicibus</span>
 					</a>
 				</li>
 				<li id="tips-section" class="centered-text">
-					<a href="<%= hash_link_for(user_profile_path(@user.username), '/tips') %>" original-title="Deja sugerencias útiles para la comunidad">
+					<a href="<%= hash_link_for(user_profile_path(@user.username), '/tips') %>" original-title="<%= t('user_profiles.actions.tips') %>">
 						<%= image_tag('/assets/highlights_icon.png', :size => '45x45') %>
 						<span class="title">Tips</span>
 					</a>

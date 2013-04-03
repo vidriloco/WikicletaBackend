@@ -1,0 +1,19 @@
+es_MX:
+  places:
+    workshops:
+      views:
+        form:
+          name: "Nombre"
+          details: "Detalles"
+          store: "¿Es tienda también?"
+          phone: "Teléfono"
+          cell_phone: "Móvil"
+          webpage: "Página web"
+          twitter: "Cuenta en Twitter"
+          horary: "Horario de servicio"
+          others_can_edit_it: "¿Otros pueden editar este taller/tienda?"
+        new:
+          title: "Nuevo Taller/Tienda de Bicis"
+          steps:
+            one: "1. Ubica la tienda o taller en el mapa"
+            two: "2. Escribe el nombre y otros detalles útiles"

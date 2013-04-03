@@ -6,6 +6,12 @@ es_MX:
       friends: "Sus amigos"
       social_nets: 
         title: "Redes sociales"
+    actions:
+      routes: "Traza, comparte, rankea y mide tu rendimiento"
+      places: "Comparte lugares bici-amigables y donde dejar la bici"
+      help: "Reporta una bici robada, accidente, avería o asalto"
+      bicibus: "Haz check-in en rutas, rueda con amigos"
+      tips: "Deja sugerencias útiles para la comunidad"
     messages:
       friendships:
         added_and_reciprocal: "Tú y %{friend} son amigos en Wikicleta"

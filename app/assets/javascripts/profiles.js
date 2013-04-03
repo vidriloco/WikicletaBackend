@@ -13,18 +13,18 @@ $(document).ready(function() {
 	mapOptions.streetViewControl = false;
 	
 	var initializeMap = function() {
-		if($('#map').length > 0) {
+		if($.isDefined('#map')) {
 			map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {
 				coordinatesDom: "#coordinates", 
 				isEditable: $('#map').hasClass('editable')
 			});
 		}
 	}
-
+	// Common actions for incidents and tips
+	initializeMap();
 
 	if($.isDefined('.altering-view')) {
-		// Common actions for incidents and tips
-		initializeMap();
+		
 		map.setCoordinatesFromDom('#coordinates', 16);
 		// Attempt to get my location
 		$('.locate-me').bind('click', function() {
@@ -181,6 +181,20 @@ $(document).ready(function() {
 					$.visit('#/');
 				} else {
 					$.visit('#/incidents');
+				}
+				return false;
+			} else if($(this).attr('id') == 'tips-section') {
+				if($(this).hasClass('active')) {
+					$.visit('#/');
+				} else {
+					$.visit('#/tips');
+				}
+				return false;
+			}	else if($(this).attr('id') == 'places-section') {
+				if($(this).hasClass('active')) {
+					$.visit('#/');
+				} else {
+					$.visit('#/places');
 				}
 				return false;
 			}
@@ -398,11 +412,100 @@ $(document).ready(function() {
 		}
 		/*   
 		 *  ==== Methods for tips end =====
+		 *  ==== Methods for places start =====
+		 */
+		
+		$('.delete-tip').live('click', function() {
+			$('#dialog').modal();
+			$('#dialog .dialog-yes').attr('href', '/profiles/places/'+$(this).attr('data-id'));
+			return false;
+		});
+
+		// Routes sub-urls depending on the selection status
+		var placesUrlSwitch = function(domElement, id) {
+			if(domElement.hasClass('with-focus')) {
+				$.visit('#/places');
+			} else {
+				$.visit('#/places/'+id);
+			}
+		}
+		// Responds to clicks on tips
+		$('.place').live('click', function() {
+			placesUrlSwitch($(this), $(this).attr('id'));
+		});
+
+		Routing.Places = function() {
+			var thisInstance = this;
+			var initialize = function() {
+
+				return thisInstance;
+			}
+
+			this.onIndex = function() {
+				var afterViewFetchedActions = function() {
+					commonLoading();
+					drawSelectedItems($('.listing-view .place'), tipUrlSwitch);
+					// insert map at top of the listing
+					$(parentDom+'#map').insertBefore('.listing-view .first');
+					// unmark all marked incidents
+					$(parentDom+'.listing-view .tip').removeClass('with-focus');
+					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+					$.scrollToTop();
+				}
+
+				fetchView(afterViewFetchedActions, null);
+			}
+
+			this.onItem = function() {
+				var id = this.params['id'];
+
+				var afterViewFetchedActions = function() {
+					// dom element for incident
+					var domElement = parentDom+'.listing-view #'+id;
+
+					commonLoading();
+					// move map above incident
+					$(parentDom+'#map').insertBefore(domElement);
+					// unmark any previously marked incident
+					$(parentDom+'.tip').removeClass('with-focus');
+					// mark the incident
+					$(domElement).addClass('with-focus');
+					// draw selected incidents on map
+					drawSelectedItems([domElement], placesUrlSwitch);
+					map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
+					$.scrollFromMapToDom(domElement, 40);
+				}
+
+				fetchView(afterViewFetchedActions, null);
+			}
+
+			var commonLoading = function() {	
+				// load map if not loaded yet
+				initializeMap();
+				// show section marked
+				$('.actions li').removeClass('active');
+				$('#places-section').addClass('active');
+			}
+
+			var fetchView = function(success_callback, failure_callback) {
+				if($(parentDom).is(':empty') || $(parentDom).attr('data-section-enabled') != 'places') {
+					$.get('/profiles/places', {username : $(parentDom).attr('data-username') })
+					.done(success_callback).fail(failure_callback);
+				} else {
+					success_callback();
+				}
+			}
+
+			initialize();
+		}
+		/*   
+		 *  ==== Methods for places end =====
 		 */
 		
 		// Setup and sub-routing wiring
 		var incidentsURLs = new Routing.Incidents();
 		var tipsURLs = new Routing.Tips();
+		var placesURLs = new Routing.Places();
 
 		// Action to call on root subsection
 		Path.map('#/').to(function() {
@@ -415,6 +518,9 @@ $(document).ready(function() {
 		// Routes for tips
 		Path.map("#/tips").to(tipsURLs.onIndex);
 		Path.map("#/tips/:id").to(tipsURLs.onItem);
+		// Routes for places
+		Path.map("#/places").to(placesURLs.onIndex);
+		Path.map("#/places/:id").to(placesURLs.onItem);
 	}
 
 	

@@ -1,0 +1,95 @@
+<div class="well">
+	<div class="control-group">
+		<div id="coordinates_lat_both" class="alert alert-error error">
+			<%= t('places.workshops.views.form.validations.coordinates') %>
+		</div>
+		<%= hidden_field_tag "coordinates[lat]", workshop.coordinates.nil? ? "" : workshop.coordinates.lat %>
+		<%= hidden_field_tag "coordinates[lon]", workshop.coordinates.nil? ? "" : workshop.coordinates.lon %>
+	</div>
+	<h4>Detalles generales</h4>
+	<br>
+	<div class="control-group">
+		<div id="workshop_name_not_empty" class="alert alert-error error">
+			<%= t('places.workshops.views.form.validations.name') %>
+		</div>
+		<%= f.label :name, t('places.workshops.views.form.name'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :name %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div id="workshop_details_min" class="alert alert-error error">
+			<%= t('places.workshops.views.form.validations.content') %>
+		</div>
+		<%= f.label :details, t('places.workshops.views.form.details'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :details, :rows => 2, :class => "span5" %>
+			<div id="workshop_details_count" class="field-counter"></div>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :store, t('places.workshops.views.form.store'), :class => 'control-label' %>
+
+		<div class="controls">
+			<%= f.check_box :store, :checked => workshop.store || false %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :horary, t('places.workshops.views.form.horary'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :horary, :rows => 2, :class => "span5" %>
+			<div id="workshop_horary_count" class="field-counter"></div>
+		</div>
+	</div>
+	<div class="separator"></div>
+	<br/>
+	<h4>Detalles de contacto</h4>
+	<br>
+	<div class="container-fluid">
+		<div class="span6">
+			<div class="control-group">
+				<%= f.label :phone, t('places.workshops.views.form.phone'), :class => 'control-label' %>
+				<div class="controls">
+					<%= f.text_field :phone %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :cell_phone, t('places.workshops.views.form.cell_phone'), :class => 'control-label' %>
+				<div class="controls">
+					<%= f.text_field :cell_phone %>
+				</div>
+			</div>
+		</div>
+		<div class="span6">
+			<div class="control-group">
+				<%= f.label :webpage, t('places.workshops.views.form.webpage'), :class => 'control-label' %>
+				<div class="controls">
+					<%= f.text_field :webpage %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :twitter, t('places.workshops.views.form.twitter'), :class => 'control-label' %>
+				<div class="controls">
+					<%= f.text_field :twitter %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if current_user_equals(workshop.user) || workshop.user.nil? %>
+		<div class="separator"></div>
+		<br/>
+		<h4>Permisos de Wiki</h4>
+		<br>
+		<div class="control-group">
+			<%= f.label :others_can_edit_it, t('places.workshops.views.form.others_can_edit_it'), :class => 'control-label' %>
+
+			<div class="controls">
+				<%= f.check_box :others_can_edit_it, :checked => workshop.others_can_edit_it || false %>
+			</div>
+		</div>
+	<% end %>
+</div>
+<div class="centered-text">
+	<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+</div>
