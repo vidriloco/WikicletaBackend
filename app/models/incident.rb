@@ -44,12 +44,4 @@ class Incident < ActiveRecord::Base
     return !bike.nil?
   end
   
-  def lat
-    coordinates.lat
-  end
-  
-  def lon
-    coordinates.lon
-  end
-  
 end

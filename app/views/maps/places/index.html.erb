@@ -1,0 +1,31 @@
+<h3 class="centered-text">Mapa de tu ciudad</h3>
+<div class="separator"></div>
+<div>	
+	<%= navbar_map_for %>
+	<div class="pull-left">
+		<ul class="stats inlined-list">
+			<li>
+				<%= partial_numbers_for(:places, @places_count, :workshop) %>
+			</li>
+			<li>
+				<%= partial_numbers_for(:places, @places_count, :parking) %>
+			</li>
+			<li>
+				<%= partial_numbers_for(:places, @places_count, :bikefriendly_place) %>
+			</li>
+			<li class="action-link">
+				<a class="box active" href="/maps/places#/">
+					<p class="title">Mostrar todos</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="map" class="show-only edit map-dimensions map-big shadow-light rounded-5"></div>
+<br>
+<div class="content-fluid">
+	<div class="listing-view">
+		<%= render :partial => 'profiles/workshops/workshop', :collection => @workshops %>
+	</div>
+</div>

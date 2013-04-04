@@ -43,6 +43,7 @@ Ciudadio::Application.routes.draw do
     resources :tips, :only => [:index]
     resources :lanes, :only => [:index]
     resources :routes, :only => [:index]
+    resources :places, :only => [:index]
   end
   
   resources :neighbourhoods

@@ -19,6 +19,7 @@ module MapsHelper
     	  		href="#">#{ t('navbars.others') }<b class="caret"></b></a>
     	  	<ul class="dropdown-menu">
     				<li>#{link_for_section(:incidents)}</li>
+    				<li>#{link_for_section(:places)}</li>
     				<li>#{link_for_section(:tips)}</li>
     				<li>#{link_for_section(:lanes)}</li>
     				<li>#{link_for_section(:routes)}</li>

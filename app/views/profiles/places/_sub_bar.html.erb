@@ -1,0 +1,19 @@
+<ul class="subsection rounded-5">
+	<li class="active">
+		<i class="icon-map-marker"></i>
+		<p><%= t('places.general.layers.message') %></p>
+	</li>
+</ul>
+<br/>
+<div class="row-fluid">
+	<div class="pull-right">
+		<ul class="nav nav-pills">
+			<li><%= link_to 'Talleres y Tiendas', '#/places/workshops' %></li>
+			<li><%= link_to 'Bici-estacionamientos', '#/places/parkings' %></li>
+			<li><%= link_to 'Lugares bici-amigables', '#/places/bike-friendly-places' %></li>
+			<% if current_user_equals(@user) %>
+	  		<li><a href="#/favorite-places"><i class="icon-heart"></i><%= 'Tus favoritos' %></a></li>
+			<% end %>
+	  </ul>
+	</div>
+</div>

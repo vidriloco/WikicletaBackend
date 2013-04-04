@@ -2,6 +2,7 @@ class Tip < ActiveRecord::Base
   include Shared::Categories
   include Shared::Geography
   
+  validates_presence_of :coordinates, :content, :category
   belongs_to :user
   
   def self.new_with(params, coords, user)
@@ -16,14 +17,6 @@ class Tip < ActiveRecord::Base
       hash[kind] = Tip.where(:category => Tip.category_for(:categories, kind)).count
     end
     hash
-  end
-  
-  def lat
-    coordinates.lat
-  end
-  
-  def lon
-    coordinates.lon
   end
   
   def humanized_category

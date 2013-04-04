@@ -2,6 +2,11 @@ es_MX:
   app:
     name: "Wikicleta"
     categories:
+      places:
+        categories:
+          workshop: "Talleres y Tiendas"
+          parking: "Estacionamientos"
+          bikefriendly_place: "Lugares bici-amigables"
       incidents:
         categories:
           breakdown: "Avería"

@@ -18,6 +18,14 @@ module Shared::Geography
     self
   end
   
+  def lat
+    coordinates.lat
+  end
+  
+  def lon
+    coordinates.lon
+  end
+  
   def self.included(base)
     base.extend(ClassMethods)
   end

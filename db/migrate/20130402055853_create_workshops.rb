@@ -5,8 +5,8 @@ class CreateWorkshops < ActiveRecord::Migration
       t.string      :details
       t.boolean     :store
       
-      t.integer     :phone
-      t.integer     :cell_phone
+      t.integer     :phone, :limit => 8
+      t.integer     :cell_phone, :limit => 8
       t.string      :webpage
       t.string      :twitter
       

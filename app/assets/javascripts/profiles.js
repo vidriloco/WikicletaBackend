@@ -43,8 +43,8 @@ $(document).ready(function() {
 		if($.isDefined('.altering-incident')) {
 			// Actions for incidents
 
-			var Incidents = {};
-			Incidents.Routes = function() {
+			var Routes = {};
+			Routes.Incidents = function() {
 
 				var thisInstance = null;
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
 				return obj.initialize();
 			}
 
-			var incidentsRoutes = new Incidents.Routes();
+			var incidentsRoutes = new Routes.Incidents();
 			Path.map("#/").to(incidentsRoutes.onIndex);
 			Path.map("#/accident").to(incidentsRoutes.onAccidents);
 			Path.map("#/theft").to(incidentsRoutes.onThefts);
@@ -144,6 +144,20 @@ $(document).ready(function() {
 
 			Path.root("#/");
 			Path.listen();
+		} else if($.isDefined('.altering-workshop')) {
+			// Actions for workshops
+			
+			// Setup constraints and validations for fields
+			ViewComponents.Counter.forDomElement('#workshop_details', 250);
+			var conditions = [{id: '#workshop_name', condition: 'not_empty' },
+				{id: '#workshop_details', condition: 'min', value: 60 },
+				{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
+			ViewComponents.ValidForm.set('#workshops-form form', conditions, {
+					before: function() {
+						map.setCoordinatesFromDom('#coordinates', 16);
+					}
+			});
+			
 		} else {
 			// Actions for tips 
 			
@@ -415,9 +429,9 @@ $(document).ready(function() {
 		 *  ==== Methods for places start =====
 		 */
 		
-		$('.delete-tip').live('click', function() {
+		$('.delete-workshop').live('click', function() {
 			$('#dialog').modal();
-			$('#dialog .dialog-yes').attr('href', '/profiles/places/'+$(this).attr('data-id'));
+			$('#dialog .dialog-yes').attr('href', '/profiles/workshops/'+$(this).attr('data-id'));
 			return false;
 		});
 
@@ -426,7 +440,13 @@ $(document).ready(function() {
 			if(domElement.hasClass('with-focus')) {
 				$.visit('#/places');
 			} else {
-				$.visit('#/places/'+id);
+				if(domElement.hasClass('workshop')) {
+					$.visit('#/places/workshops/'+id);
+					
+				} else if(domElement.hasClass('parking')) {
+					$.visit('#/places/parkings/'+id);
+					
+				}
 			}
 		}
 		// Responds to clicks on tips
@@ -444,30 +464,54 @@ $(document).ready(function() {
 			this.onIndex = function() {
 				var afterViewFetchedActions = function() {
 					commonLoading();
-					drawSelectedItems($('.listing-view .place'), tipUrlSwitch);
+					drawSelectedItems($('.listing-view .place'), placesUrlSwitch);
 					// insert map at top of the listing
 					$(parentDom+'#map').insertBefore('.listing-view .first');
 					// unmark all marked incidents
-					$(parentDom+'.listing-view .tip').removeClass('with-focus');
+					$(parentDom+'.listing-view .place').removeClass('with-focus');
 					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
 					$.scrollToTop();
 				}
 
 				fetchView(afterViewFetchedActions, null);
 			}
+			
+			this.onSection = function() {
+				var kind = this.params['kind'].slice(0,-1);
+				
+				var afterViewFetchedActions = function() {
+					commonLoading();
+					
+					// Hide places
+					$('.listing-view .place').fadeOut();
+					// Show items of kind
+					$('.listing-view .'+kind).fadeIn();
+					
+					drawSelectedItems($('.listing-view .'+kind), placesUrlSwitch);
+					
+					// insert map at top of the listing
+					$(parentDom+'#map').insertBefore('.listing-view .first');
+					// unmark all marked incidents
+					$(parentDom+'.listing-view .place').removeClass('with-focus');
+					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+					$.scrollToTop();
+				}
+				fetchView(afterViewFetchedActions, null);
+			}
 
 			this.onItem = function() {
 				var id = this.params['id'];
-
+				var kind = this.params['kind'].slice(0,-1);
+				
 				var afterViewFetchedActions = function() {
-					// dom element for incident
-					var domElement = parentDom+'.listing-view #'+id;
+					// dom element for item list kind
+					var domElement = parentDom+'.listing-view .'+kind+'-list #'+id;
 
 					commonLoading();
 					// move map above incident
 					$(parentDom+'#map').insertBefore(domElement);
 					// unmark any previously marked incident
-					$(parentDom+'.tip').removeClass('with-focus');
+					$(parentDom+'.'+kind).removeClass('with-focus');
 					// mark the incident
 					$(domElement).addClass('with-focus');
 					// draw selected incidents on map
@@ -520,7 +564,8 @@ $(document).ready(function() {
 		Path.map("#/tips/:id").to(tipsURLs.onItem);
 		// Routes for places
 		Path.map("#/places").to(placesURLs.onIndex);
-		Path.map("#/places/:id").to(placesURLs.onItem);
+		Path.map('#/places/:kind').to(placesURLs.onSection);
+		Path.map("#/places/:kind/:id").to(placesURLs.onItem);
 	}
 
 	
