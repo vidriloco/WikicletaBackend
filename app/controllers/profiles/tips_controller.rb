@@ -3,6 +3,7 @@ class Profiles::TipsController < ProfilesController
   
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_tip, :only => [:destroy, :edit, :update]
+  before_filter :find_user, :except => [:destroy]
   
   def index
     @tips = @user.tips
@@ -12,7 +13,6 @@ class Profiles::TipsController < ProfilesController
   end
   
   def new
-    @user = current_user
     @tip = Tip.new
   end
   
@@ -27,7 +27,6 @@ class Profiles::TipsController < ProfilesController
   end
   
   def edit
-    @user = current_user
   end
   
   def update
@@ -44,6 +43,10 @@ class Profiles::TipsController < ProfilesController
   end
   
   private
+  def find_user
+    @user = current_user
+  end
+  
   def find_tip
     @tip = Tip.find(params[:id])
   end
