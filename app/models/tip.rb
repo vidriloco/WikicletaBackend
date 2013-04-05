@@ -19,6 +19,10 @@ class Tip < ActiveRecord::Base
     hash
   end
   
+  def identifier
+    "tip-#{id}"
+  end
+  
   def humanized_category
     Tip.humanized_category_for(:categories, category)
   end

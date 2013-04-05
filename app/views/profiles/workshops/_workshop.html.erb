@@ -1,4 +1,4 @@
-<div id="workshop-<%= workshop.id %>" class="<%= 'first' if(workshop_counter == 0) %> centered tip item-on-list rounded-5 place workshop" data-kind="workshop" data-lat="<%= workshop.lat %>" data-lon="<%= workshop.lon %>">
+<div id="<%= workshop.identifier %>" class="<%= 'first' if(workshop_counter == 0) %> centered tip item-on-list rounded-5 place workshop" data-kind="workshop" data-lat="<%= workshop.lat %>" data-lon="<%= workshop.lon %>">
 	<div class="content-fluid">
 		<div class="row-fluid header">
 			<div class="span5 title"><%= workshop.name %></div>

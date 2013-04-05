@@ -9,6 +9,10 @@ class Workshop < ActiveRecord::Base
     store
   end 
   
+  def identifier
+    "workshop-#{id}"
+  end
+  
   def self.new_with(params, coords, user)
     workshop=Workshop.new(params.merge(:user => user))
     workshop.apply_geo(coords)

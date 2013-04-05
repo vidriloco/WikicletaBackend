@@ -12,7 +12,7 @@ class Profiles::WorkshopsController < ProfilesController
   def create
     @workshop = Workshop.new_with(params[:workshop], params[:coordinates], current_user)
     if @workshop.save
-      redirect_to user_profile_path(current_user.username).concat("#/places/workshop/#{@workshop.id}")
+      redirect_to user_profile_path(current_user.username).concat("#/places/workshops/#{@workshop.identifier}")
     else
       render :action => :new
     end
@@ -23,8 +23,8 @@ class Profiles::WorkshopsController < ProfilesController
   end
   
   def update
-    if @workshop.update_with(params[:workshop], params[:coordinate], current_user)
-      redirect_to user_profile_path(current_user.username).concat("#/places/workshop/#{@workshop.id}")
+    if @workshop.update_with(params[:workshop], params[:coordinates], current_user)
+      redirect_to user_profile_path(current_user.username).concat("#/places/workshops/#{@workshop.identifier}")
     else
       render :action => :edit
     end

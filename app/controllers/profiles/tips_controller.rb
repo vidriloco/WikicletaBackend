@@ -30,7 +30,7 @@ class Profiles::TipsController < ProfilesController
   end
   
   def update
-    if @tip.update_with(params[:tip], params[:coordinate], current_user)
+    if @tip.update_with(params[:tip], params[:coordinates], current_user)
       redirect_to user_profile_path(current_user.username).concat('#/tips')
     else
       render :action => :edit
