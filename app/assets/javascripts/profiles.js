@@ -63,6 +63,16 @@ $(document).ready(function() {
 						map.setCoordinatesFromDom('#coordinates', 16);
 					}
 			});
+		} else if($.isDefined('.altering-parking')) {
+			// Actions for parkings 
+			
+			var conditions = [{id: '#parking_kind', condition: 'not_empty' }, 
+				{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' }];
+			ViewComponents.ValidForm.set('#parkings-form form', conditions, {
+					before: function() {
+						map.setCoordinatesFromDom('#coordinates', 16);
+					}
+			});
 		}
 	
 	} else {
@@ -154,6 +164,17 @@ $(document).ready(function() {
 
 		/*   
 		 *  ==== Methods for places end =====
+		 *  ==== Methods for parkings start =====
+		 */
+		
+		$('.delete-parking').live('click', function() {
+			$('#dialog').modal();
+			$('#dialog .dialog-yes').attr('href', '/profiles/parkings/'+$(this).attr('data-id'));
+			return false;
+		});
+		
+		/*   
+		 *  ==== Methods for parkings end =====
 		 */
 		
 		// Setup and sub-routing wiring

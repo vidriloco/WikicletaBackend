@@ -3,6 +3,31 @@ es_MX:
     general:
       layers:
         message: "Selecciona alguna de las capas de lugares siguientes"
+    parkings:
+      name: "Bici-estacionamiento"
+      views:
+        edit:
+          title: "Modificar datos de Bici-estacionamiento"
+          steps:
+            one: "1. De ser necesario, ajusta su ubicación"
+            two: "2. Ajusta sus detalles"
+        show:
+          with_roof: "Cuenta con un techo"
+          without_roof: "No tiene techo"
+          details_empty: "No hay detalles adicionales para este bici-estacionamiento"
+        form:
+          details: "Detalles adicionales"
+          kind: "Tipo de bici-estacionamiento"
+          has_roof: "Tiene techo"
+          others_can_edit_it: "¿Otros pueden editar este bici-estacionamiento?"
+          validations:
+            kind: "Selecciona el tipo de bici-estacionamiento"
+            coordinates: "No has seleccionado una ubicación en el mapa"
+        new:
+          title: "Nuevo bici-estacionamiento"
+          steps:
+            one: "1. Ubica el bici-estacionamiento en el mapa"
+            two: "2. Selecciona el tipo y si quieres deja detalles"
     workshops:
       views:
         edit:

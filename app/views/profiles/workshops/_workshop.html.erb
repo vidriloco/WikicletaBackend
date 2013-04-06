@@ -1,11 +1,12 @@
-<div id="<%= workshop.identifier %>" class="<%= 'first' if(workshop_counter == 0) %> centered tip item-on-list rounded-5 place workshop" data-kind="workshop" data-lat="<%= workshop.lat %>" data-lon="<%= workshop.lon %>">
+<div id="<%= workshop.identifier %>" class="centered item-on-list rounded-5 place workshop" data-kind="workshop" data-lat="<%= workshop.lat %>" data-lon="<%= workshop.lon %>">
 	<div class="content-fluid">
 		<div class="row-fluid header">
-			<div class="span5 title"><%= workshop.name %></div>
-			<div class="span3 store">
-				<%= workshop.store? ? t('places.workshops.views.show.store') : t('places.workshops.views.show.workshop') %>
-			</div>
-			<div class="span4 horary">
+			<div class="span5 title">
+				<span class="emph">
+					<%= workshop.store? ? t('places.workshops.views.show.store') : t('places.workshops.views.show.workshop') %>
+				</span>
+				<span class="title"><%= workshop.name %></span></div>
+			<div class="span7 horary">
 				<% if workshop.horary.blank? %>
 					<%= t('places.workshops.views.show.horary_empty') %>
 				<% else %>
@@ -44,7 +45,7 @@
 					<div>
 						<span class="time"><%= distance_of_time_in_words(workshop.updated_at || Date.today, Time.now, true) %></span> 
 						<% unless current_user_equals(@user) %>
-							<span class="reporter"><%= reporter_of(workshop, "/#/places/workshops/workshop-#{workshop.id}") %></span>
+							<span class="reporter"><%= reporter_of(workshop, "/#/places/workshops/#{workshop.identifier}") %></span>
 						<% end %>
 					</div>
 				</li>

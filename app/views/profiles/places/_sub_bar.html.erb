@@ -8,8 +8,8 @@
 <div class="row-fluid">
 	<div class="pull-right">
 		<ul class="nav nav-pills">
-			<li><%= link_to 'Talleres y Tiendas', '#/places/workshops' %></li>
-			<li><%= link_to 'Bici-estacionamientos', '#/places/parkings' %></li>
+			<li class="workshop"><%= link_to 'Talleres y Tiendas', '#/places/workshops' %></li>
+			<li class="parking"><%= link_to 'Bici-estacionamientos', '#/places/parkings' %></li>
 			<li><%= link_to 'Lugares bici-amigables', '#/places/bike-friendly-places' %></li>
 			<% if current_user_equals(@user) %>
 	  		<li><a href="#/favorite-places"><i class="icon-heart"></i><%= 'Tus favoritos' %></a></li>

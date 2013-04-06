@@ -175,8 +175,20 @@ ul.stats {
 			display: none;
 		}
 		
+		.emph {
+			color: #FF7601;
+			text-transform: uppercase;
+			font-size: 11px;
+			margin-right: 10px;
+		}
+		
+		.right-text {
+			text-align: right;
+			font-size: 12px;
+		}
+		
 		.title {
-			font-size: 14px;
+			font-size: 13px;
 		}
 		
 		.signal:hover {

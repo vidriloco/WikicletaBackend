@@ -19,7 +19,7 @@ class Profiles::IncidentsController < ProfilesController
   def create
     @incident = Incident.new_with(params[:incident], params[:coordinates], current_user)
     if @incident.save
-      redirect_to user_profile_path(current_user.username).concat("#/incidents/#{@incident.id}")
+      redirect_to user_profile_path(current_user.username).concat("#/incidents/#{@incident.identifier}")
     else
       render :action => 'new'
     end  
@@ -31,7 +31,7 @@ class Profiles::IncidentsController < ProfilesController
   
   def update
     if @incident.update_with(params[:incident], params[:coordinates], current_user)
-      redirect_to user_profile_path(current_user.username).concat("#/incidents/#{@incident.id}")
+      redirect_to user_profile_path(current_user.username).concat("#/incidents/#{@incident.identifier}")
     else
       render :action => 'edit'
     end

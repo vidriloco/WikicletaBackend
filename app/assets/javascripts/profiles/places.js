@@ -5,10 +5,8 @@ var placesUrlSwitch = function(domElement, id) {
 	} else {
 		if(domElement.hasClass('workshop')) {
 			$.visit('#/places/workshops/'+id);
-			
 		} else if(domElement.hasClass('parking')) {
 			$.visit('#/places/parkings/'+id);
-			
 		}
 	}
 }
@@ -29,8 +27,9 @@ Routing.Places = function() {
 			drawSelectedItems($('.listing-view .place'), placesUrlSwitch);
 			// insert map at top of the listing
 			$(parentDom+'#map').insertBefore('.listing-view .first');
-			// unmark all marked incidents
+			// unmark all marked incidents and make them visible
 			$(parentDom+'.listing-view .place').removeClass('with-focus');
+			$(parentDom+'.listing-view .place').fadeIn();
 			map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
 			$.scrollToTop();
 		}
@@ -39,52 +38,55 @@ Routing.Places = function() {
 	}
 	
 	this.onSection = function() {
-		var kind = this.params['kind'].slice(0,-1);
-		
-		var afterViewFetchedActions = function() {
-			commonLoading();
-			
-			// Hide places
-			$('.listing-view .place').fadeOut();
-			// Show items of kind
-			$('.listing-view .'+kind).fadeIn();
-			
-			drawSelectedItems($('.listing-view .'+kind), placesUrlSwitch);
-			
-			// insert map at top of the listing
-			$(parentDom+'#map').insertBefore('.listing-view .first');
-			// unmark all marked incidents
-			$(parentDom+'.listing-view .place').removeClass('with-focus');
-			map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
-			$.scrollToTop();
-		}
-		fetchView(afterViewFetchedActions, null);
+		loadSection(this.params['kind'].slice(0,-1));
 	}
 
 	this.onItem = function() {
 		var id = this.params['id'];
 		var kind = this.params['kind'].slice(0,-1);
+		var domElement = parentDom+'.listing-view .'+kind+'-list #'+id;
 		
-		var afterViewFetchedActions = function() {
-			// dom element for item list kind
-			var domElement = parentDom+'.listing-view .'+kind+'-list #'+id;
-
-			commonLoading();
-			// move map above incident
+		var onItemActions = function() {
 			$(parentDom+'#map').insertBefore(domElement);
 			// unmark any previously marked incident
 			$(parentDom+'.'+kind).removeClass('with-focus');
 			// mark the incident
 			$(domElement).addClass('with-focus');
-			// draw selected incidents on map
-			drawSelectedItems([domElement], placesUrlSwitch);
-			map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
-			$.scrollFromMapToDom(domElement, 40);
+			drawSelectedItems($(domElement), placesUrlSwitch);
 		}
+		
+		loadSection(kind, onItemActions);
+	}
+	
+	var loadSection = function(kind, callback) {
 
+		var afterViewFetchedActions = function() {
+			$('.nav li').removeClass('active');
+			$('li.'+kind).addClass('active');
+			
+			commonLoading();
+			
+			// Hide places and remove focus
+			$('.listing-view .place').fadeOut();
+			$(parentDom+'.listing-view .place').removeClass('with-focus');
+			
+			// Show items of kind
+			$('.listing-view .'+kind).fadeIn();
+			
+			if(callback != undefined) {
+				callback();
+			} else {
+				drawSelectedItems($('.listing-view .'+kind), placesUrlSwitch);
+				// insert map at top of the listing
+				$(parentDom+'#map').insertBefore('.listing-view .'+kind+'-list');
+			}
+
+			// unmark all marked incidents
+			map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+		}
 		fetchView(afterViewFetchedActions, null);
 	}
-
+	
 	var commonLoading = function() {	
 		// load map if not loaded yet
 		initializeMap();

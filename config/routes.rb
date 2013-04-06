@@ -36,6 +36,7 @@ Ciudadio::Application.routes.draw do
     resources :tips
     resources :places
     resources :workshops
+    resources :parkings
   end
   
   namespace :maps do 

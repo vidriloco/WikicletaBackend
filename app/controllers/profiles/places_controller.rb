@@ -4,7 +4,7 @@ class Profiles::PlacesController < ProfilesController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @places = { :workshops => Workshop.all }
+    @places = { :workshops => Workshop.all, :parkings => Parking.all }
     respond_to do |format|
       format.js
     end

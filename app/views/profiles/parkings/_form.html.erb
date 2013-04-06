@@ -1,0 +1,51 @@
+<div class="well altering-parking">
+	<div class="control-group">
+		<div id="coordinates_lat_both" class="alert alert-error error">
+			<%= t('places.parkings.views.form.validations.coordinates') %>
+		</div>
+		<%= hidden_field_tag "coordinates[lat]", parking.coordinates.nil? ? "" : parking.coordinates.lat %>
+		<%= hidden_field_tag "coordinates[lon]", parking.coordinates.nil? ? "" : parking.coordinates.lon %>
+	</div>
+	<div class="control-group">
+		<div id="parking_kind_not_empty" class="alert alert-error error">
+			<%= t('places.parkings.views.form.validations.kind') %>
+		</div>
+		<%= f.label :kind, t('places.parkings.views.form.kind'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :kind,  options_for_select(Parking.humanized_categories_for(:kinds).invert, parking.kind), {:include_blank => true} %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :details, t('places.parkings.views.form.details'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :details, :rows => 2, :class => "span5" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :has_roof, t('places.parkings.views.form.has_roof'), :class => 'control-label' %>
+
+		<div class="controls">
+			<%= f.check_box :has_roof, :checked => parking.has_roof || false %>
+		</div>
+	</div>
+	
+	<% if current_user_equals(parking.user) || parking.user.nil? %>
+		<div class="separator"></div>
+		<br/>
+		<h4>Permisos de Wiki</h4>
+		<br>
+		<div class="control-group">
+			<%= f.label :others_can_edit_it, t('places.parkings.views.form.others_can_edit_it'), :class => 'control-label' %>
+
+			<div class="controls">
+				<%= f.check_box :others_can_edit_it, :checked => parking.others_can_edit_it || false %>
+			</div>
+		</div>
+	<% end %>
+	
+</div>
+<div class="centered-text">
+	<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+</div>

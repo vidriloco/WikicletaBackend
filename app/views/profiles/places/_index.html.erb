@@ -12,7 +12,7 @@
 					<a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Nuevo Lugar</a>
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 						<li><%= link_to 'Taller/Tienda de bicis', new_profiles_workshop_path %></li>
-						<li><%= link_to 'Bici-estacionamiento', new_profiles_workshop_path %></li>
+						<li><%= link_to 'Bici-estacionamiento', new_profiles_parking_path %></li>
 				  </ul>
 				</div>
 			</div>
@@ -30,8 +30,12 @@
 				</div>
 			<% else %>
 					<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
+					<div class="first"></div>
 					<div class="workshop-list">
 						<%= render :partial => 'profiles/workshops/workshop', :collection => places[:workshops] %>
+					</div>
+					<div class="parking-list">
+						<%= render :partial => 'profiles/parkings/parking', :collection => places[:parkings] %>
 					</div>
 			<% end %>
 		</div>

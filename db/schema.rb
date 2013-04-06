@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402055853) do
+ActiveRecord::Schema.define(:version => 20130405063406) do
 
   create_table "announcements", :force => true do |t|
     t.string   "header"
@@ -116,6 +116,17 @@ ActiveRecord::Schema.define(:version => 20130402055853) do
     t.time     "final_hour"
     t.integer  "user_id"
     t.integer  "bike_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.point    "coordinates",        :limit => nil,                 :srid => 4326
+  end
+
+  create_table "parkings", :force => true do |t|
+    t.string   "details"
+    t.integer  "kind"
+    t.boolean  "has_roof"
+    t.boolean  "others_can_edit_it"
+    t.integer  "user_id"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.point    "coordinates",        :limit => nil,                 :srid => 4326

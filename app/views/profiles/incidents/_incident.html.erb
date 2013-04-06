@@ -57,7 +57,7 @@
 					<div>
 						<span class="time"><%= distance_of_time_in_words(incident.date || Date.today, Time.now, true) %></span> 
 						<% unless current_user_equals(@user) %>
-							<span class="reporter"><%= reporter_of(incident, "/#/incidents/#{incident.id}") %></span>
+							<span class="reporter"><%= reporter_of(incident, "/#/incidents/#{incident.identifier}") %></span>
 						<% end %>
 					</div>
 				</li>

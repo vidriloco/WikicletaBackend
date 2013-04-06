@@ -20,7 +20,7 @@ class Profiles::TipsController < ProfilesController
     @tip = Tip.new_with(params[:tip], params[:coordinates], current_user)
     
     if @tip.save
-      redirect_to user_profile_path(current_user.username).concat("#/tips/#{@tip.id}")
+      redirect_to user_profile_path(current_user.username).concat("#/tips/#{@tip.identifier}")
     else
       render :action => :new
     end
@@ -31,7 +31,7 @@ class Profiles::TipsController < ProfilesController
   
   def update
     if @tip.update_with(params[:tip], params[:coordinates], current_user)
-      redirect_to user_profile_path(current_user.username).concat('#/tips')
+      redirect_to user_profile_path(current_user.username).concat("#/tips/#{@tip.identifier}")
     else
       render :action => :edit
     end

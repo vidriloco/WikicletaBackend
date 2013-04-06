@@ -2,6 +2,11 @@ es_MX:
   app:
     name: "Wikicleta"
     categories:
+      parkings:
+        kinds:
+          government_provided: "Oficial (Gobierno)"
+          urban_mobiliary: "Mobiliario urbano (Postes, barandales)"
+          venue_provided: "De un establecimiento"
       places:
         categories:
           workshop: "Talleres y Tiendas"
