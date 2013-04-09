@@ -5,14 +5,26 @@
 //= require view_components/form.validator
 
 var map = null;
+var currentlyOnIndex = false;
+
 $(document).ready(function(){
+	
 	if($.isDefined('#map')) {
+		
+		var fetchPartial = function() {
+			$.get('/maps/'+$('#listing-contents').attr('data-suburl'), {viewport: {sw : $('#map').attr('sw'), ne: $('#map').attr('ne') }});
+		}
 		
 		map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {
 			coordinatesDom: "#coordinates", 
 			isEditable: $('#map').hasClass('editable')
 		});
-
+		
+		map.eventsForMapIdle('#map', function() {
+			if(currentlyOnIndex) {
+				fetchPartial();
+			}
+		});
 	}
 		
 	// Attempt to center map on location
@@ -24,8 +36,7 @@ $(document).ready(function(){
 				var lon = p.coords.longitude;
 				map.addMarkerYourLocation({ lat: lat, lon: lon });
 				map.placeViewportAt({ lat: lat, lon: lon, zoom: defaultMiddleZoom });
-
-				}, null);
+			}, null);
 		}
 	});
 	
@@ -61,6 +72,8 @@ $(document).ready(function(){
 				},
 
 				onIndex : function() {
+					currentlyOnIndex = true;
+					
 					$('.item-on-list').fadeIn();
 					$('.stats .box').addClass('active');
 					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
@@ -78,6 +91,8 @@ $(document).ready(function(){
 				},
 				
 				onFilter : function() {
+					currentlyOnIndex = false;
+					
 					var aspect = this.params['aspect'].slice(0,-1);
 					// Deactivate filter if location hash is on filter aspect
 					$('.item-on-list').fadeOut();
@@ -92,6 +107,8 @@ $(document).ready(function(){
 				},
 				
 				details : function() {
+					currentlyOnIndex = false;
+					
 					var id = this.params['id'];
 					var domElement = '.listing-view #'+id;
 										
@@ -145,4 +162,5 @@ $(document).ready(function(){
 		Path.root("#/");
 		Path.listen();
 	}
+	
 });

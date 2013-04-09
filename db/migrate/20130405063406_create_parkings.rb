@@ -1,7 +1,7 @@
 class CreateParkings < ActiveRecord::Migration
   def change
     create_table :parkings do |t|
-      t.point       :coordinates, :srid => 4326, :with_z => false 
+      t.point       :coordinates, :geographic => true
       t.string      :details
       t.integer     :kind
       t.boolean     :has_roof
@@ -9,5 +9,8 @@ class CreateParkings < ActiveRecord::Migration
       t.integer     :user_id
       t.timestamps
     end
+    
+    add_index(:parkings, :coordinates, spatial: true)  # spatial index
+    add_index(:parkings, :coordinates, unique: true, :name => 'unique_coordinates_parkings')
   end
 end

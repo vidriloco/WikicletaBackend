@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130405063406) do
 
-  create_table "announcements", :force => true do |t|
-    t.string   "header"
-    t.string   "message"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "place_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -68,18 +57,20 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.float    "weight"
     t.integer  "main_picture"
     t.string   "model"
-    t.integer  "likes_count",                  :default => 0
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.point    "coordinates",   :limit => nil,                                :srid => 4326
+    t.integer  "likes_count",                                            :default => 0
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+    t.spatial  "coordinates",   :limit => {:srid=>4326, :type=>"point"}
   end
 
   create_table "cities", :force => true do |t|
     t.string   "code"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.point    "coordinates", :limit => nil,                 :srid => 4326
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
+
+  add_index "cities", ["coordinates"], :name => "index_cities_on_coordinates", :spatial => true
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -94,16 +85,6 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "friendships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.boolean  "confirmed"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "friendships", ["friend_id", "user_id"], :name => "friendships_idx", :unique => true
-
   create_table "incidents", :force => true do |t|
     t.string   "description"
     t.integer  "kind"
@@ -111,26 +92,32 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.boolean  "fixed"
     t.integer  "lock_used"
     t.string   "vehicle_identifier"
+    t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.date     "date"
     t.time     "start_hour"
     t.time     "final_hour"
     t.integer  "user_id"
     t.integer  "bike_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.point    "coordinates",        :limit => nil,                 :srid => 4326
+    t.datetime "created_at",                                                                     :null => false
+    t.datetime "updated_at",                                                                     :null => false
   end
 
+  add_index "incidents", ["coordinates"], :name => "index_incidents_on_coordinates", :spatial => true
+  add_index "incidents", ["coordinates"], :name => "unique_coordinates_incidents", :unique => true
+
   create_table "parkings", :force => true do |t|
+    t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.string   "details"
     t.integer  "kind"
     t.boolean  "has_roof"
     t.boolean  "others_can_edit_it"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.point    "coordinates",        :limit => nil,                 :srid => 4326
+    t.datetime "created_at",                                                                     :null => false
+    t.datetime "updated_at",                                                                     :null => false
   end
+
+  add_index "parkings", ["coordinates"], :name => "index_parkings_on_coordinates", :spatial => true
+  add_index "parkings", ["coordinates"], :name => "unique_coordinates_parkings", :unique => true
 
   create_table "pictures", :force => true do |t|
     t.string   "caption"
@@ -149,40 +136,18 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "places", :force => true do |t|
-    t.string   "name"
-    t.integer  "mobility_kindness_index"
-    t.text     "description"
-    t.string   "address"
-    t.integer  "category_id"
-    t.string   "twitter"
-    t.boolean  "is_bike_friendly"
-    t.integer  "recommendations_count",                  :default => 0
-    t.integer  "photos_count",                           :default => 0
-    t.integer  "comments_count",                         :default => 0
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.point    "coordinates",             :limit => nil,                                :srid => 4326
-  end
-
-  create_table "recommendations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "place_id"
-    t.boolean  "is_owner",    :default => false
-    t.boolean  "is_verified", :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
   create_table "tips", :force => true do |t|
     t.string   "content"
     t.integer  "category"
-    t.integer  "likes_count",                :default => 0
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "likes_count",                                                             :default => 0
     t.integer  "user_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.point    "coordinates", :limit => nil,                                :srid => 4326
+    t.datetime "created_at",                                                                             :null => false
+    t.datetime "updated_at",                                                                             :null => false
   end
+
+  add_index "tips", ["coordinates"], :name => "index_tips_on_coordinates", :spatial => true
+  add_index "tips", ["coordinates"], :name => "unique_coordinates_tips", :unique => true
 
   create_table "user_like_bikes", :force => true do |t|
     t.integer  "user_id"
@@ -212,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.boolean  "email_visible"
     t.boolean  "externally_registered",  :default => false
     t.boolean  "seller_account"
+    t.integer  "city_id"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
@@ -223,16 +189,19 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.string   "name"
     t.string   "details"
     t.boolean  "store"
-    t.integer  "phone"
-    t.integer  "cell_phone"
+    t.integer  "phone",              :limit => 8
+    t.integer  "cell_phone",         :limit => 8
     t.string   "webpage"
     t.string   "twitter"
     t.string   "horary"
     t.boolean  "others_can_edit_it"
+    t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.point    "coordinates",        :limit => nil,                 :srid => 4326
+    t.datetime "created_at",                                                                     :null => false
+    t.datetime "updated_at",                                                                     :null => false
   end
+
+  add_index "workshops", ["coordinates"], :name => "index_workshops_on_coordinates", :spatial => true
+  add_index "workshops", ["coordinates"], :name => "unique_coordinates_workshops", :unique => true
 
 end

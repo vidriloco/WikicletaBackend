@@ -2,8 +2,11 @@ class CreateCities < ActiveRecord::Migration
   def change
     create_table :cities do |t|
       t.string      :code
-      t.point       :coordinates, :srid => 4326, :with_z => false 
+      t.point       :coordinates, :geographic => true
       t.timestamps
     end
+    
+    add_index(:cities, :coordinates, spatial: true)  # spatial index
+    
   end
 end

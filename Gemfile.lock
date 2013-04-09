@@ -1,15 +1,6 @@
-GIT
-  remote: http://github.com/Empact/spatial_adapter.git
-  revision: d64ac1c03c837d6fffddfac1a0dc0818bf10bce6
-  specs:
-    spatial_adapter (1.2.0)
-      GeoRuby (>= 1.3.0)
-      activerecord (>= 2.2.2)
-
 GEM
   remote: http://rubygems.org/
   specs:
-    GeoRuby (1.3.4)
     ZenTest (4.4.2)
     actionmailer (3.2.0)
       actionpack (= 3.2.0)
@@ -32,6 +23,8 @@ GEM
       activesupport (= 3.2.0)
       arel (~> 3.0.0)
       tzinfo (~> 0.3.29)
+    activerecord-postgis-adapter (0.5.1)
+      rgeo-activerecord (~> 0.4.6)
     activeresource (3.2.0)
       activemodel (= 3.2.0)
       activesupport (= 3.2.0)
@@ -79,6 +72,8 @@ GEM
       gherkin (~> 2.11.0)
       json (>= 1.4.6)
     database_cleaner (0.8.0)
+    dbf (2.0.3)
+      fastercsv (~> 1.5.4)
     delorean (2.0.0)
       chronic
     devise (2.1.2)
@@ -100,6 +95,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fastercsv (1.5.5)
     fb_graph (2.5.0)
       httpclient (>= 2.2.0.2)
       json
@@ -180,6 +176,8 @@ GEM
     pickle (0.4.11)
       cucumber (>= 0.8)
       rake
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -214,6 +212,14 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
+    rgeo (0.3.20)
+    rgeo-activerecord (0.4.6)
+      activerecord (>= 3.0.3)
+      arel (>= 2.0.6)
+      rgeo (>= 0.3.20)
+    rgeo-shapefile (0.2.3)
+      dbf (>= 1.7.0)
+      rgeo (>= 0.3.3)
     rmagick (2.13.2)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -246,6 +252,10 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    squeel (1.0.16)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      polyamorous (~> 0.5.0)
     steak (2.0.0)
       capybara (>= 1.0.0)
       rspec-rails (>= 2.5.0)
@@ -282,6 +292,7 @@ PLATFORMS
 
 DEPENDENCIES
   ZenTest (~> 4.4.2)
+  activerecord-postgis-adapter
   acts_as_commentable
   autotest
   autotest-fsevent
@@ -292,6 +303,7 @@ DEPENDENCIES
   carrierwave (= 0.6.2)
   coffee-rails
   database_cleaner
+  dbf
   delorean
   devise
   factory_girl_rails
@@ -309,11 +321,13 @@ DEPENDENCIES
   pg
   pickle
   rails (= 3.2.0)
+  rgeo
+  rgeo-shapefile
   rmagick (= 2.13.2)
   rspec-rails (~> 2.6.0)
   sass-rails
-  spatial_adapter!
   spork
+  squeel
   steak
   therubyracer
   tlsmail

@@ -81,6 +81,21 @@ $.extend(ViewComponents, {
 					}
 				}
 			},
+			
+			eventsForMapIdle: function(baseDom, callback) {
+				var instance = this;
+				this.baseDom = $(baseDom);
+
+				google.maps.event.addListener(this.gMap, "idle", function() {
+					instance.setSearchMapParams();
+					callback();
+					return true;
+				});
+			},
+			
+			setSearchMapParams: function() {
+				this.gMap.getBounds();				
+			},
 
 			// using the convention for dom_lat and dom_lon retrieve
 			// the coordinates components for setting them on the map

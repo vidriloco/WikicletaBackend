@@ -24,7 +24,8 @@ module MapsHelper
     				<li>#{link_for_section(:lanes)}</li>
     				<li>#{link_for_section(:routes)}</li>
     		  </ul>
-    			<li><a href="#"><i class="icon-search"></i> #{ t('navbars.actions.filtering') }</a></li>
+    		  <li><a class='btn pull-right locate-me'><i class='icon icon-map-marker'></i> #{t('actions.locate_me')}</a></li>
+    			<!--<li><a href="#"><i class="icon-search"></i> #{ t('navbars.actions.filtering') }</a></li>-->
     		  </li>
     	  </ul>
     	</div>

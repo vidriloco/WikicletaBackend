@@ -21,7 +21,7 @@
 	<% if !current_user_has_bikes_to_report? %>
 		<div id="bike-required-alert" class="alert alert-error ">
 			<span><i class="icon-exclamation-sign"></i> Necesitas registrar tu bici para reportar su <b>robo</b> o <b>avería</b></span> 
-			<%= link_to 'Añadir bici', profiles_new_bike_path, :class => "pull-right" %>
+			<%= link_to 'Añadir bici', new_bike_path, :class => "pull-right" %>
 		</div>
 	<% end %>
 	

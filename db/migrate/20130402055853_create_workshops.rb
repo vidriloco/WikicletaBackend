@@ -12,10 +12,13 @@ class CreateWorkshops < ActiveRecord::Migration
       
       t.string      :horary
       t.boolean     :others_can_edit_it
-      t.point       :coordinates, :srid => 4326, :with_z => false 
+      t.point       :coordinates, :geographic => true
       t.integer     :user_id
       
       t.timestamps
     end
+    
+    add_index(:workshops, :coordinates, spatial: true)  # spatial index
+    add_index(:workshops, :coordinates, unique: true, :name => 'unique_coordinates_workshops')
   end
 end

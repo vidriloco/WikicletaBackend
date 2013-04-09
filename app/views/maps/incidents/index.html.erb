@@ -28,7 +28,7 @@
 <div id="map" class="show-only edit map-dimensions map-big shadow-light rounded-5"></div>
 <br>
 <div class="content-fluid">
-	<div class="listing-view">
+	<div id="listing-contents" class="listing-view" data-suburl="incidents">
 		<%= render :partial => 'profiles/incidents/incident', :collection => @incidents, :locals => {:show_actions => false} %>
 	</div>
 </div>

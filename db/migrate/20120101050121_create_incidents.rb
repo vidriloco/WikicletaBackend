@@ -8,7 +8,7 @@ class CreateIncidents < ActiveRecord::Migration
       t.integer :lock_used
       
       t.string :vehicle_identifier
-      t.point :coordinates, :srid => 4326, :with_z => false 
+      t.point :coordinates, :geographic => true
       t.date :date
       t.time :start_hour
       t.time :final_hour
@@ -16,5 +16,8 @@ class CreateIncidents < ActiveRecord::Migration
       t.integer :bike_id
       t.timestamps
     end
+    
+    add_index(:incidents, :coordinates, spatial: true)  # spatial index
+    add_index(:incidents, :coordinates, unique: true, :name => 'unique_coordinates_incidents')
   end
 end

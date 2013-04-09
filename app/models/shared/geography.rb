@@ -1,20 +1,26 @@
 module Shared::Geography
-  module ClassMethods
-    def make_polygon(coordinates)
-      return nil if coordinates.nil?
-      return nil if (coordinates[:sw].blank? || coordinates[:ne].blank? || coordinates[:ne] == "{}" || coordinates[:sw] == "{}")
-
-      lat_so, lon_so = coordinates[:sw].split(',').map { |n| n.to_f }
-      lat_no, lon_no = coordinates[:ne].split(',').map { |n| n.to_f }
-
-      # Empezando en (0,0) en sentido de las manecillas del reloj
-      Polygon.from_coordinates([[[lon_so, lat_no], [lon_no, lat_no], [lon_no, lat_so], [lon_so, lat_so], [lon_so, lat_no]]],4326)
+  module ClassMethods    
+    def build_polygon_from_params(coordinates_)
+      return nil if coordinates_.nil?
+      return nil if (coordinates_[:sw].blank? || coordinates_[:ne].blank? || coordinates_[:ne] == "{}" || coordinates_[:sw] == "{}")
+      lat_sw, lon_sw = coordinates_[:sw].split(',').map { |n| n.to_f }
+      lat_ne, lon_ne = coordinates_[:ne].split(',').map { |n| n.to_f }
+      
+      geo_factory = RGeo::Cartesian.factory
+      sw=geo_factory.point(lon_sw, lat_sw)
+      ne=geo_factory.point(lon_ne, lat_ne)
+      RGeo::Cartesian::BoundingBox.create_from_points(sw, ne).to_geometry
+    end
+    
+    def filter_nearby(viewport)
+      window=build_polygon_from_params(viewport)
+      self.where{st_intersects(coordinates, window)}
     end
   end
   
   def apply_geo(coordinates)
     return self if coordinates.nil? || (coordinates["lon"].blank? || coordinates["lat"].blank?)
-    self.coordinates = Point.from_lon_lat(coordinates["lon"].to_f, coordinates["lat"].to_f, 4326)
+    self.coordinates = "POINT(#{coordinates["lon"].to_f} #{coordinates["lat"].to_f})"
     self
   end
   

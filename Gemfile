@@ -8,7 +8,6 @@ gem 'rails', '3.2.0'
 gem 'pg'
 gem 'devise'
 gem 'formtastic'
-gem 'spatial_adapter', :git => 'http://github.com/Empact/spatial_adapter.git'
 # gem 'transport_adder', :require => 'transport_adder', :path => 'vendor/plugins/transport_adder/'
 
 gem 'omniauth'
@@ -22,6 +21,12 @@ gem 'acts_as_commentable'
 gem 'carrierwave', '0.6.2'
 gem 'rmagick', '2.13.2'
 gem 'fog'
+
+gem 'rgeo'
+gem 'rgeo-shapefile'
+gem 'dbf'
+gem 'squeel'
+gem 'activerecord-postgis-adapter'
 
 group :test do
 	gem 'capybara'

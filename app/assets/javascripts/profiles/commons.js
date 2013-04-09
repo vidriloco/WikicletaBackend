@@ -2,6 +2,7 @@
   *  Some common variables and functions
  **/
 var parentDom = '#contents-area ';
+var Routing = {};
 
 var rootSelected = function() {
 	$(parentDom).empty();

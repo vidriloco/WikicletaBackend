@@ -1,0 +1,3 @@
+var detachedMap = $('#map').detach();
+$('#listing-contents').html("<%= escape_javascript(render :partial => 'profiles/incidents/incident', :collection => @incidents, :locals => {:show_actions => false}) %>");
+$('#listing-contents').prepend(detachedMap);

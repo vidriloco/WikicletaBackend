@@ -73,6 +73,16 @@ $(document).ready(function() {
 						map.setCoordinatesFromDom('#coordinates', 16);
 					}
 			});
+		} else if($.isDefined('.altering-incident')) {
+			var incidentsURLs = new Routing.Incidents();
+			
+			// Routes for incidents on edit
+			Path.map("#/").to(incidentsURLs.onIndex);
+			Path.map("#/accident").to(incidentsURLs.onAccidents);
+			Path.map("#/theft").to(incidentsURLs.onThefts);
+			Path.map("#/assault").to(incidentsURLs.onAssaults);
+			Path.map("#/breakdown").to(incidentsURLs.onBreakDown);
+			Path.map("#/none").to(incidentsURLs.onEmpty);
 		}
 	
 	} else {
@@ -125,7 +135,7 @@ $(document).ready(function() {
 		});
 
 		// Responds to clicks on incidents
-		$('.incident').live('click', function() {
+		$('.incident').delegate('click', function() {
 			incidentUrlSwitch($(this), $(this).attr('id'));
 		});
 		
@@ -190,6 +200,7 @@ $(document).ready(function() {
 		// Routes for incidents
 		Path.map("#/incidents").to(incidentsURLs.onIndex);
 		Path.map('#/incidents/:id').to(incidentsURLs.onItem);
+		
 		// Routes for tips
 		Path.map("#/tips").to(tipsURLs.onIndex);
 		Path.map("#/tips/:id").to(tipsURLs.onItem);

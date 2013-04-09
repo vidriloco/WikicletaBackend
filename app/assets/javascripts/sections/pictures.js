@@ -80,7 +80,7 @@ $.extend(Sections.Pictures, {
 		uploader.bind('UploadComplete', function(up, files) {
 			$.get($('#url-reload').text());
 			$.visit($.buildUrlFrom(''));
-			ViewComponents.Notification.put("<p class='notice top-message'>Las fotos seleccionadas fueron guardadas</p>");
+			//ViewComponents.Notification.put("<p class='notice top-message'>Las fotos seleccionadas fueron guardadas</p>");
 		});
 
 		$('#uploadfiles').click(function(e) {
@@ -122,7 +122,7 @@ $.extend(Sections.Pictures, {
 		});
 		
 		uploader.bind('BeforeUpload', function(up, file) {
-			ViewComponents.Blocking.append('transparent-layer');
+			//ViewComponents.Blocking.append('transparent-layer');
 			$('#container .actions .loading').fadeIn();
 			$('#container .actions .links').hide();
 		});
