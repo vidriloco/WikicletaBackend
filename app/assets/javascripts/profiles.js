@@ -135,7 +135,7 @@ $(document).ready(function() {
 		});
 
 		// Responds to clicks on incidents
-		$('.incident').delegate('click', function() {
+		$('.incident').live('click', function() {
 			incidentUrlSwitch($(this), $(this).attr('id'));
 		});
 		

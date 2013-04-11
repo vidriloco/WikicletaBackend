@@ -35,11 +35,21 @@ class Incident < ActiveRecord::Base
     self.update_attributes(params.merge(:user => user))
   end
   
-  def self.categorized_by_kinds
+  # TODO: Optimize this query and avoid using squeel :S
+  def self.categorized_by_kinds(viewport=nil)
     hash = {}
-    [:theft, :assault, :accident, :breakdown].each do |kind|
-      hash[kind] = Incident.where(:kind => Bike.category_for(:incidents, kind)).count
+    
+    if viewport.nil?
+      [:theft, :assault, :accident, :breakdown].each do |kind|
+        hash[kind] = Incident.where(:kind => Bike.category_for(:incidents, kind)).count
+      end
+    else
+      window=build_polygon_from_params(viewport)
+      [:theft, :assault, :accident, :breakdown].each do |kind_sym|
+        hash[kind_sym] = self.where{st_intersects(coordinates, window) & (incidents.kind == Bike.category_for(:incidents, kind_sym))}.count
+      end
     end
+    p hash
     hash
   end
   

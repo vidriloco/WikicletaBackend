@@ -11,8 +11,9 @@ var incidentUrlSwitch = function(domElement, id) {
 		$.visit('#/incidents/'+id);
 	}
 }
-
+	
 $(document).ready(function() {
+	
 	// JS Subroutes for new and edit views
 	if($.isDefined('.altering-incident')) {
 		Routing.Incidents = function() {

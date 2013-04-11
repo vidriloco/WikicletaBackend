@@ -9,7 +9,7 @@
       <a class="brand" href="#"><%= t('app.name') %></a>
       <div class="container-fluid nav-collapse">
         <ul class="nav pull-right">
-					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Recorridos', neighbourhoods_path  %></li>
+					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Recorridos', trips_path  %></li>
 					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
 					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Más', bikes_path %></li>
 					<% if user_signed_in? %>

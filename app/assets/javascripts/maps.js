@@ -6,13 +6,14 @@
 
 var map = null;
 var currentlyOnIndex = false;
-
+var itemsRoutes = null;
 $(document).ready(function(){
 	
 	if($.isDefined('#map')) {
 		
 		var fetchPartial = function() {
-			$.get('/maps/'+$('#listing-contents').attr('data-suburl'), {viewport: {sw : $('#map').attr('sw'), ne: $('#map').attr('ne') }});
+			$.get('/maps/'+$('#listing-contents').attr('data-suburl'), {viewport: {sw : $('#map').attr('sw'), ne: $('#map').attr('ne') }})
+			.done(itemsRoutes.viewChangesOnIndex);
 		}
 		
 		map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {
@@ -57,7 +58,7 @@ $(document).ready(function(){
 			}
 		}
 		// Responds to clicks on incidents
-		$('.item-on-list').bind('click', function() {
+		$('.item-on-list').live('click', function() {
 			itemUrlSwitch($(this), $(this).attr('id'));
 		});
 		
@@ -74,15 +75,8 @@ $(document).ready(function(){
 				onIndex : function() {
 					currentlyOnIndex = true;
 					
-					$('.item-on-list').fadeIn();
-					$('.stats .box').addClass('active');
-					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
+					thisInstance.viewChangesOnIndex();
 					
-					$('.stats .action-link').fadeOut();
-					thisInstance.showEmptyLegendFor('.item-on-list');
-					thisInstance.drawSelectedItems($('.listing-view .item-on-list'));
-					
-					$('.listing-view .item-on-list').removeClass('with-focus');
 					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
 					
 					// insert map at top of the listing
@@ -104,6 +98,18 @@ $(document).ready(function(){
 					$('.actions .filtering-enabled .turn-off-filtering').fadeIn();
 					thisInstance.drawSelectedItems($('.listing-view .'+aspect));
 					thisInstance.showEmptyLegendFor('.'+aspect);
+				},
+				
+				viewChangesOnIndex : function() {
+					$('.item-on-list').fadeIn();
+					$('.stats .box').addClass('active');
+					$('.actions .filtering-enabled .turn-off-filtering').fadeOut();
+					
+					$('.stats .action-link').hide();
+					thisInstance.showEmptyLegendFor('.item-on-list');
+					thisInstance.drawSelectedItems($('.listing-view .item-on-list'));
+					
+					$('.listing-view .item-on-list').removeClass('with-focus');
 				},
 				
 				details : function() {
@@ -155,7 +161,7 @@ $(document).ready(function(){
 			return obj.initialize();
 		}
 		
-		var itemsRoutes = new ItemsOnMap();
+		itemsRoutes = new ItemsOnMap();
 		Path.map("#/").to(itemsRoutes.onIndex);
 		Path.map("#/filter/:aspect").to(itemsRoutes.onFilter);
 		Path.map('#/details/:id').to(itemsRoutes.details);

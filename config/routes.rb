@@ -47,7 +47,7 @@ Ciudadio::Application.routes.draw do
     resources :places, :only => [:index]
   end
   
-  resources :neighbourhoods
+  resources :trips
   
   resources :maps, :only => [:index]
 
