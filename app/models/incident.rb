@@ -22,14 +22,6 @@ class Incident < ActiveRecord::Base
     incident
   end
   
-  def self.find_nearby(viewport=nil)
-    if viewport.nil?
-      self.all
-    else
-      self.filter_nearby(viewport)
-    end
-  end
-  
   def update_with(params, coordinates, user)
     self.apply_geo(coordinates)
     self.update_attributes(params.merge(:user => user))

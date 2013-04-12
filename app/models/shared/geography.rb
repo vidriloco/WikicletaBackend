@@ -16,6 +16,14 @@ module Shared::Geography
       window=build_polygon_from_params(viewport)
       self.where{st_intersects(coordinates, window)}
     end
+
+    def find_nearby(viewport=nil)
+      if viewport.nil?
+        self.all
+      else
+        self.filter_nearby(viewport)
+      end
+    end
   end
   
   def apply_geo(coordinates)

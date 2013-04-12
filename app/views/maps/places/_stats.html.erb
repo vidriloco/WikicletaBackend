@@ -1,0 +1,18 @@
+<div class="pull-left">
+  <ul class="stats inlined-list">
+    <li>
+      <%= partial_numbers_for(:places, hashed_count, :workshop) %>
+    </li>
+    <li>
+      <%= partial_numbers_for(:places, hashed_count, :parking) %>
+    </li>
+    <li>
+      <%= partial_numbers_for(:places, hashed_count, :bikefriendly_place) %>
+    </li>
+    <li class="action-link">
+      <a class="box active" href="/maps/places#/">
+        <p class="title">Mostrar todos</p>
+      </a>
+    </li>
+  </ul>
+</div>

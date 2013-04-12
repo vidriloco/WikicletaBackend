@@ -1,0 +1,5 @@
+var detachedMap = $('#map').detach();
+$('#listing-contents').html("<%= escape_javascript(render :partial => 'profiles/workshops/workshop', :collection => @workshops) %>");
+$('#listing-contents').append("<%= escape_javascript(render :partial => 'profiles/parkings/parking', :collection => @parkings) %>");
+$('#listing-contents').prepend(detachedMap);
+$('#stats-container').html("<%= escape_javascript(render :partial => 'maps/places/stats', :locals => {:hashed_count => @places_count}) %>");
