@@ -1,0 +1,4 @@
+var detachedMap = $('#map').detach();
+$('#listing-contents').html("<%= escape_javascript(render :partial => 'profiles/tips/tip', :collection => @tips, :locals => {:show_actions => false}) %>");
+$('#listing-contents').prepend(detachedMap);
+$('#stats-container').html("<%= escape_javascript(render :partial => 'maps/tips/stats', :locals => {:hashed_count => @tips_count}) %>");

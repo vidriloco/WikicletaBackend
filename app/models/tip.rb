@@ -11,10 +11,17 @@ class Tip < ActiveRecord::Base
     tip
   end
   
-  def self.categorized_by_kinds
+  def self.categorized_by_kinds(viewport=nil)
     hash = {}
-    [:danger, :alert, :sightseeing].each do |kind|
-      hash[kind] = Tip.where(:category => Tip.category_for(:categories, kind)).count
+    if viewport.nil?
+      [:danger, :alert, :sightseeing].each do |kind|
+        hash[kind] = Tip.where(:category => Tip.category_for(:categories, kind)).count
+      end
+    else
+      window=build_polygon_from_params(viewport)
+      [:danger, :alert, :sightseeing].each do |kind_sym|
+        hash[kind_sym] = self.where{st_intersects(coordinates, window) & (tips.category == Tip.category_for(:categories, kind_sym))}.count
+      end
     end
     hash
   end

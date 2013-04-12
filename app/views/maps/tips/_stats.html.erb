@@ -1,0 +1,18 @@
+<div class="pull-left">
+    <ul class="stats inlined-list">
+      <li>
+        <%= partial_numbers_for(:tips, hashed_count, :sightseeing) %>
+      </li>
+      <li>
+        <%= partial_numbers_for(:tips, hashed_count, :alert) %>
+      </li>
+      <li>
+        <%= partial_numbers_for(:tips, hashed_count, :danger) %>
+      </li>
+      <li class="action-link">
+        <a class="box active" href="/maps/tips#/">
+          <p class="title">Mostrar todos</p>
+        </a>
+      </li>
+    </ul>
+  </div>

@@ -2,30 +2,15 @@
 <div class="separator"></div>
 <div>	
 	<%= navbar_map_for %>
-	<div class="pull-left">
-		<ul class="stats inlined-list">
-			<li>
-				<%= partial_numbers_for(:tips, @tips_count, :sightseeing) %>
-			</li>
-			<li>
-				<%= partial_numbers_for(:tips, @tips_count, :alert) %>
-			</li>
-			<li>
-				<%= partial_numbers_for(:tips, @tips_count, :danger) %>
-			</li>
-			<li class="action-link">
-				<a class="box active" href="/maps/tips#/">
-					<p class="title">Mostrar todos</p>
-				</a>
-			</li>
-		</ul>
+	<div id="stats-container">
+		<%= render :partial => 'maps/tips/stats', :locals => {:hashed_count => @tips_count} %>
 	</div>
 </div>
 
 <div id="map" class="show-only edit map-dimensions map-big shadow-light rounded-5"></div>
 <br>
 <div class="content-fluid">
-	<div class="listing-view">
+	<div id="listing-contents" class="listing-view" data-suburl="tips">
 		<%= render :partial => 'profiles/tips/tip', :collection => @tips, :locals => {:show_actions => false} %>
 	</div>
 </div>

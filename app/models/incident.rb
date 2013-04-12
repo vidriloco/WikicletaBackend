@@ -41,7 +41,6 @@ class Incident < ActiveRecord::Base
         hash[kind_sym] = self.where{st_intersects(coordinates, window) & (incidents.kind == Bike.category_for(:incidents, kind_sym))}.count
       end
     end
-    p hash
     hash
   end
   
