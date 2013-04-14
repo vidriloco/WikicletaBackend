@@ -24,31 +24,41 @@
 		<div class="row-fluid">
 			<p class="centered-text description"><%= incident.description %></p>
 		</div>
-		<div class="row-fluid extras centered-text">
-			<div class="span6">
-				<% if incident.is_of_kind?(:theft) %>				
-					<span class="emphasize"><%= t('incidents.views.show.attacher_used') %></span> 
-					<%= Bike.humanized_category_for(:locks, incident.lock_used) %>
-				<% elsif incident.is_of_kind?(:accident) %>
-					<span class="emphasize"><%= t('incidents.views.show.vehicle_identifier') %></span>
-					<%= incident.vehicle_identifier.blank? ? t('missing.fem') : incident.vehicle_identifier %>
-				<% end %>
+		<% unless incident.breakdown? %>
+			<div class="row-fluid extras centered-text">
+				<div class="span6">
+					<% if incident.is_of_kind?(:theft) %>				
+						<span class="emphasize"><%= t('incidents.views.show.attacher_used') %></span> 
+						<%= Bike.humanized_category_for(:locks, incident.lock_used) %>
+					<% elsif incident.is_of_kind?(:accident) %>
+						<span class="emphasize"><%= t('incidents.views.show.vehicle_identifier') %></span>
+						<%= incident.vehicle_identifier.blank? ? t('missing.fem') : incident.vehicle_identifier %>
+					<% end %>
+				</div>
+				<div class="span6 complaint-issued">
+					<% if !incident.is_of_kind?(:breakdown) %>
+						<span class="emphasize"><%= t('incidents.views.index.list.item.complaint_issued')[incident.complaint_issued] %></span>
+					<% end %>
+				</div>
 			</div>
-			<div class="span6 complaint-issued">
-				<% if !incident.is_of_kind?(:breakdown) %>
-					<span class="emphasize"><%= t('incidents.views.index.list.item.complaint_issued')[incident.complaint_issued] %></span>
-				<% end %>
-			</div>
-		</div>
+		<% end %>
 		
 		<div class="separator"></div>
 		<!-- Render actions that appear below the separator -->
 		<div class="row-fluid">
 			<ul class="pull-left contextual-actions inlined-list">
 				<% if current_user && current_user.owns?(incident) && show_actions %>
+					<%= render :partial => 'profiles/incidents/solved_status', :locals => {:incident => incident} %>
 					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => incident.id, :class => "delete-incident" %></li>
 					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_profiles_incident_path(incident) %></li>
-					<%= render :partial => 'profiles/incidents/solved_status', :locals => {:incident => incident} %>
+				<% else %>
+					<% if incident.theft_or_breakdown? %>
+						<% if incident.solved? %>
+      				<b class="green"><i class="icon icon-ok-sign"></i> <%= t('incidents.views.index.list.item.status.solved') %></b>
+      			<% else %>
+      				<b class="red"><%= t('incidents.views.index.list.item.status.unsolved') %></b>
+      			<% end %>
+					<% end %>
 				<% end %>
 			</ul>
 			<ul class="pull-right contextual-info inlined-list">
