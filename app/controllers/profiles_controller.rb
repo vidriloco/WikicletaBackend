@@ -17,6 +17,6 @@ class ProfilesController < ApplicationController
   private 
   
   def find_user
-    @user = current_user || User.find_by_username(params[:username])
+    @user = User.find_by_username(params[:username])
   end
 end
