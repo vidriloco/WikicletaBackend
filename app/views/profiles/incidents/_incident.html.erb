@@ -12,7 +12,7 @@
 							<%= t('incidents.views.index.bicycle.not_given', :event => t('incidents.connectives.by')) %>
 						<% end %>
 					<% else %>
-						<% if incident.theft? %>
+						<% if incident.theft_or_breakdown? %>
 							<%= t('incidents.views.index.bicycle.given', :event => t('incidents.connectives.of'), :brand => link_to(incident.bike.brand, bike_path(incident.bike))).html_safe %>
 						<% else %>
 							<%= t('incidents.views.index.bicycle.given', :event => t('incidents.connectives.by'), :brand => link_to(incident.bike.brand, bike_path(incident.bike))).html_safe %>
@@ -32,8 +32,6 @@
 				<% elsif incident.is_of_kind?(:accident) %>
 					<span class="emphasize"><%= t('incidents.views.show.vehicle_identifier') %></span>
 					<%= incident.vehicle_identifier.blank? ? t('missing.fem') : incident.vehicle_identifier %>
-				<% elsif incident.is_of_kind?(:breakdown) %>
-					<span class="emphasize"><%= t('incidents.views.show.fixed')[incident.fixed] %></span>
 				<% end %>
 			</div>
 			<div class="span6 complaint-issued">
@@ -50,6 +48,7 @@
 				<% if current_user && current_user.owns?(incident) && show_actions %>
 					<li><i class="icon icon-remove"></i> <%= link_to 'Eliminar', 'javascript:void(0);', "data-id" => incident.id, :class => "delete-incident" %></li>
 					<li><i class="icon icon-edit"></i> <%= link_to 'Modificar', edit_profiles_incident_path(incident) %></li>
+					<%= render :partial => 'profiles/incidents/solved_status', :locals => {:incident => incident} %>
 				<% end %>
 			</ul>
 			<ul class="pull-right contextual-info inlined-list">

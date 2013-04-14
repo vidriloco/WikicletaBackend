@@ -52,6 +52,10 @@ class Incident < ActiveRecord::Base
   def is_bike_related?
     return !bike.nil?
   end
+
+  def solved?
+    solved
+  end
   
   def identifier
     "#{Bike.category_symbol_for(:incidents, kind)}-#{id}"

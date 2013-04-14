@@ -10,7 +10,6 @@ es_MX:
         coordinates: "Ubicación"
         attacher_used: "Equipo de seguridad utilizado"
         complaint_issued: "¿Denuncia levantada?"
-        fixed: "¿Averia reparada?"
         vehicle_identifier: "Placa del vehículo"
   incidents:
     connectives:
@@ -54,15 +53,18 @@ es_MX:
               anonymous: "por Anónimo" 
               user: "por %{user}"
             details: "Ver detalles"
+            status:
+              solved: "Resuelto"
+              unsolved: "Sin resolver"
+            mark_as:
+              solved: "Marcar como resuelto"
+              unsolved: "Marcar como no resuelto"
       destroy:
         success: "El incidente ha sido eliminado"
         confirm: "¿Deseas eliminar este incidente?"        
       show:
         number_not_given: "---"
         vehicle_identifier: "Placa del vehículo: "
-        fixed:
-          true: "Reparado"
-          false: "Sin reparar"
         attacher_used: "Equipo de seguridad utilizado: "
         bike_profile: "Página de esta bici"
         between: "entre %{start_hour} y %{final_hour} hrs"

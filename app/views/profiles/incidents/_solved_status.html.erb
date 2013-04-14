@@ -1,0 +1,15 @@
+<% if incident.theft_or_breakdown? %>
+  <li class="solved-status">
+    <% if incident.solved? %>
+      <b><i class="icon icon-ok-sign"></i><%= t('incidents.views.index.list.item.status.solved') %></b>
+      
+      (<%= link_to t('incidents.views.index.list.item.mark_as.unsolved'), 
+      profiles_incident_unsolved_path(incident), :remote => true, :method => :put, :class => 'trigger' %>)
+    <% else %>
+      <b><%= t('incidents.views.index.list.item.status.unsolved') %></b>
+      
+      (<%= link_to "<i class=\"icon icon-ok-sign\"></i> #{t('incidents.views.index.list.item.mark_as.solved')}".html_safe, 
+      profiles_incident_solved_path(incident), :remote => true, :method => :put, :class => 'trigger' %>)
+    <% end %>
+  </li>
+<% end %>

@@ -2,7 +2,7 @@ class Profiles::IncidentsController < ProfilesController
   layout 'profiles'
   
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :find_incident, :only => [:edit, :update, :destroy]
+  before_filter :find_incident, :only => [:edit, :update, :destroy, :update_status]
   
   def index
     @incidents = @user.incidents
@@ -41,9 +41,17 @@ class Profiles::IncidentsController < ProfilesController
     @incident.destroy
     redirect_to user_profile_path(current_user.username).concat('#/incidents')
   end
+
+  def update_status
+    @incident.update_attribute(:solved, params[:solved]) unless @incident.nil?
+
+    respond_to do |format|
+      format.js
+    end
+  end
   
   private
   def find_incident
-    @incident = Incident.find(params[:id])
+    @incident = Incident.find(params[:id] || params[:incident_id])
   end
 end

@@ -13,10 +13,6 @@
 				<%= render :partial => 'profiles/incidents/fields/description', :locals => { :f => f } %>
 				<%= render :partial => 'profiles/incidents/fields/bike', :locals => { :incident => incident, :f => f } %>
 			
-				<% if kind.eql?(:breakdown) %>
-					<%= render :partial => 'profiles/incidents/fields/fixed', :locals => { :incident => incident, :f => f } %>
-				<% end %>
-			
 				<% if kind.eql?(:theft) %>
 					<%= render :partial => 'profiles/incidents/fields/lock', :locals => { :incident => incident, :f => f } %>
 				<% end %>

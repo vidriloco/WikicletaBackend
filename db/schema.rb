@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.string   "description"
     t.integer  "kind"
     t.boolean  "complaint_issued"
-    t.boolean  "fixed"
     t.integer  "lock_used"
     t.string   "vehicle_identifier"
     t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
@@ -98,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.time     "final_hour"
     t.integer  "user_id"
     t.integer  "bike_id"
+    t.boolean  "solved"
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
   end

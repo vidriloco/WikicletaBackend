@@ -32,7 +32,11 @@ Ciudadio::Application.routes.draw do
   end
   
   namespace :profiles do
-    resources :incidents
+    resources :incidents do
+      put 'solved', :to => 'incidents#update_status', :defaults => { :solved => true }
+      put 'unsolved', :to => 'incidents#update_status', :defaults => { :solved => false }
+    end
+
     resources :tips
     resources :places
     resources :workshops
