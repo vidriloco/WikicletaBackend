@@ -51,6 +51,13 @@
 		<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put, :class => "form-horizontal top-spaced" }) do |f| %>
 			
 			<div class="control-group">
+				<%= f.label :city, :class => "control-label" %>
+				<div class="controls">
+			  	<%= f.select :city_id, options_from_collection_for_select(City.all, :id, :name, @user.city_id), {:include_blank => true} %>
+				</div>
+			</div>
+
+			<div class="control-group">
 				<%= f.label :bio, :class => "control-label" %>
 				<div class="controls">
 			  	<%= f.text_area :bio, :rows => 5, :cols => 30 %>

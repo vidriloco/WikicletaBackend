@@ -4,6 +4,7 @@ es_MX:
       user: "Usuario"
     attributes:
       user:
+        city: "Ciudad"
         full_name: "Nombre" 
         password: "Contraseña"
         password_confirmation: "Confirmación de la contraseña"
@@ -13,7 +14,7 @@ es_MX:
         login: "Nombre de Usuario o Correo"
         personal_page: "Página personal"
         bio: "Bio"
-        started_cycling_date: "Fecha en la que sacaste la bici"
+        started_cycling_date: "¿Desde cuando andas en bici?"
         email_visible: "¿Mostrar mi correo en mi perfil?"
         reset_password_token: "El token para reestablecer contraseña"
   user_accounts:
