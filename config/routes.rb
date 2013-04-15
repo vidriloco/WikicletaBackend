@@ -43,6 +43,9 @@ Ciudadio::Application.routes.draw do
     resources :parkings
   end
   
+  get '/profiles/:username' => 'profiles#index', :as => "user_profile"
+  get '/profiles/:username/bikes' => 'profiles#bikes', :as => 'user_bikes'
+  
   namespace :maps do 
     resources :incidents, :only => [:index]
     resources :tips, :only => [:index]
@@ -80,8 +83,6 @@ Ciudadio::Application.routes.draw do
   
   resources :comments, :only => [:create, :destroy]
   
-  get '/profile/:username' => 'profiles#index', :as => "user_profile"
-  get '/profile/:username/bikes' => 'profiles#bikes', :as => 'user_bikes'
 #  get "/places/:id" => 'places#show', :as => "place"
 #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  
   
