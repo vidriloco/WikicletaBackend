@@ -9,41 +9,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= user_default_city %>
+	<%= render 'shared/notice' %>
+	<div class="background-logo"></div>
+	<%= render 'layouts/shared/navbar' %>
 
-<%= render 'shared/notice' %>
-<div class="background-logo"></div>
-<%= render 'layouts/shared/navbar' %>
-
-<div id="top-container" class="row-fluid top-spaced-70 profile">
-	<div class="span1"></div>
-	<div class="span2">
-		<div class="avatar-img centered centered-text"><i class="icon-user"></i></div>
-		<div class="centered-text">
-			<h3><%= @user.username %></h3>
-			<p>Ciudad de México</p>
+	<div id="top-container" class="row-fluid top-spaced-70 profile">
+		<div class="span1"></div>
+		<div class="span2">
+			<div class="avatar-img centered centered-text"><i class="icon-user"></i></div>
+			<div class="centered-text">
+				<h3><%= @user.username %></h3>
+				<p>Ciudad de México</p>
+			</div>
+			<div class="well menu">
+				<ul class="nav nav-list">
+		    	<li class="<%= on_path?(user_profile_path(@user.username)) %>">
+						<%= link_to (user_signed_in? ? 'Tu actividad' : 'Actividad'), user_profile_path(@user.username) %>
+					</li>
+		    	<li class="<%= on_path?(user_bikes_path(@user.username)) %>">
+						<%= link_to (user_signed_in? ? 'Tus bicis' : 'Bicis'), user_bikes_path(@user.username) %>
+					</li>
+					<% if user_signed_in? %>
+						<li><a href="#">Cerca de ti</a></li>
+			    	<li><a href="#">Mensajes</a></li>
+			    	<li><a href="#">Boletín Semanal</a></li>
+		    		<li class="nav-header">Configuración</li>
+						<li class="<%= on_path?(settings_profile_path) %>"><%= link_to 'Perfil', settings_profile_path %></li>
+						<li class="<%= on_path?(settings_access_path) %>"><%= link_to 'Acceso', settings_access_path %></li>
+					<% end %>
+		    </ul>
+			</div>		
 		</div>
-		<div class="well menu">
-			<ul class="nav nav-list">
-	    	<li class="<%= on_path?(user_profile_path(@user.username)) %>">
-					<%= link_to (user_signed_in? ? 'Tu actividad' : 'Actividad'), user_profile_path(@user.username) %>
-				</li>
-	    	<li class="<%= on_path?(user_bikes_path(@user.username)) %>">
-					<%= link_to (user_signed_in? ? 'Tus bicis' : 'Bicis'), user_bikes_path(@user.username) %>
-				</li>
-				<% if user_signed_in? %>
-					<li><a href="#">Cerca de ti</a></li>
-		    	<li><a href="#">Mensajes</a></li>
-		    	<li><a href="#">Boletín Semanal</a></li>
-	    		<li class="nav-header">Configuración</li>
-					<li class="<%= on_path?(settings_profile_path) %>"><%= link_to 'Perfil', settings_profile_path %></li>
-					<li class="<%= on_path?(settings_access_path) %>"><%= link_to 'Acceso', settings_access_path %></li>
-				<% end %>
-	    </ul>
-		</div>		
+		<div class="span8"><%= yield %></div>
+		<div class="span1"></div>
 	</div>
-	<div class="span8"><%= yield %></div>
-	<div class="span1"></div>
-</div>
 
 
 </body>

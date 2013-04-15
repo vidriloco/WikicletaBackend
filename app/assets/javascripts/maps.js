@@ -11,6 +11,18 @@ $(document).ready(function(){
 	
 	if($.isDefined('#map')) {
 		
+		var centerMapFromUserCity = function(callback) {
+			if($.isDefined('#selected-city')) {
+				var lat = $('#selected-city').attr('data-default-lat');
+				var lon = $('#selected-city').attr('data-default-lon');
+				map.placeViewportAt({ lat: parseFloat(lat), lon: parseFloat(lon), zoom: defaultZoom });
+			} else {
+				if(callback != undefined) {
+					callback();
+				}
+			}
+		}
+
 		var fetchPartial = function() {
 			$.get('/maps/'+$('#listing-contents').attr('data-suburl'), {viewport: {sw : $('#map').attr('sw'), ne: $('#map').attr('ne') }})
 			.done(itemsRoutes.viewChangesOnIndex);
@@ -29,7 +41,6 @@ $(document).ready(function(){
 	}
 		
 	// Attempt to center map on location
-	
 	$('.locate-me').bind('click', function() {
 		if (geoPosition.init()) {
 		  geoPosition.getCurrentPosition(function(p) {
@@ -77,7 +88,9 @@ $(document).ready(function(){
 					
 					thisInstance.viewChangesOnIndex();
 					
-					map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+					centerMapFromUserCity(function() {
+						map.placeViewportAt({ lat: defaultLat, lon: defaultLon, zoom: defaultZoom });
+					});
 					
 					// insert map at top of the listing
 					$('#map').insertBefore('.listing-view .first');

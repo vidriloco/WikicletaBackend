@@ -25,14 +25,11 @@
 	<div class="row-fluid">
 		<div class="listing-view">
 		<% if incidents.empty? %>
-			<%= subsection_with(
-				t('user_profiles.views.incidents.subsection.title.logged_out'),  
-				t('user_profiles.views.incidents.subsection.title.logged_in')) %>
-			<br/>
 			<div class="centered-text well well-small">
-				<p>No hay reportes que mostrar, lo cual es muy bueno</p>
+				<p><%= t('incidents.listing.empty') %></p>
 			</div>
 		<% else %>
+			<%= render 'maps/shared/city_not_set_alert' %>
 			<%= subsection_with(
 				t('user_profiles.views.incidents.subsection.title.logged_out'),  
 				t('user_profiles.views.incidents.subsection.title.logged_in')) %>

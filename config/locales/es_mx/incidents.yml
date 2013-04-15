@@ -12,6 +12,8 @@ es_MX:
         complaint_issued: "¿Denuncia levantada?"
         vehicle_identifier: "Placa del vehículo"
   incidents:
+    listing:
+      empty: "No hay reportes que mostrar, lo cual es muy bueno"
     connectives:
       of: "de"
       by: "en"

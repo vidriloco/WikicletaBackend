@@ -1,6 +1,11 @@
 es_MX:
   cities:
-    mx_df: "Ciudad de México"
-    mx_gdl: "Guadalajara"
-    mx_mty: "Monterrey"
-    mx_ag: "Aguascalientes"
+    views:
+      alerts:
+        not_set: "Te falta seleccionar tu ciudad para ver lugares cercanos."
+        select_city: "Establecer ciudad"
+    list:
+      mx_df: "Ciudad de México"
+      mx_gdl: "Guadalajara"
+      mx_mty: "Monterrey"
+      mx_ag: "Aguascalientes"

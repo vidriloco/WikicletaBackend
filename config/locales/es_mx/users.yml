@@ -23,8 +23,6 @@ es_MX:
         title: "Lo sentimos, no hemos podido registrarte"
       password_recovery:
         title: "No hemos podido recuperar tu contraseña"
-      
-      
     validations:
       invalid_username: "debe ser alfanumérico y tener más de 5 letras"
     omniauth:

@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     return false if bike.nil?
     bike.user == self
   end
+
+  def city_unset?
+    city.nil?
+  end
   
   def is_seller?
     false

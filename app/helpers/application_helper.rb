@@ -113,6 +113,12 @@ module ApplicationHelper
     
     html.html_safe
   end
+
+  def user_default_city
+    if !current_user.nil? && !current_user.city.nil?
+      "<div id='selected-city' data-default-lat='#{current_user.city.coordinates.lat}' data-default-lon='#{current_user.city.coordinates.lon}'></div>".html_safe
+    end
+  end
   
   private
   def current_action_matches?(action)

@@ -22,21 +22,23 @@
 	
 	<div class="row-fluid">
 		<div class="listing-view">	
-			<%= render 'profiles/places/sub_bar' %>
 				
-			<% if places.empty? %>
-				<div class="centered-text well">
-					<p>No has compartido ni seguido algún lugar aún</p>
+			<% if places[:workshops].empty? && places[:parkings].empty? %>
+				<div class="centered-text well well-small">
+					<p><%= t('places.listing.empty') %></p>
 				</div>
 			<% else %>
-					<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
-					<div class="first"></div>
-					<div class="workshop-list">
-						<%= render :partial => 'profiles/workshops/workshop', :collection => places[:workshops] %>
-					</div>
-					<div class="parking-list">
-						<%= render :partial => 'profiles/parkings/parking', :collection => places[:parkings] %>
-					</div>
+				<%= render 'maps/shared/city_not_set_alert' %>
+				<%= render 'profiles/places/sub_bar' %>
+
+				<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>
+				<div class="first"></div>
+				<div class="workshop-list">
+					<%= render :partial => 'profiles/workshops/workshop', :collection => places[:workshops] %>
+				</div>
+				<div class="parking-list">
+					<%= render :partial => 'profiles/parkings/parking', :collection => places[:parkings] %>
+				</div>
 			<% end %>
 		</div>
 	</div>

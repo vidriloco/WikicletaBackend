@@ -6,6 +6,8 @@ es_MX:
       incident: 
         kind: "Tipo"
   tips:
+    listing:
+      empty: "No hay tips por ahora, quizás alguien debe salir más en bici :)"
     views:
       form:
         content: "Contenido"
