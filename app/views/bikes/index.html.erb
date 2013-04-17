@@ -1,22 +1,40 @@
 <div class="container-fluid">
-	<h3 class="centered-text">Bicis y Retos</h3>
+	<h3 class="centered-text">Bicis y más</h3>
 	<div class="separator"></div>
-	<div class="row-fluid">
-		<ul class="nav nav-pills pull-right">
-    	<li><%= link_to 'Lo + popular', '#' %></li>
-			<li><%= link_to 'Bicis robadas', '#' %></li>
-			<li><%= link_to 'En venta', '#' %></li>
-			<li><%= link_to 'En renta', '#' %></li>
-			<li><%= link_to 'Retos', '#' %></li>
-			<li><a href="#"><i class="icon-search"></i> Filtrar</a></li>
-    </ul>
-	</div>
+	<%= render 'bikes/sub_bar'%>
 	<div>
 		<% if @bikes.empty? %>
 			<div class="row-fluid top-spaced">
 				<div class="span12">
-					<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
-					<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
+					<p class="centered-text"><%= image_tag('empty_icon.png') %></p>
+					<% if controller.action_name == 'stolen' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.stolen.empty.message') %></h3>
+						<p class="centered-text"><%= link_to t('bikes.views.stolen.empty.invite'), new_profiles_incident_path.concat('/#/theft') %></p>
+						
+					<% elsif controller.action_name == 'index' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.index.empty.message') %></h3>
+						<p class="centered-text"><%= link_to t('bikes.views.index.empty.invite'), new_bike_path %></p>
+					<% elsif controller.action_name == 'recovered' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.recovered.empty.message') %></h3>
+						<p class="centered-text"><%= link_to t('bikes.views.recovered.empty.invite'), stolen_bikes_path %></p>
+					<% elsif controller.action_name == 'popular' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.popular.empty.message') %></h3>
+						<p class="centered-text"><%= link_to t('bikes.views.popular.empty.invite'), popular_bikes_path %></p>
+					<% elsif controller.action_name == 'sell_or_rent' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.sell_or_rent.empty.message') %></h3>
+						<% if user_signed_in? %>
+							<p class="centered-text"><%= link_to t('bikes.views.sell_or_rent.empty.logged_in.invite'), user_bikes_path(current_user.username) %></p>
+						<% else %>
+							<p class="centered-text"><%= link_to t('bikes.views.sell_or_rent.empty.not_logged_in.invite'), sign_up_path %></p>
+						<% end %>
+					<% elsif controller.action_name == 'shared' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.shared.empty.message') %></h3>
+						<% if user_signed_in? %>
+							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.logged_in.invite'), user_bikes_path(current_user.username) %></p>
+						<% else %>
+							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.not_logged_in.invite'), sign_up_path %></p>
+						<% end %>
+					<% end %>
 				</span>
 			</div>
 		<% else %>

@@ -7,7 +7,7 @@ es_MX:
         kind: "Tipo"
   tips:
     listing:
-      empty: "No hay tips por ahora, quizás alguien debe salir más en bici :)"
+      empty: "No hay tips por ahora"
     views:
       form:
         content: "Contenido"

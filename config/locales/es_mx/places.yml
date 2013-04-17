@@ -1,7 +1,7 @@
 es_MX:
   places:
     listing:
-      empty: "No has compartido ni seguido algún lugar aún"
+      empty: "Sin compartir lugares aún"
     general:
       layers:
         message: "Selecciona alguna de las capas de lugares siguientes"

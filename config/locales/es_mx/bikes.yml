@@ -77,6 +77,33 @@ es_MX:
         empty: 
           message: "No hay bicis registradas todavía"
           invite: "¡Sé el primero en agregar la tuya!"
+      stolen:
+        empty:
+          message: "Por ahora, sin reportes de bicis robadas"
+          invite: "¿Te robaron tu bici? Repórtala aquí"
+      sell_or_rent:
+        empty:
+          message: "En este momento no hay bicis en venta o renta"
+          logged_in:
+            invite: "Pon en renta o venta alguna de tus bicis :)"
+          not_logged_in:
+            invite: "¿Tienes una bici para rentar o vender? Inicia sesión o regístrate"
+      shared:
+        empty:
+          message: "En este momento no hay bicis en préstamo"
+          logged_in:
+            invite: "Comparte con alguien tu bici :)"
+          not_logged_in:
+            invite: "¿Tienes bici? Inicia sesión o regístrate para compartirla con otros"
+      recovered:
+        empty:
+          message: "Por ahora no hay bicis recuperadas"
+          invite: "Echa un vistazo a la sección de bicis robadas, quizás puedas ayudar a que alguien recupere su bici"
+      popular:
+        empty:
+          message: "No hay bicis o elementos populares aún"
+          invite: "Sube tu bici y su foto, quizás se vuelva popular"
+          
       edit:
         title: "Modificar bici"
         change_photo: "Por si quieres cambiar la foto actual de tu bici:"

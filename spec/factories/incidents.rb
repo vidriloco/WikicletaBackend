@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+factory_geo = RGeo::Geographic.spherical_factory(:srid => 4326)
 FactoryGirl.define do
   
   factory :assault, :class => "Incident" do |i|
@@ -9,7 +9,7 @@ FactoryGirl.define do
     i.start_hour Time.now
     i.final_hour Time.now+10.minutes
     i.complaint_issued true
-    i.coordinates Point.from_lon_lat(-99.171610, 19.405704, 4326)
+    i.coordinates factory_geo.point(-99.171610, 19.405704)
     i.sequence(:bike) { |n| FactoryGirl.build(:bike, :name => "Bici mas #{n}") }
   end
   
@@ -21,7 +21,7 @@ FactoryGirl.define do
     i.start_hour Time.now
     i.final_hour Time.now+10.minutes
     i.complaint_issued true
-    i.coordinates Point.from_lon_lat(-99.131610, 19.305704, 4326)
+    i.coordinates factory_geo.point(-99.131610, 19.305704)
     i.sequence(:bike) { |n| FactoryGirl.build(:bike, :name => "Bici mas #{n}") }
   end
   
@@ -33,7 +33,7 @@ FactoryGirl.define do
     i.start_hour Time.now
     i.final_hour Time.now+10.minutes
     i.complaint_issued true
-    i.coordinates Point.from_lon_lat(-99.181610, 19.205704, 4326)
+    i.coordinates factory_geo.point(-99.181610, 19.205704)
     i.sequence(:bike) { |n| FactoryGirl.build(:bike, :name => "Bici mas #{n}") }
   end
   
@@ -45,7 +45,7 @@ FactoryGirl.define do
     i.final_hour Time.now+10.minutes
     i.date Date.today-40
     i.complaint_issued true
-    i.coordinates Point.from_lon_lat(-99.156610, 19.305704, 4326)
+    i.coordinates factory_geo.point(-99.156610, 19.305704)
   end
   
 end

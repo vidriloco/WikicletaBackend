@@ -17,9 +17,91 @@ class Bike < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :name, :kind, :bike_brand, :user
-    
-  scope :most_popular, order('likes_count DESC')
+  
   scope :all_from_user, lambda { |user| where("user_id = ?", user.id) } 
+  
+  def self.fetch_stolen(user, status=false)
+    status = (status == :include_recovered_ones_only)
+    
+    if user.nil? || user.city.nil?
+      Bike.joins(:user => :incidents).where('incidents.solved' => status, 'incidents.kind' => Bike.category_for(:incidents, :theft))
+    else
+      Bike.joins(:incidents => :user).where(
+      'incidents.solved' => status, 
+      'incidents.kind' => Bike.category_for(:incidents, :theft), 
+      'users.city_id' => user.city_id)
+    end
+  end
+  
+  def self.most_popular(user)
+    if user.nil? || user.city.nil?
+      order('likes_count DESC')
+    else
+      joins(:user).order('likes_count DESC').where('users.city_id' => user.city_id)
+    end
+  end
+=begin  
+  def self.for_sell_and_rent(user)
+    if user.nil? || user.city.nil?
+      Bike.uniq.joins(:bike_statuses).joins("LEFT JOIN incidents ON incidents.bike_id = bikes.id").where(
+      'bike_statuses.concept' => [Bike.category_for(:statuses, :rent), Bike.category_for(:statuses, :sell)], 
+      'bike_statuses.availability' => true).
+      where('(incidents.solved = ? AND incidents.kind IN (?,?)) OR (incidents.solved = ? AND incidents.kind IN(?,?))', 
+        true,
+        Bike.category_for(:statuses, :rent), 
+        Bike.category_for(:statuses, :sell),
+        false,
+        Bike.category_for(:statuses, :breakdown),
+        Bike.category_for(:statuses, :assault))
+    else
+      Bike.uniq.joins(:bike_statuses, :user).where(
+      'bike_statuses.concept' => [Bike.category_for(:statuses, :rent), Bike.category_for(:statuses, :sell)], 
+      'bike_statuses.availability' => true,
+      'users.city_id' => user.city_id)
+    end
+  end
+=end
+
+  def self.for_social_use(concepts, user)
+    concepts.map! { |concept| Bike.category_for(:statuses, concept) }
+    
+    retrieved_objs = []
+    if user.nil? || user.city.nil?
+      retrieved_objs = Bike.uniq.joins(:bike_statuses).where(
+      'bike_statuses.concept' => concepts, 
+      'bike_statuses.availability' => true)
+    else
+      retrieved_objs = Bike.uniq.joins(:bike_statuses, :user).where(
+      'bike_statuses.concept' => concepts, 
+      'bike_statuses.availability' => true,
+      'users.city_id' => user.city_id)
+    end
+
+    collection = []
+    retrieved_objs.each do |bike|
+      if bike.has_no_active_theft_or_breakdown_reports?
+        collection << bike
+      end
+    end
+
+    collection
+  end
+  
+  def has_no_active_theft_or_breakdown_reports?
+    incidents.where(:solved => false, :kind => [Bike.category_for(:incidents, :theft), Bike.category_for(:incidents, :breakdown)]).empty?
+  end
+  
+  def last_theft_report
+    incidents.where(:solved => false, :kind => Bike.category_for(:incidents, :theft)).last
+  end
+  
+  def last_theft_recover_report
+    incidents.where(:solved => true, :kind => Bike.category_for(:incidents, :theft)).last
+  end
+  
+  def is_socialized?
+    bike_statuses.where(:availability => true).count > 0
+  end
   
   def front_picture
     begin

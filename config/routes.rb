@@ -60,8 +60,11 @@ Ciudadio::Application.routes.draw do
 
   resources :bikes do
     collection do 
-      get :search
+      get :stolen
+      get :recovered
       get :popular
+      get :sell_or_rent
+      get :shared
     end
     
     resources :pictures, :only => [:create]

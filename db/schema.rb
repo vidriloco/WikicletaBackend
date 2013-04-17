@@ -97,9 +97,9 @@ ActiveRecord::Schema.define(:version => 20130405063406) do
     t.time     "final_hour"
     t.integer  "user_id"
     t.integer  "bike_id"
-    t.boolean  "solved"
-    t.datetime "created_at",                                                                     :null => false
-    t.datetime "updated_at",                                                                     :null => false
+    t.boolean  "solved",                                                                         :default => false
+    t.datetime "created_at",                                                                                        :null => false
+    t.datetime "updated_at",                                                                                        :null => false
   end
 
   add_index "incidents", ["coordinates"], :name => "index_incidents_on_coordinates", :spatial => true

@@ -1,0 +1,13 @@
+<div class="row-fluid">
+	<ul class="nav nav-pills pull-right">
+		<li class="<%= (controller.action_name == 'index' ? 'active' : nil) %>"><%= link_to 'Todo', bikes_path %></li>
+  	<li class="<%= (controller.action_name == 'popular' ? 'active' : nil) %>"><%= link_to 'Popular', popular_bikes_path %></li>
+		<li class="<%= (controller.action_name == 'stolen' ? 'active' : nil) %>"><%= link_to 'Bicis robadas', stolen_bikes_path %></li>
+		<li class="<%= (controller.action_name == 'recovered' ? 'active' : nil) %>"><%= link_to 'Bicis recuperadas', recovered_bikes_path %></li>
+	
+		<li class="<%= (controller.action_name == 'sell_or_rent' ? 'active' : nil) %>"><%= link_to 'Bicis en venta y renta', sell_or_rent_bikes_path %></li>
+		<li class="<%= (controller.action_name == 'shared' ? 'active' : nil) %>"><%= link_to 'Bicis en préstamo', shared_bikes_path %></li>
+	
+		<li><%= link_to 'Servicios y Accesorios', '#' %></li>
+  </ul>
+</div>

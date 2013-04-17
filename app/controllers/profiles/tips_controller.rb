@@ -43,9 +43,6 @@ class Profiles::TipsController < ProfilesController
   end
   
   private
-  def find_user
-    @user = current_user
-  end
   
   def find_tip
     @tip = Tip.find(params[:id])

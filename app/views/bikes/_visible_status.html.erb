@@ -1,0 +1,24 @@
+<br/>
+<div class="row-fluid">
+	<p class="pull-right">
+		<% if theft_report=bike.last_theft_report %>
+			<span class="label label-important">
+				<%= link_to 'Robada', user_profile_path(bike.user.username).concat("/#/incidents/#{theft_report.identifier}") %>
+			</span>
+		<% elsif theft_recover_report=bike.last_theft_recover_report %>
+			<span class="label label-success">
+				<%= link_to 'Recuperada', user_profile_path(bike.user.username).concat("/#/incidents/#{theft_recover_report.identifier}") %>
+			</span>
+		<% end %>
+
+		<% if bike.is_socialized? && bike.last_theft_report.nil? || !bike.last_theft_recover_report.nil? %>
+			<% bike.bike_statuses.each do |status| %>
+				<% if status.is_available? %>
+					<span class="label label-info">
+						<%= link_to status.humanized_status, bike_path(bike) %>
+					</span>
+				<% end %>
+			<% end %>
+		<% end %>
+	</p>
+</div>

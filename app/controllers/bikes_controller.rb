@@ -7,11 +7,28 @@ class BikesController < ApplicationController
     @bikes = Bike.order('created_at DESC')
   end
   
-  def search
+  def stolen
+    @bikes = Bike.fetch_stolen(current_user)
+    render :action => 'index'
+  end
+  
+  def recovered
+    @bikes = Bike.fetch_stolen(current_user, :include_recovered_ones_only)
+    render :action => 'index'
   end
   
   def popular
-    @bikes = Bike.most_popular
+    @bikes = Bike.most_popular(current_user)
+    render :action => 'index'
+  end
+  
+  def sell_or_rent
+    @bikes = Bike.for_social_use([:rent, :sell], current_user)
+    render :action => 'index'
+  end
+  
+  def shared
+    @bikes = Bike.for_social_use([:share], current_user)
     render :action => 'index'
   end
   

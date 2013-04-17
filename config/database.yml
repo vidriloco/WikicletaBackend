@@ -33,9 +33,9 @@ development:
 test:
   adapter: postgis
   encoding: unicode
-  database: ciudadio_test
+  database: wikicleta_test
   pool: 5
-  username: postgres
+  username: spalatin
   password:
 
 production:

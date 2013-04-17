@@ -1,6 +1,7 @@
 <div id="<%= bike.id %>" class="bike board rounded-5 shadow-light">
-	<h3><%= link_to bike.name, bike_path(bike) %></h3>
-	<p class="brand"><%= bike.brand %></p>
+	
+	<p class="title"><%= link_to bike.name, bike_path(bike) %></p>
+	<p class="brand"><%= bike.brand %></p>	
 	<div class="owner">	
 		<% if showing_bike_owner %>
 			<% if current_user_equals(@user) %>
@@ -26,5 +27,6 @@
 		</p>
 		<div class="clear"></div>
 	</div>
-	<% %>
+	
+	<%= render :partial => 'bikes/visible_status', :locals => {:bike => bike } %>
 </div>

@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Bike do
   
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:user, :city => FactoryGirl.create(:gdl))
   end
   
   describe "Having a bike registered" do
     
     before(:each) do
-      @bike_owner = FactoryGirl.create(:pancho)
+      @bike_owner = FactoryGirl.create(:pancho, :city => FactoryGirl.create(:df))
       @bike = FactoryGirl.create(:bike, :user => @bike_owner)
     end
     
@@ -30,6 +30,191 @@ describe Bike do
       user_like_bike.user.should == @user
       user_like_bike.bike.should == @bike
     end
+    
+    it "should NOT appear on the list of stolen bikes" do
+      Bike.fetch_stolen(nil).should == []
+    end
+    
+    it "should NOT appear on the list of local stolen bikes to a user on a different city" do
+      Bike.fetch_stolen(@user).should == []
+    end
+    
+    it "should NOT appear on the list of recovered bikes" do
+      Bike.fetch_stolen(nil, :include_recovered_ones_only).should == []
+    end
+    
+    it "should NOT appear on the list of local recovered bikes to a user on a different city" do
+      Bike.fetch_stolen(@user, :include_recovered_ones_only).should == []
+    end
+    
+    describe "if marked for social share" do
+      
+      before(:each) do
+        FactoryGirl.create(:bike_sell, :bike => @bike)
+        FactoryGirl.create(:bike_share, :bike => @bike)
+      end
+      
+      it "should appear on the list of shared bikes" do
+        Bike.for_social_use([:share], nil).should == [@bike]
+      end
+
+      it "should NOT appear on the list of shared bikes to a user on a different city" do
+        Bike.for_social_use([:share], @user).should == []
+      end
+
+      it "should appear on the list of rent/sell bikes" do
+        Bike.for_social_use([:rent, :sell], nil).should == [@bike]
+      end
+
+      it "should NOT appear on the list of rent/sell bikes to a user on a different city" do
+        Bike.for_social_use([:rent, :sell], @user).should == []
+      end
+      
+    end
+    
+    describe "if reported as stolen" do
+      
+      before(:each) do
+        @incident = FactoryGirl.create(:theft, :bike => @bike, :user => @bike_owner)
+      end
+      
+      it "should appear on the list of stolen bikes" do
+        Bike.fetch_stolen(nil).should == [@bike]
+      end
+      
+      it "should NOT appear on the list of local stolen bikes to a user on a different city" do
+        Bike.fetch_stolen(@user).should == []
+      end
+      
+      it "should NOT appear on the list of recovered bikes" do
+        Bike.fetch_stolen(nil, :include_recovered_ones_only).should == []
+      end
+      
+      it "should NOT appear on the list of local recovered bikes to a user on a different city" do
+        Bike.fetch_stolen(@user, :include_recovered_ones_only).should == []
+      end
+      
+      it "should appear on the list of populars" do
+        Bike.most_popular(nil).should == [@bike]
+      end
+      
+      it "should NOT appear on the list of populars to a user on a different city" do
+        Bike.most_popular(@user).should == []
+      end
+      
+      it "should NOT appear on the list of shared bikes" do
+        Bike.for_social_use([:share], nil).should == []
+      end
+      
+      it "should NOT appear on the list of shared bikes to a user on a different city" do
+        Bike.for_social_use([:share], @user).should == []
+      end
+      
+      it "should NOT appear on the list of rent/sell bikes" do
+        Bike.for_social_use([:rent, :sell], nil).should == []
+      end
+      
+      it "should NOT appear on the list of rent/sell bikes to a user on a different city" do
+        Bike.for_social_use([:rent, :sell], @user).should == []
+      end
+      
+      describe "if marked for social share" do
+        
+        before(:each) do
+          FactoryGirl.create(:bike_sell, :bike => @bike)
+          FactoryGirl.create(:bike_share, :bike => @bike)
+        end
+        
+        it "should NOT appear on the list of shared bikes" do
+          Bike.for_social_use([:shared], nil).should == []
+        end
+
+        it "should NOT appear on the list of shared bikes to a user on a different city" do
+          Bike.for_social_use([:shared], @user).should == []
+        end
+
+        it "should NOT appear on the list of rent/sell bikes" do
+          Bike.for_social_use([:rent, :sell], nil).should == []
+        end
+
+        it "should NOT appear on the list of rent/sell bikes to a user on a different city" do
+          Bike.for_social_use([:rent, :sell], @user).should == []
+        end
+        
+      end
+      
+      describe "if recovered" do
+        before(:each) do
+          @incident.update_attribute(:solved, true)
+        end
+        
+        it "should appear on the list of recovered bikes" do
+          Bike.fetch_stolen(nil, :include_recovered_ones_only).should == [@bike]
+        end
+
+        it "should NOT appear on the list of local recovered bikes to a user on a different city" do
+          Bike.fetch_stolen(@user, :include_recovered_ones_only).should == []
+        end
+        
+        it "should NOT appear on the list of stolen bikes" do
+          Bike.fetch_stolen(nil).should == []
+        end
+
+        it "should NOT appear on the list of local stolen bikes to a user on a different city" do
+          Bike.fetch_stolen(@user).should == []
+        end
+        
+        it "should appear on the list of populars" do
+          Bike.most_popular(nil).should == [@bike]
+        end
+
+        it "should NOT appear on the list of populars to a user on a different city" do
+          Bike.most_popular(@user).should == []
+        end
+
+        it "should NOT appear on the list of shared bikes" do
+          Bike.for_social_use([:shared], nil).should == []
+        end
+
+        it "should NOT appear on the list of shared bikes to a user on a different city" do
+          Bike.for_social_use([:shared], @user).should == []
+        end
+
+        it "should NOT appear on the list of rent/sell bikes" do
+          Bike.for_social_use([:rent, :sell], nil).should == []
+        end
+
+        it "should NOT appear on the list of rent/sell bikes to a user on a different city" do
+          Bike.for_social_use([:rent, :sell], @user).should == []
+        end
+        
+        describe "if marked for social share" do
+
+          before(:each) do
+            FactoryGirl.create(:bike_sell, :bike => @bike)
+            FactoryGirl.create(:bike_share, :bike => @bike)
+          end
+
+          it "should appear on the list of shared bikes" do
+            Bike.for_social_use([:share], nil).should == [@bike]
+          end
+
+          it "should NOT appear on the list of shared bikes to a user on a different city" do
+            Bike.for_social_use([:share], @user).should == []
+          end
+
+          it "should appear on the list of rent/sell bikes" do
+            Bike.for_social_use([:rent, :sell], nil).should == [@bike]
+          end
+
+          it "should NOT appear on the list of rent/sell bikes to a user on a different city" do
+            Bike.for_social_use([:rent, :sell], @user).should == []
+          end
+
+        end
+      end
+    end
+    
 
     describe "and already liked by myself" do
       

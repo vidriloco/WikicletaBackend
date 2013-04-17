@@ -14,7 +14,7 @@ class CreateIncidents < ActiveRecord::Migration
       t.integer :user_id
       t.integer :bike_id
 
-      t.boolean :solved
+      t.boolean :solved, :default => false
 
       t.timestamps
     end
