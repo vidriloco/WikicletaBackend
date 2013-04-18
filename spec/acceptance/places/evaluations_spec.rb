@@ -155,7 +155,7 @@ def evaluation_review_for(place, evaluations_count, eval_status=:evaluate)
 end
 
 def register_evaluation_form_for(category)
-  login_with(Factory(:admin), new_admin_session_path)
+  #login_with(Factory(:admin), new_admin_session_path)
   click_link MetaSurvey.model_name.human.pluralize
 
   click_link I18n.t('actions.new.fem')

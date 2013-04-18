@@ -2,7 +2,7 @@ module HelperMethods
   
   def login_with(user, path=new_user_session_path)
     visit path
-    login_attr=user.is_a?(Admin) ? "email" : "login"
+    login_attr= "login"
     fill_in "#{user.class.to_s.downcase}_#{login_attr}", :with => user.email
     fill_in "#{user.class.to_s.downcase}_password", :with => user.password
 

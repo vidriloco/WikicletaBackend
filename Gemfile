@@ -28,6 +28,9 @@ gem 'dbf'
 gem 'squeel'
 gem 'activerecord-postgis-adapter'
 
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
+
 group :test do
 	gem 'capybara'
   gem 'database_cleaner'

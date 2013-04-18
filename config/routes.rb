@@ -1,5 +1,7 @@
 Ciudadio::Application.routes.draw do  
-  devise_for :admins, :only => [:sessions]
+  ActiveAdmin.routes(self)
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
 

@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   
   layout :layout_by_resource
   
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(resource_or_scope)
     if user_signed_in?
-      stored_location_for(resource) || root_path
-    elsif admin_signed_in?
-      stored_location_for(resource) || admins_index_path
+      stored_location_for(resource_or_scope) || root_path
+    elsif resource_or_scope.is_a?(AdminUser)
+      admin_dashboard_path(resource_or_scope)
     end
   end
   
