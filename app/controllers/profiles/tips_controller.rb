@@ -13,6 +13,7 @@ class Profiles::TipsController < ProfilesController
   end
   
   def new
+    @user = current_user if @user.nil?
     @tip = Tip.new
   end
   
@@ -27,6 +28,7 @@ class Profiles::TipsController < ProfilesController
   end
   
   def edit
+    @user = current_user if @user.nil?
   end
   
   def update

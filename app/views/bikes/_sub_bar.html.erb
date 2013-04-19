@@ -8,6 +8,8 @@
 		<li class="<%= (controller.action_name == 'sell_or_rent' ? 'active' : nil) %>"><%= link_to 'Bicis en venta y renta', sell_or_rent_bikes_path %></li>
 		<li class="<%= (controller.action_name == 'shared' ? 'active' : nil) %>"><%= link_to 'Bicis en préstamo', shared_bikes_path %></li>
 	
-		<li class="<%= (controller.action_name == 'services_and_accessories' ? 'active' : nil) %>"><%= link_to 'Servicios y Accesorios', services_and_accessories_bikes_path %></li>
+		<li class="<%= (controller.action_name == 'services_and_accessories' ? 'active' : nil) %>">
+			<%= link_to 'Servicios y Accesorios', services_and_accessories_bikes_path %>
+		</li>
   </ul>
 </div>

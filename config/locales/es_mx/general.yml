@@ -23,7 +23,7 @@ es_MX:
       tips:
         categories:
           danger: "Peligro"
-          alert: "Alerta"
+          alert: "Recomendación"
           sightseeing: "Para ver"
     sections:
       welcome: 
@@ -76,6 +76,7 @@ es_MX:
     register_or_login: "Registrate o Inicia Sesión"
     return: "Regresar"
     share: "Compartir"
+    contribute_to_map: "Agrega un punto en el mapa"
     save: "Guardar"
     update: "Guardar cambios"
     cancel: "Cancelar"

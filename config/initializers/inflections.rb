@@ -13,4 +13,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'alerta', 'alertas'
   inflect.irregular 'avería', 'averías'
   inflect.irregular 'para ver', 'para ver'
+  inflect.irregular 'recomendación', 'recomendaciones'
 end

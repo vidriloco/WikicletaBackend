@@ -1,7 +1,5 @@
 <%= render 'maps/shared/city_not_set_alert' %>
-
-<h3 class="centered-text">Mapa de tu ciudad</h3>
-<div class="separator"></div>
+<%= render 'maps/shared/header' %>
 <div>	
 	<%= navbar_map_for %>
 	<div id="stats-container">
@@ -11,6 +9,7 @@
 
 <div id="map" class="show-only edit map-dimensions map-big shadow-light rounded-5"></div>
 <br>
+
 <div class="content-fluid">
 	<div id="listing-contents" class="listing-view" data-suburl="places">
 		<div class="first"></div>

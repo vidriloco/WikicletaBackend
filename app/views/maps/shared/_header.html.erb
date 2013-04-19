@@ -1,0 +1,12 @@
+<div class="row-fluid">
+	<div class="pull-right">
+		<% if user_signed_in? %>
+			<a class='btn btn-success' href="<%= user_profile_path(current_user.username) %>"><i class='icon icon-map-marker'></i> <%= t('actions.contribute_to_map') %></a>
+		<% else %>
+			<a class='btn btn-success' href="<%= new_user_session_path %>"><i class='icon icon-map-marker'></i> <%= t('actions.contribute_to_map') %></a>
+		<% end %>
+	</div>
+</div>
+<h3 class="centered-text">Mapa de tu ciudad</h3>
+
+<div class="separator"></div>
