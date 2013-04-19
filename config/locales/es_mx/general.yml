@@ -76,7 +76,7 @@ es_MX:
     register_or_login: "Registrate o Inicia Sesión"
     return: "Regresar"
     share: "Compartir"
-    contribute_to_map: "Agrega un punto en el mapa"
+    contribute_to_map: "Agrega un punto al mapa"
     save: "Guardar"
     update: "Guardar cambios"
     cancel: "Cancelar"
