@@ -103,7 +103,10 @@ es_MX:
         empty:
           message: "No hay bicis o elementos populares aún"
           invite: "Sube tu bici y su foto, quizás se vuelva popular"
-          
+      services_and_accessories:
+        empty:
+          message: "Por ahora no hay servicios o accesorios registrados"
+          invite: "¿Quieres publicar un servicio o accesorio para bicis? Contáctanos %{contact}"
       edit:
         title: "Modificar bici"
         change_photo: "Por si quieres cambiar la foto actual de tu bici:"

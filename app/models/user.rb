@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   has_many :authorizations, :dependent => :destroy
   has_many :bikes, :dependent => :destroy
+  
   has_many :user_like_bikes, :dependent => :destroy
+  has_many :user_like_promoteds, :dependent => :destroy
+  
   has_many :comments, :dependent => :destroy
   
   has_many :incidents, :dependent => :destroy

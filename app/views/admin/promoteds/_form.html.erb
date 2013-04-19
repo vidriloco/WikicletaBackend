@@ -1,0 +1,10 @@
+<%= semantic_form_for [:admin, @promoted] do |f| %>
+	<%= f.inputs do %>
+		<%= f.input :headline, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20, :maxlength => 20  } %>
+		<%= f.input :main_details, :input_html => { :class => 'autogrow', :rows => 10, :cols => 10, :maxlength => 33  } %>
+		<%= f.input :extra_details, :input_html => { :class => 'autogrow', :rows => 10, :cols => 10, :maxlength => 400  } %>
+		<%= f.input :promoter_info_id, :as => :select, :collection => Hash[PromoterInfo.all.map{|b| [b.name,b.id]}] %>
+	<% end %>
+  <%= f.actions :submit %>
+<% end %>
+

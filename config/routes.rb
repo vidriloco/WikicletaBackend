@@ -60,6 +60,12 @@ Ciudadio::Application.routes.draw do
   
   resources :maps, :only => [:index]
 
+  resources :promoteds do
+    resources :pictures, :only => [:create]
+  end
+  post    '/promoteds/:id/like' => 'promoteds/likes#create'
+  delete  '/promoteds/:id/like' => 'promoteds/likes#destroy'
+  
   resources :bikes do
     collection do 
       get :stolen
@@ -67,11 +73,14 @@ Ciudadio::Application.routes.draw do
       get :popular
       get :sell_or_rent
       get :shared
+      get :services_and_accessories
     end
     
     resources :pictures, :only => [:create]
     resources :bike_statuses, :controller => 'bikes/statuses', :only => [:create, :update]
   end
+  post    '/bikes/:id/like' => 'bikes/likes#create'
+  delete  '/bikes/:id/like' => 'bikes/likes#destroy'
     
   resources :pictures, :only => [:destroy] do
     member do
@@ -79,10 +88,7 @@ Ciudadio::Application.routes.draw do
       put :change_caption
     end
   end
-  
-  post    '/bikes/:id/like' => 'bikes/likes#create'
-  delete  '/bikes/:id/like' => 'bikes/likes#destroy'
-  
+    
   get '/welcome' => 'welcome#index'
   get '/about' => 'welcome#about'
   

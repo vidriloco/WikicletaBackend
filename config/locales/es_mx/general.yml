@@ -1,6 +1,8 @@
 es_MX:
   app:
     name: "Wikicleta"
+    contact:
+      promote: "publica@wikicleta.com"
     categories:
       parkings:
         kinds:

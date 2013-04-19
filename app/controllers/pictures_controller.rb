@@ -6,9 +6,15 @@ class PicturesController < ApplicationController
     @picture = Picture.new_from(params)
     
     if @picture.save
-      render :json => {:success => true}
+      respond_to do |format|
+        format.json { render :json => {:success => true} }
+        format.html { redirect_to :back }
+      end
     else 
-      render :json => [{:error => "custom_failure"}], :status => 304
+      respond_to do |format|
+        format.json { render :json => [{:error => "custom_failure"}], :status => 304 }
+        format.html { redirect_to :back }
+      end
     end
   end
 

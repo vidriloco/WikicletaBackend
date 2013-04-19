@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418001602) do
+ActiveRecord::Schema.define(:version => 20130418214636) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -169,6 +169,31 @@ ActiveRecord::Schema.define(:version => 20130418001602) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "promoteds", :force => true do |t|
+    t.string   "headline"
+    t.string   "main_details"
+    t.string   "extra_details"
+    t.integer  "likes_count",      :default => 0
+    t.integer  "promoter_info_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "promoter_infos", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.text     "tags"
+    t.integer  "city_id"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+  end
+
+  add_index "promoter_infos", ["coordinates"], :name => "index_promoter_infos_on_coordinates", :spatial => true
+  add_index "promoter_infos", ["coordinates"], :name => "unique_coordinates_promoter_infos", :unique => true
+
   create_table "tips", :force => true do |t|
     t.string   "content"
     t.integer  "category"
@@ -190,6 +215,15 @@ ActiveRecord::Schema.define(:version => 20130418001602) do
   end
 
   add_index "user_like_bikes", ["user_id", "bike_id"], :name => "uniqueness_likes_idx", :unique => true
+
+  create_table "user_like_promoteds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "promoted_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "user_like_promoteds", ["user_id", "promoted_id"], :name => "uniqueness_promoted_likes_idx", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

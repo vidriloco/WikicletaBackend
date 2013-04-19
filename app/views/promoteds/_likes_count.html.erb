@@ -1,0 +1,8 @@
+<div class="likes-count">
+	<div id="<%= promoted.id %>" class="<%= promoted.is_liked_by?(current_user) %> heart" original-title="<%= tooltip_for(promoted) %>" data-group="promoteds"></div>
+	<% if  promoted.likes_count == 1 %>
+		<p class="likes rounded-5"><span class="count">1</span><%= t('bikes.views.show.likes.one') %></p>
+	<% else %>
+		<p class="likes rounded-5"><span class="count"><%=  promoted.likes_count %></span><%= t('bikes.views.show.likes.some') %></p>
+	<% end %>
+</div>

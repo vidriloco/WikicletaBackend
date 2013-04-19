@@ -14,7 +14,7 @@ class CreateWorkshops < ActiveRecord::Migration
       t.boolean     :others_can_edit_it
       t.point       :coordinates, :geographic => true
       t.integer     :user_id
-      
+      t.integer     :promoter_info_id
       t.timestamps
     end
     

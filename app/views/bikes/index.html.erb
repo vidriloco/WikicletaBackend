@@ -3,7 +3,7 @@
 	<div class="separator"></div>
 	<%= render 'bikes/sub_bar'%>
 	<div>
-		<% if @bikes.empty? %>
+		<% if @items.empty? %>
 			<div class="row-fluid top-spaced">
 				<div class="span12">
 					<p class="centered-text"><%= image_tag('empty_icon.png') %></p>
@@ -34,13 +34,20 @@
 						<% else %>
 							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.not_logged_in.invite'), sign_up_path %></p>
 						<% end %>
+					<% elsif controller.action_name == 'services_and_accessories' %>
+						<h3 class="empty centered-text"><%= t('bikes.views.services_and_accessories.empty.message') %></h3>
+						<p class="centered-text"><%= t('bikes.views.services_and_accessories.empty.invite', :contact => mail_to(t('app.contact.promote'))).html_safe %></p>
 					<% end %>
-				</span>
+				</div>
 			</div>
 		<% else %>
 			<div id="masonry" class="index centered">
-				<% @bikes.each do |bike| %>
-					<%= render :partial => 'bikes/bike', :locals => { :bike => bike, :showing_bike_owner => true } %>
+				<% @items.each do |item| %>
+					<% if item.is_a? Bike %>
+						<%= render :partial => 'bikes/bike', :locals => { :bike => item, :showing_bike_owner => true } %>
+					<% elsif item.is_a? Promoted %>
+						<%= render :partial => 'promoteds/promoted', :locals => { :promoted => item } %>
+					<% end %>
 				<% end %>
 			</div>
 		<% end %>

@@ -24,7 +24,7 @@ $(document).ready(function() {
 	}*/
 	
   $('#masonry').masonry({
-    itemSelector : '.bike',
+    itemSelector : '.item-bikly',
 		isAnimated: false,
 		isFitWidth: true
   });
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 		  type: type,
-		  url: "/bikes/"+id+"/like",
+		  url: "/"+$(this).attr('data-group')+"/"+id+"/like",
 		  data: { format : "js" }
 		});
 	});

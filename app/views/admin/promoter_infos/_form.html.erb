@@ -1,0 +1,9 @@
+<%= semantic_form_for [:admin, @promoter_info] do |f| %>
+  <%= f.inputs :name, :email, :phone, :address %>
+	<%= f.inputs do %>
+		<%= f.input :city_id, :as => :select, :collection => Hash[City.all.map{|b| [b.name,b.id]}] %>
+		<%= f.input :tags, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  } %>
+	<% end %>
+  <%= f.actions :submit %>
+<% end %>
+

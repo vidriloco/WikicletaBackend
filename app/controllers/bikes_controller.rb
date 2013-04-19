@@ -4,31 +4,36 @@ class BikesController < ApplicationController
   before_filter :find_bike, :only => [:edit, :update, :show, :destroy]
   
   def index
-    @bikes = Bike.order('created_at DESC')
+    @items = Bike.order('created_at DESC').concat(Promoted.order('created_at DESC')).shuffle
   end
   
   def stolen
-    @bikes = Bike.fetch_stolen(current_user)
+    @items = Bike.fetch_stolen(current_user)
     render :action => 'index'
   end
   
   def recovered
-    @bikes = Bike.fetch_stolen(current_user, :include_recovered_ones_only)
+    @items = Bike.fetch_stolen(current_user, :include_recovered_ones_only)
     render :action => 'index'
   end
   
   def popular
-    @bikes = Bike.most_popular(current_user)
+    @items = Bike.most_popular(current_user).concat(Promoted.most_popular(current_user)).sort_by(&:likes_count).reverse!
     render :action => 'index'
   end
   
   def sell_or_rent
-    @bikes = Bike.for_social_use([:rent, :sell], current_user)
+    @items = Bike.for_social_use([:rent, :sell], current_user)
     render :action => 'index'
   end
   
   def shared
-    @bikes = Bike.for_social_use([:share], current_user)
+    @items = Bike.for_social_use([:share], current_user)
+    render :action => 'index'
+  end
+  
+  def services_and_accessories
+    @items = Promoted.fetch_all(current_user)
     render :action => 'index'
   end
   

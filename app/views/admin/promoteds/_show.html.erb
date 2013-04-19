@@ -1,0 +1,25 @@
+
+<div class="panel">
+	<h3><%= t('promoteds.views.show.pictures.photo') %></h3>
+	<div class="panel_contents">
+		<% if @promoted.pictures.empty? %>
+			<p><b><%= t('promoteds.views.show.pictures.empty') %></b></p>
+		<% else %>
+			<%= image_tag(@promoted.pictures.first.image.url) %>
+			<p><b><%= t('promoteds.views.show.pictures.change') %></b></p>
+		<% end %>
+		
+		<form method="post" enctype="multipart/form-data" action="/promoteds/<%= @promoted.id %>/pictures" accept-charset="UTF-8">
+			<div style="margin:0;padding:0;display:inline">
+				<input type="hidden" value="✓" name="utf8">
+				<input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+			</div>
+			<div style="margin:0;padding:0;display:inline">
+				<input type="hidden" value="true" name="drop">
+				<label for="file_label"><%= t('promoteds.views.show.pictures.select_file') %></label>
+				<input id="file" type="file" name="file">
+				<input type="submit" value="<%= t('actions.save') %>" name="commit">
+			</div>
+		</form>
+	</div>
+</div>

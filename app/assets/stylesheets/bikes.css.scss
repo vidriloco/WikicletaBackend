@@ -72,17 +72,17 @@ body {
 
 .index {
 
-	.bike:hover {
-		border: 0.2px solid #8EC4FF;
+	.promoted:hover, .bike:hover {
+		border: 0.2px solid #FFA047;
 		
-		h3 {
+		p.title {
 			a {
 				color: #FF5F00;
 			}
 		}
 	}
-
-	.bike {
+	
+	.bike, .promoted {
 		padding: 14px;
 		background-color: #F4F4F4;
 		border: 1px solid white;
@@ -155,7 +155,7 @@ body {
 
 .show {
 	
-	.bike {
+	.bike, .promoted {
 		width: 720px;
 		margin-bottom: 50px;
 		
@@ -166,6 +166,32 @@ body {
 		.photo img {
 			border: 1px solid #8C8C8C;
 		}
+		
+		.service-details {
+			margin-top: 20px;
+			
+			ul {
+				list-style: none;
+				padding: 15px;
+				li {
+					text-align: right;
+					font-size: 11px;
+					color: #999;
+				}
+			}
+			
+			.owner {
+				font-weight: bold;
+				color: #B3CEEE;
+			}
+			
+			.service-icon {
+				width: 80px;
+				height: 80px;
+				background: url('/assets/service_provider_icon.png');
+			}
+		}
+		
 		
 		.details, .statuses, .comments, .description {
 			padding: 20px;
