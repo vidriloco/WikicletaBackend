@@ -23,14 +23,14 @@
 					<% elsif controller.action_name == 'sell_or_rent' %>
 						<h3 class="empty centered-text"><%= t('bikes.views.sell_or_rent.empty.message') %></h3>
 						<% if user_signed_in? %>
-							<p class="centered-text"><%= link_to t('bikes.views.sell_or_rent.empty.logged_in.invite'), user_bikes_path(current_user.username) %></p>
+							<p class="centered-text"><%= link_to t('bikes.views.sell_or_rent.empty.logged_in.invite'), user_gear_path(current_user.username) %></p>
 						<% else %>
 							<p class="centered-text"><%= link_to t('bikes.views.sell_or_rent.empty.not_logged_in.invite'), sign_up_path %></p>
 						<% end %>
 					<% elsif controller.action_name == 'shared' %>
 						<h3 class="empty centered-text"><%= t('bikes.views.shared.empty.message') %></h3>
 						<% if user_signed_in? %>
-							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.logged_in.invite'), user_bikes_path(current_user.username) %></p>
+							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.logged_in.invite'), user_gear_path(current_user.username) %></p>
 						<% else %>
 							<p class="centered-text"><%= link_to t('bikes.views.shared.empty.not_logged_in.invite'), sign_up_path %></p>
 						<% end %>

@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
     end
   end
   
-  def bikes
+  def gear
     @bikes = Bike.all_from_user(@user)
   end
   

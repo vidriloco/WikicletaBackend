@@ -46,7 +46,7 @@ Ciudadio::Application.routes.draw do
   end
   
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
-  get '/profiles/:username/bikes' => 'profiles#bikes', :as => 'user_bikes'
+  get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
   
   namespace :maps do 
     resources :incidents, :only => [:index]

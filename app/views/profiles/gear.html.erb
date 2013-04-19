@@ -1,28 +1,29 @@
 <% if current_user_equals(@user) %>
 	<div class="row-fluid top-spaced-70">
-		<div class="span10 actions">
+		<div class="span10 actions pull-right">
 			<div class="row-fluid">
-				<h2>¿Te gusta tu bici?</h2>
-				<h4>Presúmela</h4>
+				<h2>Por ahora solo puedes subir tu bici</h2>
+				<h4>¡Presume tu bici!</h4>
+				<br/>
+				<p><%= link_to 'Añadir', new_bike_path, :class => 'btn btn-primary pull-right' %></p>
+				
 			</div>
 		</div>
-		<div class="span2 top-spaced">
-			<%= link_to 'Añadir nueva', new_bike_path, :class => 'btn btn-primary' %>
-		</div>
+		
 	</div>
 <% else %>
 	<div class="row-fluid top-spaced-70">
 		<div class="span12 actions">
 			<div class="row-fluid">
 				<h2>Las bicis de <%= @user.username %></h2>
-				<h4>Quizás alguna la rente, o venda. Si no, ¡dale fav a la que te guste!</h4>
+				<h4>Quizás está rentando o vendiendo una. Si no, ¡dale fav a la que te guste!</h4>
 			</div>
 		</div>
 	</div>
 <% end %>
 <br/>
 <div class="row-fluid">
-	<%= subsection_with("Tus bicis", "Sus bicis") %>
+	<%= subsection_with("Tu equipo: tus bicis y accesorios", "Su equipo: sus bicis y accesorios") %>
 </div>
 
 <div class="top-spaced">	
