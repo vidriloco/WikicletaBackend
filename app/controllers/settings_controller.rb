@@ -24,6 +24,17 @@ class SettingsController < ApplicationController
     redirect_to request.referer || 'account'    
   end
   
+  def change_picture
+    Picture.find_or_create_from(params.merge(:user_id => current_user.id))
+
+    redirect_to :back
+  end
+  
+  def destroy_picture
+    current_user.picture.destroy
+    redirect_to :back
+  end
+  
   private 
   
   def expose_user

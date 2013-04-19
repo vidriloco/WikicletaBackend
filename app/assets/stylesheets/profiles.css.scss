@@ -8,19 +8,67 @@
  */
 
 .profile {
+	.circular {
+		width: 80px;
+		height: 80px;
+		border-radius: 40px;
+		-webkit-border-radius: 40px;
+		-moz-border-radius: 40px;
+		-moz-box-shadow: 0 0 8px #C3BFC2;
+		-webkit-box-shadow: 0 0 8px #C3BFC2;
+		box-shadow: 0 0 8px #C3BFC2;
+		
+		border: 1px solid #A7BDFF !important;
+		-moz-box-shadow: 0 0 8px #A7BDFF;
+		-webkit-box-shadow: 0 0 8px #A7BDFF;
+		box-shadow: 0 0 8px #A7BDFF;
+	}
+	
+	.circular:hover {
+		border: 1px solid #FF6E28 !important;
+		-moz-box-shadow: 0 0 8px #FF6E28;
+		-webkit-box-shadow: 0 0 8px #FF6E28;
+		box-shadow: 0 0 8px #FF6E28;
+	}
+
+	.circular img {
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+		
+	.instruction {
+		font-size: 11px;
+		margin-top: 5px;
+	}
+	
 	.avatar-img {
 		width: 80px;
 		height: 80px;
 
 		border-radius: 40px;
 		background-color: #A8C9E5;
-
+		border: 0.5px solid #A8C9E5;
 		i {
-			padding-top: 10px;
+			margin-top: 19%;
 			display: block;
 			font-size: 50px;
 			color: #EAF6F8;
 		}
+		
+		i.icon-plus {
+			margin-top: 23%;
+		}
+		
+		a {
+			text-decoration: none;
+		}
+	}
+	
+	.avatar-img:hover {
+		border: 0.5px solid #FBFFF5;
+		-moz-box-shadow: 0 0 8px #C3BFC2;
+		-webkit-box-shadow: 0 0 8px #C3BFC2;
+		box-shadow: 0 0 8px #C3BFC2;
 	}
 	
 	.menu {

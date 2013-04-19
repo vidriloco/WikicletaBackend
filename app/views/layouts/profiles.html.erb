@@ -17,11 +17,8 @@
 	<div id="top-container" class="row-fluid top-spaced-70 profile">
 		<div class="span1"></div>
 		<div class="span2">
-			<div class="avatar-img centered centered-text"><i class="icon-user"></i></div>
-			<div class="centered-text">
-				<h3><%= @user.username %></h3>
-				<p>Ciudad de México</p>
-			</div>
+			<%= render 'layouts/profiles/main_user_info' %>
+			
 			<div class="well menu">
 				<ul class="nav nav-list">
 		    	<li class="<%= on_path?(user_profile_path(@user.username)) %>">

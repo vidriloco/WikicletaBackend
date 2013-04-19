@@ -31,6 +31,8 @@ Ciudadio::Application.routes.draw do
     get "profile", :via => :get
     get "access", :via => :get
     put "changed", :via => :put
+    put "change_picture"
+    delete "destroy_picture"
   end
   
   namespace :profiles do

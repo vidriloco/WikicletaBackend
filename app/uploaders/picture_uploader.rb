@@ -3,7 +3,6 @@ require 'carrierwave/processing/mime_types'
 
 class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
-  
   # Include RMagick or ImageScience support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -33,15 +32,22 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :mini_thumb do
-    process :resize_to_limit => [nil, 300]
+    process :auto_orient
+    process :resize_to_fit => [90, nil]
   end
   
-  version :thumb do
+  version :thumb, :if => :model_not_associates_to_user? do
+    process :auto_orient
     process :resize_to_limit => [250, nil]
   end
   
-  version :preview do
+  version :preview, :if => :model_not_associates_to_user? do
+    process :auto_orient
     process :resize_to_fill => [720, 370, ::Magick::CenterGravity]
+  end
+  
+  def model_not_associates_to_user?(new_file=nil)
+    !model.attached_to_user?
   end
 
   def extension_white_list
@@ -53,6 +59,12 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   protected
+  def auto_orient
+    manipulate! do |img|
+      img = img.auto_orient
+    end
+  end
+    
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)

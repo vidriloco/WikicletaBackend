@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_one :picture, :as => :imageable, :dependent => :destroy
+  
   has_many :authorizations, :dependent => :destroy
   has_many :bikes, :dependent => :destroy
   

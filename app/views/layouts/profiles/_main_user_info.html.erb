@@ -1,0 +1,16 @@
+<% if user_signed_in? && !current_user.picture.nil? %>
+	<div class="centered centered-text">
+		<div id="profile-image" class="circular centered centered-text" data-image-url="<%= current_user.picture.image.mini_thumb.url %>">
+			<%= link_to image_tag(current_user.picture.image.mini_thumb.url), settings_profile_path %>
+		</div>
+	</div>
+<% else %>
+	<div class="avatar-img centered centered-text">
+		<a href="<%= settings_profile_path %>" class="picture-file-selector"><i class="icon-user"></i></a>
+	</div>
+<% end %>
+
+<div class="centered-text">
+	<h3><%= @user.username %></h3>
+	<p>Ciudad de México</p>
+</div>
