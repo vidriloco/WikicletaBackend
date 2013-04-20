@@ -25,6 +25,10 @@ es_MX:
           danger: "Peligro"
           alert: "Recomendación"
           sightseeing: "Para ver"
+      stickers:
+        statuses:
+          available: "Disponible"
+          claimed: "Tomado"
     sections:
       welcome: 
         greet: "Hola"

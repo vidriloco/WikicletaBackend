@@ -1,0 +1,18 @@
+<script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=true'></script>
+<div id="map" class="edit medium-sized"></div>
+<%= semantic_form_for [:admin, @sticker] do |f| %>	
+	<%= f.inputs do %>
+		<li id="sticker_code" class="string input optional stringish">
+			<label class=" label" for="sticker_code">Código actual</label>
+			<%= @sticker.code || "----" %>
+		</li>
+	  <%= f.input :details, :as => :text %>
+		<%= f.input :banned, :as => :number %>
+		<%= f.input :fake, :as => :boolean %>
+		<%= f.input :status, :as => :select, :collection => Sticker.humanized_categories_for(:statuses).invert %>
+	<% end %>
+	<%= f.hidden_field :lat, :value => @sticker.try(:stored_lat) %>
+	<%= f.hidden_field :lon, :value => @sticker.try(:stored_lon) %>
+  <%= f.actions :submit, :cancel %>
+<% end %>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418214636) do
+ActiveRecord::Schema.define(:version => 20130419162322) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -193,6 +193,20 @@ ActiveRecord::Schema.define(:version => 20130418214636) do
 
   add_index "promoter_infos", ["coordinates"], :name => "index_promoter_infos_on_coordinates", :spatial => true
   add_index "promoter_infos", ["coordinates"], :name => "unique_coordinates_promoter_infos", :unique => true
+
+  create_table "stickers", :force => true do |t|
+    t.string   "details"
+    t.string   "code"
+    t.integer  "status"
+    t.integer  "banned",                                                                 :default => 0
+    t.boolean  "fake",                                                                   :default => false
+    t.string   "email"
+    t.spatial  "location",   :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                                                :null => false
+    t.datetime "updated_at",                                                                                :null => false
+  end
+
+  add_index "stickers", ["location"], :name => "index_stickers_on_location", :spatial => true
 
   create_table "tips", :force => true do |t|
     t.string   "content"
