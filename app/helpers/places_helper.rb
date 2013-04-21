@@ -8,10 +8,13 @@ module PlacesHelper
   
   def phones_for(place)
     if place.is_a? Workshop
-      phones = "---"
-      phones = "#{place.phone} " unless place.phone.blank?
-      phones << "#{t('connectives.and')} #{place.cell_phone}" unless place.cell_phone.blank?
-      phones
+      if !place.phone.blank? && !place.cell_phone.blank?
+        "#{place.phone} #{t('connectives.and')} #{place.cell_phone}"
+      elsif place.phone.blank? && place.cell_phone.blank?
+        "---"
+      else
+        place.phone || place.cell_phone
+      end
     end
   end
   

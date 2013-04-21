@@ -23,8 +23,8 @@ class Profiles::WorkshopsController < ProfilesController
   end
   
   def update
-    if @workshop.update_with(params[:workshop], params[:coordinates], current_user)
-      redirect_to user_profile_path(current_user.username).concat("#/places/workshops/#{@workshop.identifier}")
+    if @workshop.update_with(params[:workshop], params[:coordinates])
+      redirect_to user_profile_path(@workshop.user.username).concat("#/places/workshops/#{@workshop.identifier}")
     else
       render :action => :edit
     end

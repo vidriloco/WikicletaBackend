@@ -29,9 +29,9 @@ class Parking < ActiveRecord::Base
     end
   end
   
-  def update_with(params, coordinates, user)
+  def update_with(params, coordinates)
     self.apply_geo(coordinates)
-    self.update_attributes(params.merge(:user => user))
+    self.update_attributes(params)
   end
   
   def self.kinds

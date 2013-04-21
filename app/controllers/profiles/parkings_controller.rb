@@ -24,8 +24,8 @@ class Profiles::ParkingsController < ProfilesController
   end
   
   def update
-    if @parking.update_with(params[:parking], params[:coordinates], current_user)
-      redirect_to user_profile_path(current_user.username).concat("#/places/parkings/#{@parking.identifier}")
+    if @parking.update_with(params[:parking], params[:coordinates])
+      redirect_to user_profile_path(@parking.user.username).concat("#/places/parkings/#{@parking.identifier}")
     else
       render :action => :edit
     end

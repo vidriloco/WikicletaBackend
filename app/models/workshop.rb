@@ -29,8 +29,8 @@ class Workshop < ActiveRecord::Base
     workshop
   end
   
-  def update_with(params, coordinates, user)
+  def update_with(params, coordinates)
     self.apply_geo(coordinates)
-    self.update_attributes(params.merge(:user => user))
+    self.update_attributes(params)
   end
 end
