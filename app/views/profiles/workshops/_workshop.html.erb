@@ -2,10 +2,11 @@
 	<div class="content-fluid">
 		<div class="row-fluid header">
 			<div class="span5 title">
+				<%= image_tag('/assets/workshop.png') %>&nbsp;&nbsp;
 				<span class="emph">
 					<%= workshop.store? ? t('places.workshops.views.show.store') : t('places.workshops.views.show.workshop') %>
 				</span>
-				<span class="title"><%= workshop.name %></span></div>
+				<span class="title"><%= link_to workshop.name, user_profile_path(workshop.user.username).concat("/#/places/workshops/#{workshop.identifier}") %></span></div>
 			<div class="span7 horary">
 				<% if workshop.horary.blank? %>
 					<%= t('places.workshops.views.show.horary_empty') %>
@@ -45,7 +46,7 @@
 					<div>
 						<span class="time"><%= distance_of_time_in_words(workshop.updated_at || Date.today, Time.now, true) %></span> 
 						<% unless current_user_equals(@user) %>
-							<span class="reporter"><%= reporter_of(workshop, "/#/places/workshops/#{workshop.identifier}") %></span>
+							<span class="reporter"><%= reporter_of(workshop) %></span>
 						<% end %>
 					</div>
 				</li>

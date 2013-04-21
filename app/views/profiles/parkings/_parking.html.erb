@@ -1,9 +1,10 @@
 <div id="<%= parking.identifier %>" class="centered place parking item-on-list rounded-5" data-kind="parking" data-lat="<%= parking.lat %>" data-lon="<%= parking.lon %>">
 	<div class="content-fluid">
-		<div class="row-fluid">
+		<div class="row-fluid header">
 			<div class="span9"><p>
+				<%= image_tag('/assets/parking.png') %>&nbsp;&nbsp;
 				<span class="emph"><%= t('places.parkings.name') %></span> 
-				<span class="title"><%= parking.humanized_kind %></span></p>
+				<span class="title"><%= link_to parking.humanized_kind, user_profile_path(parking.user.username).concat("/#/places/parkings/#{parking.identifier}") %></span></p>
 			</div>
 			<div class="span3 right-text"><p><%= parking.has_roof ? t('places.parkings.views.show.with_roof') : t('places.parkings.views.show.without_roof') %></p></div>
 		</div>

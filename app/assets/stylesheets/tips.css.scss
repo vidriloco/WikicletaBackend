@@ -3,6 +3,15 @@ $sightseeing: #33992A;
 $danger: #991A00;
 $alert: #D59700;
 
+.tip {
+	.title {
+		font-size: 12px !important;
+		text-transform: uppercase;
+		margin-top: 6px;
+		font-weight: bold;
+	}
+}
+
 .listing-view {
 	.sightseeing {
 		.signal {

@@ -1,7 +1,17 @@
-.workshop {
+.workshop, .parking {
+	.emph {
+		font-weight: bold;
+		color: black !important;
+	}
+	.title {
+		a {
+			color: #FB5D00;
+		}
+		
+	}
 	
 	.header {
-		border-bottom: 1px solid #C1D6EF;
+		border-bottom: 1px solid #D4E6EF;
 		margin-bottom: 8px;
 
 		.horary {

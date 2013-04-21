@@ -1,8 +1,8 @@
 <div id="<%= tip.identifier %>" class="<%= 'first' if(tip_counter == 0) %> centered tip item-on-list rounded-5 <%= tip.category_symbol %>" data-kind="<%= tip.category_symbol %>" data-lat="<%= tip.lat %>" data-lon="<%= tip.lon %>">
 	<div class="content-fluid">
 		<div class="row-fluid">
-			<div class="span1"><div class="signal"></div></div>
-			<div class="span2"><p><%= tip.humanized_category %></p></div>
+			<div class="span1 centered-text"><%= image_tag("/assets/#{tip.category_symbol}.png") %></div>			
+			<div class="span2 title"><p><%= tip.humanized_category %></p></div>
 			<div class="span9"><p><%= tip.content %></p></div>
 		</div>
 		<div class="separator"></div>

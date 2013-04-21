@@ -350,7 +350,10 @@ $breakdowns: #F18706;
 		}
 
 		.title {
-			font-size: 14px;
+			font-size: 12px;
+			text-transform: uppercase;
+			margin-top: 5px;
+			font-weight: bold;
 		}
 
 		.signal:hover {

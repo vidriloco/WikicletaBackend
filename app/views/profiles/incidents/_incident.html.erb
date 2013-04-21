@@ -1,7 +1,7 @@
 <div id="<%= incident.identifier %>" class="<%= 'first' if(incident_counter == 0) %> centered rounded-5 incident item-on-list <%=incident.symbol_kind%>" data-kind="<%= incident.symbol_kind %>" data-lat="<%= incident.lat %>" data-lon="<%= incident.lon %>">
 	<div class="row-fluid">
 		<div class="row-fluid">
-			<div class="span1"><div class="signal"></div></div>
+			<div class="span1 centered-text"><%= image_tag("/assets/#{incident.symbol_kind}.png") %></div>
 			<p class="title span3"><%= incident.humanized_category %></p>
 			<div class="span8">
 				<div class="pull-right">
