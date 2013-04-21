@@ -9,6 +9,7 @@
 //= require profiles/incidents
 //= require profiles/tips
 //= require profiles/places
+//= require common/bikes_and_profiles
 
 var map;
 $(document).ready(function() {

@@ -7,6 +7,7 @@
 //= require quickpager.jquery.js
 // For pictures
 //= require common/pictures_base
+//= require common/bikes_and_profiles
 //= require sections/pictures
 
 $(document).ready(function() {
@@ -28,25 +29,6 @@ $(document).ready(function() {
 		isAnimated: false,
 		isFitWidth: true
   });
-	
-	$('.heart').live('click', function() {
-		$('.tipsy').fadeOut();
-		if($(this).hasClass('requires_login')) {
-			return false;
-		}
-		var id = $(this).attr('id');
-		
-		var type = "POST";
-		if($(this).hasClass('strong')) {
-			type = "DELETE";
-		}
-		
-		$.ajax({
-		  type: type,
-		  url: "/"+$(this).attr('data-group')+"/"+id+"/like",
-		  data: { format : "js" }
-		});
-	});
 	
 	$('.reveals-share').live('click', function(e) {
 		e.preventDefault();
@@ -82,7 +64,6 @@ $(document).ready(function() {
 	});
 	
 	// tipsy hovers
-	$('.heart').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 500 });
 	$('.contact').tipsy({gravity: 's', live: true, fade: true, delayIn: 100, delayOut: 60 });
 	$('.value').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 60 });
 	
