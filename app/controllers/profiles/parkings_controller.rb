@@ -5,6 +5,7 @@ class Profiles::ParkingsController < ProfilesController
   before_filter :find_parking, :only => [:destroy, :edit, :update]
   
   def new
+    @user = current_user
     @parking = Parking.new
   end
   
@@ -19,6 +20,7 @@ class Profiles::ParkingsController < ProfilesController
   end
   
   def edit
+    @user = current_user
   end
   
   def update

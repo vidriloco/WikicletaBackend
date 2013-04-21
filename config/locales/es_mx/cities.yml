@@ -1,6 +1,10 @@
 es_MX:
   cities:
     views:
+      display:
+        on_named: "en %{city}"
+        on_unknown: "en ciudad desconocida"
+        yours: "en tú ciudad"
       alerts:
         not_set: "Te falta seleccionar tu ciudad para ver lugares cercanos."
         select_city: "Establecer ciudad"

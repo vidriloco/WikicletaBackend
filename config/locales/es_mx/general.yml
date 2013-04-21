@@ -1,5 +1,11 @@
 es_MX:
   app:
+    models:
+      incident: "Incidente"
+      tip: "Tip"
+      parking: "Bici-estacionamiento"
+      workshop: "Taller/Tienda"
+      bike: "Bici"
     name: "Wikicleta"
     contact:
       promote: "publica@wikicleta.com"
@@ -44,13 +50,6 @@ es_MX:
           regulation_infractions: "Infracciones"
           search: "Buscar"
           new: "Reportar nuevo"
-      highlights:
-        title: "Puntos de Riesgo"
-        subsections:
-          recent: "Recientes"
-          solved: "Resueltos"
-          new: "Reportar nuevo"
-          search: "Buscar"
       routes:
         title: "Rutas"
         subsections:

@@ -2,7 +2,7 @@
 	<div class="row-fluid">
 		<div class="row-fluid">
 			<div class="span1"><div class="signal"></div></div>
-			<p class="title span3"><%= Bike.humanized_category_for(:incidents, incident.kind) %></p>
+			<p class="title span3"><%= incident.humanized_category %></p>
 			<div class="span8">
 				<div class="pull-right">
 					<% if incident.bike.nil? %>

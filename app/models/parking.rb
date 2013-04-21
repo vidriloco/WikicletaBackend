@@ -5,6 +5,8 @@ class Parking < ActiveRecord::Base
   validates_presence_of :coordinates, :kind
   belongs_to :user
   
+  default_scope order('updated_at DESC')
+  
   def identifier
     "parking-#{id}"
   end
@@ -17,6 +19,14 @@ class Parking < ActiveRecord::Base
     parking=Parking.new(params.merge(:user => user))
     parking.apply_geo(coords)
     parking
+  end
+  
+  def self.recent(current_user)
+    if current_user.nil? || current_user.city.nil?
+      Parking.where('updated_at > ?', 1.month.ago).limit(10)
+    else
+      Parking.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('parkings.updated_at > ?', 1.month.ago).limit(10)
+    end
   end
   
   def update_with(params, coordinates, user)

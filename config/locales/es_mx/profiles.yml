@@ -7,6 +7,7 @@ es_MX:
       social_nets: 
         title: "Redes sociales"
     actions:
+      home: "Página principal de tu perfil"
       routes: "Traza, comparte, rankea y mide tu rendimiento"
       places: "Comparte lugares bici-amigables y donde dejar la bici"
       help: "Reporta una bici robada, accidente, avería o asalto"

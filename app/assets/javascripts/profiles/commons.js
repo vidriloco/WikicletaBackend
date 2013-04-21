@@ -5,7 +5,7 @@ var parentDom = '#contents-area ';
 var Routing = {};
 
 var rootSelected = function() {
-	$(parentDom).empty();
+	$('.activities .actions li#home').addClass('active');
 }
 var drawSelectedItems = function(objects, url_function) {
 	map.resetMarkersList();

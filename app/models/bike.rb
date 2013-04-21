@@ -18,6 +18,7 @@ class Bike < ActiveRecord::Base
   
   validates_presence_of :name, :kind, :bike_brand, :user
   
+  default_scope order('updated_at DESC')
   scope :all_from_user, lambda { |user| where("user_id = ?", user.id) } 
   
   def self.fetch_stolen(user, status=false)
@@ -30,6 +31,14 @@ class Bike < ActiveRecord::Base
       'incidents.solved' => status, 
       'incidents.kind' => Bike.category_for(:incidents, :theft), 
       'users.city_id' => user.city_id)
+    end
+  end
+  
+  def self.recent(current_user)
+    if current_user.nil? || current_user.city.nil?
+      Bike.where('updated_at > ?', 1.month.ago).limit(10)
+    else
+      Bike.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('bikes.updated_at > ?', 1.month.ago).limit(10)
     end
   end
   

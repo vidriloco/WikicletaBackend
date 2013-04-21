@@ -5,6 +5,8 @@ class Tip < ActiveRecord::Base
   validates_presence_of :coordinates, :content, :category
   belongs_to :user
   
+  default_scope order('updated_at DESC')
+  
   def self.new_with(params, coords, user)
     tip=Tip.new(params.merge(:user => user))
     tip.apply_geo(coords)
@@ -24,6 +26,14 @@ class Tip < ActiveRecord::Base
       end
     end
     hash
+  end
+  
+  def self.recent(current_user)
+    if current_user.nil? || current_user.city.nil?
+      Tip.where('updated_at > ?', 1.month.ago).limit(10)
+    else
+      Tip.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('tips.updated_at > ?', 1.month.ago).limit(10)
+    end
   end
   
   def identifier

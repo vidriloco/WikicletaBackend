@@ -54,6 +54,7 @@ es_MX:
             reporter:
               anonymous: "por Anónimo" 
               user: "por %{user}"
+              you: "por tí"
             details: "Ver detalles"
             status:
               solved: "Resuelto"

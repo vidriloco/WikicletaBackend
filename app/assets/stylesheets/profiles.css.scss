@@ -7,6 +7,103 @@
  *= require places
  */
 
+.home {
+	margin-top: 30px;
+	.item {
+		height: 50px;
+		padding: 10px;
+		background-color: #FCFFFC;
+		border: 1px solid #F2D2B7;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 12px;
+		
+		ul {
+			list-style: none;
+			text-align: right;
+			
+			li {
+				display: inline-block;
+				margin-left: 10px;
+			}
+		}
+		
+		p {
+			padding: 0px !important;
+			margin: 0px !important;
+		}
+		
+		.main {
+			margin-top: 6px;
+			
+			.category {
+				font-weight: bold;
+				color: #4B4B4B;
+				text-transform: uppercase;
+			}
+			
+			.danger {
+				color: #C30000;
+			}
+			
+			.sightseeing {
+				color: green;
+			}
+			
+			.accident {
+				color: #990000;
+			}
+			
+			.theft {
+				color: #570ed1;
+			}
+			
+			.assault {
+				color: #767279;
+			}
+			
+			.breakdown {
+				color: #FF5200;
+			}
+			
+			.alert {
+				color: #F8B400;
+				background: none;
+				border: none;
+			}
+			
+			.workshop {
+				color: #2D5BC2;
+			}
+			
+			.parking {
+				color: #2D997F;
+			}
+		}
+		
+		.extra {
+			height: 40px;
+			margin-top: 6px;
+			border-left: 10px solid #1F3A50;
+			padding-left: 10px;
+		}
+		
+		.see-on-map {
+			margin-top: 10px !important;
+		}
+		
+		.picture p {
+			margin-top: 3px !important;
+		}
+
+	}
+	
+	p.city {
+		font-size:11px;
+		font-style: italic;
+	}
+}
+
 .profile {
 	.circular {
 		width: 80px;

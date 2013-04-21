@@ -1,7 +1,6 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="activities rounded-10">
-			<% if 1==0 %>
 			<ul class="stats rounded-5">
 				<li>
 					<a href=""  original-title="Puntos acumulados por badges ganados">
@@ -22,8 +21,13 @@
 					</a>
 				</li>
 			</ul>
-			<% end %>
 			<ul class="actions">
+				<li id="home" class="centered-text">
+					<a href="" original-title="<%= t('user_profiles.actions.home') %>">
+						<%= image_tag('/assets/bike_home_icon.png', :size => '45x45') %>
+						<span class="title">Inicio</span>
+					</a>
+				</li>
 				<li class="centered-text">
 					<a href="" original-title="<%= t('user_profiles.actions.routes') %>">
 						<%= image_tag('/assets/routes_icon.png', :size => '45x45') %>
@@ -60,5 +64,9 @@
 	</div>
 </div>
 
-<div id="contents-area" class="content-fluid" data-section-enabled="" data-username="<%= @user.username %>"></div>
+<div id="contents-area" class="content-fluid" data-section-enabled="" data-username="<%= @user.username %>">
+	<div class="home">
+		<%= render :partial => 'profiles/home/all', :locals => { :items => @items } %>
+	</div>
+</div>
 

@@ -14,12 +14,22 @@ class Incident < ActiveRecord::Base
   validates_presence_of :user
   validates :vehicle_identifier, :format => /^[^-]([A-Z0-9\-]){3,}[^-]$/, :allow_blank => true
   
+  default_scope order('updated_at DESC')
+  
   attr_protected :user_id
   
   def self.new_with(params, coordinates, user)
     incident = new(params.merge(:user => user)) 
     incident.apply_geo(coordinates)
     incident
+  end
+  
+  def self.recent(current_user)
+    if current_user.nil? || current_user.city.nil?
+      Incident.where('updated_at > ?', 1.month.ago).limit(10)
+    else
+      Incident.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('incidents.updated_at > ?', 1.month.ago).limit(10)
+    end
   end
   
   def update_with(params, coordinates, user)
@@ -42,6 +52,14 @@ class Incident < ActiveRecord::Base
       end
     end
     hash
+  end
+  
+  def category_symbol
+    Bike.category_symbol_for(:incidents, kind)
+  end
+  
+  def humanized_category
+    Bike.humanized_category_for(:incidents, kind)
   end
   
   def owned_by_user?(passed_user)
