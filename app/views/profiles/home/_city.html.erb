@@ -1,7 +1,5 @@
 <p class="pull-right city">
-	<% if item.user.city.nil? %>
-		<%= t('cities.views.display.on_unknown')%>
-	<% else %>
+	<% if !item.user.city.nil? %>
 		<% if user_signed_in? && item.user.city == current_user.city && !item.user.city.nil? %>
 			<%= t('cities.views.display.yours') %>
 		<% else %>

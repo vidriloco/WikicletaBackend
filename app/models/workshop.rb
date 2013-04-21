@@ -1,5 +1,6 @@
 class Workshop < ActiveRecord::Base
   include Shared::Geography
+  include Shared::Queries
   
   validates_presence_of :name, :details
   
@@ -13,14 +14,6 @@ class Workshop < ActiveRecord::Base
   
   def identifier
     "workshop-#{id}"
-  end
-  
-  def self.recent(current_user)
-    if current_user.nil? || current_user.city.nil?
-      Workshop.where('updated_at > ?', 1.month.ago).limit(10)
-    else
-      Workshop.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('workshops.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
-    end
   end
   
   def self.new_with(params, coords, user)

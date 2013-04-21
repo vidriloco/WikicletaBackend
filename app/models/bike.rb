@@ -1,5 +1,7 @@
 class Bike < ActiveRecord::Base
   include Shared::Categories
+  include Shared::Queries
+  
   include Likes
   
   acts_as_commentable
@@ -31,14 +33,6 @@ class Bike < ActiveRecord::Base
       'incidents.solved' => status, 
       'incidents.kind' => Bike.category_for(:incidents, :theft), 
       'users.city_id' => user.city_id)
-    end
-  end
-  
-  def self.recent(current_user)
-    if current_user.nil? || current_user.city.nil?
-      Bike.where('updated_at > ?', 1.month.ago).limit(10)
-    else
-      Bike.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('bikes.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
     end
   end
   

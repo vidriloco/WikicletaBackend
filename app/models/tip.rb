@@ -1,6 +1,7 @@
 class Tip < ActiveRecord::Base
   include Shared::Categories
   include Shared::Geography
+  include Shared::Queries
   
   validates_presence_of :coordinates, :content, :category
   belongs_to :user
@@ -26,14 +27,6 @@ class Tip < ActiveRecord::Base
       end
     end
     hash
-  end
-  
-  def self.recent(current_user)
-    if current_user.nil? || current_user.city.nil?
-      Tip.where('updated_at > ?', 1.month.ago).limit(10)
-    else
-      Tip.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('tips.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
-    end
   end
   
   def identifier

@@ -20,6 +20,13 @@ es_MX:
         unsuccessful_remove: "No fue posible enviar solicitud de amistad"
         removed: "%{user} y %{friend} han dejado de ser amigos"
     views:
+      all:
+        same_user:
+          title: "Actividad reciente en tu ciudad en Wikicleta (Último mes)"
+        different_user:
+          title: "Actividad de %{user} en Wikicleta (Último mes)"
+        list: 
+          empty: "No hay actividad reciente que mostrar"
       tips:
         new: "Escribir tip"
         subsection:

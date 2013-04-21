@@ -66,7 +66,18 @@
 
 <div id="contents-area" class="content-fluid" data-section-enabled="" data-username="<%= @user.username %>">
 	<div class="home">
-		<%= render :partial => 'profiles/home/all', :locals => { :items => @items } %>
+		<ul class="subsection rounded-5">
+			<li class="active">
+			<i class="icon-chevron-down"></i>
+			<%= user_signed_in? && current_user_equals(@user) ? t('user_profiles.views.all.same_user.title') : t('user_profiles.views.all.different_user.title', :user => @user.username) %>
+			</li>
+		</ul>
+		<br/>
+		<% if @items.empty? %>
+			<div class="well well-small centered-text"><%= t('user_profiles.views.all.list.empty') %></div>
+		<% else %>
+			<%= render :partial => 'profiles/home/all', :locals => { :items => @items } %>
+		<% end %>
 	</div>
 </div>
 

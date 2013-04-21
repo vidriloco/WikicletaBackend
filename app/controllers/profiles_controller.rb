@@ -8,14 +8,9 @@ class ProfilesController < ApplicationController
       redirect_to root_path
       return
     end
-    
+
     #Refactor recent method to module of included models
-    @items = (
-      Workshop.recent(current_user)+
-      Parking.recent(current_user)+
-      Incident.recent(current_user)+
-      Bike.recent(current_user)+
-      Tip.recent(current_user)).sort_by(&:updated_at).reverse!
+    @items = (current_user.nil? || current_user != @user) ? Aggregator.all_activity_of(@user) : Aggregator.all_activity_on_wikicleta_as(current_user)
   end
   
   def gear

@@ -1,5 +1,7 @@
 class Incident < ActiveRecord::Base
   include Shared::Geography
+  include Shared::Queries
+  
   include Categories
   include Filtering
   
@@ -23,15 +25,7 @@ class Incident < ActiveRecord::Base
     incident.apply_geo(coordinates)
     incident
   end
-  
-  def self.recent(current_user)
-    if current_user.nil? || current_user.city.nil?
-      Incident.where('updated_at > ?', 1.month.ago).limit(10)
-    else
-      Incident.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('incidents.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
-    end
-  end
-  
+ 
   def update_with(params, coordinates, user)
     self.apply_geo(coordinates)
     self.update_attributes(params.merge(:user => user))
