@@ -25,7 +25,7 @@ class Parking < ActiveRecord::Base
     if current_user.nil? || current_user.city.nil?
       Parking.where('updated_at > ?', 1.month.ago).limit(10)
     else
-      Parking.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('parkings.updated_at > ?', 1.month.ago).limit(10)
+      Parking.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('parkings.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
     end
   end
   

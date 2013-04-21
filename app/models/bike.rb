@@ -38,7 +38,7 @@ class Bike < ActiveRecord::Base
     if current_user.nil? || current_user.city.nil?
       Bike.where('updated_at > ?', 1.month.ago).limit(10)
     else
-      Bike.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('bikes.updated_at > ?', 1.month.ago).limit(10)
+      Bike.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('bikes.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
     end
   end
   

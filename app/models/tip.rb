@@ -32,7 +32,7 @@ class Tip < ActiveRecord::Base
     if current_user.nil? || current_user.city.nil?
       Tip.where('updated_at > ?', 1.month.ago).limit(10)
     else
-      Tip.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('tips.updated_at > ?', 1.month.ago).limit(10)
+      Tip.joins(:user).joins("LEFT JOIN cities ON users.city_id = cities.id").where('tips.updated_at > ? AND cities.id = ?', 1.month.ago, current_user.city.id).limit(10)
     end
   end
   
