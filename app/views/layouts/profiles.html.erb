@@ -17,7 +17,7 @@
 	<div id="top-container" class="row-fluid top-spaced-70 profile">
 		<div class="span1"></div>
 		<div class="span2">
-			<%= render 'layouts/profiles/main_user_info' %>
+			<%= render :partial => 'layouts/profiles/main_user_info', :locals => {:user => @user} %>
 			
 			<div class="well menu">
 				<ul class="nav nav-list">

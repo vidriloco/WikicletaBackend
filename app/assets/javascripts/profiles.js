@@ -85,20 +85,7 @@ $(document).ready(function() {
 			Path.map("#/none").to(incidentsURLs.onEmpty);
 		}
 	
-	} else {
-		$('.avatar-img').bind('mouseenter', function() {
-			$('.avatar-img i').removeClass('icon-user');
-			$('.avatar-img i').addClass('icon-plus');
-		});
-		
-		$('.avatar-img').bind('mouseleave', function() {
-			$('.avatar-img i').addClass('icon-user');
-			$('.avatar-img i').removeClass('icon-plus');
-		});
-		
-		var imageURL = $('#profile-image').attr('data-image-url');
-		$('#profile-image').css('background-image', 'url(' + imageURL + ')');
-		
+	} else {		
 		// for user bikes listing 
 		$('#masonry').masonry({
 	    itemSelector : '.bike',

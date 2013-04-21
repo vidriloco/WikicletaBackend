@@ -1,4 +1,4 @@
-<% if !current_user.nil? && current_user.city_unset? %>
+<% if !current_user.nil? && current_user.city_unset? && outside_profile %>
   <div class="alert alert-info">
     <i class="icon-exclamation-sign"></i> <%= t('cities.views.alerts.not_set') %>
     <span class="pull-right"><%= link_to t('cities.views.alerts.select_city'), settings_profile_path %></span>

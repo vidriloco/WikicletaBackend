@@ -29,7 +29,7 @@
 				<p><%= t('incidents.listing.empty') %></p>
 			</div>
 		<% else %>
-			<%= render 'maps/shared/city_not_set_alert' %>
+			<%= render :partial => 'maps/shared/city_not_set_alert', :locals => { :outside_profile => (!@user.nil? && current_user_equals(@user)) } %>
 			<%= subsection_with(
 				t('user_profiles.views.incidents.subsection.title.logged_out'),  
 				t('user_profiles.views.incidents.subsection.title.logged_in')) %>

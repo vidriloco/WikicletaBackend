@@ -1,4 +1,4 @@
-<%= render 'maps/shared/city_not_set_alert' %>
+<%= render :partial => 'maps/shared/city_not_set_alert', :locals => { :outside_profile => true } %>
 <%= render 'maps/shared/header' %>
 <div>	
 	<%= navbar_map_for %>

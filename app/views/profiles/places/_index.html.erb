@@ -28,7 +28,7 @@
 					<p><%= t('places.listing.empty') %></p>
 				</div>
 			<% else %>
-				<%= render 'maps/shared/city_not_set_alert' %>
+				<%= render :partial => 'maps/shared/city_not_set_alert', :locals => { :outside_profile => (!@user.nil? && current_user_equals(@user)) } %>
 				<%= render 'profiles/places/sub_bar' %>
 
 				<div id="map" class="show-only edit map-dimensions shadow-light rounded-5"></div>

@@ -60,7 +60,7 @@
 				</div>
 				<div class="span1 picture centered-text">
 					<% if !item.bike.nil? && !item.bike.front_picture.nil? && !item.bike.front_picture.image.nil? %>
-						<p><%= link_to image_tag(item.bike.front_picture.image.mini_thumb.url), bike_path(item.bike) %></p>
+						<p><%= link_to image_tag(item.bike.front_picture.image.mini_thumb.url, :size => '45x45'), bike_path(item.bike) %></p>
 					<% else %>
 						<%= image_tag('/assets/no_bike_mini_thumb.png') %>
 					<% end %>
@@ -143,7 +143,7 @@
 			<div class="row-fluid">
 				<div class="span1 picture centered-text">
 					<% if !item.nil? && !item.front_picture.nil? && !item.front_picture.image.nil? %>
-						<p><%= link_to image_tag(item.front_picture.image.mini_thumb.url), bike_path(item) %></p>
+						<p><%= link_to image_tag(item.front_picture.image.mini_thumb.url, :size => '45x45'), bike_path(item) %></p>
 					<% else %>
 						<%= image_tag('/assets/no_bike_mini_thumb.png') %>
 					<% end %>

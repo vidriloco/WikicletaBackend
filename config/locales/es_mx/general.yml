@@ -3,7 +3,7 @@ es_MX:
     models:
       incident: "Incidente"
       tip: "Tip"
-      parking: "Bici-estacionamiento"
+      parking: "Estacionamiento"
       workshop: "Taller/Tienda"
       bike: "Bici"
     name: "Wikicleta"

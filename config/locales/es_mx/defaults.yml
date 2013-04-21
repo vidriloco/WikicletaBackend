@@ -170,7 +170,7 @@ es_MX:
         accepted: "debe ser aceptado"
         even: "debe ser un número par"
         odd: "debe ser un número non"
-
+        extension_white_list_error: "Formato de imagen desconocido"
   activerecord:
     errors:
       template:
