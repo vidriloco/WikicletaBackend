@@ -82,6 +82,11 @@ module ApplicationHelper
     (user_signed_in? && user == current_user)
   end
   
+  def back_bike_path(bike)
+    return bikes_path if request.env['HTTP_REFERER'] == new_bike_url || request.env['HTTP_REFERER'] == edit_bike_url(bike)
+    request.env['HTTP_REFERER']
+  end
+  
   def header_for_form(back_url, title)
     link_back = link_to(t('actions.back_arrow').html_safe, back_url)
     html = <<-HTML 

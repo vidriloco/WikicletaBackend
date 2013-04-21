@@ -8,7 +8,7 @@
 				</div>
 				<div class="pull-left">
 					<ul class="nav nav-pills">
-			    	<li><%= link_to t('actions.back_arrow').html_safe, bikes_path, :class => 'back' %></li>
+			    	<li><%= link_to t('actions.back_arrow').html_safe, back_bike_path(@bike), :class => 'back' %></li>
 						<% if current_user_owns_bike?(@bike) %>
 							<li class="active"><%= link_to t('bikes.views.show.modify'), edit_bike_path(@bike) %></li>
 						<% end %>
