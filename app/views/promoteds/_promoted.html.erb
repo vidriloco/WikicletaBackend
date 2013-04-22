@@ -15,7 +15,7 @@
 			<%= render :partial => 'promoteds/likes_count', :locals => {:promoted => promoted } %>
 		</p>
 		<p class="comments pull-right"><span class="count"><%= promoted.comments.count %></span>
-			<a href="<%= %>#comments"><%= t("bikes.views.show.comments.#{promoted.comments.count == 1 ? 'one' : 'some'}") %></a>
+			<a href="<%= promoted_path(promoted) %>#comments"><%= t("bikes.views.show.comments.#{promoted.comments.count == 1 ? 'one' : 'some'}") %></a>
 		</p>
 		<div class="clear"></div>
 	</div>	
