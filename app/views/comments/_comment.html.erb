@@ -1,15 +1,23 @@
 <div id="com-<%= comment.id %>" class="comment">
-	<p class="body"><%= comment.comment %></p>
-	
-	<div class="image"></div>
-	<span class="user"><%= t('connectives.by') %> <%= comment.user.username %></span>
-	<span class="datetime"><%= distance_of_time_in_words_to_now(comment.created_at) %></span>
-	
-	<% if !current_user.nil? && current_user.owns_comment?(comment) %>
-	<div class="to-right">	
-		<%= link_to t('comments.actions.delete'), comment_path(comment), 
-			  :method => :delete, :remote => true, :confirm => t('comments.messages.delete.confirm'), :class => 'delete' %>		
+	<div class="row-fluid">
+		<div class="span2">
+			<% if comment.user.picture.nil? %>
+				<%= image_tag('/assets/empty_user_icon.png', :size => '60x60') %>
+			<% else %>
+				<%= image_tag(comment.user.picture.image.mini_thumb.url, :size => '60x60', :class => 'circle circle-60') %>
+			<% end %>
+		</div>
+		<div class="span10"><span class="body rounded-5"><%= comment.comment %></span></div>
 	</div>
-	<div style="clear: both;"></div>
-	<% end %>
+	<div class="row-fluid actions">
+		<span class="user"><%= link_to "#{t('connectives.by')} #{comment.user.username}", user_profile_path(comment.user.username) %></span>
+		<span class="datetime"><%= distance_of_time_in_words_to_now(comment.created_at) %></span>
+		<% if !current_user.nil? && current_user.owns_comment?(comment) %>
+			<p><%= link_to t('comments.actions.delete').html_safe, comment_path(comment), 
+				  :method => :delete, :remote => true, :confirm => t('comments.messages.delete.confirm'), :class => 'delete' %></p>	
+		<% end %>
+	</div>
+	
+	
+	
 </div>

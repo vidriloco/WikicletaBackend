@@ -10,7 +10,7 @@ es_MX:
     actions: 
       comment: "Comentar"
       cancel: "Descartar comentario"
-      delete: "Eliminar comentario"
+      delete: "<i class='icon-trash'></i> Eliminar"
     messages:
       added: "Comentario agregado"
       deleted: "Comentario eliminado"

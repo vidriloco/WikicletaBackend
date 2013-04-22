@@ -46,6 +46,11 @@ module BikesHelper
     end
   end
   
+  def back_bike_path(bike)
+    return bikes_path if request.env['HTTP_REFERER'] == new_bike_url || request.env['HTTP_REFERER'] == edit_bike_url(bike) || request.env['HTTP_REFERER'] == bike_url(bike)
+    request.env['HTTP_REFERER']
+  end
+  
   def bike_price(bike_status)
     if price=bike_status.send(:price) 
       "<span class='value'>$ #{price} MXN</span>".html_safe 

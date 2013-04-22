@@ -93,6 +93,17 @@ $(document).ready(function() {
 			isAnimated: false,
 			isFitWidth: true
 	  });
+	
+		// Move this code to a common area for maps and profiles
+		$('.profile-image-placeholder .empty-user-icon').bind('mouseenter', function() {
+			$(this).hide();
+			$('.profile-image-placeholder .add-user-icon').fadeIn();
+		});
+		
+		$('.profile-image-placeholder .add-user-icon').bind('mouseleave', function() {
+			$(this).hide();
+			$('.profile-image-placeholder .empty-user-icon').fadeIn();
+		});
 
 		// Tipsy for navsubbar elements
 		$('.profile .activities a').tipsy({gravity: 'n', live: true, fade: true, delayIn: 900, delayOut: 0 });

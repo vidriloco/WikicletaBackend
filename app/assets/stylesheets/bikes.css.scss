@@ -242,6 +242,7 @@ body {
 
 		.comments {
 			background-color: #E5EBFF;
+			
 			h2 {
 				text-align: center;
 			}
@@ -256,11 +257,21 @@ body {
 					font-size: 14px;
 					width: 620px;
 					padding: 10px 20px;
-					background-color: #E1E1E1;
-
+					
+					.actions {
+						text-align: right;
+					}
+					
+					.body {
+						font-size: 12px;
+						background-color: white;
+						padding: 7px;
+					}
+					
 					.user {
 						font-style: italic;
-						color: #327E29;
+						font-size: 11px;
+						color: #F50;
 					}
 
 					.datetime {
@@ -272,8 +283,7 @@ body {
 					}
 
 					.delete {
-						font-weight: bold;
-						color: black;
+						color: #256CFF;
 						font-size: 13px;
 					}
 				}

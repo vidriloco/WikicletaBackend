@@ -21,4 +21,6 @@ $(document).ready(function() {
 	});
 	$('#comment_comment').trigger('keyup');
 	
+	var imageURL = $('.comment-image').attr('data-image-url');
+	$('.comment-image').css('background-image', 'url(' + imageURL + ')');
 });

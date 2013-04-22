@@ -442,3 +442,85 @@ $breakdowns: #F18706;
 .green {
 	color: #008a13;
 }
+
+// Circular pictures
+
+.circle {
+	-moz-box-shadow: 0 0 8px #A7BDFF;
+	-webkit-box-shadow: 0 0 8px #A7BDFF;
+	box-shadow: 0 0 8px #A7BDFF;
+}
+
+.circle-60 {
+	width: 60px !important;
+	height: 60px !important;
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+}
+
+.circle-80 {
+	width: 80px !important;
+	height: 80px !important;
+	border-radius: 40px;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+}
+
+.circle:hover {
+	-moz-box-shadow: 0 0 8px #FF6800;
+	-webkit-box-shadow: 0 0 8px #FF6800;
+	box-shadow: 0 0 8px #FF6800;
+}
+
+.avatar-img-80 {
+	width: 80px;
+	height: 80px;
+
+	border-radius: 40px;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	
+	i {
+		margin-top: 19%;
+		font-size: 50px;
+	}
+}
+
+.avatar-img-60 {
+	width: 60px;
+	height: 60px;
+
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	
+	i {
+		margin-top: 9%;
+		font-size: 45px;
+	}
+}
+
+.avatar-img {
+	background-color: #A8C9E5;
+	border: 0.5px solid #A8C9E5;
+	i {
+		display: block;
+		color: #EAF6F8;
+	}
+	
+	i.icon-plus {
+		margin-top: 23%;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+}
+
+.avatar-img:hover {
+	border: 0.5px solid #FBFFF5;
+	-moz-box-shadow: 0 0 8px #C3BFC2;
+	-webkit-box-shadow: 0 0 8px #C3BFC2;
+	box-shadow: 0 0 8px #C3BFC2;
+}
