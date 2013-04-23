@@ -70,6 +70,15 @@ body {
 	}
 }
 
+.likes-count {
+	ul {
+		list-style: none;
+		li {
+			display: inline-block;		
+		}
+	}
+}
+
 .index {
 	
 	.promoted:hover, .bike:hover {
