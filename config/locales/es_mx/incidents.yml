@@ -35,6 +35,9 @@ es_MX:
     messages:
       saving: "Guardando incidente ..."
       saved: "Incidente registrado. ¡Gracias!"
+      not_saved: "Disculpa, no fue posible guardar el incidente"
+      updated: "Incidente actualizado correctamente :)"
+      not_updated: "Disculpa, el incidente no fué actualizado :("
       filtering_results: "Mostrando resultados de la búsqueda"
       confirm_delete: "¿Realmente deseas eliminar este incidente?"
       deleted: "Incidente eliminado"
@@ -80,19 +83,6 @@ es_MX:
           one: "Confirma o selecciona un punto en el mapa"
           two: "Ajusta los campos del incidente"
         destroy: "Eliminar este incidente"
-      filtering:
-        title: "Búsqueda"
-        complaint_issued: "Denuncia levantada"
-        map_search: "Aquellos dentro del área visible del mapa"
-        date_and_time: "Por fecha"
-        kinds: "Tipos"
-        fields:
-          date:
-            last_week: "Última semana"
-            last_month: "Último mes"
-            last_year: "Último año"
-            all: "Siempre"
-        
       new:
         title: "Nuevo Incidente"
         steps:

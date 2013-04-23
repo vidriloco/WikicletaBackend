@@ -1,11 +1,11 @@
 module BikesHelper
   
-  def tooltip_for(bike)
+  def tooltip_for(item)
     if user_signed_in?
-      return t('bikes.views.show.likes.do') if bike.is_liked_by?(current_user).eql?("weak")
-      t('bikes.views.show.likes.undo')
+      return t("likes.views.like") if item.is_liked_by?(current_user).eql?("weak")
+      t("likes.views.dislike")
     else
-      t('bikes.views.show.likes.required_to_login')
+      t("likes.views.required_to_login")
     end
   end
   

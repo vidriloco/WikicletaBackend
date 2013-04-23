@@ -45,7 +45,7 @@ es_MX:
       saved: "¡Tu bici ha sido añadida a la Wikicleta!"
       updated: "Los cambios a tu bici han sido guardados"
       confirm_delete: "¿Estás seguro de querer eliminar esta bici?"
-      deleted: "Bici eliminada"
+      deleted: "Bici eliminada :("
     views:
       errors:
         on_save: "Chispas, Wikicleta no ha podido registrar tu bici"

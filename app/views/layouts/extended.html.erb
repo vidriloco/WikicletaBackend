@@ -11,13 +11,15 @@
 </head>
 
 <body>
-	<%= render 'shared/notice' %>
 	<div class="background-logo"></div>
 	<%= render 'layouts/shared/navbar' %>
 	
 	<div class="row-fluid top-spaced-70">
 		<div class="span1"></div>
-		<div class="span10"><%= yield %></div>
+		<div class="span10">
+			<%= render 'layouts/shared/notice' %>
+			<%= yield %>
+		</div>
 		<div class="span1"></div>
 	</div>	
 </body>

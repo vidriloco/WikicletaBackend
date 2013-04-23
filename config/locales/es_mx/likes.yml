@@ -1,0 +1,6 @@
+es_MX:
+  likes:
+    views:
+      like: "Me gusta"
+      dislike: "Ya no me gusta"
+      required_to_login: "Necesitas haber iniciado sesión"
