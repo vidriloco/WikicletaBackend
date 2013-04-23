@@ -1,34 +1,10 @@
-<div class="likes-count">
-	<ul>
-		<li>
-			<div id="spinner" class="spinner-mini">
-				<div class="blockG" id="rotateG_01">
-				</div>
-				<div class="blockG" id="rotateG_02">
-				</div>
-				<div class="blockG" id="rotateG_03">
-				</div>
-				<div class="blockG" id="rotateG_04">
-				</div>
-				<div class="blockG" id="rotateG_05">
-				</div>
-				<div class="blockG" id="rotateG_06">
-				</div>
-				<div class="blockG" id="rotateG_07">
-				</div>
-				<div class="blockG" id="rotateG_08">
-				</div>
-			</div>
-		</li>
-		<li>
-			<div id="<%= promoted.id %>" class="<%= promoted.is_liked_by?(current_user) %> heart" original-title="<%= tooltip_for(promoted) %>" data-group="promoteds"></div>
-		</li>
-		<li>
-			<% if  promoted.likes_count == 1 %>
-				<p class="likes rounded-5"><span class="count">1</span><%= t('bikes.views.show.likes.one') %></p>
-			<% else %>
-				<p class="likes rounded-5"><span class="count"><%=  promoted.likes_count %></span><%= t('bikes.views.show.likes.some') %></p>
-			<% end %>
-		</li>
-	</ul>
+<%= render 'shared/mini_spinner' %>
+<div class="likes-count">	
+	<div id="<%= promoted.id %>" class="<%= promoted.is_liked_by?(current_user) %> heart" original-title="<%= tooltip_for(promoted) %>" data-group="promoteds"></div>
+
+	<% if  promoted.likes_count == 1 %>
+		<p class="likes rounded-5"><span class="count">1</span><%= t('bikes.views.show.likes.one') %></p>
+	<% else %>
+		<p class="likes rounded-5"><span class="count"><%=  promoted.likes_count %></span><%= t('bikes.views.show.likes.some') %></p>
+	<% end %>
 </div>

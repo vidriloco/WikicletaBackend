@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	
 	$('.heart').live('click', function() {
 		$('.tipsy').fadeOut();
 		if($(this).hasClass('requires_login')) {
@@ -12,15 +12,12 @@ $(document).ready(function() {
 			type = "DELETE";
 		}
 		
-		var selectedHeart = $(this);
+		$(this).replaceWith($('.spinner-container').html());
+			
 		$.ajax({
 		  type: type,
 		  url: "/"+$(this).attr('data-group')+"/"+id+"/like",
-		  data: { format : "js" },
-			beforeSend: function ( xhr ) {
-				selectedHeart.hide();
-				$(selectedHeart.parent().prev().children()[0]).fadeIn();
-			}
+		  data: { format : "js" }
 		});
 	});
 	$('.heart').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 500 });

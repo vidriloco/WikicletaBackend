@@ -527,16 +527,15 @@ $breakdowns: #F18706;
 
 // Spinloaders
 
-#spinner {
+.spinner-container {
 	display: none;
 }
 
 .spinner-mini {
 	position:relative;
-	margin-left: 5px;
-	margin-top: 2px;
 	width:15px !important;
 	height:19px !important;
+	margin-right: 5px;
 }
 
 .blockG{

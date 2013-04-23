@@ -70,15 +70,6 @@ body {
 	}
 }
 
-.likes-count {
-	ul {
-		list-style: none;
-		li {
-			display: inline-block;		
-		}
-	}
-}
-
 .index {
 	
 	.promoted:hover, .bike:hover {
@@ -93,7 +84,7 @@ body {
 	
 	.bike, .promoted {
 		padding: 12px;
-		padding-bottom: 5px;
+		padding-bottom: 8px;
 		background-color: #F4F4F4;
 		border: 1px solid white;
 	  width: 250px;

@@ -1,34 +1,9 @@
+<%= render 'shared/mini_spinner' %>
 <div class="likes-count">
-	<ul>
-		<li>
-			<div id="spinner" class="spinner-mini">
-				<div class="blockG" id="rotateG_01">
-				</div>
-				<div class="blockG" id="rotateG_02">
-				</div>
-				<div class="blockG" id="rotateG_03">
-				</div>
-				<div class="blockG" id="rotateG_04">
-				</div>
-				<div class="blockG" id="rotateG_05">
-				</div>
-				<div class="blockG" id="rotateG_06">
-				</div>
-				<div class="blockG" id="rotateG_07">
-				</div>
-				<div class="blockG" id="rotateG_08">
-				</div>
-			</div>
-		</li>
-		<li>
-			<div id="<%= bike.id %>" class="<%= bike.is_liked_by?(current_user) %> heart" original-title="<%= tooltip_for(bike) %>" data-group="bikes"></div>
-		</li>
-		<li>
-			<% if  bike.likes_count == 1 %>
-				<p class="likes rounded-5"><span class="count">1</span><%= t('bikes.views.show.likes.one') %></p>
-			<% else %>
-				<p class="likes rounded-5"><span class="count"><%=  bike.likes_count %></span><%= t('bikes.views.show.likes.some') %></p>
-			<% end %>
-		</li>
-	</ul>
+	<div id="<%= bike.id %>" class="<%= bike.is_liked_by?(current_user) %> heart" original-title="<%= tooltip_for(bike) %>" data-group="bikes"></div>
+	<% if  bike.likes_count == 1 %>
+		<p class="likes rounded-5"><span class="count">1</span><%= t('bikes.views.show.likes.one') %></p>
+	<% else %>
+		<p class="likes rounded-5"><span class="count"><%=  bike.likes_count %></span><%= t('bikes.views.show.likes.some') %></p>
+	<% end %>
 </div>
