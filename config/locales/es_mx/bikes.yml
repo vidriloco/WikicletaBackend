@@ -78,6 +78,9 @@ es_MX:
           message: "No hay bicis registradas todavía"
           invite: "¡Sé el primero en agregar la tuya!"
       stolen:
+        frame_number:
+          not_given: "# de cuadro desconocido"
+          is: "# de cuadro: %{fn}"
         empty:
           message: "Por ahora, sin reportes de bicis robadas"
           invite: "¿Te robaron tu bici? Repórtala aquí"

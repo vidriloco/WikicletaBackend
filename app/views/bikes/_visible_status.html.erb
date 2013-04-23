@@ -2,9 +2,14 @@
 <div class="row-fluid">
 	<p class="pull-right">
 		<% if theft_report=bike.last_theft_report %>
-			<span class="label label-important">
-				<%= link_to 'Robada', user_profile_path(bike.user.username).concat("/#/incidents/#{theft_report.identifier}") %>
-			</span>
+			<div class="span7 frame-number">
+				<span><%= bike.frame_number.blank? ? t('bikes.views.stolen.frame_number.not_given') : t('bikes.views.stolen.frame_number.is', :fn => bike.frame_number) %></span>
+			</div>
+			<div class="span4">
+				<p class="label label-important pull-right">
+					<%= link_to 'Robada', user_profile_path(bike.user.username).concat("/#/incidents/#{theft_report.identifier}") %>
+				</p>
+			</div>
 		<% elsif theft_recover_report=bike.last_theft_recover_report %>
 			<span class="label label-success">
 				<%= link_to 'Recuperada', user_profile_path(bike.user.username).concat("/#/incidents/#{theft_recover_report.identifier}") %>

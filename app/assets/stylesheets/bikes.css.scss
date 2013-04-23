@@ -71,7 +71,7 @@ body {
 }
 
 .index {
-
+	
 	.promoted:hover, .bike:hover {
 		border: 0.2px solid #FFA047;
 		
@@ -83,13 +83,19 @@ body {
 	}
 	
 	.bike, .promoted {
-		padding: 14px;
+		padding: 12px;
+		padding-bottom: 5px;
 		background-color: #F4F4F4;
 		border: 1px solid white;
 	  width: 250px;
 	  margin: 27px;
 	  float: left;
 		font-size: 12px;
+		
+		.frame-number {
+			font-size: 11px;
+			margin-top: 5px;
+		}
 		
 		.title {
 			font-size: 20px;
