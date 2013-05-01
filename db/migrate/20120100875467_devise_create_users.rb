@@ -15,7 +15,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime  :last_sign_in_at
       t.string    :current_sign_in_ip
       t.string    :last_sign_in_ip
-
+      ## Token authenticatable
+      t.string    :authentication_token
+      
       t.string    :full_name
       t.string    :username
       t.text      :bio

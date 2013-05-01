@@ -170,13 +170,13 @@ ActiveRecord::Schema.define(:version => 20130419162322) do
   end
 
   create_table "promoteds", :force => true do |t|
-    t.string   "headline"
-    t.string   "main_details"
-    t.string   "extra_details"
-    t.integer  "likes_count",      :default => 0
+    t.string   "headline",         :limit => 20
+    t.string   "main_details",     :limit => 33
+    t.text     "extra_details"
+    t.integer  "likes_count",                    :default => 0
     t.integer  "promoter_info_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "promoter_infos", :force => true do |t|
@@ -184,20 +184,17 @@ ActiveRecord::Schema.define(:version => 20130419162322) do
     t.string   "email"
     t.string   "phone"
     t.string   "address"
-    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.text     "tags"
     t.integer  "city_id"
-    t.datetime "created_at",                                                              :null => false
-    t.datetime "updated_at",                                                              :null => false
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "promoter_infos", ["coordinates"], :name => "index_promoter_infos_on_coordinates", :spatial => true
-  add_index "promoter_infos", ["coordinates"], :name => "unique_coordinates_promoter_infos", :unique => true
 
   create_table "stickers", :force => true do |t|
     t.string   "details"
     t.string   "code"
-    t.integer  "status"
+    t.integer  "status",                                                                 :default => 1
     t.integer  "banned",                                                                 :default => 0
     t.boolean  "fake",                                                                   :default => false
     t.string   "email"
@@ -250,6 +247,7 @@ ActiveRecord::Schema.define(:version => 20130419162322) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
     t.string   "full_name"
     t.string   "username"
     t.text     "bio"
@@ -278,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20130419162322) do
     t.boolean  "others_can_edit_it"
     t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "user_id"
+    t.integer  "promoter_info_id"
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
   end

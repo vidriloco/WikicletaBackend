@@ -42,7 +42,7 @@ es_MX:
       update: "Guardar cambios"
       delete: "Eliminar"
     messages:
-      saved: "¡Tu bici ha sido añadida a la Wikicleta!"
+      saved: "¡Tu bici ha sido añadida a Wikicleta!"
       updated: "Los cambios a tu bici han sido guardados"
       confirm_delete: "¿Estás seguro de querer eliminar esta bici?"
       deleted: "Bici eliminada :("

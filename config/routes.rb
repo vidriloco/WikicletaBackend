@@ -27,6 +27,12 @@ Ciudadio::Application.routes.draw do
     
   end
   
+  namespace :api do
+    devise_for :users
+    get '/profiles/:profile', :to => 'users#profile'
+    resources :tips, :only => [:create, :update, :destroy, :index]
+  end
+  
   namespace :settings do
     get "profile", :via => :get
     get "access", :via => :get

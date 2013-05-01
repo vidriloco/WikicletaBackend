@@ -33,7 +33,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :mini_thumb do
     process :auto_orient
-    process :resize_to_fill => [80, 80, ::Magick::CenterGravity]
+    process :resize_to_fill => [200, 200, ::Magick::CenterGravity]
   end
   
   version :thumb, :if => :model_not_associates_to_user? do

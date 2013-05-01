@@ -33,6 +33,13 @@ class Tip < ActiveRecord::Base
     "#{category_symbol}-#{id}"
   end
   
+  def as_json(opts={})
+    super({
+      :only => [:id, :content, :category, :likes_count],
+      :methods => [:created_at_ms, :lat, :lon, :owner]
+    })
+  end
+  
   def humanized_category
     Tip.humanized_category_for(:categories, category)
   end
@@ -44,6 +51,24 @@ class Tip < ActiveRecord::Base
   def update_with(params, coordinates, user)
     self.apply_geo(coordinates)
     self.update_attributes(params.merge(:user => user))
+  end
+  
+  def lat
+    coordinates.lat
+  end
+  
+  def lon
+    coordinates.lon
+  end
+  
+  def created_at_ms
+    (created_at.to_time.to_f*1000).to_i
+  end
+  
+  def owner 
+    payload = {:username => user.username, :id => user.id}
+    return payload if user.picture.nil? || user.picture.image.nil? 
+    payload.merge(:pic => user.picture.image.url(:mini_thumb))
   end
   
   private

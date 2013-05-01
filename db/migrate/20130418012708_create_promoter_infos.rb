@@ -11,7 +11,5 @@ class CreatePromoterInfos < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index(:promoter_infos, :coordinates, spatial: true)  # spatial index
-    add_index(:promoter_infos, :coordinates, unique: true, :name => 'unique_coordinates_promoter_infos')
   end
 end

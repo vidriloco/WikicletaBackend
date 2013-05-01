@@ -143,6 +143,23 @@ class Bike < ActiveRecord::Base
     I18n.t("bikes.categories.#{selector.to_s}.#{identifier}")
   end
   
+  def bike_photo_url
+    return nil if front_picture.nil? || front_picture.image.nil?
+    front_picture.image.url(:mini_thumb)
+  end
+  
+  def as_json(opts={})
+    super({
+      :only => [:name, :id, :likes_count],
+      :methods => [:brand, :bike_photo_url, :updated_at_ms]
+    })
+  end
+  
+  protected
+  def updated_at_ms
+    "#{updated_at.to_time.to_i}"
+  end
+  
   private
   def self.statuses
     { 1 => :share, 2 => :rent, 3 => :sell }

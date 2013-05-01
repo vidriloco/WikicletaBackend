@@ -18,7 +18,7 @@ es_MX:
       unconfirmed: 'Debe confirmar su cuenta para continuar.'
       locked: 'Su cuenta está bloqueada.'
       invalid: 'Correo o contraseña invalidos.'
-      invalid_token: 'Ficha de autenticación invalida.'
+      invalid_token: 'Estamos apenados, tu usuario no está sincronizado con tu teléfono, contáctanos para ayudarte.'
       timeout: 'Su sesión ha expirado, por favor ingrese nuevamente para continuar.'
       inactive: 'Su cuenta aún no ha sido activada.'
     sessions:

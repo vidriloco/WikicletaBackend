@@ -16,13 +16,14 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   
-  devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   attr_accessor :login
   attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   validates_presence_of :username, :full_name
   validates_uniqueness_of :username
   
   before_validation :validate_format_of_username
+  before_save       :ensure_authentication_token!, :on => :create
   
   def owns?(object)
     return if object.nil?
@@ -49,6 +50,13 @@ class User < ActiveRecord::Base
   
   def email_visible?
     email_visible
+  end
+  
+  def as_json(opts={})
+    super({
+      :only => [:full_name, :email, :username],
+      :methods => [:identifier, :auth_token, :created_at_ms]
+    })
   end
   
   def self.find_for_database_authentication(warden_conditions)
@@ -90,5 +98,39 @@ class User < ActiveRecord::Base
   def validate_format_of_username
     return if self.username.nil?
     errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{5,}$/).nil?
+  end
+  
+  def profile_to_json
+    {:city_name => city_name, :bikes => bikes_to_json, :user_pic => picture_img, :bio => bio }.to_json
+  end
+  
+  protected
+  def city_name
+    return nil if city_unset?
+    city.name
+  end
+    
+  def picture_img
+    return nil if picture.nil? || picture.image.nil?
+    picture.image.url(:mini_thumb)
+  end
+  
+  def bikes_to_json
+    bikes_json = []
+    bikes.each do |bike|
+      bikes_json << bike.as_json
+    end
+  end
+  
+  def auth_token
+    authentication_token
+  end
+  
+  def created_at_ms
+    "#{created_at.to_time.to_i}"
+  end
+  
+  def identifier
+    "#{id}"
   end
 end
