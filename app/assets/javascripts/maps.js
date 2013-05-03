@@ -145,7 +145,7 @@ $(document).ready(function(){
 					var domElement = '.listing-view #'+id;
 					// move map above incident
 					$('#map').insertBefore(domElement);
-					$.scrollFromMapToDom(domElement, 40);
+					$.scrollFromMapToDom('#map', 60);
 				},
 				
 				drawSelectedItems : function(incidents) {
