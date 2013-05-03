@@ -36,7 +36,7 @@ class Tip < ActiveRecord::Base
   def as_json(opts={})
     super({
       :only => [:id, :content, :category, :likes_count],
-      :methods => [:created_at_ms, :lat, :lon, :owner]
+      :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
   end
   
@@ -61,14 +61,18 @@ class Tip < ActiveRecord::Base
     coordinates.lon
   end
   
-  def created_at_ms
-    (created_at.to_time.to_f*1000).to_i
-  end
-  
   def owner 
     payload = {:username => user.username, :id => user.id}
     return payload if user.picture.nil? || user.picture.image.nil? 
     payload.merge(:pic => user.picture.image.url(:mini_thumb))
+  end
+  
+  def str_created_at
+    created_at.to_s(:db)
+  end
+  
+  def str_updated_at
+    updated_at.to_s(:db)
   end
   
   private
