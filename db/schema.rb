@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419162322) do
+ActiveRecord::Schema.define(:version => 20130505030233) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -145,8 +145,9 @@ ActiveRecord::Schema.define(:version => 20130419162322) do
     t.boolean  "has_roof"
     t.boolean  "others_can_edit_it"
     t.integer  "user_id"
-    t.datetime "created_at",                                                                     :null => false
-    t.datetime "updated_at",                                                                     :null => false
+    t.datetime "created_at",                                                                                    :null => false
+    t.datetime "updated_at",                                                                                    :null => false
+    t.integer  "likes_count",                                                                    :default => 0
   end
 
   add_index "parkings", ["coordinates"], :name => "index_parkings_on_coordinates", :spatial => true

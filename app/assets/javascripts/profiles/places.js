@@ -52,6 +52,7 @@ Routing.Places = function() {
 			$(parentDom+'.'+kind).removeClass('with-focus');
 			// mark the incident
 			$(domElement).addClass('with-focus');
+			$.scrollFromMapToDom('#map', 60);
 			drawSelectedItems($(domElement), placesUrlSwitch);
 		}
 		

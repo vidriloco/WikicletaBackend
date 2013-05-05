@@ -7,6 +7,9 @@ class CreateParkings < ActiveRecord::Migration
       t.boolean     :has_roof
       t.boolean     :others_can_edit_it
       t.integer     :user_id
+      
+      t.integer     :likes_count, :default => 0
+      
       t.timestamps
     end
     

@@ -2,9 +2,12 @@ class Tip < ActiveRecord::Base
   include Shared::Categories
   include Shared::Geography
   include Shared::Queries
+  include Shared::Api
   
-  validates_presence_of :coordinates, :content, :category
+  validates_presence_of :coordinates, :content, :category, :user
   belongs_to :user
+  
+  attr_accessible :content, :category, :updated_at, :created_at, :user
   
   default_scope order('updated_at DESC')
   
@@ -51,28 +54,6 @@ class Tip < ActiveRecord::Base
   def update_with(params, coordinates, user)
     self.apply_geo(coordinates)
     self.update_attributes(params.merge(:user => user))
-  end
-  
-  def lat
-    coordinates.lat
-  end
-  
-  def lon
-    coordinates.lon
-  end
-  
-  def owner 
-    payload = {:username => user.username, :id => user.id}
-    return payload if user.picture.nil? || user.picture.image.nil? 
-    payload.merge(:pic => user.picture.image.url(:mini_thumb))
-  end
-  
-  def str_created_at
-    created_at.to_s(:db)
-  end
-  
-  def str_updated_at
-    updated_at.to_s(:db)
   end
   
   private

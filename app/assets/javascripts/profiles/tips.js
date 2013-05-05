@@ -50,7 +50,7 @@ Routing.Tips = function() {
 			// draw selected incidents on map
 			drawSelectedItems([domElement], tipUrlSwitch);
 			map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
-			$.scrollFromMapToDom(domElement, 40);
+			$.scrollFromMapToDom('#map', 60);
 		}
 
 		fetchView(afterViewFetchedActions, null);

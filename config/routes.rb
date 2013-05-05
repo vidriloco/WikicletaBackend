@@ -30,8 +30,12 @@ Ciudadio::Application.routes.draw do
   namespace :api do
     devise_for :users
     get '/profiles/:profile', :to => 'users#profile'
+    
     resources :tips, :only => [:create, :update, :index]
     post '/tips/:id', :to => 'tips#destroy'
+    
+    resources :parkings, :only => [:create, :update, :index]
+    post '/parkings/:id', :to => 'parkings#destroy'
   end
   
   namespace :settings do

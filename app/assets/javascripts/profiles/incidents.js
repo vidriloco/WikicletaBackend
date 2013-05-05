@@ -148,7 +148,7 @@ $(document).ready(function() {
 						// draw selected incidents on map
 						drawSelectedItems([domElement], incidentUrlSwitch);
 						map.placeViewportAt({ lat: $(domElement).attr('data-lat'), lon: $(domElement).attr('data-lon'), zoom: defaultMiddleZoom });
-						$.scrollFromMapToDom(domElement, 40);
+						$.scrollFromMapToDom('#map', 60);
 					}
 
 					thisInstance.fetchView(afterViewFetchedActions, null);
