@@ -36,6 +36,9 @@ Ciudadio::Application.routes.draw do
     
     resources :parkings, :only => [:create, :update, :index]
     post '/parkings/:id', :to => 'parkings#destroy'
+    
+    resources :workshops, :only => [:create, :update, :index]
+    post '/workshops/:id', :to => 'workshops#destroy'
   end
   
   namespace :settings do
@@ -68,8 +71,6 @@ Ciudadio::Application.routes.draw do
     resources :routes, :only => [:index]
     resources :places, :only => [:index]
   end
-  
-  resources :trips
   
   resources :maps, :only => [:index]
 
@@ -107,8 +108,12 @@ Ciudadio::Application.routes.draw do
   
   resources :comments, :only => [:create, :destroy]
   
-#  get "/places/:id" => 'places#show', :as => "place"
-#  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  
+  resources :trips, :only => [:show]
+  get '/trips', to: redirect('/trips/mx/df')
+  get '/trips/:country_code/:city_code' => 'trips#index', :as => :trips_country_city_code 
+  
+  #  get "/places/:id" => 'places#show', :as => "place"
+  #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  
   
   root :to => 'welcome#index'
 end

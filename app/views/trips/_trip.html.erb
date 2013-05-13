@@ -1,0 +1,27 @@
+<div class="trip box rounded-5">
+	<div class="core">
+		<%= link_to image_tag("trips/#{trip.picture_name}.jpg"), trip_path(trip) %>
+		<div class="details">
+			<p class="title-light"><%= link_to trip.name, trip_path(trip) %></p>
+			<p class="extras"><a href=""><%= distance_in_days_according_to(trip.periodicity) %></a></p>
+		</div>
+	</div>
+	<div class="stats centered centered-text row-fluid">
+		<div class="span6 centered">
+			<a href=""><i class="trips-bicycle"></i><span class="text">Préstamo</span></a>
+		</div>
+		<% if trip.periodicity.eql?("every_sunday") %>
+			<div class="span6 centered">
+				<a href=""><i class="trips-people"></i><span class="text">Bici-escuela</span></a>
+			</div>
+		<% elsif trip.periodicity.eql?("last_sunday_month") %>	
+			<div class="span6 centered">
+				<a href=""><i class="trips-people"></i><span class="text">Entrena más</span></a>
+			</div>
+		<% end %>
+	</div>
+	<div class="separator"></div>
+	<div class="stats centered centered-text row-fluid">
+		<p class="trip-details"><%= image_tag('calendar_icon.png', :size => '30x30') %><%= trip.details %></p>
+	</div>
+</div>

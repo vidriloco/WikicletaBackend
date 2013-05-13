@@ -10,6 +10,6 @@ es_MX:
         select_city: "Establecer ciudad"
     list:
       mx_df: "Ciudad de México"
-      mx_gdl: "Guadalajara"
-      mx_mty: "Monterrey"
-      mx_ag: "Aguascalientes"
+      mx_guadalajara: "Guadalajara"
+      mx_monterrey: "Monterrey"
+      mx_aguascalientes: "Aguascalientes"

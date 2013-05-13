@@ -15,6 +15,7 @@ class CreateWorkshops < ActiveRecord::Migration
       t.point       :coordinates, :geographic => true
       t.integer     :user_id
       t.integer     :promoter_info_id
+      t.integer     :likes_count, :default => 0
       t.timestamps
     end
     

@@ -9,7 +9,27 @@ es_MX:
     name: "Wikicleta"
     contact:
       promote: "publica@wikicleta.com"
+    events:
+      days_until: 
+        one: "Mañana"
+        other: "Faltan %{days} días para este evento"
+        zero: "¡Hoy!"
     categories:
+      trip_pois:
+        categories:
+          service_station: "Estación de Servicio"
+          ambulance: "Ambulancia"
+          paramedic: "Paramédico"
+          bike_lending: "Préstamo de Bicis"
+          direction_mark: "Sentido de la circulación"
+          km_mark: "Kilómetro"
+          transport_connection: "Transporte público"
+          sightseeing: "Para ver"
+          start_flag: "Arranque"
+          finish_flag: "Termino"
+          grouped_services: "Zona de Servicios"
+          free_grouped_services: "Zona de Servicios (Gratuitos)"
+          cycling_learning: "Bici escuela"
       parkings:
         kinds:
           government_provided: "Oficial (Gobierno)"

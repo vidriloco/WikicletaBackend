@@ -14,7 +14,7 @@ module Shared::Categories
         collected
       end
     end
-
+        
     def category_for(selector, name)
       self.send(selector).invert[name]
     end
