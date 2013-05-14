@@ -1,6 +1,11 @@
 // Place all the styles related to the trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$wikicleta_orange: #fb4e15;
+$wikicleta_blue: #1f3a50;
+$wikicleta_light_blue: #DFEEF6;
+
 .dropdown-menu {
 	li {
 		width: 100%;
@@ -21,6 +26,7 @@
 	}
 	
 	.core {
+		
 		.details {
 			position: relative;
 			bottom: 113px;
@@ -87,7 +93,25 @@
 }
 
 .neighbourhoods, .rides {
+	a, a:hover {
+		color: white;
+		text-decoration: none;
+	}
+	
+	
 	.content {
+		
+		.remaining-days {
+			font-size: 12px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		
+		.trip-details {
+			margin-top: 15px;
+			color: #FF5400;
+			font-size: 11px;
+		}
 		
 		.core {
 			width: 300px !important;
@@ -158,4 +182,71 @@
 		}
 
 	}
+}
+
+.trip-detailed {
+	
+	.title {
+		font-size: 10px;
+		text-transform: uppercase;
+		color: $wikicleta_orange;
+		margin-top: 10px;
+	}
+	
+	.details {
+		font-size: 12px;
+		color: $wikicleta_blue;
+	}
+	
+	p, ul {
+		font-size: 12px;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.name {
+		font-size: 30px;
+		color: $wikicleta_orange;
+	}
+	
+	.city {
+		margin-left: 10px;
+		font-size: 15px;
+		color: $wikicleta_blue;
+		text-transform: uppercase;
+	}
+	
+	.periodicity {
+		margin-left: 30px;
+		color: $wikicleta_orange;
+	}
+	
+	.categories-menu {
+		margin-top: 20px;
+		margin-bottom: 0px;
+		ul {
+			list-style-type: none !important;
+			margin-left: auto;
+			margin-right: auto;
+
+			li.enabled:hover, li.active {
+				background-color: #E6E6E6;
+			}
+
+			li {
+				padding: 5px 10px 5px 10px;
+				display: inline-block !important;
+				margin-right: 10px;
+				margin-left: 10px;
+				font-size: 11px;
+
+				a {
+					text-decoration: none;
+					color: $wikicleta_blue;
+				}
+			}
+		}
+		
+	}
+	
 }

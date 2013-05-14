@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130505030233) do
+ActiveRecord::Schema.define(:version => 20130508035030) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -192,6 +192,15 @@ ActiveRecord::Schema.define(:version => 20130505030233) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "segments", :force => true do |t|
+    t.string   "color"
+    t.spatial  "path",       :limit => {:srid=>4326, :type=>"line_string", :geographic=>true}
+    t.string   "details"
+    t.integer  "trip_id"
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
+  end
+
   create_table "stickers", :force => true do |t|
     t.string   "details"
     t.string   "code"
@@ -218,6 +227,28 @@ ActiveRecord::Schema.define(:version => 20130505030233) do
 
   add_index "tips", ["coordinates"], :name => "index_tips_on_coordinates", :spatial => true
   add_index "tips", ["coordinates"], :name => "unique_coordinates_tips", :unique => true
+
+  create_table "trip_pois", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.integer  "category"
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "trip_id"
+    t.string   "icon_name"
+    t.string   "picture_url"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+  end
+
+  create_table "trips", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.integer  "city_id"
+    t.string   "picture_name"
+    t.string   "periodicity"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "user_like_bikes", :force => true do |t|
     t.integer  "user_id"
@@ -278,8 +309,9 @@ ActiveRecord::Schema.define(:version => 20130505030233) do
     t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "user_id"
     t.integer  "promoter_info_id"
-    t.datetime "created_at",                                                                     :null => false
-    t.datetime "updated_at",                                                                     :null => false
+    t.datetime "created_at",                                                                                    :null => false
+    t.datetime "updated_at",                                                                                    :null => false
+    t.integer  "likes_count",                                                                    :default => 0
   end
 
   add_index "workshops", ["coordinates"], :name => "index_workshops_on_coordinates", :spatial => true

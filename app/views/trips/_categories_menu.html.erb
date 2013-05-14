@@ -1,0 +1,96 @@
+<div class="row-fluid">
+	<div class="span12 well well-small categories-menu">
+		<ul class="pull-left">
+			<% if trips_of_type_in(@trip.trip_pois, :ambulance) %>
+				<li>
+					<a href="javascript:void(0);" id="ambulance">
+						<%= image_tag('ambulance_icon.png', :size => '30x30')%> 
+						<%= t('app.categories.trip_pois.categories.ambulance') %>
+					</a>
+				</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :grouped_services) %>
+				<li>
+					<a href="javascript:void(0);" id="grouped_services">
+						<%= image_tag('grouped_services_icon.png', :size => '30x30')%> 
+						<%= t('app.categories.trip_pois.categories.grouped_services') %>
+					</a>
+				</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :paramedic) %>
+			<li>
+				<a href="javascript:void(0);" id="paramedic-bike">
+					<%= image_tag('paramedic_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.paramedic') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :service_station) %>
+			<li>
+				<a href="javascript:void(0);" id="service-station">
+					<%= image_tag('service_station_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.service_station') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :sightseeing) %>
+			<li>
+				<a href="javascript:void(0);" id="sightseeing">
+					<%= image_tag('sightseeing_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.sightseeing') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :km_mark) %>
+			<li>
+				<a href="javascript:void(0);" id="km-mark">
+					<%= image_tag('km_mark_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.km_mark') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :bike_lending) %>
+			<li>
+				<a href="javascript:void(0);" id="bike-lending">
+					<%= image_tag('bike_lending_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.bike_lending') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :free_grouped_services) %>
+				<li>
+					<a href="javascript:void(0);" id="free_grouped_services">
+						<%= image_tag('free_grouped_services_icon.png', :size => '30x30')%> 
+						<%= t('app.categories.trip_pois.categories.free_grouped_services') %>
+					</a>
+				</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :cycling_learning) %>
+				<li>
+					<a href="javascript:void(0);" id="cycling_learning">
+						<%= image_tag('cycling_learning_icon.png', :size => '30x30')%> 
+						<%= t('app.categories.trip_pois.categories.cycling_learning') %>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+		<ul class="pull-right">
+			<% if trips_of_type_in(@trip.trip_pois, :start_flag) %>
+			<li class="enabled">
+				<a href="javascript:void(0);" id="start">
+					<%= image_tag('start_flag_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.start_flag') %>
+				</a>
+			</li>
+			<% end %>
+			<% if trips_of_type_in(@trip.trip_pois, :finish_flag) %>
+			<li class="enabled">
+				<a href="javascript:void(0);" id="finish">
+					<%= image_tag('finish_flag_icon.png', :size => '30x30')%> 
+					<%= t('app.categories.trip_pois.categories.finish_flag') %>
+				</a>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
