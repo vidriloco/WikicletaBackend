@@ -1,0 +1,70 @@
+es_MX:
+  app:
+    landing:
+      footer:
+        made_in_mexico: "Hecho en México con <i class='icon-heart'></i> para quienes los mueve la bicicleta"
+      navbar:
+        what_is: "¿Qué es?"
+        register: "Registrate"
+        allies: "Organizaciones Aliadas"
+        media: "Medios"
+        already_registered: "¿Ya te registraste?"
+        start: "Inicia Sesión"
+        explore: "Explora"
+      interbar:
+        what_is: "¿Qué es?"
+        test_it: "Pruébala"
+      sections:
+        media: "Reportajes y Notas"
+        what_is:
+          text: "Con Wikicleta puedes encontrar y compartir, desde tu teléfono o desde la web, información útil para ir en bici por la ciudad"
+          features: "¿Qué es?"
+        registration: 
+          title: "Sé uno de los 100"
+          call: "Estamos reclutando a los primeros 100 usuarios de Wikicleta que nos ayudarán a probar esta primer versión"
+          why: "¿Por qué?"
+          explanation: "Empresas grandes como Google® y otras que apenas inician como MailboxApp® han empleado este método para probar nuevos productos o servicios. Esa es una forma de conocer las opiniones de los usuarios más apasionados en el uso de la bicicleta y de la tecnología. Para más sobre esto buscar: <i>early adopters</i>"
+          access_code: "¿Ya tienes un código de acceso?"
+          give_access_codes: "Anunciaremos como obtenerlos en Twitter y Facebook"
+        alliances:
+          allies: "Organizaciones aliadas"
+        platforms:
+          text: "Por ahora disponible para teléfonos Android y para la web"
+          desktop:
+            title: "Para la web en exploradores Firefox, Safari y Chrome"
+          mobile:
+            title: "En teléfonos Android de reciente generación"
+        improve:
+          text: "Construye y mejora junto con nosotros el mejor mapa para ir en bici por tu ciudad"
+        pois:
+          title: "Comparte"
+          parkings: "Bici-estacionamientos"
+          workshops: "Talleres y tiendas de bicicletas"
+          tips: "Tips"
+        reports:
+          title: "Reporta"
+          thefts: "Un robo de bicicleta"
+          accidents: "Un accidente"
+          assaults: "Un asalto yendo en bici"
+          break_downs: "Una ponchadura"
+        map:
+          title: "Un wiki y red social para tu bici y tu ciudad"
+          routes: "Traza tus rutas y compártelas, así, otros podrán usarlas para moverse de un lugar a otro en la ciudad"
+          trips: "Los paseos de fin de semana son buenas opciones para empezar a usar la bici o para adquirir destrezas. Consúltalos aquí."
+        surprises:
+          text: "¡Mucho más por venir!"
+        extras:
+          text: "Una sorpresa extra en esta versión"
+        become:
+          title: "Tu bici, mi bici, su bici, nuestras bicis"
+          main_text: "Sube el perfil de tu bici, seguro será popular, luego podrás prestarla, rentarla o venderla"
+          profile_pictures: "No olvides agregar una foto a tu perfil"
+          bikes_profiles: "Si tu bici no tiene un nombre aún, pónle uno y súbela"
+          bikes_lending: "Ponla en venta o renta o préstala a tus amigos, por aquí es fácil hacerlo"
+          bikes_pride: "Las bicis son sociales, dales un fav y comenta lo que te gusta de ellas. Encuentra también bicis, accesorios y refacciones para comprar"
+          bikes_service: "Consulta la lista de bicis reportadas como robadas (en rojo) y ayuda a que sean recuperadas"
+        challenge:
+          main_text: "Sé uno de los primeros 100 usuarios, participa en alguno de los retos que anunciaremos y obtén una cuenta de usuario"
+          
+          
+          

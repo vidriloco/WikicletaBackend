@@ -1,0 +1,29 @@
+<div id="register" class="content-fluid">
+	<div class="row-fluid section-title">
+		<p><%= t('app.landing.sections.registration.title') %></p>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="box-container-stretch">
+		<div class="row-fluid">
+			<div class="span6">
+				<p class="text-simple orange no-margin"><%= t('app.landing.sections.registration.access_code') %></p>
+				<p class="text-simple really-tiny no-margin"><%= t('app.landing.sections.registration.give_access_codes') %></p>
+				<br/>
+				<p><%= link_to t('actions.register'), sign_up_path, :class => 'orange-button' %></p>
+				<br/>
+				<p class="text-simple"><%= t('app.landing.sections.registration.call') %></p>
+				
+			</div>
+			<div class="span6"><%= image_tag('early_adopter_bike.png') %></div>
+		</div>
+		<div class="separator"></div>
+		<div class="row-fluid">
+			<div class="span12">
+				<p class="text-simple orange"><%= t('app.landing.sections.registration.why') %></p>
+				<p class="text-simple tiny"><%= t('app.landing.sections.registration.explanation').html_safe %></p>
+			</div>
+		</div>
+	</div>
+</div>

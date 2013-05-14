@@ -13,7 +13,7 @@ es_MX:
       parkings:
         kinds:
           government_provided: "Oficial (Gobierno)"
-          urban_mobiliary: "Mobiliario urbano (Postes, barandales)"
+          urban_mobiliary: "Mobiliario urbano"
           venue_provided: "De un establecimiento"
       places:
         categories:
@@ -77,6 +77,7 @@ es_MX:
     edit: "Cambiar"
   actions:
     register_or_login: "Registrate o Inicia Sesión"
+    register: "Regístrate"
     return: "Regresar"
     share: "Compartir"
     contribute_to_map: "Agrega un punto al mapa"

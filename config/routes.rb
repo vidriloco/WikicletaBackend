@@ -5,6 +5,8 @@ Ciudadio::Application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
 
+  resources :languages, :only => [:update]
+    
   devise_scope :user do
     
     get "/sign_up", :to => "devise/registrations#new"

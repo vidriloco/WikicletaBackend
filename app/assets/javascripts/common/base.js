@@ -34,6 +34,13 @@ $.extend({
 		window.location.hash = hashedUrl;
 	},
 	
+	scrollFromTo: function(dom, offset) {
+		if(offset == undefined) {
+			offset = 0;
+		}
+		scrollFromMapToDom(dom, offset);
+	},
+	
 	scrollFromMapToDom: function(dom, offset) {
 		$('html,body').animate({scrollTop: $(dom).offset().top-offset}, 'slow');
 	},

@@ -1,15 +1,19 @@
-<div class="navbar navbar-fluid-top navbar-fixed-top">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="#"><%= t('app.name') %></a>
-      <div class="container-fluid nav-collapse">
+      </button>
+			<span class="pull-left">
+			<%= image_tag('wikicleta_icon.png', :size => '35x35', :class => 'mini-logo') %>
+			</span>
+			<%= link_to t('app.name'), root_path, :class => "brand" %>
+      <div class="nav-collapse collapse">
         <ul class="nav pull-right">
-					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Recorridos', trips_path  %></li>
+					<li><%= link_to 'Principal', root_path  %></li>
+					<li class="<%= is_section_active?('trips') %>"><%= link_to 'Pasea', trips_path  %></li>
 					<li class="<%= is_section_active?('maps') %>"><%= link_to 'Mapa', maps_path %></li>
 					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Más', bikes_path %></li>
 					<% if user_signed_in? %>

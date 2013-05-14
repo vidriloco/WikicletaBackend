@@ -13,8 +13,8 @@
 						<p class="<%= item.category_symbol %>"><%= item.humanized_category %></p>
 					</div>
 				</div>
-				<div class="span5 extra">
-					<p><%= item.content %></p>
+				<div class="span5">
+					<p class="extra"><%= item.content %></p>
 				</div>
 				<div class="span4">
 					<div class="pull-right">
@@ -55,8 +55,8 @@
 					</div>
 				</div>
 				
-				<div class="span5 extra">
-					<p><%= item.description %></p>
+				<div class="span5">
+					<p class="extra"><%= item.description %></p>
 				</div>
 				<div class="span1 picture centered-text">
 					<% if !item.bike.nil? && !item.bike.front_picture.nil? && !item.bike.front_picture.image.nil? %>
@@ -111,8 +111,8 @@
 					</div>
 				</div>
 				
-				<div class="span5 extra">
-					<p><%= item.details %></p>
+				<div class="span5">
+					<p class="extra"><%= item.details %></p>
 				</div>
 				<div class="span4">
 					<div class="pull-right">
@@ -155,8 +155,8 @@
 					</div>
 				</div>
 				
-				<div class="span5 extra">
-					<p><%= item.description %></p>
+				<div class="span5">
+					<p class="extra"><%= item.description %></p>
 				</div>
 				<div class="span4">
 					<div class="pull-right">
@@ -197,8 +197,8 @@
 					</div>
 				</div>
 				
-				<div class="span5 extra">
-					<p><%= item.details.blank? ? t('places.parkings.views.show.details_empty') : item.details %></p>
+				<div class="span5">
+					<p class="extra"><%= item.details.blank? ? t('places.parkings.views.show.details_empty') : item.details %></p>
 				</div>
 				<div class="span4">
 					<div class="pull-right">

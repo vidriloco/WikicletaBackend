@@ -1,0 +1,103 @@
+<div class="content-fluid">
+	<div class="row-fluid section-title">
+		<p><%= t('app.landing.sections.what_is.features') %></p>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container box-decorated">
+		<p class="orange feature"><%= t('app.landing.sections.map.title') %></p>
+		<div class="row-fluid">
+			<div class="span5">
+				<p class="text-simple"><%= t('app.landing.sections.map.routes').html_safe %></p>
+				<%= image_tag 'routes_web.png' %>
+			</div>
+			<div class="span2"></div>
+			<div class="span5">
+				<p class="text-simple"><%= t('app.landing.sections.map.trips').html_safe %></p>
+				<%= image_tag 'trips_web.png' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container">
+		<p><%= t('app.landing.sections.improve.text') %></p>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container box-decorated">
+		<div class="span6">
+			<p class="title feature"><i class="icon-share"></i> <%= t('app.landing.sections.pois.title') %></p>
+			<ul>
+				<li><%= t('app.landing.sections.pois.parkings') %></li>
+				<li><%= t('app.landing.sections.pois.tips') %></li>
+				<li><%= t('app.landing.sections.pois.workshops') %></li>
+			</ul>
+			<p class="title feature"><i class="icon-file"></i> <%= t('app.landing.sections.reports.title') %></p>
+			<ul>
+				<li><%= t('app.landing.sections.reports.thefts') %></li>
+				<li><%= t('app.landing.sections.reports.accidents') %></li>
+				<li><%= t('app.landing.sections.reports.break_downs') %></li>
+			</ul>
+		</div>
+		<div class="span6"><%= image_tag('pinned_pin.png') %></div>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container">
+		<p><%= t('app.landing.sections.platforms.text') %></p>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container box-decorated">
+		<p class="orange feature"><%= t('app.landing.sections.platforms.mobile.title') %></p>
+		<%= image_tag 'android_phones.png' %>
+		<p class="orange feature"><%= t('app.landing.sections.platforms.desktop.title') %></p>
+		<%= image_tag('wikicleta_display.png') %>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container">
+		<p><%= t('app.landing.sections.extras.text') %></p>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container box-decorated">
+		<p class="orange feature"><%= t('app.landing.sections.become.title') %></p>
+		<p class="text-simple"><%= t('app.landing.sections.become.main_text').html_safe %></p>
+		<div class="row-fluid">
+			<div class="span4">
+				<%= image_tag 'add_camera_icon.png' %>
+				<p class="foot-image"><%= t('app.landing.sections.become.profile_pictures') %></p>
+			</div>
+			<div class="span4">
+				<p class="foot-image"><%= t('app.landing.sections.become.bikes_profiles') %></p>
+				
+				<%= image_tag 'add_bikes_icon.png' %>
+			</div>
+			<div class="span4">
+				<%= image_tag 'bikes_lending.png' %>
+				<p class="foot-image"><%= t('app.landing.sections.become.bikes_lending') %></p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<p class="foot-image special-top"><%= t('app.landing.sections.become.bikes_pride') %></p>
+			<%= image_tag 'bikes_social.png' %>
+			<p class="foot-image special-bottom"><%= t('app.landing.sections.become.bikes_service') %></p>
+		</div>
+	</div>
+</div>
+
+<div class="content-fluid">
+	<div class="row-fluid box-container">
+		<p class="orange"><%= t('app.landing.sections.surprises.text') %></p>
+		<p><%= image_tag('gift.png') %></p>
+	</div>
+</div>
