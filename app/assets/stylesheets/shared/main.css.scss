@@ -12,6 +12,20 @@ font-family: "gothamrndbold-Bold";
    src:url("/assets/gothamrndbold.ttf");
 }
 
+.invite {
+	padding: 50px 10px 0px 10px;
+	text-align: center;
+	border: 1px solid #FFCAB1;
+	margin-bottom: 30px;
+	
+	p.title {
+		color: #1F3C51;
+		font-size: 18px;
+		line-height: 25px;
+		margin-bottom: 20px;
+	}
+}
+
 .dropdown-menu {
 	li {
 		display: block;

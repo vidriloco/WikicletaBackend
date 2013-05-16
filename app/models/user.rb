@@ -17,13 +17,15 @@ class User < ActiveRecord::Base
   belongs_to :city
   
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
-  attr_accessor :login
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
+  attr_accessor :login, :invitation_code
+  attr_accessible :invitation_code, :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   validates_presence_of :username, :full_name
   validates_uniqueness_of :username
   
-  before_validation :validate_format_of_username
-  before_save       :ensure_authentication_token!, :on => :create
+  before_validation     :validate_format_of_username
+  before_save           :ensure_authentication_token!, :on => :create
+  before_validation     :validate_invitation_code
+  
   
   def owns?(object)
     return if object.nil?
@@ -105,6 +107,16 @@ class User < ActiveRecord::Base
   end
   
   protected
+  
+  def validate_invitation_code
+    @sticker = Sticker.where(:code => invitation_code).first
+    if !@sticker.nil? and @sticker.available?
+      @sticker.update_attribute(:status, Sticker.category_for(:statuses, :claimed))
+    else
+      errors.add(:invitation_code, I18n.t('user_accounts.validations.invalid_invitation_code'))
+    end
+  end
+    
   def city_name
     return nil if city_unset?
     city.name

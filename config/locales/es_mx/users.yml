@@ -17,6 +17,7 @@ es_MX:
         started_cycling_date: "¿Desde cuando andas en bici?"
         email_visible: "¿Mostrar mi correo en mi perfil?"
         reset_password_token: "El token para reestablecer contraseña"
+        invitation_code: "Código de invitación"
   user_accounts:
     errors_on:
       registration:
@@ -24,6 +25,7 @@ es_MX:
       password_recovery:
         title: "No hemos podido recuperar tu contraseña"
     validations:
+      invalid_invitation_code: "no es válido"
       invalid_username: "debe ser alfanumérico y tener más de 5 letras"
     omniauth:
       login: "Iniciar sesión con %{network}"
