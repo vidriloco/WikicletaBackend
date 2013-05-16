@@ -7,6 +7,8 @@
 	<%= stylesheet_link_tag    "profiles" %>
   <%= javascript_include_tag "profiles" %>
   <%= csrf_meta_tags %>
+	<%= render 'layouts/shared/fav_icons' %>
+	<%= render 'layouts/shared/mix_panel' %>
 </head>
 <body>
 	<%= user_default_city %>
@@ -34,7 +36,10 @@
 		    </ul>
 			</div>		
 		</div>
-		<div class="span8"><%= yield %></div>
+		<div class="span8">
+			<%= render 'layouts/shared/notice' %>
+			<%= yield %>
+		</div>
 		<div class="span1"></div>
 	</div>
 

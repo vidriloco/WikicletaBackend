@@ -1,6 +1,11 @@
 //= require common/base
 
 $(document).ready(function() {
+	
+	$('#sign-up').bind('click', function() {
+		mixpanel.track("Landing :: Registration Button");
+	});
+	
 	LandingRoutes = function() {
 		this.home = function() {
 			$('.nav li').removeClass('active');
@@ -11,24 +16,28 @@ $(document).ready(function() {
 			$('.nav li').removeClass('active');
 			$('.nav li.what-is').addClass('active');
 			$.scrollFromMapToDom('#what-is', 70);
+			mixpanel.track("Landing :: On What Is Section");
 		}
 		
 		this.register = function() {
 			$('.nav li').removeClass('active');
 			$('.nav li.register').addClass('active');
 			$.scrollFromMapToDom('#register', 70);
+			mixpanel.track("Landing :: On Registration Section");
 		}
 		
 		this.allies = function() {
 			$('.nav li').removeClass('active');
 			$('.nav li.allies').addClass('active');
 			$.scrollFromMapToDom('#allies', 70);
+			mixpanel.track("Landing :: On Allies Section");
 		}
 		
 		this.media_ = function() {
 			$('.nav li').removeClass('active');
 			$('.nav li.media_').addClass('active');
 			$.scrollFromMapToDom('#media', 70);
+			mixpanel.track("Landing :: On Media Section");
 		}
 	}
 

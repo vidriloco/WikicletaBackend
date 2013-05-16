@@ -7,6 +7,21 @@
  *= require places
  */
 
+.not-ready-yet {
+	padding: 50px !important;
+	
+	.title {
+		font-size: 25px;
+		color: #fb4e15;
+		margin-bottom: 50px;
+	}
+	
+	.subtitle {
+		font-size: 20px;
+		margin-top: 40px;
+	}
+}
+
 .home {
 	margin-top: 30px;
 	.item {

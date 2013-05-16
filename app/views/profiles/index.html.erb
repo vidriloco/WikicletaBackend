@@ -1,7 +1,6 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="activities rounded-10">
-			
 			<ul class="actions">
 				<li id="home" class="centered-text">
 					<a href="" original-title="<%= t('user_profiles.actions.home') %>">
@@ -9,12 +8,7 @@
 						<span class="title">Inicio</span>
 					</a>
 				</li>
-				<li class="centered-text">
-					<a href="" original-title="<%= t('user_profiles.actions.routes') %>">
-						<%= image_tag('/assets/routes_icon.png', :size => '45x45') %>
-						<span class="title">Rutas</span>
-					</a>
-				</li>
+
 				<li id="places-section" class="centered-text">
 					<a href="<%= hash_link_for(user_profile_path(@user.username), '/places') %>" original-title="<%= t('user_profiles.actions.places') %>">
 						<%= image_tag('/assets/places_icon.png', :size => '45x45') %>
@@ -28,10 +22,16 @@
 						<span class="title">Ayuda</span>
 					</a>
 				</li>
-				<li class="centered-text">
-					<a href="" original-title="<%= t('user_profiles.actions.bicibus') %>">
+				<li id="routes-section" class="centered-text">
+					<a href="<%= hash_link_for(user_profile_path(@user.username), '/routes') %>" original-title="<%= t('user_profiles.actions.routes') %>">
+						<%= image_tag('/assets/routes_icon.png', :size => '45x45') %>
+						<span class="title">Rutas</span>
+					</a>
+				</li>
+				<li id="bicibuses-section" class="centered-text">
+					<a href="<%= hash_link_for(user_profile_path(@user.username), '/bicibuses') %>" original-title="<%= t('user_profiles.actions.bicibus') %>">
 						<%= image_tag('/assets/bicibus_icon.png', :size => '45x45') %>
-						<span class="title">Bicibus</span>
+						<span class="title">Bicibuses</span>
 					</a>
 				</li>
 				<li id="tips-section" class="centered-text">
@@ -62,3 +62,10 @@
 	</div>
 </div>
 
+<div id="not-ready-yet" class="hidden">
+	<div class="centered-text not-ready-yet">
+		<p class="title"><%= t('features.not_ready.title') %></p>
+		<%= image_tag('not_ready_yet.png') %>
+		<p class="subtitle"><%= t('features.not_ready.subtitle') %></p>
+	</div>
+</div>

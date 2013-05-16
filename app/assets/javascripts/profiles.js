@@ -132,6 +132,20 @@ $(document).ready(function() {
 					$.visit('#/places');
 				}
 				return false;
+			}	else if($(this).attr('id') == 'routes-section') {
+					if($(this).hasClass('active')) {
+						$.visit('#/');
+					} else {
+						$.visit('#/routes');
+					}
+					return false;
+			}	else if($(this).attr('id') == 'bicibuses-section') {
+					if($(this).hasClass('active')) {
+						$.visit('#/');
+					} else {
+						$.visit('#/bicibuses');
+					}
+					return false;
 			}
 		});
 
@@ -206,17 +220,42 @@ $(document).ready(function() {
 		// Action to call on root subsection
 		Path.map('#/').to(function() {
 			$('.actions li').removeClass('active');
+			mixpanel.track("Profile :: Home");
 			rootSelected();
 		});
+		
+		Path.map('#/routes').to(function() {
+			mixpanel.track("Profile :: Routes");
+			$('.actions li').removeClass('active');
+			$('#routes-section').addClass('active');
+			$('#contents-area').html($('#not-ready-yet').html());
+		});
+		
+		Path.map('#/bicibuses').to(function() {
+			mixpanel.track("Profile :: Bicibuses");
+			$('.actions li').removeClass('active');
+			$('#bicibuses-section').addClass('active');
+			$('#contents-area').html($('#not-ready-yet').html());
+		});
+		
 		// Routes for incidents
-		Path.map("#/incidents").to(incidentsURLs.onIndex);
+		Path.map("#/incidents").to(function() {
+			incidentsURLs.onIndex();
+			mixpanel.track("Profile :: Incidents");
+		});
 		Path.map('#/incidents/:id').to(incidentsURLs.onItem);
 		
 		// Routes for tips
-		Path.map("#/tips").to(tipsURLs.onIndex);
+		Path.map("#/tips").to(function() {
+			tipsURLs.onIndex();
+			mixpanel.track("Profile :: Incidents");
+		});
 		Path.map("#/tips/:id").to(tipsURLs.onItem);
 		// Routes for places
-		Path.map("#/places").to(placesURLs.onIndex);
+		Path.map("#/places").to(function() {
+			placesURLs.onIndex();
+			mixpanel.track("Profile :: Incidents");
+		});
 		Path.map('#/places/:kind').to(placesURLs.onSection);
 		Path.map("#/places/:kind/:id").to(placesURLs.onItem);
 	}

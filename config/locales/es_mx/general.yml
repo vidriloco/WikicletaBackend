@@ -132,6 +132,10 @@ es_MX:
     new: 
       fem: "Nueva"
       masc: "Nuevo"
+  features:
+    not_ready: 
+      title: "¡Ups! Esta funcionalidad está todavía en desarrollo"
+      subtitle: "Espérala para finales de Julio"
   indicators:
     saving: "Guardando ..."
   connectives:
