@@ -1,5 +1,5 @@
 <div class="top-spaced"></div>
-<h3 class="centered-text">Recorridos en tu ciudad</h3>
+<h3 class="centered-text">Pasea por tu ciudad</h3>
 <div class="separator"></div>
 
 <%= render :partial => 'trips/menu', :locals => {:selected_city_code => @city.code} %>
@@ -10,7 +10,7 @@
 		<div class="span12">
 			<p class="centered-text"><%= image_tag('empty_trip.png') %></p>
 			<h3 class="empty centered-text"><%= t('trips.views.index.empty.message', :city => @city.name) %></h3>
-			<p class="centered-text"><%= t('trips.views.index.empty.suggest', :mail => "<a href='mailto:mejora@wikicleta.com'>mejora@wikicleta.com</a>").html_safe %></p>	
+			<p class="centered-text"><%= t('trips.views.index.empty.suggest', :mail => "<a href='mailto:contacto@wikicleta.com'>contacto@wikicleta.com</a>").html_safe %></p>	
 		</div>
 	</div>
 <% else %>

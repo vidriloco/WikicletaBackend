@@ -4,7 +4,7 @@ es_MX:
       index:
         empty: 
           message: "Lo sentimos, por el momento no hay recorridos en %{city}"
-          suggest: "Propón uno o varios recorridos en %{mail} y lo subimos"
+          suggest: "Propón uno o varios recorridos en %{mail} y los subimos"
         trip:
           pois:
             to_see: "puntos para ver"

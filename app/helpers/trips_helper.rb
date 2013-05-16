@@ -5,7 +5,7 @@ module TripsHelper
   end
   
   def non_selected_cities_when_code_selected_is(code)
-    cities_code = [:mx_guadalajara, :mx_monterrey, :mx_df, :mx_aguascalientes]
+    cities_code = [:mx_guadalajara, :mx_monterrey, :mx_df]
     cities_code.delete(code.to_sym)
     
     html=""

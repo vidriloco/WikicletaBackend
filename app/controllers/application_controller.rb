@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
       admin_dashboard_path(resource_or_scope)
     end
   end
-  
-  protected
 
+
+  protected
   def layout_by_resource
     if devise_controller?
       "no_bar"
