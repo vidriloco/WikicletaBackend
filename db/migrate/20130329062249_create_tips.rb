@@ -1,7 +1,7 @@
 class CreateTips < ActiveRecord::Migration
   def change
     create_table :tips do |t|
-      t.text        :content, :limit => 250
+      t.string      :content
       t.integer     :category # peligro, alerta, turismo
       t.point       :coordinates, :geographic => true
       

@@ -43,9 +43,9 @@ Ciudadio::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional Javascript files (excluding application.js)
-  config.assets.precompile += %w(bikes.js map.js profiles.js)
+  #config.assets.precompile += %w(bikes.js map.js profiles.js)
   # Precompile additional CSS files (excluding application.css)
-  config.assets.precompile += %w(welcome.css access.css settings.css profiles.css)
+  #config.assets.precompile += %w(welcome.css access.css settings.css profiles.css)
   config.serve_static_assets = true
   
   # Disable delivery errors, bad email addresses will be ignored
@@ -60,4 +60,20 @@ Ciudadio::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.action_mailer.default_url_options = { :host => 'wikicleta.com' }
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+
+  ActionMailer::Base.smtp_settings = {
+    :address => "mail.gandi.net",
+    :port => 587,
+    :authentication => :plain,
+    :user_name => "no-reply@wikicleta.com",
+    :password => "wikicleta*2",
+  }
 end

@@ -11,17 +11,5 @@
 		<%= render 'pictures/sections' %>
 		<%= render 'pictures/uploads' %>
 		<%= render :partial => 'pictures/uploaded', :locals => {:pictures => bike.pictures} %>
-		
-		<script>
-				// Misbehaving Gallery
-				// TODO: Make it work from external js file as common	
-				var gallery = $('a[rel=gallery]').colorbox({ transition: 'elastic', maxWidth: "1300px", maxHeight: "700px" });
-			
-				$('a.open-gallery').click(function(e) {
-					e.preventDefault();
-					gallery.eq(0).click();
-					gallery.resize();
-				});
-		</script>
 	</div>
 </div>

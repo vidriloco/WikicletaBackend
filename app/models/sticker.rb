@@ -8,7 +8,6 @@ class Sticker < ActiveRecord::Base
   before_validation :initialize_code_and_status, :on => :create
   
   validates :code, :uniqueness => true
-  validates :location, :presence => true
   
   def stored_lat
     return nil if self.location.nil?

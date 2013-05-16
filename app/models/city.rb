@@ -16,4 +16,21 @@ class City < ActiveRecord::Base
     end
     City.where(:code => "#{country}_#{code}").first
   end
+  
+  def custom_json(morph=:default)
+    if morph.eql?(:default)            
+      trips_ = []
+      trips.each do |trip|
+        trips_ << trip.custom_json(:light)
+      end
+        
+      return {:name => name, :trips => trips_ }
+    end
+  end
+  
+  def self.trips_to_json
+    cities = City.all.each.inject([]) do |collected, city|
+      collected << city.custom_json
+    end
+  end
 end

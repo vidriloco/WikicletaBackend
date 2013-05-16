@@ -43,6 +43,6 @@ production:
   encoding: unicode
   database: wikicleta
   pool: 5
-  username: froyo
-  password: helado
+  username: spalatin
+  password: 
 

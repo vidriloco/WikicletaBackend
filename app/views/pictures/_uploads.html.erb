@@ -1,11 +1,9 @@
 <div class="uploads">
 	<h5><%= t("pictures.manager.instruction") %></h5>
 	<div class="actions">
-		<div class="links">
-			<a id="pickfiles" href="javascript:void(0);"><%= t('pictures.manager.files.select') %></a>
-			<a id="uploadfiles" href="javascript:void(0);" class="blue button"><%= t('pictures.manager.files.upload') %></a>
-		</div>
-		<div class="loading rounded-5 shadow-light centered hidden">
+		<a id="pickfiles" class="btn" href="javascript:void(0);"><%= t('pictures.manager.files.select') %></a>
+		<a id="uploadfiles" class="btn btn-primary" href="javascript:void(0);"><%= t('pictures.manager.files.upload') %></a>
+		<div class="loading rounded-5 shadow-light centered">
 			<div class="spinner inlined"></div>
 			<p class="inlined"><%= t('pictures.manager.messages.loading') %></p>
 		</div>

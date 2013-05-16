@@ -1,6 +1,8 @@
 <div class="row">
 	<h3 class="pull-right">Acceso</h3>
 </div>
+
+<% if :should_show_social == :yes %>
 <div class="well top-spaced">
 	<h4>Redes Sociales</h4>
 	<p>Wikicleta te puede dar acceso a través de tu cuenta de Twitter o Facebook</p>
@@ -13,13 +15,17 @@
 		<div class="span1"></div>
 	</div>
 </div>
+<% end %>
 
 <% unless @user.externally_registered %>
 	<div class="well top-spaced">
-		<h4>Cambio de contraseña</h4>
-		<p>Puedes cambiar tu contraseña aquí</p>
+		<div class="row-fluid">
+			<h4>Cambio de contraseña</h4>
+			<p>Puedes cambiar tu contraseña aquí</p>
+		</div>
 		<div class="separator"></div>
-		<div class="row">
+		<br/>
+		<div class="row-fluid">
 			<div class="span2"></div>
 			<div class="span8">
 				<%= form_for(@user, :url => settings_changed_path(@user), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>

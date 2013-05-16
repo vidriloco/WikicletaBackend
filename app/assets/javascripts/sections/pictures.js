@@ -122,7 +122,6 @@ $.extend(Sections.Pictures, {
 		});
 		
 		uploader.bind('BeforeUpload', function(up, file) {
-			//ViewComponents.Blocking.append('transparent-layer');
 			$('#container .actions .loading').fadeIn();
 			$('#container .actions .links').hide();
 		});

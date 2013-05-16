@@ -1,14 +1,26 @@
-<div class="hidden">
-	<div class="gallery">
-		<% bike.pictures.each do |picture| %>
-			<a rel="gallery" href="<%= picture.image.url %>" title="<%= picture.caption %>"></a>
-		<% end %>
-	</div>
-</div>
-
 <% if bike.front_picture.nil? %>
 	<%= image_tag 'no_bike.png', :class => "main-picture" %>
 <% else %>
-	<%= image_tag bike.front_picture.image.preview.url, :class => "main-picture" %>
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+			<% bike.pictures.each_with_index do |picture, index| %>
+				<li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= 'active' if index==0 %>"></li>
+			<% end %>
+		</ol>
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<%= render :partial => 'pictures/preview', :locals => {:url => bike.front_picture.image.preview.url, :caption => bike.front_picture.caption } %>
+			</div>
+			<% bike.pictures.each do |picture| %>
+				<% if picture != bike.front_picture %>
+					<div class="item">
+						<%= render :partial => 'pictures/preview', :locals => {:url => picture.image.preview.url, :caption => picture.caption } %>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 <% end %>
 <div class="info shadow-light rounded-10"><%= details_for(bike) %></div>
+

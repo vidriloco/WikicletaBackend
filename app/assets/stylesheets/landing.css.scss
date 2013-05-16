@@ -16,17 +16,6 @@ html, body {
 	text-align: center;
 }
 
-.navbar-fixed {
-	position: fixed;
-}
-
-.visible-navbar {
-	-moz-box-shadow: 0 0 3px #888;
-	-webkit-box-shadow: 0 0 3px #888;
-	box-shadow: 0 0 3px #888;
-	background-color: white;
-}
-
 .main-container {
 	padding-top: 100px !important;
 	padding-bottom: 100px !important;
@@ -70,12 +59,12 @@ p.no-margin {
 	font-size: 11px !important;
 }
 
-p.orange {
-	color: $wikicleta_orange;
+.orange {
+	color: $wikicleta_orange !important;
 }
 
-p.blue {
-	color: $wikicleta_blue;
+.blue {
+	color: $wikicleta_blue !important;
 }
 
 .box-container, .box-container-stretch {
@@ -165,65 +154,12 @@ p.blue {
 	-moz-border-radius: 5px;
 }
 
-.wikicleta-interbar {
-	background-color: $wikicleta_light_blue;
-	width: 100%;
-	margin-top: 50px;
-	
-	ul {
-		padding-top: 22px;
-		padding-bottom: 20px;
-		list-style: none;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-		
-		li { 
-			margin-right: 50px;
-			margin-left: 50px;
-			font-size: 22px;
-			display: inline-block;
-		}
-		
-		
-		li.test-it {
-			a {
-				color: $wikicleta_orange;
-			}
-		}
-		
-		li.what-is {
-			a {
-				color: $wikicleta_blue;
-			}
-		}
-	}
-}
-
 .sprint {
 	display: none;
 }
 
-.wikicleta-navbar {
-	padding: 10px;
-	
-	ul {
-		list-style: none;
-		li {
-			vertical-align: -3px;
-			display: inline-block;
-			
-			.blue {
-				color: $wikicleta_blue;
-			}
-			
-			a, a:hover {
-				margin-left: 15px;
-				color: $wikicleta_orange;
-				text-decoration: none;
-			}
-		}
-	}
+.margin-top {
+	margin-top: 100px;
 }
 
 .orange-button:hover {

@@ -56,6 +56,13 @@ $(document).ready(function() {
 		}
 	}); 
 
+	if($.isDefined('.carousel')) {
+		$('.carousel').carousel({
+    	interval: 3000,
+			pause: "hover"
+    });
+	}
+
 	// over photo bike info and photo links
 	$('.bike .photos').hover(function() {
 		$('.bike .photos .info').fadeIn('slow');

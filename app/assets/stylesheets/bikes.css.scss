@@ -160,12 +160,53 @@ body {
 // Styles for show view
 
 .show {
+	.helper-board, .bike, .promoted {
+		width: 720px;
+	}
+	
+	.share-social {
+		margin-bottom: 20px;
+		text-align: right;
+	}
+	
+	.helper-board {
+		margin-top: 30px;
+		
+		.status {
+			width: auto;
+			font-size: 14px;
+			padding: 2px 12px 0px 7px;
+			display: inline-block;
+			background-color: #354051;
+
+			p {
+				padding: 0px;
+				margin: 0px;
+			}
+
+			p.likes {
+				color: white;
+				.count {
+					padding-right: 5px;
+				}
+			}
+			
+			.heart {
+				margin-right: 10px;
+			}
+
+			* {
+				display: inline-block !important;
+			}
+		}
+	}
 	
 	.bike, .promoted {
-		width: 720px;
+		margin-top: 0px !important;
 		margin-bottom: 50px;
 		
 		h3 {
+			font-size: 35px;
 			color: #FF6200;
 		}
 		
@@ -206,43 +247,16 @@ body {
 		}
 
 		.description {
-			background-color: #1A1A1A;
+			background-color: #EEF7FF;
 			padding-bottom: 20px;
-			color: white;
+			color: #465A77;
 			font-size: 13px;
 
 			.main {
 				text-align: center;
 				display: inline-block;
 				width: 100%;
-			}
-
-			.status {
-				width: auto;
-				font-size: 14px;
-				background-color: #131313;
-				padding: 5px 15px 5px 10px;
-				display: inline-block;
-
-				p {
-					padding: 0px;
-					margin: 0px;
-				}
-
-				p.likes {
-					color: #FFA6A3;
-					.count {
-						padding-right: 5px;
-					}
-				}
-				
-				.heart {
-					margin-right: 10px;
-				}
-
-				* {
-					display: inline-block !important;
-				}
+				margin: 0px !important;
 			}
 		}
 
@@ -310,6 +324,16 @@ body {
 			.owner {
 				text-align: right;
 			}
+		}
+		
+		.caption-title {
+			color: #FF4F00;
+			font-weight: 100;
+			font-size: 16px;
+		}
+		
+		.caption {
+			font-size: 13px;
 		}
 
 		.statuses {

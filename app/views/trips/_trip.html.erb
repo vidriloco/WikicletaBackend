@@ -3,7 +3,7 @@
 		<%= link_to image_tag("trips/#{trip.picture_name}.jpg"), trip_path(trip) %>
 		<div class="details">
 			<p class="title-light"><%= link_to trip.name, trip_path(trip) %></p>
-			<p class="extras"><a href=""><%= distance_in_days_according_to(trip.periodicity) %></a></p>
+			<p class="extras"><a href=""><%= trip.days_to_event %></a></p>
 		</div>
 	</div>
 	<div class="stats centered centered-text row-fluid">

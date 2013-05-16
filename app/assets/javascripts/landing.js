@@ -1,13 +1,6 @@
 //= require common/base
 
 $(document).ready(function() {
-	
-	$('#slider img:gt(0)').hide();
-	    setInterval(function(){
-	      $('#slider img:first-child').fadeOut(0)
-	         .next('img').fadeIn(0)
-	         .end().appendTo('#slider');}, 2000);
-
 	LandingRoutes = function() {
 		this.home = function() {
 			$('.nav li').removeClass('active');
@@ -17,7 +10,7 @@ $(document).ready(function() {
 		this.whatIs = function() {
 			$('.nav li').removeClass('active');
 			$('.nav li.what-is').addClass('active');
-			$.scrollFromMapToDom('#description', 20);
+			$.scrollFromMapToDom('#what-is', 70);
 		}
 		
 		this.register = function() {

@@ -1,0 +1,29 @@
+<div class="helper-board centered">
+	
+
+	<div class="row-fluid">
+		<div class="pull-right">
+			<div class="status rounded-5">
+				<%= render :partial => 'bikes/likes_count', :locals => {:bike => @bike } %>
+			</div>
+		</div>
+		<div class="pull-left">
+			<ul class="nav nav-pills">
+	    	<li><%= link_to t('actions.back_arrow').html_safe, back_bike_path(@bike), :class => 'back' %></li>
+				<% if current_user_owns_bike?(@bike) %>
+					<li class="active"><%= link_to t('bikes.views.show.modify'), edit_bike_path(@bike) %></li>
+				<% end %>
+	    </ul>
+		</div>
+	</div>
+	<div class="share-social row-fluid">
+		<div class="pull-right">
+			<div>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= share_bike_tweet @bike %>" data-via="wikicleta" data-lang="es" data-size="large">Twittear</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			</div>
+			<div class="fb-like" data-href="<%= bike_url(@bike) %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+			
+		</div>
+	</div>
+</div>

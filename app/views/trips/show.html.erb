@@ -21,7 +21,7 @@
 				<div class="pull-left">
 					<%= image_tag('calendar_icon.png', :size => '30x30') %>
 					<%= @trip.details %>
-					<span class="periodicity"><%= distance_in_days_according_to(@trip.periodicity) %></span>
+					<span class="periodicity"><%= @trip.days_to_event %></span>
 				</div>
 				<div class="pull-right">
 					<a class="btn btn-inverse locate-me"><i class="icon icon-map-marker"></i> Ubicarme</a></div>

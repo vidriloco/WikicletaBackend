@@ -1,8 +1,4 @@
-Ciudadio::Application.routes.draw do  
-  ActiveAdmin.routes(self)
-  
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  
+Ciudadio::Application.routes.draw do    
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
 
   resources :languages, :only => [:update]
@@ -41,6 +37,9 @@ Ciudadio::Application.routes.draw do
     
     resources :workshops, :only => [:create, :update, :index]
     post '/workshops/:id', :to => 'workshops#destroy'
+    
+    get '/city_trips', :to => 'cities#index'
+    get '/trips/:id', :to => 'trips#show'
   end
   
   namespace :settings do
@@ -118,4 +117,6 @@ Ciudadio::Application.routes.draw do
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  
   
   root :to => 'welcome#index'
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
 end

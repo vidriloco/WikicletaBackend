@@ -145,9 +145,9 @@ ActiveRecord::Schema.define(:version => 20130508035030) do
     t.boolean  "has_roof"
     t.boolean  "others_can_edit_it"
     t.integer  "user_id"
+    t.integer  "likes_count",                                                                    :default => 0
     t.datetime "created_at",                                                                                    :null => false
     t.datetime "updated_at",                                                                                    :null => false
-    t.integer  "likes_count",                                                                    :default => 0
   end
 
   add_index "parkings", ["coordinates"], :name => "index_parkings_on_coordinates", :spatial => true
@@ -309,9 +309,9 @@ ActiveRecord::Schema.define(:version => 20130508035030) do
     t.spatial  "coordinates",        :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "user_id"
     t.integer  "promoter_info_id"
+    t.integer  "likes_count",                                                                    :default => 0
     t.datetime "created_at",                                                                                    :null => false
     t.datetime "updated_at",                                                                                    :null => false
-    t.integer  "likes_count",                                                                    :default => 0
   end
 
   add_index "workshops", ["coordinates"], :name => "index_workshops_on_coordinates", :spatial => true

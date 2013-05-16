@@ -22,6 +22,12 @@ class TripPoi < ActiveRecord::Base
     TripPoi.category_symbol_for(:categories, category)
   end
   
+  def custom_json(morph=:default)
+    if morph.eql?(:default)            
+      {:name => name, :details => details, :category => category, :icon_name => icon_name, :lat => lat, :lon => lon }
+    end
+  end
+  
   private
   def self.categories
     { 1 => :service_station, 2 => :ambulance, 3 => :paramedic, 

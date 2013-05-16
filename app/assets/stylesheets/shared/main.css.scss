@@ -245,12 +245,12 @@ p.empty {
 }
 
 .loading {
-	margin-top: 40px;
-	border: 2px solid #5E7ECF;
-	padding: 0px 8px !important;
-	width: 160px;
+	width: 180px;
+	margin-top: 20px;
 	font-style: normal;
 	text-align: center;
+	border: none !important;
+	display: none;
 	
 	.spinner {
 		height: 30px;
@@ -260,7 +260,7 @@ p.empty {
 	}
 	
 	p {
-		padding: 5px 0px 5px 10px !important;
+		padding-top: 13px !important;
 		font-size: 13px;
 		font-weight: bold;
 		vertical-align: 10px;
@@ -300,6 +300,10 @@ p.empty {
 
 
 // Ordered styles
+
+.board-login {
+	margin-top: 0px !important;
+}
 
 .board {
 	margin-top: 50px;
