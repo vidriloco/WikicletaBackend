@@ -33,7 +33,9 @@
 					
 				</ul>
 				<ul class="nav pull-right">
-					<li><%= link_to t('app.landing.navbar.explore'), trips_path, :class => 'blue' %></li>
+					<% if Date.today >= Date.parse("17-05-2013")%>
+						<li><%= link_to t('app.landing.navbar.explore'), trips_path, :class => 'blue' %></li>
+					<% end %>
 					<%= render 'layouts/shared/navbar_logged_in_user' %>
         </ul>
       </div>
@@ -61,6 +63,7 @@
 	<ul>
 		<li><%= link_to image_tag('social_tweet.png', :size => '25x25'), "http://www.twitter.com/wikicleta", :target => "_blank" %></li>
 		<li><%= link_to image_tag('social_fb.png', :size => '25x25'), "http://www.facebook.com/pages/Wikicleta/305039579602752", :target => "_blank" %></li>
+		<li class="really-tiny"><%= mail_to "contacto@wikicleta.com" %></li>
 	</ul>
 </div>
 
