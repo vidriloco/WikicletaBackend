@@ -169,7 +169,7 @@ $(document).ready(function() {
 					// show section marked
 					$('.actions li').removeClass('active');
 					$('#incidents-section').addClass('active');
-					$('.solved-status .trigger').live('click', function() {
+					$('.solved-status .trigger').on('click', function() {
 						$(this.parent).html("<p><b>Cambiando ...</b></p>");
 					});
 				}

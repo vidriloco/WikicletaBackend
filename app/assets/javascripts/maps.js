@@ -69,7 +69,7 @@ $(document).ready(function(){
 			}
 		}
 		// Responds to clicks on incidents
-		$('.item-on-list').live('click', function() {
+		$('.item-on-list').on('click', function() {
 			itemUrlSwitch($(this), $(this).attr('id'));
 		});
 		

@@ -127,7 +127,7 @@ $.extend(Sections.Pictures, {
 		});
 		
 		$('#filelist').empty();
-		$('.delete-file').live('click', function() {
+		$('.delete-file').on('click', function() {
 			var fileId = $($(this).parent()).attr('id');
 			uploader.removeFile(uploader.getFile(fileId));
 			$(this).parent().remove();

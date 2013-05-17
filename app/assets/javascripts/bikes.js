@@ -30,22 +30,22 @@ $(document).ready(function() {
 		isFitWidth: true
   });
 	
-	$('.reveals-share').live('click', function(e) {
+	$('.reveals-share').on('click', function(e) {
 		e.preventDefault();
 		$('#share-modal').modal();
 	});
 	
-	$('.reveals-rent').live('click', function(e) {
+	$('.reveals-rent').on('click', function(e) {
 		e.preventDefault();
 		$('#rent-modal').modal();
 	});
 	
-	$('.reveals-sell').live('click', function(e) {
+	$('.reveals-sell').on('click', function(e) {
 		e.preventDefault();
 		$('#sell-modal').modal();
 	});
 	
-	$('.bike_statuses_availability').live('change', function() {
+	$('.bike_statuses_availability').on('change', function() {
 		var element = $(this).parent().parent().parent().children('.dependent-fields')[0];
 		if($(this).val() == "1") {
 			$(element).removeClass('hidden');
@@ -71,8 +71,8 @@ $(document).ready(function() {
 	});
 	
 	// tipsy hovers
-	$('.contact').tipsy({gravity: 's', live: true, fade: true, delayIn: 100, delayOut: 60 });
-	$('.value').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 60 });
+	$('.contact').tipsy({gravity: 's', on: true, fade: true, delayIn: 100, delayOut: 60 });
+	$('.value').tipsy({gravity: 'n', on: true, fade: true, delayIn: 100, delayOut: 60 });
 	
 	if($.isDefined('.bike-upload')) {
 		ViewComponents.Counter.forDomElement('#bike_name', 25);

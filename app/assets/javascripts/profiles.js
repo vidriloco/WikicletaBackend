@@ -106,8 +106,8 @@ $(document).ready(function() {
 		});
 
 		// Tipsy for navsubbar elements
-		$('.profile .activities a').tipsy({gravity: 'n', live: true, fade: true, delayIn: 900, delayOut: 0 });
-		$('.profile .activities .stats a').tipsy({gravity: 'n', live: true, fade: true, delayIn: 900, delayOut: 0 });
+		$('.profile .activities a').tipsy({gravity: 'n', on: true, fade: true, delayIn: 900, delayOut: 0 });
+		$('.profile .activities .stats a').tipsy({gravity: 'n', on: true, fade: true, delayIn: 900, delayOut: 0 });
 		
 		// Behaviours when clicking on navbar sections items
 		$('.actions li').bind('click', function() {
@@ -153,14 +153,14 @@ $(document).ready(function() {
 		 *  ==== Methods for incidents begin =====
 		 */
 
-		$('.delete-incident').live('click', function() {
+		$('.delete-incident').on('click', function() {
 			$('#dialog').modal();
 			$('#dialog .dialog-yes').attr('href', '/profiles/incidents/'+$(this).attr('data-id'));
 			return false;
 		});
 
 		// Responds to clicks on incidents
-		$('.incident').live('click', function() {
+		$('.incident').on('click', function() {
 			incidentUrlSwitch($(this), $(this).attr('id'));
 		});
 		
@@ -169,14 +169,14 @@ $(document).ready(function() {
 		 *  ==== Methods for tips begin =====
 		 */
 		
-		$('.delete-tip').live('click', function() {
+		$('.delete-tip').on('click', function() {
 			$('#dialog').modal();
 			$('#dialog .dialog-yes').attr('href', '/profiles/tips/'+$(this).attr('data-id'));
 			return false;
 		});
 		
 		// Responds to clicks on tips
-		$('.tip').live('click', function() {
+		$('.tip').on('click', function() {
 			tipUrlSwitch($(this), $(this).attr('id'));
 		});
 		
@@ -185,7 +185,7 @@ $(document).ready(function() {
 		 *  ==== Methods for places start =====
 		 */
 		
-		$('.delete-workshop').live('click', function() {
+		$('.delete-workshop').on('click', function() {
 			$('#dialog').modal();
 			$('#dialog .dialog-yes').attr('href', '/profiles/workshops/'+$(this).attr('data-id'));
 			return false;
@@ -193,7 +193,7 @@ $(document).ready(function() {
 
 		
 		// Responds to clicks on tips
-		$('.place').live('click', function() {
+		$('.place').on('click', function() {
 			placesUrlSwitch($(this), $(this).attr('id'));
 		});
 
@@ -202,7 +202,7 @@ $(document).ready(function() {
 		 *  ==== Methods for parkings start =====
 		 */
 		
-		$('.delete-parking').live('click', function() {
+		$('.delete-parking').on('click', function() {
 			$('#dialog').modal();
 			$('#dialog .dialog-yes').attr('href', '/profiles/parkings/'+$(this).attr('data-id'));
 			return false;

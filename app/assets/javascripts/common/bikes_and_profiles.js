@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('.heart').live('click', function() {
+	$('.heart').on('click', function() {
 		$('.tipsy').fadeOut();
 		if($(this).hasClass('requires_login')) {
 			return false;
@@ -20,5 +20,5 @@ $(document).ready(function() {
 		  data: { format : "js" }
 		});
 	});
-	$('.heart').tipsy({gravity: 'n', live: true, fade: true, delayIn: 100, delayOut: 500 });
+	$('.heart').tipsy({gravity: 'n', on: true, fade: true, delayIn: 100, delayOut: 500 });
 });

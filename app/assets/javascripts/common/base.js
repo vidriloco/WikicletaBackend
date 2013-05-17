@@ -1,10 +1,10 @@
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery.tipsy
 //= require jquery.reveal
 //= require jquery.editable.min
 //= require path
-//= require twitter/bootstrap
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {
@@ -56,7 +56,7 @@ $.extend({
 		return "#"+section+"/"+id;
 	},
 	// For google maps icons
-	assetsURL: $.assetsURL()
+	assetsURL: 'http://wikicleta.com/assets/'
 });
 
 $(document).ready(function() {
