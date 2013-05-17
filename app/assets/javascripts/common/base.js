@@ -56,7 +56,7 @@ $.extend({
 		return "#"+section+"/"+id;
 	},
 	// For google maps icons
-	assetsURL: $.assetsURL();
+	assetsURL: $.assetsURL()
 });
 
 $(document).ready(function() {
