@@ -56,7 +56,7 @@ $.extend({
 		return "#"+section+"/"+id;
 	},
 	// For google maps icons
-	assetsURL: 'http://50.56.30.227/assets/'
+	assetsURL: $.assetsURL();
 });
 
 $(document).ready(function() {
