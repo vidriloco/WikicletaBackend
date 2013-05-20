@@ -1,9 +1,7 @@
 ActiveAdmin.register Sticker do     
   index do                            
-    column :details                     
     column :code
-    column :banned
-    column :fake        
+    column :available?
     default_actions                   
   end                                 
 
