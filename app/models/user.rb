@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
 
   def validate_format_of_username
     return if self.username.nil?
-    errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{5,}$/).nil?
+    errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{3,}$/).nil?
   end
   
   def profile_to_json
