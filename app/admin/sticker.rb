@@ -5,7 +5,8 @@ ActiveAdmin.register Sticker do
     default_actions                   
   end                                 
 
-  filter :code                   
+  filter :code
+  filter :status, :as => :check_boxes, :collection => proc { [1 ,2] }, :label => "Available (1) / Taken (2)"
 
   form :partial => "form" 
                             
