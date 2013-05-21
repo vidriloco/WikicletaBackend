@@ -18,10 +18,10 @@ class SettingsController < ApplicationController
       sign_in(@user, :bypass => true)
       flash[:notice] = I18n.t("user_accounts.settings.successful_save")
     else
-      flash[:notice] = I18n.t("user_accounts.settings.unsuccessful_save")
+      flash[:alert] = I18n.t("user_accounts.settings.unsuccessful_save")
     end
     
-    redirect_to request.referer || 'account'    
+    redirect_to request.referer || 'profile'    
   end
   
   def change_picture
