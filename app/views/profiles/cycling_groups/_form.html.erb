@@ -1,0 +1,104 @@
+<div class="well altering-cycling_group">
+	
+	<div class="control-group">
+		<div id="coordinates_lat_both" class="alert alert-error error">
+			<%= t('cycling_groups.views.form.validations.coordinates') %>
+		</div>
+		<%= hidden_field_tag "coordinates[lat]", cycling_group.coordinates.nil? ? "" : cycling_group.coordinates.lat %>
+		<%= hidden_field_tag "coordinates[lon]", cycling_group.coordinates.nil? ? "" : cycling_group.coordinates.lon %>
+	</div>
+	
+	<div class="control-group">
+		<div id="cycling_group_name_not_empty" class="alert alert-error error">
+			<%= t('cycling_groups.views.form.validations.name') %>
+		</div>
+		<%= f.label :name, t('cycling_groups.views.form.name'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :name, :class => "input-large" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div id="cycling_group_details_not_empty" class="alert alert-error error">
+			<%= t('cycling_groups.views.form.validations.details') %>
+		</div>
+		<%= f.label :details, t('cycling_groups.views.form.details'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :details, :rows => 2, :class => "span5" %>
+			<div id="cycling_group_details_count" class="field-counter"></div>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div class="span6">
+			<div id="cycling_group_meeting_time_hour_not_empty" class="alert alert-error error">
+				<%= t('cycling_groups.views.form.validations.meeting_time_hour') %>
+			</div>
+			<div id="cycling_group_meeting_time_minute_not_empty" class="alert alert-error error">
+				<%= t('cycling_groups.views.form.validations.meeting_time_minute') %>
+			</div>
+			<%= f.label :meeting_time, t('cycling_groups.views.form.meeting_time'), :class => 'control-label' %>
+			<div class="controls">
+				<%= select_tag 'cycling_group[meeting_time][hour]',  options_for_select((0...25).to_a, cycling_group.meeting_time_fr(:hour)), {:include_blank => true, :class => "input-mini"} %>
+				<%= select_tag 'cycling_group[meeting_time][minute]',  options_for_select(["00", 15, 30, 45], cycling_group.meeting_time_fr(:minute)), {:include_blank => true, :class => "input-mini"} %>
+			</div>
+		</div>
+		<div class="span6">
+			<div id="cycling_group_departing_time_hour_not_empty" class="alert alert-error error">
+				<%= t('cycling_groups.views.form.validations.departing_time_hour') %>
+			</div>
+			<div id="cycling_group_departing_time_minute_not_empty" class="alert alert-error error">
+				<%= t('cycling_groups.views.form.validations.departing_time_minute') %>
+			</div>
+			<%= f.label :departing_time, t('cycling_groups.views.form.departing_time'), :class => 'control-label' %>
+			<div class="controls">
+				<%= select_tag 'cycling_group[departing_time][hour]',  options_for_select((0...25).to_a, cycling_group.departing_time_fr(:hour)), {:include_blank => true, :class => "input-mini"} %>
+				<%= select_tag 'cycling_group[departing_time][minute]',  options_for_select(["00", 15, 30, 45], cycling_group.departing_time_fr(:minute)), {:include_blank => true, :class => "input-mini"} %>
+			</div>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :periodicity, t('cycling_groups.views.form.periodicity'), :class => 'control-label' %>
+		<div class="controls">
+			<%= select_tag 'cycling_group[periodicity_tmp][ocurrence_timing]', options_for_select(CyclingGroup.humanized_categories_for(:ocurrence_timings).invert), {:include_blank => true, :class => "input-small"} %>
+			<%= select_tag 'cycling_group[periodicity_tmp][day_timing]', options_for_select(CyclingGroup.humanized_categories_for(:day_timings).invert), {:include_blank => true, :class => "input-medium"} %>
+			<%= select_tag 'cycling_group[periodicity_tmp][recurrence_timing]', options_for_select(CyclingGroup.humanized_categories_for(:recurrence_timings).invert), {:include_blank => true, :class => "input-medium"} %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div id="cycling_group_twitter_account_regexp" class="alert alert-error error">
+			<%= t('cycling_groups.views.form.validations.twitter_account') %>
+		</div>
+		<%= f.label ' '%>
+		<div class="controls">
+			<div class="input-prepend">
+				<span class="add-on">@</span>
+				<%= f.text_field :twitter_account, :class => 'input-medium', :placeholder => t('places.workshops.views.form.twitter') %>
+			</div>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :facebook_url, t('cycling_groups.views.form.facebook_url'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :facebook_url, :class => "input-large" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :website_url, t('cycling_groups.views.form.website_url'), :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :website_url, :class => "input-large" %>
+		</div>
+	</div>
+	
+</div>
+<div class="centered-text">
+	<%= f.submit t('actions.save'), :class => "btn btn-large btn-success" %>
+</div>

@@ -17,8 +17,14 @@ class Picture < ActiveRecord::Base
   def self.find_or_create_from(params)
     picture=new(:image => params[:file])
     picture.apply_type_from(params)
-    if picture.save! && params.has_key?(:user_id)
-      Picture.where(:imageable_id => params[:user_id], :imageable_type => User.to_s).where('id != ?', picture.id).destroy_all
+    
+    # clear previously stored pics of a user or a cycling_group
+    if picture.save!
+      if params.has_key?(:user_id)
+        Picture.where(:imageable_id => params[:user_id], :imageable_type => User.to_s).where('id != ?', picture.id).destroy_all
+      elsif params.has_key?(:cycling_group_id)
+        Picture.where(:imageable_id => params[:cycling_group_id], :imageable_type => CyclingGroup.to_s).where('id != ?', picture.id).destroy_all
+      end
     end
   end
   
@@ -37,6 +43,9 @@ class Picture < ActiveRecord::Base
     elsif params.has_key?(:user_id)
       self.imageable_id = params[:user_id] 
       self.imageable_type = User.to_s
+    elsif params.has_key?(:cycling_group_id)
+      self.imageable_id = params[:cycling_group_id] 
+      self.imageable_type = CyclingGroup.to_s
     end
   end
   

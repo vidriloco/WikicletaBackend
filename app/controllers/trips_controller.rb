@@ -1,11 +1,13 @@
 class TripsController < ApplicationController
-  layout 'trips'
+  layout 'discover'
   
   def index
-    @city = City.find_city_on_country_with_code(params[:country_code], params[:city_code], current_user)
-  end
-  
-  def show
-    @trip = Trip.find(params[:id])
+    @trips = []
+    
+    respond_to do |format|
+      format.js { @trips = Trip.find_nearby_with(params[:viewport], params[:extra]) }
+      format.html
+    end
+    
   end
 end

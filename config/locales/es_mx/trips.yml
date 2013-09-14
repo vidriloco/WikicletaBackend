@@ -3,8 +3,8 @@ es_MX:
     views:
       index:
         empty: 
-          message: "Lo sentimos, por el momento no hay recorridos en %{city}"
-          suggest: "Propón uno o varios recorridos en %{mail} y los subimos"
+          message: "No hay paseos en bici en esta área"
+          suggest: "Comparte el tuyo"
         trip:
           pois:
             to_see: "puntos para ver"

@@ -16,6 +16,22 @@ es_MX:
         other: "Faltan %{days} días para este evento"
         zero: "¡Hoy!"
     categories:
+      cycling_groups:
+        day_timings:
+          mon: "Lunes"
+          tue: "Martes"
+          wed: "Miércoles"
+          thu: "Jueves"
+          fri: "Viernes"
+          sat: "Sábado"
+          sun: "Domingo"
+        recurrence_timings:
+          monthly: "Cada mes"
+          yearly: "Cada año"
+          weekly: "Cada semana"
+        ocurrence_timings:
+          last: "Último"
+          first: "Primer"
       trip_pois:
         categories:
           service_station: "Estación de Servicio"

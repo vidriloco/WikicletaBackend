@@ -1,7 +1,13 @@
 class Trip < ActiveRecord::Base
+  include Shared::Geography
+  include Shared::Categories
+  include Shared::TimingCategories
+  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :segments, :dependent => :destroy
   has_many :trip_pois
-  belongs_to :city
 
   def self.all_on_city(name)
     City.where(:name => name).trips
@@ -13,6 +19,13 @@ class Trip < ActiveRecord::Base
       :include => [:trip_pois, :segments]
     })
   end
+  
+  def self.find_nearby_with(viewport, extra=nil)
+    return find_nearby(viewport) if extra.nil?
+
+    Trip.where(:slug => extra)
+  end
+  
   
   def custom_json(morph=:default)
     if morph.eql?(:light)
@@ -32,13 +45,11 @@ class Trip < ActiveRecord::Base
   end
   
   def days_to_event
-    days=0
-    if periodicity.eql?("last_sunday_month")
-      days = date_of_last_sunday
-    elsif periodicity.eql?("every_sunday")
-      days = date_of_next("Sunday").day-Date.today.day
-    end
-   
+    schedule = IceCube::Schedule.new
+    schedule.add_recurrence_rule timing_rule
+    next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
+    days = next_day_ocurring_from_today.day-Date.today.day
+    
     if days==0
       I18n.t('app.events.days_until.zero')
     elsif days==1

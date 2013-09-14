@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   
+  has_many :cycling_group_admins
+  has_many :cycling_groups, :through => :cycling_group_admins
+  
+  
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   attr_accessor :login, :invitation_code
   attr_accessible :invitation_code, :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id

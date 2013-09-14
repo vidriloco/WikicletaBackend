@@ -60,6 +60,7 @@ Ciudadio::Application.routes.draw do
     resources :places
     resources :workshops
     resources :parkings
+    resources :cycling_groups, :only => [:new, :edit, :create]
   end
   
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
@@ -109,9 +110,9 @@ Ciudadio::Application.routes.draw do
   
   resources :comments, :only => [:create, :destroy]
   
-  resources :trips, :only => [:show]
-  get '/trips', to: redirect('/trips/mx/df')
-  get '/trips/:country_code/:city_code' => 'trips#index', :as => :trips_country_city_code 
+  get '/discover/trips' => 'trips#index'
+  get '/discover/trips/:id' => 'trips#show'
+  get '/discover/groups' => 'cycling_groups#index'
   
   #  get "/places/:id" => 'places#show', :as => "place"
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

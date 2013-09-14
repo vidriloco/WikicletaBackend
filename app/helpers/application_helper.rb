@@ -1,5 +1,9 @@
 module ApplicationHelper
   
+  def current_path
+    request.original_url
+  end
+  
   def on_path?(path)
     "active" if path==request.env['PATH_INFO']
   end

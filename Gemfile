@@ -22,12 +22,14 @@ gem 'carrierwave', '0.6.2'
 gem 'rmagick', '2.13.2'
 gem 'fog'
 
+gem 'friendly_id'
+
 gem 'rgeo'
 gem 'rgeo-shapefile'
 gem 'dbf'
 gem 'squeel'
 gem 'activerecord-postgis-adapter'
-
+gem 'recurring_select'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 

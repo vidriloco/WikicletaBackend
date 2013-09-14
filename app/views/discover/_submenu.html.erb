@@ -1,0 +1,18 @@
+<div class="activities">
+	<div class="items pull-right">	
+		<ul class="pull-right sub-actions">
+			<li class="activity <%= "active" if section.eql?(:trips) %>">
+				<a href="<%= discover_trips_path %>">
+					<p class="numeric"><%= trips_count == '?' ? '' : trips_count %></p>
+					<p class="kind"><%= trips_count == 1 ? "PASEO" : "PASEOS" %></p>
+				</a>
+			</li>
+			<li class="activity <%= "active" if section.eql?(:groups) %>">
+				<a href="<%= discover_groups_path %>">
+					<p class="numeric"><%= groups_count == '?' ? '' : groups_count %></p>
+					<p class="kind"><%= groups_count == 1 ? "GRUPO" : "GRUPOS" %></p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

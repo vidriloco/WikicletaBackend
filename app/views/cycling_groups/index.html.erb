@@ -1,0 +1,16 @@
+<% content_for :panel do %>	
+	<div id="section" class="panel" data-url="<%= discover_groups_path %>">
+		<div class="inner-panel inner-panel-small">
+			<div class="row-fluid actions-bar"><%= render :partial => 'discover/menu', :locals => {:selected_city => @city} %></div>
+		</div>
+		<div class="inner-panel inner-panel-big">
+			<%= render :partial => 'discover/submenu', :locals => {:section => :groups} %>
+	
+			<ul class="thumbnails span12">
+				<% @cycling_groups.each do |cg| %>
+					<%= render :partial => 'profiles/cycling_groups/cycling_group', :locals => {:cycling_group => cg} %>
+				<% end %>
+	    </ul>
+		</div>
+	</div>
+<% end %>

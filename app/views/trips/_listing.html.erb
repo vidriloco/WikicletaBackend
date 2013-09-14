@@ -1,0 +1,21 @@
+<%= render :partial => 'discover/submenu', :locals => {:section => :trips, :trips_count => trips.count, :groups_count => '?'} %>
+
+<% if trips.empty? %>
+	<div class="row-fluid top-spaced empty-listing">
+		<div class="span12">
+			<p class="suggest centered-text"><%= t('trips.views.index.empty.message') %> <b class="blue">:(</b></p>
+			<p class="centered-text"><%= image_tag('empty_cycling.png', :size => '600x600') %></p>
+			<p class="centered-text"><a href='mailto:contacto@wikicleta.com' class='btn btn-info btn-small'><i class='icon icon-plus'></i> 
+			<%= t('trips.views.index.empty.suggest') %></a></p>       
+		</div>
+	</div>
+<% else %>
+	<div class="trip-list listing-view">
+		<div class="listing-actions">
+			<%= link_to '<i class="icon-chevron-left"></i>  Regresar'.html_safe, discover_trips_path.concat('#/') %>
+		</div>
+		<% trips.each do |trip| %>
+			<%= render :partial => 'trips/trip', :locals => {:trip => trip} %>
+		<% end %>
+	</div>
+<% end %>

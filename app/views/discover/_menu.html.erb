@@ -1,0 +1,20 @@
+<div class="span12">
+			<p class="call-to-act">Descubre actividades ciclistas en</p>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary btn-small"><%= selected_city_by_code(selected_city) %></button>
+			  <button type="button" class="btn btn-primary dropdown-toggle btn-small" data-toggle="dropdown">
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			    <%= non_selected_cities_when_code_selected_is(selected_city) %>
+			  </ul>
+				
+			</div>
+			<p class="call-to-act">O cerca de ti</p>
+			<div class="btn-group">
+				<a class="btn btn-warning btn-small pull-right locate-me"><i class="icon icon-map-marker"></i> Ubicarme</a>
+			</div>
+			<div class="pull-right">
+				<%= image_tag('mini_spinner.gif', :class => "spinner") %>
+			</div>
+</div>

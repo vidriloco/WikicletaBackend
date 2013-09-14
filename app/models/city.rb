@@ -2,7 +2,6 @@ class City < ActiveRecord::Base
   include Shared::Geography
   
   has_many :users
-  has_many :trips
   
   def name
     I18n.t("cities.list.#{code}")

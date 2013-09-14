@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508035030) do
+ActiveRecord::Schema.define(:version => 20130908183305) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -117,6 +117,30 @@ ActiveRecord::Schema.define(:version => 20130508035030) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "cycling_group_admins", :force => true do |t|
+    t.integer  "cycling_group_id"
+    t.integer  "user_id"
+    t.integer  "permissions"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "cycling_group_admins", ["cycling_group_id", "user_id"], :name => "index_cycling_group_admins_on_cycling_group_id_and_user_id", :unique => true
+
+  create_table "cycling_groups", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.string   "meeting_time"
+    t.string   "departing_time"
+    t.string   "periodicity"
+    t.string   "twitter_account"
+    t.string   "facebook_url"
+    t.string   "website_url"
+    t.spatial  "coordinates",     :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
+  end
 
   create_table "incidents", :force => true do |t|
     t.string   "description"
@@ -242,13 +266,16 @@ ActiveRecord::Schema.define(:version => 20130508035030) do
 
   create_table "trips", :force => true do |t|
     t.string   "name"
+    t.string   "slug"
     t.string   "details"
-    t.integer  "city_id"
+    t.spatial  "coordinates",  :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.string   "picture_name"
     t.string   "periodicity"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
   end
+
+  add_index "trips", ["slug"], :name => "index_trips_on_slug", :unique => true
 
   create_table "user_like_bikes", :force => true do |t|
     t.integer  "user_id"

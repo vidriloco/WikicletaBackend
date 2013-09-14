@@ -148,13 +148,13 @@ $(document).ready(function(){
 					$.scrollFromMapToDom('#map', 60);
 				},
 				
-				drawSelectedItems : function(incidents) {
+				drawSelectedItems : function(markers) {
 					map.resetMarkersList();
-					for(idx = 0 ; idx<incidents.length ; idx++) {
-						var lat = parseFloat($(incidents[idx]).attr('data-lat'));
-						var lon = parseFloat($(incidents[idx]).attr('data-lon'));
-						var kind = $(incidents[idx]).attr('data-kind');
-						var idD = $(incidents[idx]).attr('id');
+					for(idx = 0 ; idx<markers.length ; idx++) {
+						var lat = parseFloat($(markers[idx]).attr('data-lat'));
+						var lon = parseFloat($(markers[idx]).attr('data-lon'));
+						var kind = $(markers[idx]).attr('data-kind');
+						var idD = $(markers[idx]).attr('id');
 						
 						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(urlID) {
 							itemUrlSwitch($('.listing-view #'+urlID), urlID);

@@ -36,7 +36,7 @@
 				</ul>
 				<ul class="nav pull-right">
 					<% if Date.today >= Date.parse("17-05-2013")%>
-						<li><%= link_to t('app.landing.navbar.explore'), trips_path, :class => 'blue' %></li>
+						<li><%= link_to t('app.landing.navbar.explore'), discover_trips_path, :class => 'blue' %></li>
 					<% end %>
 					<%= render 'layouts/shared/navbar_logged_in_user' %>
         </ul>

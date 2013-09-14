@@ -1,46 +1,14 @@
-<div class="top-spaced"></div>
-<h3 class="centered-text">Pasea por tu ciudad</h3>
-<div class="separator"></div>
-
-<%= render :partial => 'trips/menu', :locals => {:selected_city_code => @city.code} %>
-<div class="top-spaced"></div>
-
-<% if @city.trips.empty? %>
-	<div class="row-fluid top-spaced">
-		<div class="span12">
-			<p class="centered-text"><%= image_tag('empty_trip.png') %></p>
-			<h3 class="empty centered-text"><%= t('trips.views.index.empty.message', :city => @city.name) %></h3>
-			<p class="centered-text"><%= t('trips.views.index.empty.suggest', :mail => "<a href='mailto:contacto@wikicleta.com'>contacto@wikicleta.com</a>").html_safe %></p>	
+<% content_for :panel do %>	
+	<div id="section" class="panel" data-url="<%= discover_trips_path %>">
+		<div class="inner-panel inner-panel-small">
+			<div class="row-fluid actions-bar"><%= render :partial => 'discover/menu', :locals => {:selected_city => @city} %></div>
+		</div>
+		
+		<div class="inner-panel inner-panel-big">
+			<div class="content listing">
+				<%= render :partial => 'trips/listing', :locals => { :trips => @trips } %>
+			</div>
+			
 		</div>
 	</div>
-<% else %>
-	<div class="row-fluid neighbourhoods centered-text top-spaced">
-			<% @city.trips.each_slice(3) do |three_group| %>
-				<div class="content centered span12">
-					<% three_group.each do |trip| %>
-						<%= render trip %>
-					<% end %>
-				</div>
-			<% end %>
-	</div>
 <% end %>
-
-<% if @city.code.eql?("mx_df") %>
-	<div class="top-spaced"></div>
-	<h3 class="centered-text">Próximamente</h3>
-	<div class="separator"></div>
-
-	<%= render 'future' %>
-<% end %>
-
-<!--<h3 class="centered-text">Rodadas y Eventos de la comunidad ciclista local</h3>
-<div class="separator"></div>-->
-<!--<div class="row-fluid">
-	<div class="pull-right">
-		<ul class="nav nav-pills">
-    	<li class="active"><a href="#">Hoy</a></li>
-    	<li><a href="#">Semana</a></li>
-    	<li><a href="#">Fin de Semana</a></li>
-    </ul>
-	</div>
-</div>-->
