@@ -75,16 +75,10 @@ var drawSelectedItems = function(markers) {
 	}
 }
 
-var centerMapFromUserCity = function(callback) {
-	if($.isDefined('#selected-city')) {
-		var lat = $('#selected-city').attr('data-default-lat');
-		var lon = $('#selected-city').attr('data-default-lon');
-		map.placeViewportAt({ lat: parseFloat(lat), lon: parseFloat(lon), zoom: defaultZoom });
-	} else {
-		if(callback != undefined) {
-			callback();
-		}
-	}
+var centerMapFromUserCity = function() {
+	var lat = $('#selected-city a').attr('data-lat');
+	var lon = $('#selected-city a').attr('data-lon');
+	map.placeViewportAt({ lat: parseFloat(lat), lon: parseFloat(lon)-0.1, zoom: 12 });
 }
 
 $(document).ready(function() {
@@ -122,6 +116,18 @@ $(document).ready(function() {
 					$('.spinner').hide();
 				}, null);
 			}
+		});
+		
+		if($.isDefined('#selected-city')) {
+			centerMapFromUserCity();
+		}
+		
+		$(document).on('click', '#unselected-cities li a', function() {
+			var selectedCityHtml = $('#selected-city').html();
+			var unselectedCityHtml = $($(this).parent()).html();
+			$($(this).parent()).html(selectedCityHtml);
+			$('#selected-city').html(unselectedCityHtml);
+			centerMapFromUserCity();
 		});
 	}
 });

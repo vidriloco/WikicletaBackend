@@ -1,11 +1,6 @@
 class City < ActiveRecord::Base
   include Shared::Geography
-  
   has_many :users
-  
-  def name
-    I18n.t("cities.list.#{code}")
-  end
   
   def self.find_city_on_country_with_code(country, code, user)
     default_city = "mx_df"

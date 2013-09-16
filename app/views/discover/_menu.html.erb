@@ -3,12 +3,12 @@
 		<div class="pull-left">
 			<p class="call-to-act">Descubre actividades ciclistas en</p>
 			<div class="btn-group">
-			  <button type="button" class="btn btn-primary btn-small"><%= select_a_city(City.first) %></button>
+			  <button type="button" id="selected-city" class="btn btn-primary btn-small"><%= select_a_city(user_city_or_default) %></button>
 			  <button type="button" class="btn btn-primary dropdown-toggle btn-small" data-toggle="dropdown">
 			    <span class="caret"></span>
 			  </button>
-			  <ul class="dropdown-menu" role="menu">
-			    <%= non_selected_cities_when_code_selected_is(City.first) %>
+			  <ul class="dropdown-menu" id="unselected-cities" role="menu">
+			    <%= non_selected_cities_when_code_selected_is(user_city_or_default) %>
 			  </ul>
 			
 			</div>

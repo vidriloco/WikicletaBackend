@@ -2,12 +2,12 @@ module DiscoverHelper
   
   def select_a_city(city)
     return "Selecciona una ciudad" if city.nil?
-    link_to t("cities.list.#{city.code}"), current_path.concat("#/#{city.code.split('_').join('/')}"), 
+    link_to city.name, 'javascript:void(0);', 
     {"data-lat"=>city.coordinates.lat, "data-lon"=>city.coordinates.lon}
   end
   
   def non_selected_cities_when_code_selected_is(city)
-    cities = city.nil? ? City.all : City.where(['code != ?', city.code])  
+    cities = city.nil? ? City.order('name ASC') : City.order('name ASC').where(['name != ?', city.name])
         
     html=""
     cities.each do |city|

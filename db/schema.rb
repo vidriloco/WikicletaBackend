@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908183305) do
+ActiveRecord::Schema.define(:version => 20130909061855) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -97,13 +97,17 @@ ActiveRecord::Schema.define(:version => 20130908183305) do
   end
 
   create_table "cities", :force => true do |t|
-    t.string   "code"
-    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime "created_at",                                                              :null => false
-    t.datetime "updated_at",                                                              :null => false
+    t.integer  "alt_id"
+    t.string   "country_code"
+    t.string   "name"
+    t.spatial  "coordinates",  :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
   end
 
+  add_index "cities", ["alt_id"], :name => "index_cities_on_alt_id", :unique => true
   add_index "cities", ["coordinates"], :name => "index_cities_on_coordinates", :spatial => true
+  add_index "cities", ["name", "country_code"], :name => "index_cities_on_name_and_country_code", :unique => true
 
   create_table "comments", :force => true do |t|
     t.text     "comment"

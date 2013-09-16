@@ -1,3 +1,4 @@
+#encoding: utf-8
 module ApplicationHelper
   
   def current_path
@@ -10,6 +11,13 @@ module ApplicationHelper
       return !CyclingGroupAdmin.where(:cycling_group_id => object.id, :user_id => current_user.id).empty?
     end
     false
+  end
+  
+  def user_city_or_default
+    if current_user
+      return current_user.city unless current_user.city.nil?
+    end
+    City.where(:name => "Ciudad de México").first
   end
   
   def on_path?(path)
