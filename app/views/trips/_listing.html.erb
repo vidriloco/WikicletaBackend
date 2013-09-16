@@ -10,9 +10,9 @@
 		</div>
 	</div>
 <% else %>
-	<div class="trip-list listing-view">
+	<div class="items-list listing-view">
 		<div class="listing-actions">
-			<%= link_to '<i class="icon-chevron-left"></i>  Regresar'.html_safe, discover_trips_path.concat('#/') %>
+			<%= link_to '<i class="icon-chevron-left"></i>  Regresar'.html_safe, discover_trips_path.concat('#/'), :id => 'back-to-listing' %>
 		</div>
 		<% trips.each do |trip| %>
 			<%= render :partial => 'trips/trip', :locals => {:trip => trip} %>

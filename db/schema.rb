@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20130908183305) do
 
   create_table "cycling_groups", :force => true do |t|
     t.string   "name"
+    t.string   "slug"
     t.string   "details"
     t.string   "meeting_time"
     t.string   "departing_time"
@@ -141,6 +142,8 @@ ActiveRecord::Schema.define(:version => 20130908183305) do
     t.datetime "created_at",                                                                  :null => false
     t.datetime "updated_at",                                                                  :null => false
   end
+
+  add_index "cycling_groups", ["slug"], :name => "index_cycling_groups_on_slug", :unique => true
 
   create_table "incidents", :force => true do |t|
     t.string   "description"

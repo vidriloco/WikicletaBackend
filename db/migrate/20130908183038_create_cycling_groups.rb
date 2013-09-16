@@ -2,6 +2,8 @@ class CreateCyclingGroups < ActiveRecord::Migration
   def change
     create_table :cycling_groups do |t|
       t.string          :name
+      t.string          :slug
+      
       t.string          :details
       t.string          :meeting_time
       t.string          :departing_time
@@ -14,5 +16,7 @@ class CreateCyclingGroups < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :cycling_groups, :slug, unique: true
   end
 end

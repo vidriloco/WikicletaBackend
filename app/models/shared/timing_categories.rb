@@ -22,12 +22,15 @@ module Shared::TimingCategories
     end
   end
   
+  def build_time_fragments(string)
+    string.split('|').map { |item| item.to_i }
+  end
+  
   # String format is as follows
   # "dt\rt,ot" ~> day of week with recurrence and ocurrence
   # "d/rt"
   def build_timing_from_str(string)
-    dt, rt, ot = string.split('|').map { |item| item.to_i }
-
+    dt, rt, ot = build_time_fragments(string)
     if(self.class.category_symbol_for(:recurrence_timings, rt) == :monthly)
       unless ot.nil?
         return IceCube::Rule.monthly.day_of_week(dt => [ot]) 
@@ -40,6 +43,13 @@ module Shared::TimingCategories
   
   def timing_rule
     build_timing_from_str(periodicity)
+  end
+  
+  def number_of_days_to_event
+    schedule = IceCube::Schedule.new
+    schedule.add_recurrence_rule timing_rule
+    next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
+    next_day_ocurring_from_today.day-Date.today.day
   end
   
   def self.included(base)

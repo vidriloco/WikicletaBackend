@@ -4,6 +4,14 @@ module ApplicationHelper
     request.original_url
   end
   
+  def current_user_owns?(object)
+    return false if current_user.nil?
+    if object.is_a? CyclingGroup
+      return !CyclingGroupAdmin.where(:cycling_group_id => object.id, :user_id => current_user.id).empty?
+    end
+    false
+  end
+  
   def on_path?(path)
     "active" if path==request.env['PATH_INFO']
   end

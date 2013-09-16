@@ -1,0 +1,53 @@
+<div id="<%= cycling_group.slug %>" class="row-fluid item-wrapper" data-lat="<%= cycling_group.coordinates.lat %>" data-lon="<%= cycling_group.coordinates.lon %>" data-kind="cycling_group">
+	<div class="cycling-group span12">
+		
+		<div class="span2"></div>
+		<div class="span7">
+			<div class="details">
+				<p class="name"><%= link_to cycling_group.name, 'javascript:void(0);' %></p>
+				<p class="days-to-event"><%= days_to_event(cycling_group) %></p>
+				<p class="info"><%= cycling_group.details %></p>
+				<ul class="timings">
+					<li class="meeting-time"><span class="verb"><%= t('cycling_groups.views.list.meeting_at') %></span> <%= cycling_group.meeting_time %> hrs</li>
+					<li class="departing-time"><span class="verb"><%= t('cycling_groups.views.list.departing_at') %></span> <%= cycling_group.departing_time %> hrs</li>
+				</ul>
+			</div>
+			<ul class="contact">
+				<% if current_user_owns?(cycling_group) %>
+					<li>
+						<a class="btn btn-small" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
+					</li>
+				<% end %>
+				<li>
+					<span class="icon"><%= image_tag('twitter-icon.png', :size => '25x25') %></span>
+					<%= link_to("@#{cycling_group.twitter_account}", "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
+				</li>
+				<% unless cycling_group.facebook_url.blank? %>
+					<li>
+						<span class="icon"><%= image_tag('facebook-icon.png', :size => '25x25') %></span>
+						<%= link_to('Facebook', cycling_group.facebook_url, :target => "_new") %>				
+					</li>
+				<% end %>
+				<% unless cycling_group.website_url.blank? %>
+					<li>
+						<span class="icon"><%= image_tag('web-icon.png', :size => '25x25') %></span>
+						<%= link_to('Sitio web', cycling_group.website_url, :target => "_new") %>				
+					</li>
+				<% end %>
+			</ul>
+			<div class="share-media">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= url_to_share(cycling_group) %>" data-text="<%= days_to_event(cycling_group, :share) %>" data-via="wikicleta" data-lang="es" data-related="" data-hashtags="ruedaXTuCiudad">Twittear</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				<div class="fb-like" data-href="<%= url_to_share(cycling_group) %>" data-width="450" data-layout="button_count" data-action="recommend" data-show-faces="true" data-send="true"></div>
+				
+			</div>
+		</div>
+		<div class="span3">
+			<% if cycling_group.picture.image.url.nil? %>
+				<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo"), 'javascript:void(0);' %>
+			<% else %>
+				<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo"), 'javascript:void(0);' %>
+			<% end %>
+		</div>
+	</div>
+</div>

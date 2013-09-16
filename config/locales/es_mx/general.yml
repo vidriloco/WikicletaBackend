@@ -11,6 +11,14 @@ es_MX:
     contact:
       promote: "publica@wikicleta.com"
     events:
+      connectives:
+        trip: "en el "
+        cycling_group: "con "
+      share:
+        days_until:
+          one: "Mañana rueda "
+          other: "Faltan %{days} días para rodar "
+          zero: "Hoy rueda "
       days_until: 
         one: "Mañana"
         other: "Faltan %{days} días para este evento"
@@ -141,6 +149,10 @@ es_MX:
         close: "Sal"
     verify_fields_on_red: "Por favor, verifica los campos en rojo"
     show_on_map: "Ver en mapa"
+    input_file:
+      select: "Seleccionar archivo"
+      change: "Cambiar"
+      remove: "Eliminar"
     registrations:
       first_person:
         new: "Registrate"

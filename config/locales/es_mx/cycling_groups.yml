@@ -8,11 +8,16 @@ es_MX:
         details: "Detalles"
   cycling_groups:
     views:
+      index:
+        new: "Nuevo"
+        empty: 
+          message: "No hay grupos con quien rodar en esta área"
+          suggest: "Registra el tuyo"
       list:
         meeting_at: "Se reunen a las "
         departing_at: "Salen a las"
       new:
-        title: "Registro de Grupo Ciclista"
+        title: "Nuevo Grupo Ciclista"
         steps:
           one: "Selecciona en el mapa, el punto de partida de tu grupo"
           two: "Recomendamos que subas un logo de tu grupo"

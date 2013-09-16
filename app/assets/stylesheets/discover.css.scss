@@ -1,7 +1,10 @@
 // Place all the styles related to the trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+/*
+ *= require maps
+ *= require bootstrap-fileupload.min
+**/
 
 $wikicleta_orange: #fb4e15;
 $wikicleta_blue: #1f3a50;
@@ -40,9 +43,13 @@ html, body {
 		}
 		
 		.inner-panel {
-			border: 0.5px solid #CED7E8 !important;
+			border: 1px solid #CED7E8 !important;
 			border-radius: 5px;
 			background-color: white;
+			
+			.with-focus {
+				border: none !important;
+			}
 			
 			.empty-listing {
 				margin-left: 100px;
@@ -66,6 +73,11 @@ html, body {
 				a {
 					color: $wikicleta_orange;
 					text-decoration: none;
+				}
+				
+				a.btn {
+					color: white !important;
+					margin-left: 20px;
 				}
 			}
 			
@@ -136,7 +148,7 @@ html, body {
 			}
 			
 			.actions-bar {
-				padding-top: 8px;
+				padding: 6px 8px 8px 8px;
 				
 				.call-to-act {
 					display: inline-block;
@@ -199,12 +211,38 @@ html, body {
 	}
 }
 
+.cycling-group, .trip {
+	.share-media {
+		text-align: right;
+		height: 20px !important;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	  filter: alpha(opacity=0);
+	  -moz-opacity: 0;
+	  -khtml-opacity: 0;
+	  opacity: 0;
+	}
+	
+}
+
+.cycling-group:hover {
+	background-color: rgba(32,59,80,0.1);
+}
+
 .cycling-group {
 	font-family: 'Gotham Rounded';
-	margin-bottom: 10px;
+	padding: 15px 10px 15px 0px;
+	border-top: 1px solid rgba(32,59,80,0.1);
+	
 	p {
 		padding: 0px;
 		margin: 0px;
+	}
+	
+	.logo {
+		margin-left: 20px;
+		margin-top: 10px;
+		width: 150px !important;
+		height: 150px !important;
 	}
 	
 	.logo-container {
@@ -213,12 +251,15 @@ html, body {
 	}
 	
 	.details {
+		text-align: right;
 		padding: 10px;
-
-		
+		padding-bottom: 0px;
 		.name {
-			font-size: 18px;
-			margin-bottom: 10px;
+			font-size: 20px;
+		}
+		
+		.days-to-event {
+			font-size: 13px;
 		}
 		
 		.info {
@@ -227,47 +268,44 @@ html, body {
 		}
 		
 		.timings {
-			margin-top: 10px;
 			font-size: 10px;
+			list-style: none;
+			margin-bottom: 15px;
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
 			
 			.verb {
-				color: $wikicleta_blue;
+				color: $wikicleta_orange;
 			}
 		}
 	}
 	
 	.contact {
+		text-align: right;
 		font-size: 13px;
 		padding: 5px;
-		.contact-channel {
-			
-			a {
-				color: $wikicleta_blue;
-				text-decoration: none;
-			}
+		margin-bottom: 10px;
+		list-style: none;
+		li {
+			display: inline-block;
 		}
-		
-		.contact-channel:hover {
-			a {
-				color: #0850FF;
-			}
-			border-radius: 5px;
-			background-color: #E5EAFF;
+		.icon {
+			margin-right: 5px;
+			margin-left: 20px;
 		}
 	}
 	
 	.separator {
-		height: 0.5px !important;
+		height: 1px !important;
 		background-color: $wikicleta_light_blue;
 	}
 }
 
-.trip-list {
+.items-list {
 	margin-top: 40px !important;
-	
-	.with-focus {
-		border: none !important;
-	}
 	
 	.trip:hover {
 		background-color: rgba(32,59,80,0.1);
@@ -283,7 +321,7 @@ html, body {
 			top: 180px;
 		}
 		
-		border-top: 0.5px solid rgba(32,59,80,0.1);
+		border-top: 1px solid rgba(32,59,80,0.1);
 		
 		padding: 10px 20px 10px 0px;
 		margin: 0px 0px 0px 0px;
@@ -318,7 +356,7 @@ html, body {
 				font-size: 10px;
 				color: $wikicleta_orange;
 
-				margin-bottom: 0px !important;
+				margin-bottom: 30px !important;
 			}
 		}
 		
@@ -401,9 +439,11 @@ html, body {
 		margin-left: 30px;
 		color: $wikicleta_orange;
 	}
-	
-	
-		
 	}
 	
+}
+
+#cycling_groups-form {
+	padding-left: 30px;
+	padding-right: 20px;
 }

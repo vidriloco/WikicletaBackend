@@ -3,6 +3,9 @@ class CyclingGroup < ActiveRecord::Base
   include Shared::TimingCategories
   include Shared::Geography
   
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   has_many :cycling_group_admins
   has_many :users, :through => :cycling_group_admins
   
@@ -10,6 +13,23 @@ class CyclingGroup < ActiveRecord::Base
   
   validates_presence_of :coordinates, :name
   
+  def self.find_nearby_with(viewport, extra=nil)
+    return find_nearby(viewport) if extra.nil?
+
+    CyclingGroup.where(:slug => extra)
+  end
+  
+  def periodicity_for(symbol)
+    return nil if periodicity.nil?
+    dt, rt, ot = build_time_fragments(periodicity)
+    if(symbol==:dt) 
+      dt
+    elsif(symbol==:rt)
+      rt
+    elsif(symbol==:ot)
+      ot
+    end
+  end
   
   def meeting_time_fr(fragment)
     return nil if meeting_time.nil?
@@ -32,30 +52,8 @@ class CyclingGroup < ActiveRecord::Base
     "#{dictionary[:hour]}:#{dictionary[:minute]}"
   end
   
-  # String format is as follows
-  # "dt\rt,ot" ~> day of week with recurrence and ocurrence
-  # "d/rt"
-  def build_timing_from_str(string)
-    dt, rt, ot = string.split('|').map { |item| item.to_i }
-    
-    return IceCube::Rule.monthly.day_of_month(dt => [ot]) if(CyclingGroup.category_symbol_for(:recurrence_timings, rt) == :monthly)
-    IceCube::Rule.weekly.day(dt) if(CyclingGroup.category_symbol_for(:recurrence_timings, rt) == :weekly)
-  end
-  
-  def timing_rule
-    build_timing_from_str(periodicity)
-  end
-  
-  def self.new_with(params, coords)
-    departing_time = join_time(params.delete(:departing_time))
-    meeting_time = join_time(params.delete(:meeting_time))
-    periodicity = build_timing_from_params(params.delete(:periodicity_tmp))
-    
-    cycling_group=CyclingGroup.new(params.merge(
-      :meeting_time => meeting_time, 
-      :departing_time => departing_time,
-      :periodicity => periodicity
-    ))
+  def self.new_with(params, coords)    
+    cycling_group=CyclingGroup.new(params.merge(CyclingGroup.fragments_for_timings(params)))
     cycling_group.apply_geo(coords)
     cycling_group
   end
@@ -71,6 +69,23 @@ class CyclingGroup < ActiveRecord::Base
     end
     occurrences
   end
-
   
+  def self.fragments_for_timings(params)
+    {:meeting_time => join_time(params.delete(:departing_time)), 
+     :departing_time => join_time(params.delete(:meeting_time)), 
+     :periodicity => build_timing_from_params(params.delete(:periodicity_tmp))}
+  end
+
+  def update_with(params, user)
+    self.apply_geo(params[:coordinates])    
+    cycling_group_params = CyclingGroup.fragments_for_timings(params[:cycling_group])
+    if self.update_attributes(params[:cycling_group].merge(cycling_group_params))
+      if(params.has_key?(:picture))
+        Picture.find_or_create_from(:cycling_group_id => self.id, :file => params[:picture])
+      end
+      true
+    else 
+      false
+    end
+  end
 end

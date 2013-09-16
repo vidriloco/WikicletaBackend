@@ -1,7 +1,7 @@
 <% content_for :panel do %>	
-	<div id="section" class="panel" data-url="<%= discover_trips_path %>">
+	<div id="trips-section" class="panel" data-url="<%= discover_trips_path %>">
 		<div class="inner-panel inner-panel-small">
-			<div class="row-fluid actions-bar"><%= render :partial => 'discover/menu', :locals => {:selected_city => @city} %></div>
+			<div class="row-fluid"><%= render :partial => 'discover/menu' %></div>
 		</div>
 		
 		<div class="inner-panel inner-panel-big">

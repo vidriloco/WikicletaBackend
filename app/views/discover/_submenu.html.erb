@@ -7,8 +7,8 @@
 					<p class="kind"><%= trips_count == 1 ? "PASEO" : "PASEOS" %></p>
 				</a>
 			</li>
-			<li class="activity <%= "active" if section.eql?(:groups) %>">
-				<a href="<%= discover_groups_path %>">
+			<li class="activity <%= "active" if section.eql?(:cycling_groups) %>">
+				<a href="<%= discover_cycling_groups_path %>">
 					<p class="numeric"><%= groups_count == '?' ? '' : groups_count %></p>
 					<p class="kind"><%= groups_count == 1 ? "GRUPO" : "GRUPOS" %></p>
 				</a>

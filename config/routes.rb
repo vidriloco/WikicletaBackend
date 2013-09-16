@@ -79,6 +79,7 @@ Ciudadio::Application.routes.draw do
   resources :promoteds do
     resources :pictures, :only => [:create]
   end
+  
   post    '/promoteds/:id/like' => 'promoteds/likes#create'
   delete  '/promoteds/:id/like' => 'promoteds/likes#destroy'
   
@@ -95,6 +96,7 @@ Ciudadio::Application.routes.draw do
     resources :pictures, :only => [:create]
     resources :bike_statuses, :controller => 'bikes/statuses', :only => [:create, :update]
   end
+  
   post    '/bikes/:id/like' => 'bikes/likes#create'
   delete  '/bikes/:id/like' => 'bikes/likes#destroy'
     
@@ -112,7 +114,12 @@ Ciudadio::Application.routes.draw do
   
   get '/discover/trips' => 'trips#index'
   get '/discover/trips/:id' => 'trips#show'
-  get '/discover/groups' => 'cycling_groups#index'
+  get '/discover/cycling_groups' => 'cycling_groups#index'
+  get '/discover/cycling_groups/new' => 'cycling_groups#new'
+  post '/discover/cycling_groups' => 'cycling_groups#create'
+  get '/discover/cycling_groups/:id/edit' => 'cycling_groups#edit', :as => 'discover_cycling_groups_edit'
+  put '/discover/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
+  
   
   #  get "/places/:id" => 'places#show', :as => "place"
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

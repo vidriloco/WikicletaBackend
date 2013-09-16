@@ -44,21 +44,6 @@ class Trip < ActiveRecord::Base
     end
   end
   
-  def days_to_event
-    schedule = IceCube::Schedule.new
-    schedule.add_recurrence_rule timing_rule
-    next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
-    days = next_day_ocurring_from_today.day-Date.today.day
-    
-    if days==0
-      I18n.t('app.events.days_until.zero')
-    elsif days==1
-      I18n.t('app.events.days_until.one')
-    else
-      I18n.t('app.events.days_until.other', :days => days)
-    end
-  end
-  
   protected
 
   def date_of_last_sunday
