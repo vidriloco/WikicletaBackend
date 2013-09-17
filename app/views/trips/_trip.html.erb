@@ -1,21 +1,19 @@
-<div id="<%= trip.slug %>" class="row-fluid item-wrapper" data-lat="<%= trip.coordinates.lat %>" data-lon="<%= trip.coordinates.lon %>" data-kind="start_flag">
-	<div class="trip box span12">
+<div id="<%= trip.slug %>" class="item-wrapper" data-lat="<%= trip.coordinates.lat %>" data-lon="<%= trip.coordinates.lon %>" data-kind="start_flag">
+	<div class="trip box">
 		
-		<div class="span2"></div>
-		<div class="span7">
-			<div class="details">
+		<div class="details">
+			<div class="info">
 				<p class="event-name"><%= link_to trip.name, 'javascript:void(0);' %></p>
 				<p class="days-to-event"><%= days_to_event(trip) %></p>
 				<p class="event-timings"><%= trip.details %></p>
 				<div class="share-media">
 					<a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= days_to_event(trip, :share) %>" data-url="<%= url_to_share(trip) %>" data-via="wikicleta" data-lang="es" data-related="bicitekas" data-hashtags="ruedaXTuCiudad">Twittear</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-					<div class="fb-like" data-href="<%= url_to_share(trip) %>" data-width="450" data-layout="button_count" data-action="recommend" data-show-faces="true" data-send="true"></div>
 				</div>
 			</div>
-		</div>
-		<div class="span3">
-			<%= link_to image_tag("trips/#{trip.picture_name}.jpg", :class => "rounded"), 'javascript:void(0);' %>
+			<div class="pic">
+				<%= link_to image_tag("trips/#{trip.picture_name}.jpg", :class => "rounded", :size => '150x150'), 'javascript:void(0);' %>
+			</div>
 		</div>
 		
 		<div class="extras">

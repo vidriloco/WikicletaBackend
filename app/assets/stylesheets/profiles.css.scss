@@ -109,6 +109,20 @@
 		border-top: 1px solid #D2DAEB;
 		padding-top: 10px;
 		
+		.info, .pic {
+			vertical-align: top;
+			display: inline-block;
+			padding: 5px
+		}
+		
+		.pic {
+			width: 100px;
+		}
+		
+		.info {
+			width: 420px;
+		}
+		
 		.title {
 			margin-bottom: 0px;
 			font-size: 18px;

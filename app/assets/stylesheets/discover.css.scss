@@ -240,8 +240,20 @@ html, body {
 }
 
 .items-list {
-	margin-top: 40px !important;
-	
+	width: 748px !important;
+
+	.trip, .cycling-group {
+		.details {
+
+			div {
+				vertical-align: top;
+				display: inline-block;
+				padding: 5px
+			}
+			
+		}
+	}
+
 	.trip:hover {
 		background-color: rgba(32,59,80,0.1);
 	}
@@ -293,6 +305,10 @@ html, body {
 
 				margin-bottom: 30px !important;
 			}
+		}
+		
+		.image {
+			
 		}
 		
 		.extras {

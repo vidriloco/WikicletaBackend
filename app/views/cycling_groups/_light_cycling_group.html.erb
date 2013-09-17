@@ -3,31 +3,29 @@
 	data-lat="<%= cycling_group.coordinates.lat %>" 
 	data-lon="<%= cycling_group.coordinates.lon %>"
 	data-kind="cycling_group"
-	class="cycling-group-light">
-	
+	class="cycling-group-light row">
+
 	<div class="details">
-		<div class="row-fluid">
-			<div class="span2">
-				<% if cycling_group.picture.image.url.nil? %>
-					<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
-				<% else %>
-					<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
-				<% end %>
-			</div>
-			<div class="span10">
-				<div class="row-fluid">
-					<div class="pull-left">
-						<p class="title"><%= cycling_group.name %></p>
-						<p class="updated-at"><b><%= t('app.events.last_updated') %></b> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></p>
-						<div class="controls">
-							<a class="btn btn-link" href="<%= discover_cycling_groups_path.concat("#/#{cycling_group.slug}") %>">
-								<%= t('actions.details') %>
-							</a>
-							<a class="btn btn-small" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
-						</div>
+		<div class="pic">
+			<% if cycling_group.picture.image.url.nil? %>
+				<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
+			<% else %>
+				<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
+			<% end %>
+		</div>
+		<div class="info">
+			<div class="row">
+				<div class="pull-left">
+					<p class="title"><%= cycling_group.name %></p>
+					<p class="updated-at"><b><%= t('app.events.last_updated') %></b> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></p>
+					<div class="controls">
+						<a class="btn btn-link" href="<%= discover_cycling_groups_path.concat("#/#{cycling_group.slug}") %>">
+							<%= t('actions.details') %>
+						</a>
+						<a class="btn btn-small" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
 					</div>
-					<div class="pull-right"><p class="timing"><b>Ruedan: </b><%= days_to_event(cycling_group) %></p></div>
 				</div>
+				<div class="pull-right right-text"><p class="timing"><b>Ruedan: </b><%= days_to_event(cycling_group) %></p></div>
 			</div>
 		</div>
 	</div>
