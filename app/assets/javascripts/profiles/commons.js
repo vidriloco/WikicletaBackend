@@ -15,8 +15,8 @@ var drawSelectedItems = function(objects, url_function) {
 		var kind = $(objects[idx]).attr('data-kind');
 		var idD = $(objects[idx]).attr('id');
 
-		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(urlID) {
-			url_function($(parentDom+'.listing-view #'+urlID), urlID);
+		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
+			url_function($(parentDom+'.listing-view #'+opts["resourceUrl"]), opts["resourceUrl"]);
 		});
 	}
 }

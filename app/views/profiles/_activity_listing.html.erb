@@ -1,0 +1,5 @@
+<% if @activities.has_key?(:cycling_groups) %>
+	<% @activities[:cycling_groups].each do |cycling_group| %>
+		<%= render :partial => 'cycling_groups/light_cycling_group', :locals => {:cycling_group => cycling_group} %>
+	<% end %>
+<% end %>

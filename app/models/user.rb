@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     return false if bike.nil?
     bike.user == self
   end
+  
+  def activities
+    { :cycling_groups => cycling_groups }
+  end
 
   def city_unset?
     city.nil?

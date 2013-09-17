@@ -20,6 +20,22 @@ es_MX:
         unsuccessful_remove: "No fue posible enviar solicitud de amistad"
         removed: "%{user} y %{friend} han dejado de ser amigos"
     views:
+      main:
+        actions:
+          activity:
+            show: "Mostrar actividad"
+            hide: "Ocultar actividad"
+        cycling: "Rodando en"
+        activity:
+          title: "Actividad reciente"
+          note: "Mueve el mapa para ubicarla"
+        user_same: 
+          activity: "Has compartido %{number} grupo(s) ciclista(s)"
+          no_activity_yet: "No has compartido aún."
+          suggestion: "Empieza a compartir ahora"
+        user_different:
+          activity: "Este usuario ha compartido %{number} grupo(s) ciclista(s)"
+          no_activity_yet: "Este usuario no ha compartido un grupo ciclista aún"
       all:
         same_user:
           title: "Actividad reciente en tu ciudad en Wikicleta (Último mes)"

@@ -7,10 +7,12 @@ es_MX:
       parking: "Estacionamiento"
       workshop: "Taller/Tienda"
       bike: "Bici"
+      cycling_group: "Grupo ciclista"
     name: "Wikicleta"
     contact:
       promote: "publica@wikicleta.com"
     events:
+      last_updated: "última actualización"
       connectives:
         trip: "en el "
         cycling_group: "con "
@@ -140,6 +142,7 @@ es_MX:
     delete: "Eliminar"
     evaluate: "Calificar"
     locate_me: "Ubicarme"
+    details: "Ver detalles"
     toggle:
       show: "Mostrar"
       hide: "Ocultar"

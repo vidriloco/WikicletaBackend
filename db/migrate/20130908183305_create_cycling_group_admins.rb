@@ -4,6 +4,7 @@ class CreateCyclingGroupAdmins < ActiveRecord::Migration
       t.integer     :cycling_group_id    
       t.integer     :user_id
       t.integer     :permissions
+      t.boolean     :verified
       t.timestamps
     end
     

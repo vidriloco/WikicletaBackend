@@ -5,6 +5,7 @@
 //= require jquery.reveal
 //= require jquery.editable.min
 //= require path
+//= require bootstrap-fileupload.min
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {

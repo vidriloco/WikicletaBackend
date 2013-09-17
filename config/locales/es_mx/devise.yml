@@ -21,6 +21,8 @@ es_MX:
       invalid_token: 'Estamos apenados, tu usuario no está sincronizado con tu teléfono, contáctanos para ayudarte.'
       timeout: 'Su sesión ha expirado, por favor ingrese nuevamente para continuar.'
       inactive: 'Su cuenta aún no ha sido activada.'
+      user:
+        not_found_in_database: 'El usuario no fué encontrado en la base de datos.'
     sessions:
       signed_in: '¡Hola desde Wikicleta!'
       signed_out: '¡Nos vemos luego!'

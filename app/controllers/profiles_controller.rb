@@ -13,6 +13,10 @@ class ProfilesController < ApplicationController
     @items = (current_user.nil? || current_user != @user) ? Aggregator.all_activity_of(@user) : Aggregator.all_activity_on_wikicleta_as(current_user)
   end
   
+  def activity
+    @activities = { :cycling_groups => @user.cycling_groups }
+  end
+  
   def gear
     @bikes = Bike.all_from_user(@user)
   end

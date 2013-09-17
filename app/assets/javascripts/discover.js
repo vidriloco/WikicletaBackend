@@ -5,7 +5,6 @@
 //= require discover/base
 //= require discover/trips
 //= require discover/cycling_groups
-//= require bootstrap-fileupload.min
 
 $(document).ready(function() {	
 	if($.isDefined('#cycling-groups-section .listing') || $.isDefined('#trips-section .listing')) {

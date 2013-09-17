@@ -43,13 +43,18 @@ Ciudadio::Application.routes.draw do
   end
   
   namespace :settings do
-    get "profile", :via => :get
-    get "access", :via => :get
-    put "changed", :via => :put
+    get "profile"
+    get "access"
+    put "changed"
     put "change_picture"
     delete "destroy_picture"
   end
-  
+
+  get '/profiles/:username' => 'profiles#index', :as => "user_profile"
+  get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"
+  #get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
+=begin  
+
   namespace :profiles do
     resources :incidents do
       put 'solved', :to => 'incidents#update_status', :defaults => { :solved => true }
@@ -60,11 +65,7 @@ Ciudadio::Application.routes.draw do
     resources :places
     resources :workshops
     resources :parkings
-    resources :cycling_groups, :only => [:new, :edit, :create]
   end
-  
-  get '/profiles/:username' => 'profiles#index', :as => "user_profile"
-  get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
   
   namespace :maps do 
     resources :incidents, :only => [:index]
@@ -99,7 +100,8 @@ Ciudadio::Application.routes.draw do
   
   post    '/bikes/:id/like' => 'bikes/likes#create'
   delete  '/bikes/:id/like' => 'bikes/likes#destroy'
-    
+=end
+ 
   resources :pictures, :only => [:destroy] do
     member do
       put :set_main
@@ -110,7 +112,7 @@ Ciudadio::Application.routes.draw do
   get '/welcome' => 'welcome#index'
   get '/about' => 'welcome#about'
   
-  resources :comments, :only => [:create, :destroy]
+  #resources :comments, :only => [:create, :destroy]
   
   get '/discover/trips' => 'trips#index'
   get '/discover/trips/:id' => 'trips#show'
@@ -119,7 +121,6 @@ Ciudadio::Application.routes.draw do
   post '/discover/cycling_groups' => 'cycling_groups#create'
   get '/discover/cycling_groups/:id/edit' => 'cycling_groups#edit', :as => 'discover_cycling_groups_edit'
   put '/discover/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
-  
   
   #  get "/places/:id" => 'places#show', :as => "place"
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

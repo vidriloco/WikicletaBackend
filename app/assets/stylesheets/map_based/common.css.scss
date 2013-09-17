@@ -1,0 +1,77 @@
+/*
+ *= require_self
+ *= require maps
+**/
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#map
+{
+    width: 100%;
+    height: 100%;
+}
+
+.btn {
+	a {
+		color: white;
+	}
+}
+
+.rounded {
+	border:1px solid white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+#content-centered {
+	left:30% !important;
+	width: 40%;
+}
+
+#content
+{
+    left:0 !important;
+		width: 50%;
+}
+
+#content, #content-centered {		
+	pointer-events: none;
+	position: absolute;
+  z-index: 1;
+  top:0;
+
+	.panel {
+		pointer-events: auto;
+		background-color: rgba(255,255,255,0.5);
+		-moz-box-shadow: 0 0 1px #ADBBC5;
+		-webkit-box-shadow: 0 0 1px #ADBBC5;
+		box-shadow: 0 0 1px #ADBBC5;
+		padding: 10px;
+		border-radius: 0px 0px 5px 0px;
+		margin-bottom: 30px;
+		
+		.inner-panel-big {
+			margin-top: 10px;
+		}
+		
+		.inner-panel-small {
+			margin-top: 40px;
+			min-height: 40px;
+		}
+		
+		.inner-panel {
+			border: 1px solid #CED7E8 !important;
+			border-radius: 5px;
+			background-color: white;
+		}
+	}
+}

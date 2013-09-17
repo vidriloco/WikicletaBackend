@@ -18,8 +18,11 @@
 					<li class="<%= is_section_active?('trips') || is_section_active?('cycling_groups') %>">
 						<%= link_to 'Descubre', discover_trips_path  %>
 					</li>
+					
+					<% if 1 == 2 %>
 					<li class="<%= is_section_active?('maps') %>"><%= link_to 'El Wiki', maps_path %></li>
 					<li class="<%= 'active' if controller.controller_name.eql?('bikes') %>"><%= link_to 'Bicis y Más', bikes_path %></li>
+					<% end %>
 					<%= render 'layouts/shared/navbar_logged_in_user' %>
 				</ul>
       </div>

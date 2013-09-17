@@ -156,8 +156,8 @@ $(document).ready(function(){
 						var kind = $(markers[idx]).attr('data-kind');
 						var idD = $(markers[idx]).attr('id');
 						
-						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(urlID) {
-							itemUrlSwitch($('.listing-view #'+urlID), urlID);
+						map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
+							itemUrlSwitch($('.listing-view #'+opts["resourceUrl"]), opts["resourceUrl"]);
 						});
 					}
 				},

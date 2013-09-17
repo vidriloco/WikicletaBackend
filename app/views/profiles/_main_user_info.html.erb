@@ -1,0 +1,40 @@
+<div class="decoration-image"></div>
+<div class="content">
+	<div class="centered-text">
+		<div class="pic-container">
+			<% if !user.picture.nil? %>
+				<%= link_to image_tag(user.picture.image.mini_thumb.url, :size => '95x100', :class => 'rounded'), settings_profile_path %>
+			<% else %>
+				<%= link_to image_tag('user_no_pic.png', :size => '95x100', :class => 'rounded'), settings_profile_path %>
+			<% end %>
+		</div>
+	
+		<div class="details">
+			<p class="username"><%= user.username %></p>
+			<% unless user.city_unset? %>
+				<div class="city" data-lon="<%= @user.city.coordinates.lon %>" data-lat="<%= @user.city.coordinates.lat %>">
+					<p class="name"><span><%= t('user_profiles.views.main.cycling') %></span> <%= user.city.name %></p>
+				</div>
+			<% end %>
+			<p class="bio"><%= user.bio %></p>
+		</div>
+	</div>
+	<div class="container-fluid user-actions">
+		<div class="separator"></div>
+		<% if current_user_equals(user) %>
+			<div class="pull-right right-text">
+				<div class="btn-group">
+					<a href="<%= settings_profile_path %>" class="btn btn-info btn-small pull-right"><i class="icon icon-edit"></i> <%= t('states.edit') %></a>
+				</div>
+			</div>
+		<% end %>
+		<div class="pull-left">
+			<div id="hide-activity-trigger" class="btn-group hidden">
+				<a class="btn btn-info btn-small"><i class="icon icon-chevron-up"></i> <%= t('user_profiles.views.main.actions.activity.hide') %></a>
+			</div>
+			<div id="show-activity-trigger" class="btn-group">
+				<a class="btn btn-info btn-small "><i class="icon icon-chevron-down"></i> <%= t('user_profiles.views.main.actions.activity.show') %></a>
+			</div>
+		</div>
+	</div>
+</div>

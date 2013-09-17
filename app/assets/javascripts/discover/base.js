@@ -23,7 +23,6 @@ var fetchSectionPartial = function(extra, callback) {
 			callback();
 		}
 		twttr.widgets.load();
-		FB.XFBML.parse();
 		
 		setTimeout(function() { $('.share-media').animate({opacity:1}, 800); }, 2500);
 
@@ -69,8 +68,8 @@ var drawSelectedItems = function(markers) {
 		var kind = $(markers[idx]).attr('data-kind');
 		var idD = $(markers[idx]).attr('id');
 		
-		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(urlID) {
-			itemUrlSwitch($('.listing-view #'+urlID), urlID);
+		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
+			itemUrlSwitch($('.listing-view #'+opts["resourceUrl"]), opts["resourceUrl"]);
 		});
 	}
 }

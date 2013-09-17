@@ -245,7 +245,7 @@ $.extend(ViewComponents, {
 				var marker = new google.maps.Marker(markerOpts);
 
 				google.maps.event.addListener(marker, 'click', function() {
-					callback(opts.resourceUrl);
+					callback(opts);
 				});
 				this.markerList.push(marker);
 			},
