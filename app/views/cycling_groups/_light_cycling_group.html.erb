@@ -20,7 +20,13 @@
 				<a class="btn btn-link details-for-group-from-profile" href="<%= discover_cycling_groups_path.concat("#/#{cycling_group.slug}") %>">
 					<%= t('actions.details') %>
 				</a>
-				<a class="btn btn-small edit-group-from-profile" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
+				<a class="btn btn-small edit-group-from-profile" href="<%= discover_cycling_groups_edit_path(cycling_group) %>">
+					<i class="icon icon-edit"></i><%= t('states.edit') %>
+				</a>
+				<a class="btn btn-small btn-danger destroy-group-from-profile" href="<%= discover_cycling_group_destroy_path(cycling_group) %>"
+					data-confirm="¿Deseas eliminar este elemento?">
+					<i class="icon icon-remove"></i> <%= t('actions.delete') %>
+				</a>
 			</div>
 		</div>
 	</div>

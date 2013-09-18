@@ -24,7 +24,7 @@ es_MX:
       days_until: 
         one: "Mañana"
         other: "Faltan %{days} días para este evento"
-        zero: "¡Hoy!"
+        zero: "¡Hoy ruedan!"
     categories:
       cycling_groups:
         day_timings:

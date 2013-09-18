@@ -42,8 +42,12 @@ $(document).ready(function() {
 			{id: '#cycling_group_meeting_time_minute', condition: 'not_empty' },
 			{id: '#cycling_group_departing_time_hour', condition: 'not_empty' },
 			{id: '#cycling_group_departing_time_minute', condition: 'not_empty' },
+			{id: '#cycling_group_facebook_url', condition: 'regexp', 
+				regexp: /(^$|(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/ },
+			{id: '#cycling_group_website_url', condition: 'regexp', 
+				regexp: /(^$|(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/ },
 			{id: '#coordinates_lat', anotherId: '#coordinates_lon', condition: 'both' },
-			{id: '#cycling_group_twitter_account', condition: 'regexp', regexp: /^@?(\w){1,15}$/ }];
+			{id: '#cycling_group_twitter_account', condition: 'regexp', regexp: /^(\w){1,15}$/ }];
 		ViewComponents.ValidForm.set('#cycling_groups-form form', conditions, {
 				before: function() {
 					map.setCoordinatesFromDom('#coordinates', 16);

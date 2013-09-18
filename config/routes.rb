@@ -121,6 +121,7 @@ Ciudadio::Application.routes.draw do
   post '/discover/cycling_groups' => 'cycling_groups#create'
   get '/discover/cycling_groups/:id/edit' => 'cycling_groups#edit', :as => 'discover_cycling_groups_edit'
   put '/discover/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
+  get '/discover/cycling_groups/:id' => 'cycling_groups#destroy', :as => 'discover_cycling_group_destroy'
   
   #  get "/places/:id" => 'places#show', :as => "place"
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

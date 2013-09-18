@@ -24,13 +24,13 @@
 					<% unless cycling_group.facebook_url.blank? %>
 						<li>
 							<span class="icon"><%= image_tag('facebook-icon.png', :size => '25x25') %></span>
-							<%= link_to('Facebook', cycling_group.facebook_url, :target => "_new") %>				
+							<%= link_to('Facebook', check_and_ammend(cycling_group.facebook_url), :target => "_new") %>				
 						</li>
 					<% end %>
 					<% unless cycling_group.website_url.blank? %>
 						<li>
 							<span class="icon"><%= image_tag('web-icon.png', :size => '25x25') %></span>
-							<%= link_to('Sitio web', cycling_group.website_url, :target => "_new") %>				
+							<%= link_to('Sitio web', check_and_ammend(cycling_group.website_url), :target => "_new") %>				
 						</li>
 					<% end %>
 				</ul>

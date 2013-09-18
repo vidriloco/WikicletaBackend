@@ -20,6 +20,10 @@ module ApplicationHelper
     City.where(:name => "Ciudad de México").first
   end
   
+  def check_and_ammend(url)
+    url.gsub(/^www/, "http://wwww")
+  end
+  
   def on_path?(path)
     "active" if path==request.env['PATH_INFO']
   end

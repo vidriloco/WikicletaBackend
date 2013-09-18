@@ -48,6 +48,9 @@ module Shared::TimingCategories
   def number_of_days_to_event
     schedule = IceCube::Schedule.new
     schedule.add_recurrence_rule timing_rule
+    
+    return 0 if schedule.occurs_on?(Date.today)
+    
     next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
     next_day_ocurring_from_today.day-Date.today.day
   end

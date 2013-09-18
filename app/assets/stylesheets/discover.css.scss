@@ -169,10 +169,10 @@ html, body {
 	}
 	
 	.logo {
-		margin-left: 20px;
+		margin-left: 0px;
 		margin-top: 10px;
-		width: 150px !important;
-		height: 150px !important;
+		width: 180px !important;
+		height: 180px !important;
 	}
 	
 	.logo-container {
@@ -244,6 +244,14 @@ html, body {
 				vertical-align: top;
 				display: inline-block;
 				padding: 5px
+			}
+			
+			.info {
+				width: 500px;
+			}
+			
+			.pic {
+				width: 180px;
 			}
 			
 		}

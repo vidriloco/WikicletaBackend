@@ -3,7 +3,7 @@ class CyclingGroupsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index]
   before_filter :set_user
-  before_filter :find_cycling_group, :only => [:edit, :update]
+  before_filter :find_cycling_group, :only => [:edit, :update, :destroy]
   
   def index
     @cycling_groups = []
@@ -41,6 +41,11 @@ class CyclingGroupsController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def destroy
+    @cycling_group.destroy
+    redirect_to :back
   end
   
   private
