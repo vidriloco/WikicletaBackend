@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
   before_validation     :validate_format_of_username
   before_save           :ensure_authentication_token!, :on => :create
-  before_validation     :validate_invitation_code, :on => :create
+  #before_validation     :validate_invitation_code, :on => :create
   
   
   def owns?(object)
