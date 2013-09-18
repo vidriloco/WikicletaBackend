@@ -10,7 +10,7 @@ $.extend({
 		return $(dom).length;
 	},
 	assetsURL: function() {
-		return 'http://127.0.0.1:3000/assets/';
+		return 'http://www.wikicleta.com/assets/';
 	}
 });
 
