@@ -79,6 +79,13 @@ $(document).ready(function() {
 				});
 			}
 		}
+		
+		if($.isDefined('#edit-profile')) {
+			$('form .submitter').bind('click', function() {
+				$(this).hide();
+				$(this).siblings('.spinner').fadeIn();
+			});
+		}
 
 	}
 });

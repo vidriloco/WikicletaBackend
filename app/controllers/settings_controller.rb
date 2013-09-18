@@ -25,8 +25,10 @@ class SettingsController < ApplicationController
   end
   
   def change_picture
+    redirect_to(:back) && return unless params.has_key?(:file)
     Picture.find_or_create_from(params.merge(:user_id => current_user.id))
 
+    flash[:notice] = I18n.t("user_accounts.settings.successful_save")
     redirect_to :back
   end
   

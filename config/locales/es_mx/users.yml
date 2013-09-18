@@ -60,7 +60,7 @@ es_MX:
       access: "Acceso"
       profile: "Info en mi perfil"
       save: "Guardar"
-      successful_save: "Tus preferencias han sido guardadas"
+      successful_save: "Los cambios a tu perfil se guardaron correctamente"
       unsuccessful_save: "No ha sido posible guardar tus preferencias"
       
       authorizations:

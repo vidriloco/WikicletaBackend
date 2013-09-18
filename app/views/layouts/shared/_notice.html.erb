@@ -1,15 +1,9 @@
-<% if flash[:notice] %>
-<div class="row-fluid">
-	<div class="span4"></div>
-	<div class="span4"><div class="alert alert-success"><%= flash[:notice] %><button class="close" data-dismiss="alert" type="button">×</button></div></div>
-	<div class="span4"></div>
-</div>
-<% end %>
+<div id="notification" class="centered-text">
+	<% if flash[:notice] %>
+		<div class="notice rounded-5"><%= flash[:notice] %><button class="close" data-dismiss="alert" type="button">×</button></div>
+	<% end %>
 
-<% if flash[:alert] %>
-<div class="row-fluid">
-	<div class="span4"></div>
-	<div class="span4"><div class="alert alert-error"><%= flash[:alert] %><button class="close" data-dismiss="alert" type="button">×</button></div></div>
-	<div class="span4"></div>
+	<% if flash[:alert] %>
+		<div class="failure rounded-5"><%= flash[:alert] %><button class="close" data-dismiss="alert" type="button">×</button></div>
+	<% end %>
 </div>
-<% end %>

@@ -33,6 +33,10 @@ $(document).ready(function() {
 		ViewComponents.ValidForm.set('#cycling_groups-form form', conditions, {
 				before: function() {
 					map.setCoordinatesFromDom('#coordinates', 16);
+				},
+				after: function() {
+					$('#cycling_groups-form form .submitter').hide();
+					$('#cycling_groups-form form .spinner').fadeIn();
 				}
 		});
 		

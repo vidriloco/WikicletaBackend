@@ -125,3 +125,32 @@ a.personal {
 form li {
 	margin-left: 20px;
 }
+
+#notification {
+	height: 30px;
+	width: 100%;
+	color: white;
+	margin-bottom: 10px;
+	
+	.notice, .failure {
+		padding: 8px;
+		border-radius: 5px;
+	}
+		
+	.notice { background-color: #B1E0A9 }
+	
+	.failure { background-color: #E57C7F }
+	
+	p.top-message {
+		font-weight: bold;
+		margin-top: 2px;
+		font-size: 13px;
+		text-align: center;
+	}
+
+}
+
+.spinner {
+	margin-right: 10px;
+	display: none;
+}

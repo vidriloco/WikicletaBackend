@@ -3,10 +3,14 @@
 		<div class="settings"></div>
 		<div class="inner-panel inner-panel-centered inner-panel-big">
 			<div class="content">
-				<div class="row">
+				
+				<%= render 'layouts/shared/notice' %>
+
+				<div class="row">					
 					<p class="pull-left"><a href="<%= user_profile_path(@user.username) %>" class="btn btn-link"><i class="icon icon-chevron-left"></i> <%= t('actions.back') %></a></p>
 					<h3 class="pull-right">Tu perfil</h3>
 				</div>
+				
 				<div class="top-spaced">
 					<p class="section-title">Ajustes básicos de tu cuenta</p>
 					<div class="separator"></div>
@@ -64,7 +68,8 @@
 								</div>
 							</div>
 							<div class="centered-text">
-								<%= f.submit t('user_accounts.settings.save'), :class => 'btn btn-primary btn-large' %>
+								<%= f.submit t('user_accounts.settings.save'), :class => 'btn btn-primary btn-large submitter' %>
+								<%= image_tag('mini_spinner.gif', :class => "spinner") %>
 							</div>
 						<% end %>
 					</div>
@@ -100,10 +105,12 @@
 									</div>
 									</div>
 								</div>
+								
+								<div class="centered-text">
+									<%= submit_tag 'Subir', :class => "btn btn-info btn-large submitter" %>
+									<%= image_tag('mini_spinner.gif', :class => "spinner") %>
+								</div>
 							<% end %>
-							<div class="centered-text">
-								<%= submit_tag 'Subir', :class => "btn btn-info btn-large" %>
-							</div>
 						</div>
 					</div>
 				</div>
