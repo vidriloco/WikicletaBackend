@@ -4,9 +4,11 @@
 		<div class="inner-panel inner-panel-centered inner-panel-big">
 			<div class="content">
 				
-				<%= render 'layouts/shared/notice' %>
-
-				<div class="row">					
+				<div class="row-fluid">
+					<%= render 'layouts/shared/notice' %>
+				</div>
+				
+				<div class="row-fluid">					
 					<p class="pull-left"><a href="<%= user_profile_path(@user.username) %>" class="btn btn-link"><i class="icon icon-chevron-left"></i> <%= t('actions.back') %></a></p>
 					<h3 class="pull-right">Tu perfil</h3>
 				</div>

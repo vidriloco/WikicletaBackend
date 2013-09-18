@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130909061855) do
     t.integer  "cycling_group_id"
     t.integer  "user_id"
     t.integer  "permissions"
+    t.boolean  "verified"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20130909061855) do
     t.datetime "updated_at",                                                                  :null => false
   end
 
+  add_index "cycling_groups", ["name"], :name => "index_cycling_groups_on_name", :unique => true
   add_index "cycling_groups", ["slug"], :name => "index_cycling_groups_on_slug", :unique => true
 
   create_table "incidents", :force => true do |t|

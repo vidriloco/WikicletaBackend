@@ -1,9 +1,11 @@
-<div id="notification" class="centered-text">
-	<% if flash[:notice] %>
-		<div class="notice rounded-5"><%= flash[:notice] %><button class="close" data-dismiss="alert" type="button">×</button></div>
-	<% end %>
-
-	<% if flash[:alert] %>
-		<div class="failure rounded-5"><%= flash[:alert] %><button class="close" data-dismiss="alert" type="button">×</button></div>
-	<% end %>
+<% if flash[:notice] %>
+<div id="noticing" class="centered-text">
+	<div class="notice rounded-5"><%= flash[:notice] %><button class="close" data-dismiss="alert" type="button">×</button></div>
 </div>
+<% end %>
+
+<% if flash[:alert] %>
+<div id="noticing" class="centered-text">
+	<div class="failure rounded-5"><%= flash[:alert] %><button class="close" data-dismiss="alert" type="button">×</button></div>
+</div>
+<% end %>

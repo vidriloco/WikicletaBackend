@@ -1,16 +1,16 @@
-$(document).ready(function() {
-	
-	var registerDomForTrackWith = function(dom, message) {
-		if($.isDefined(dom)) {
-			$(dom).bind('click', function() {
-				mixpanel.track(message);
-			});
-		}
-	} 
-	
-	var registerTrackWith = function(message) {
-		mixpanel.track(message);
+var registerDomForTrackWith = function(dom, message) {
+	if($.isDefined(dom)) {
+		$(dom).bind('click', function() {
+			mixpanel.track(message);
+		});
 	}
+} 
+
+var registerTrackWith = function(message) {
+	mixpanel.track(message);
+}
+
+$(document).ready(function() {
 	
 	registerDomForTrackWith('#show-activity-trigger a', 'Profile: Activity display');
 	registerDomForTrackWith('.new-cycling-group-profile', 'Profile: Register new cycling group');

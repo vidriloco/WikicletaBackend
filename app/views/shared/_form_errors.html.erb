@@ -1,8 +1,7 @@
 <% if object.errors.any? %>
   <div class="top-spaced">
-		<div class="span1"></div>
-		<div class="span10 alert alert-error">
-			<p class="centered-text"><b><%= message %></b></p>
+		<div class=" alert alert-error">
+			<p class="title"><%= message %>:</p>
 			<ul>
 	    <% object.errors.each do |msg| %>
 				<% if msg == :base %>
@@ -18,6 +17,5 @@
 	    <% end %>
 	    </ul>
 		</div>
-		<div class="span1"></div>
   </div>
 <% end %>

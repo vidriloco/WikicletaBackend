@@ -122,8 +122,7 @@ a.personal {
 	color: #D95100;
 }
 
-#notification {
-	height: 30px;
+#noticing {
 	width: 100%;
 	color: white;
 	margin-bottom: 10px;
@@ -176,11 +175,6 @@ a.personal {
         margin-top: 5px;
         font-size: 13px;
         color: #D95100;
-}
-
-#floating, #notification {
-        z-index: 9999;
-        position: fixed;
 }
 
 .rounded-5 {
@@ -410,4 +404,19 @@ p.empty {
         -moz-box-shadow: 0 0 8px #FF6800;
         -webkit-box-shadow: 0 0 8px #FF6800;
         box-shadow: 0 0 8px #FF6800;
+}
+
+.alert {
+	
+	.title {
+		font-size: 17px;
+	}
+	
+	ul {
+		list-style: none;
+	}
+	li {
+		margin-left: 10px;
+	}
+	margin: 10px;
 }
