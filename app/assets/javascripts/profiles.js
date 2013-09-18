@@ -34,7 +34,7 @@ $(document).ready(function() {
 		$('#show-activity-trigger a').bind('click', function() {
 			$('.activity-container').fadeIn();
 			$($(this).parent()).addClass('hidden');
-			$('#hide-activity-trigger').removeClass('hidden');
+			$('#hide-activity-trigger').removeClass('hidden');			
 		});
 		
 		$('#hide-activity-trigger a').bind('click', function() {

@@ -8,6 +8,8 @@
 //= require jquery.cookies
 //= require bootstrap-fileupload.min
 
+//= require trackings
+
 // Following are some functions used over the application
 $.fn.clearForm = function() {
   return this.each(function() {

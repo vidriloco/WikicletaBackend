@@ -14,18 +14,13 @@
 			<% end %>
 		</div>
 		<div class="info">
-			<div class="row">
-				<div class="pull-left">
-					<p class="title"><%= cycling_group.name %></p>
-					<p class="updated-at"><b><%= t('app.events.last_updated') %></b> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></p>
-					<div class="controls">
-						<a class="btn btn-link" href="<%= discover_cycling_groups_path.concat("#/#{cycling_group.slug}") %>">
-							<%= t('actions.details') %>
-						</a>
-						<a class="btn btn-small" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
-					</div>
-				</div>
-				<div class="pull-right right-text"><p class="timing"><b>Ruedan: </b><%= days_to_event(cycling_group) %></p></div>
+			<p class="title"><%= cycling_group.name %></p>
+			<p class="updated-at"><b><%= t('app.events.last_updated') %></b> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></p>
+			<div class="controls">
+				<a class="btn btn-link details-for-group-from-profile" href="<%= discover_cycling_groups_path.concat("#/#{cycling_group.slug}") %>">
+					<%= t('actions.details') %>
+				</a>
+				<a class="btn btn-small edit-group-from-profile" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
 			</div>
 		</div>
 	</div>

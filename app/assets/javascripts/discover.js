@@ -7,6 +7,19 @@
 //= require discover/cycling_groups
 
 $(document).ready(function() {	
+	
+	if($.isDefined('#cycling-groups-section .listing')) {
+		Path.map("#/:item").to(function() {
+			registerTrackWith("Details for cycling group: " + this.params['item']);
+		});
+	} else {
+		Path.map("#/:item").to(function() {
+			registerTrackWith("Details for trip: " + this.params['item']);
+		});
+	}
+	
+	
+	
 	if($.isDefined('#cycling-groups-section .listing') || $.isDefined('#trips-section .listing')) {
 		var discover = new Discover();
 		Path.map("#/:item").to(discover.onDetailsFor);
@@ -14,6 +27,7 @@ $(document).ready(function() {
 		Path.root("#/");
 		Path.listen();
 	} else {		
+		registerTrackWith("On cycling group form");
 		$('.popover-trigger').popover();
 		map.gMap.setZoom(14);
 		google.maps.event.addListenerOnce(map.gMap, 'idle', function(){

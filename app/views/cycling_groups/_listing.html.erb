@@ -5,7 +5,7 @@
 		<div class="span12">
 			<p class="suggest centered-text"><%= t('cycling_groups.views.index.empty.message') %> <b class="blue">:(</b></p>
 			<p class="centered-text"><%= image_tag('empty_cycling.png', :size => '600x600') %></p>
-			<p class="centered-text"><a href="<%= discover_cycling_groups_new_path %>" class='btn btn-info btn-small'><i class='icon icon-plus'></i> 
+			<p class="centered-text"><a href="<%= discover_cycling_groups_new_path %>" class='btn btn-info btn-small new-cycling-group'><i class='icon icon-plus'></i> 
 			<%= t('cycling_groups.views.index.empty.suggest') %></a></p>       
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 	<div class="items-list listing-view">
 		<div class="listing-actions">
 			<%= link_to '<i class="icon-chevron-left"></i>  Regresar'.html_safe, discover_cycling_groups_path.concat('#/'), :id => 'back-to-listing' %>
-			<a href="<%= discover_cycling_groups_new_path %>" class='btn btn-info btn-small'><i class='icon icon-plus'></i> 
+			<a href="<%= discover_cycling_groups_new_path %>" class='btn btn-info btn-small new-cycling-group'><i class='icon icon-plus'></i> 
 			<%= t('cycling_groups.views.index.new') %></a>
 		</div>
 		<% @cycling_groups.each do |cg| %>

@@ -14,7 +14,7 @@
 				<ul class="contact">
 					<% if current_user_owns?(cycling_group) %>
 						<li>
-							<a class="btn btn-small" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
+							<a class="btn btn-small edit-cycling-group" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
 						</li>
 					<% end %>
 					<li>

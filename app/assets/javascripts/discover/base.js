@@ -70,6 +70,7 @@ var drawSelectedItems = function(markers) {
 		var idD = $(markers[idx]).attr('id');
 		
 		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
+			registerTrackWith("Marker clicked with: " + opts["iconName"] + " " + opts["resourceUrl"]);
 			itemUrlSwitch($('.listing-view #'+opts["resourceUrl"]), opts["resourceUrl"]);
 		});
 	}
@@ -100,7 +101,7 @@ $(document).ready(function() {
 			},
 			zoomControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT, style: google.maps.ZoomControlStyle.SMALL }
 		};
-		
+
 		map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {
 			coordinatesDom: "#coordinates", 
 			isEditable: $('#map').hasClass('editable')
