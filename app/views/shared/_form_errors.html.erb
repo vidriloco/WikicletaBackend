@@ -1,25 +1,25 @@
-<% if object.errors.any? %>
-  <div id="error_explanation" class="row-fluid">
-		<div class="span1"></div>
-		<div class="span10 alert alert-error">
-			<p class="centered-text"><b><%= message %></b></p>
-			<ul>
-	    <% object.errors.each do |msg| %>
-				<% if msg == :base %>
-					<% object.errors[:base].each do |error| %>
-						<li><%= error %></li>
+<div class="top-spaced">
+	<% if object.errors.any? %>
+	  <div>
+			<div class="span1"></div>
+			<div class="span10 alert alert-error">
+				<p class="centered-text"><b><%= message %></b></p>
+				<ul>
+		    <% object.errors.each do |msg| %>
+					<% if msg == :base %>
+						<% object.errors[:base].each do |error| %>
+							<li><%= error %></li>
+						<% end %>
+					<% else %>
+						<% object.errors.each do |error| %>
+							<li><b><%= t("models.#{object.class.to_s.underscore.downcase}.#{error}") %></b> <%= object.errors[error][0] %></li>
+						<% end %>
 					<% end %>
-				<% else %>
-					<% object.errors.each do |error| %>
-						<li><i><%= error %></i><%= object.errors[error] %></li>
-					<% end %>
-				<% end %>
 
-	    <% end %>
-	    </ul>
-		</div>
-		<div class="span1"></div>
-  </div>
-	<div class="separator"></div>
-	<div class="top-spaced"></div>
-<% end %>
+		    <% end %>
+		    </ul>
+			</div>
+			<div class="span1"></div>
+	  </div>
+	<% end %>
+</div>

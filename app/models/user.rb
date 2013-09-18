@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     bike.user == self
   end
   
+  def admins_cycling_group?(cg)
+    !CyclingGroupAdmin.where(:user_id => id, :cycling_group_id => cg.id).empty?
+  end
+  
   def activities
     { :cycling_groups => cycling_groups }
   end

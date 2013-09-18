@@ -17,6 +17,7 @@ class CreateCyclingGroups < ActiveRecord::Migration
       t.timestamps
     end
     
+    add_index :cycling_groups, :name, unique: true
     add_index :cycling_groups, :slug, unique: true
   end
 end

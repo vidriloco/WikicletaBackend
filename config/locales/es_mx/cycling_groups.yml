@@ -23,6 +23,8 @@ es_MX:
           two: "Recomendamos que subas un logo de tu grupo"
           three: "Completa los siguientes datos, no todos son obligatorios"
       form:
+        commit:
+          failure: "No fué posible guardar este elemento, revisa los campos en rojo"
         picture_note: "Procura que tu logo mida lo mismo de ancho y largo"
         picture: "Logo"
         name: "Nombre"

@@ -12,6 +12,7 @@ class CyclingGroup < ActiveRecord::Base
   has_one :picture, :as => :imageable, :dependent => :destroy
   
   validates_presence_of :coordinates, :name
+  validates_uniqueness_of :name
   
   def self.find_nearby_with(viewport, extra=nil)
     return find_nearby(viewport) if extra.nil?

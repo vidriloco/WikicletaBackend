@@ -29,6 +29,10 @@ class CyclingGroupsController < ApplicationController
   end
   
   def edit
+    # Only the cycling group registered admins can edit it
+    unless @user.admins_cycling_group?(@cycling_group)
+      redirect_to discover_cycling_groups_path.concat("#/#{@cycling_group.slug}")
+    end
   end
   
   def update

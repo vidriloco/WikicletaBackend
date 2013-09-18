@@ -1,0 +1,6 @@
+es_MX:
+  models:
+    cycling_group:
+      name: "Nombre"
+      coordinates: "Ubicación"
+      
