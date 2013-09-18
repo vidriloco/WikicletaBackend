@@ -26,8 +26,12 @@ module DiscoverHelper
     includes_type
   end
   
-  def url_to_share(cycling_group)
-    discover_cycling_groups_url.concat("#/#{cycling_group.slug}")
+  def url_to_share(item)
+    if item.is_a? CyclingGroup
+      discover_cycling_groups_url.concat("#/#{item.slug}")
+    else
+      discover_trips_url.concat("#/#{item.slug}")
+    end
   end
   
   def days_to_event(item, share_mode=nil)
