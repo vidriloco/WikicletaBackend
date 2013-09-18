@@ -5,6 +5,7 @@
 //= require jquery.reveal
 //= require jquery.editable.min
 //= require path
+//= require jquery.cookies
 //= require bootstrap-fileupload.min
 
 // Following are some functions used over the application

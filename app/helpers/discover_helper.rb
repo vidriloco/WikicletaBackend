@@ -3,7 +3,7 @@ module DiscoverHelper
   def select_a_city(city)
     return "Selecciona una ciudad" if city.nil?
     link_to city.name, 'javascript:void(0);', 
-    {"data-lat"=>city.coordinates.lat, "data-lon"=>city.coordinates.lon}
+    {"data-lat"=>city.coordinates.lat, "data-lon"=>city.coordinates.lon, "id" => city.id}
   end
   
   def non_selected_cities_when_code_selected_is(city)

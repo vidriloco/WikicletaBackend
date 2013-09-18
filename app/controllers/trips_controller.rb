@@ -6,7 +6,7 @@ class TripsController < ApplicationController
     
     respond_to do |format|
       format.js { @trips = Trip.find_nearby_with(params[:viewport], params[:extra]) }
-      format.html
+      format.html { @city = City.find(cookies[:city_id]) unless cookies[:city_id].nil? }
     end
     
   end

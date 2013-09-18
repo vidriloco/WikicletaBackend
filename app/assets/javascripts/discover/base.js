@@ -2,6 +2,7 @@ var map = null;
 var activeInfoWindow = null;
 var currentlyOnIndex = false;
 var sectionValue = null;
+var previousZoom = defaultZoom;
 
 // Global functions
 
@@ -77,6 +78,8 @@ var drawSelectedItems = function(markers) {
 var centerMapFromUserCity = function() {
 	var lat = $('#selected-city a').attr('data-lat');
 	var lon = $('#selected-city a').attr('data-lon');
+	$.cookie('city_id', $('#selected-city a').attr('id'));
+	
 	map.placeViewportAt({ lat: parseFloat(lat), lon: parseFloat(lon)-0.1, zoom: 12 });
 }
 
@@ -127,6 +130,10 @@ $(document).ready(function() {
 			$($(this).parent()).html(selectedCityHtml);
 			$('#selected-city').html(unselectedCityHtml);
 			centerMapFromUserCity();
+		});
+		
+		$(document).on('click', '#back-to-listing', function() {
+			map.gMap.setZoom(previousZoom);
 		});
 	}
 });

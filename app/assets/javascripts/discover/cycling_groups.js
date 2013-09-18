@@ -7,7 +7,6 @@ $(document).ready(function() {
 			var thisInstance = null;
 			var paths = null;
 			var markersOnPath = null;
-			var previousZoom = defaultZoom;
 			
 			var initialize = function() {
 				thisInstance = this;
@@ -28,7 +27,6 @@ $(document).ready(function() {
 				});
 				loadCyclingGroupsOnMap();
 				$('.listing-view .item-wrapper').removeClass('with-focus');
-				map.gMap.setZoom(previousZoom);
 			}
 
 			this.onDetailsFor = function() {
