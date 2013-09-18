@@ -57,6 +57,14 @@ class PictureUploader < CarrierWave::Uploader::Base
   def filename
      @name ||= "#{secure_token}.#{file.extension}" if original_filename.present?
   end
+  
+  # Override to silently ignore trying to remove missing previous file
+  def remove!
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+    end
+  end
 
   protected
   def auto_orient

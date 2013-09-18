@@ -237,6 +237,16 @@ html, body {
 .items-list {
 	width: 748px !important;
 
+	.cycling-group {
+		.info {
+			width: 500px;
+		}
+		
+		.pic {
+			width: 180px;
+		}
+	}
+
 	.trip, .cycling-group {
 		.details {
 
@@ -244,16 +254,7 @@ html, body {
 				vertical-align: top;
 				display: inline-block;
 				padding: 5px
-			}
-			
-			.info {
-				width: 500px;
-			}
-			
-			.pic {
-				width: 180px;
-			}
-			
+			}			
 		}
 	}
 
