@@ -114,6 +114,9 @@ Ciudadio::Application.routes.draw do
   
   #resources :comments, :only => [:create, :destroy]
   
+  get '/rodadas' => redirect('/discover/cycling_groups')
+  get '/rodada/nueva' => redirect('/discover/cycling_groups/new')
+  
   get '/discover/trips' => 'trips#index'
   get '/discover/trips/:id' => 'trips#show'
   get '/discover/cycling_groups' => 'cycling_groups#index'
