@@ -54,7 +54,7 @@ module Shared::TimingCategories
     return 0 if schedule.occurs_on?(Date.today)
     
     next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
-    next_day_ocurring_from_today.day-Date.today.day
+    (next_day_ocurring_from_today.to_date-Date.today).to_i
   end
   
   def self.included(base)
