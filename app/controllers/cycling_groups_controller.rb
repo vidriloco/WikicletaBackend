@@ -44,7 +44,7 @@ class CyclingGroupsController < ApplicationController
   end
   
   def destroy
-    @cycling_group.destroy
+    @cycling_group.destroy if @user.admins_cycling_group?(@cycling_group)
     redirect_to :back
   end
   
