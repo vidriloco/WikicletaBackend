@@ -42,10 +42,12 @@ module Shared::TimingCategories
   end
   
   def timing_rule
+    return nil if periodicity.split('|').empty?
     build_timing_from_str(periodicity)
   end
   
   def number_of_days_to_event
+    return 1000 if timing_rule.nil?
     schedule = IceCube::Schedule.new
     schedule.add_recurrence_rule timing_rule
     

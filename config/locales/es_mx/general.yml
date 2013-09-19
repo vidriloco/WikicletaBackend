@@ -22,6 +22,7 @@ es_MX:
           other: "Faltan %{days} días para rodar "
           zero: "Hoy rueda "
       days_until: 
+        not_provided: "La fecha en la que ruedan no está disponible"
         one: "Mañana"
         other: "Faltan %{days} días para este evento"
         zero: "¡Hoy ruedan!"

@@ -44,6 +44,8 @@ module DiscoverHelper
         I18n.t('app.events.days_until.zero')
       elsif days==1
         I18n.t('app.events.days_until.one')
+      elsif days==1000
+        I18n.t('app.events.days_until.not_provided')
       else
         I18n.t('app.events.days_until.other', :days => days)
       end
@@ -52,6 +54,8 @@ module DiscoverHelper
         I18n.t('app.events.share.days_until.zero').concat(connective).concat("#{item.name}")
       elsif days==1
         I18n.t('app.events.share.days_until.one').concat(connective).concat("#{item.name}")
+      elsif days==1000
+        String.new
       else
         I18n.t('app.events.share.days_until.other', :days => days).concat(connective).concat("#{item.name}")
       end

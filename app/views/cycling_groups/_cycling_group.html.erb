@@ -17,10 +17,12 @@
 							<a class="btn btn-small edit-cycling-group" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
 						</li>
 					<% end %>
-					<li>
-						<span class="icon"><%= image_tag('twitter-icon.png', :size => '25x25') %></span>
-						<%= link_to("@#{cycling_group.twitter_account}", "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
-					</li>
+					<% unless cycling_group.twitter_account.blank? %>
+						<li>
+							<span class="icon"><%= image_tag('twitter-icon.png', :size => '25x25') %></span>
+							<%= link_to("@#{cycling_group.twitter_account}", "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
+						</li>
+					<% end %>
 					<% unless cycling_group.facebook_url.blank? %>
 						<li>
 							<span class="icon"><%= image_tag('facebook-icon.png', :size => '25x25') %></span>
