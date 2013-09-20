@@ -20,6 +20,13 @@ class CyclingGroup < ActiveRecord::Base
     CyclingGroup.where(:slug => extra)
   end
   
+  def fix_inverted_timings
+    hold_meeting_time = meeting_time
+    hold_departing_time = departing_time
+    
+    self.update_attributes!(:meeting_time => hold_departing_time, :departing_time => hold_meeting_time)
+  end
+  
   def periodicity_for(symbol)
     return nil if periodicity.nil?
     dt, rt, ot = build_time_fragments(periodicity)
@@ -72,8 +79,8 @@ class CyclingGroup < ActiveRecord::Base
   end
   
   def self.fragments_for_timings(params)
-    {:meeting_time => join_time(params.delete(:departing_time)), 
-     :departing_time => join_time(params.delete(:meeting_time)), 
+    {:meeting_time => join_time(params.delete(:meeting_time)), 
+     :departing_time => join_time(params.delete(:departing_time)), 
      :periodicity => build_timing_from_params(params.delete(:periodicity_tmp))}
   end
 

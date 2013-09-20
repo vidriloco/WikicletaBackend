@@ -15,7 +15,7 @@ es_MX:
           suggest: "Registra el tuyo"
       list:
         meeting_at: "Se reunen a las "
-        departing_at: "Salen a las"
+        departing_at: "Salen a las "
       new:
         title: "Nuevo Grupo Ciclista"
         steps:
