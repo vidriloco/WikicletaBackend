@@ -46,15 +46,21 @@ module Shared::TimingCategories
     build_timing_from_str(periodicity)
   end
   
-  def number_of_days_to_event
+  def event_next_ocurrence_date
+    schedule = IceCube::Schedule.new
+    schedule.add_recurrence_rule timing_rule
+    schedule.next_occurrence.to_date
+  end
+  
+  def number_of_days_to_event(date=nil)
     return 1000 if timing_rule.nil?
     schedule = IceCube::Schedule.new
     schedule.add_recurrence_rule timing_rule
     
-    return 0 if schedule.occurs_on?(Date.today)
+    return 0 if schedule.occurs_on?(date || Date.today)
     
-    next_day_ocurring_from_today = schedule.next_occurrence(Date.today)
-    (next_day_ocurring_from_today.to_date-Date.today).to_i
+    next_day_ocurring_from_today = schedule.next_occurrence(date || Date.today)
+    (next_day_ocurring_from_today.to_date-(date || Date.today)).to_i
   end
   
   def self.included(base)

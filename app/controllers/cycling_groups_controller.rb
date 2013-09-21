@@ -9,7 +9,9 @@ class CyclingGroupsController < ApplicationController
     @cycling_groups = []
     
     respond_to do |format|
-      format.js { @cycling_groups = CyclingGroup.find_nearby_with(params[:viewport], params[:extra]).sort_by(&:number_of_days_to_event) }
+      format.js do
+        @cycling_groups = CyclingGroup.find_nearby_with(params[:viewport], {:extras => params[:extra], :date => cookies[:date]})
+      end
       format.html { @city = City.find(cookies[:city_id]) unless cookies[:city_id].nil? }
     end
   end

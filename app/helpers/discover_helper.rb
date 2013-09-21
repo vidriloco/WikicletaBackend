@@ -35,7 +35,7 @@ module DiscoverHelper
   end
   
   def days_to_event(item, share_mode=nil)
-    days = item.number_of_days_to_event
+    days = item.number_of_days_to_event(Date.parse(cookies[:date]))
     
     connective = item.is_a?(Trip) ? I18n.t('app.events.connectives.trip') : I18n.t('app.events.connectives.cycling_group')
     

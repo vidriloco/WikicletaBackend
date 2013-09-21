@@ -84,7 +84,8 @@ var centerMapFromUserCity = function() {
 	map.placeViewportAt({ lat: parseFloat(lat), lon: parseFloat(lon)-0.1, zoom: 12 });
 }
 
-$(document).ready(function() {
+$(document).ready(function() {	
+	$.cookie('date', $.stringifiedCurrentDate());
 	
 	if($.isDefined('#map')) {
 		mapOptions = {

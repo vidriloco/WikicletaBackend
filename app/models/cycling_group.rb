@@ -14,10 +14,12 @@ class CyclingGroup < ActiveRecord::Base
   validates_presence_of :coordinates, :name
   validates_uniqueness_of :name
   
-  def self.find_nearby_with(viewport, extra=nil)
-    return find_nearby(viewport) if extra.nil?
-
-    CyclingGroup.where(:slug => extra)
+  def self.find_nearby_with(viewport, extras)
+    groups = extras.has_key?(:slug) ? CyclingGroup.where(:slug => extras[:slug]) : find_nearby(viewport)
+    
+    groups.sort_by do |item| 
+      item.number_of_days_to_event(Date.parse(extras[:date]))
+    end
   end
   
   def fix_inverted_timings

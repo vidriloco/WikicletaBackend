@@ -30,6 +30,15 @@ $.extend({
 		return $(dom).length;
 	},
 	
+	stringifiedCurrentDate: function() {
+		var dateObj = new Date();
+		var month = dateObj.getMonth()+1;
+		var day = dateObj.getDate();
+		var year = dateObj.getFullYear();
+		
+		return day+"-"+month+"-"+year;
+	},
+	
 	currentSectionIs: function(dom) {
 		return $.isDefined("#section-"+dom);
 	},
