@@ -826,6 +826,9 @@ City.create(:country_code => "MX", :name =>"Morelia", :coordinates => "POINT(-10
 City.create(:country_code => "MX", :name =>"Celaya", :coordinates => "POINT(-100.808441 20.525818)")
 City.create(:country_code => "MX", :name =>"Tlaxcala", :coordinates => "POINT(-98.232147 19.322548)")
 
+City.create(:country_code => "MX", :name =>"Chetumal", :coordinates => "POINT(-88.300552 18.516682)")
+City.create(:country_code => "MX", :name =>"Irapuato", :coordinates => "POINT(-101.353683 20.680929)")
+
 
 
 
