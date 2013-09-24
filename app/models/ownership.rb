@@ -43,7 +43,7 @@ class Ownership < ActiveRecord::Base
   end
   
   def self.id_for_object(object_)
-    %-#{object_.class.to_s}.where('ST_GeomFromEWKB(coordinates) = ST_GeogFromText(?)', "#{object_.coordinates}").first.id-
+    %-#{object_.class.to_s}.where('ST_AsBinary(coordinates) = ST_AsBinary(ST_GeometryFromText(?))', "#{object_.coordinates}").first.id-
   end
   
   private
