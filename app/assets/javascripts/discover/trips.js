@@ -43,7 +43,7 @@ $(document).ready(function() {
 				fetchSectionPartial(item, function() {
 					$('#'+item+' .extras').fadeIn();
 					$('#'+item).addClass('with-focus');
-					loadTripDetails();
+					loadTripDetails(item);
 
 					var location = new google.maps.LatLng(parseFloat($('#'+item).attr('data-lat')), parseFloat($('#'+item).attr('data-lon')));
 					map.gMap.setZoom(14);
@@ -59,10 +59,10 @@ $(document).ready(function() {
 				currentlyOnIndex = false;
 			}
 
-			var loadTripDetails = function() {
+			var loadTripDetails = function(item) {
 				map.resetMarkersList();
-				loadPath();
-				loadPOIs();
+				loadPath(item);
+				loadPOIs(item);
 			}
 
 			var loadTripsOnMap = function() {
@@ -94,7 +94,7 @@ $(document).ready(function() {
 				markersOnPath = new Array();
 			}
 
-			var loadPOIs = function() {
+			var loadPOIs = function(item) {
 				clearPOIs();
 
 				var connectInfoWindow = function(marker, title, details) {
@@ -131,7 +131,7 @@ $(document).ready(function() {
 					map.placeViewportAt({ lat: $(finish).attr('data-lat'), lon: $(finish).attr('data-lon'), zoom: 20 });
 				});*/
 
-				var pois = $('.trip-pois').children('.trip-poi');
+				var pois = $('#'+item+' .trip-pois').children('.trip-poi');
 				for(var poiIdx = 0 ; poiIdx < pois.length ; poiIdx++) {
 					var poi = pois[poiIdx];
 					var kind = $(poi).attr('class').split(' ')[0];
@@ -156,10 +156,10 @@ $(document).ready(function() {
 				}
 			}
 
-			var loadPath = function() {	
+			var loadPath = function(item) {	
 				clearPath();
 
-				var segments = $('.trip-paths').children();
+				var segments = $('#'+item+' .trip-paths').children();
 				var firstCoord = null;
 
 				for(var segmentIdx = 0 ; segmentIdx < segments.length ; segmentIdx++) {
