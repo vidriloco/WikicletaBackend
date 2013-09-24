@@ -1,7 +1,8 @@
 class CyclingGroup < ActiveRecord::Base
-  include Shared::Categories
-  include Shared::TimingCategories
-  include Shared::Geography
+  include Categories
+  include TimingCategories
+  include Geography
+  include Dumpable
   
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -97,5 +98,13 @@ class CyclingGroup < ActiveRecord::Base
     else 
       false
     end
+  end
+  
+  def self.attrs_for_dump
+    %w(name details meeting_time departing_time periodicity twitter_account facebook_url website_url updated_at created_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(coordinates_to_s)
   end
 end

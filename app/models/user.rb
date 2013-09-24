@@ -1,35 +1,29 @@
 class User < ActiveRecord::Base
+  include Dumpable
+  
   has_one :picture, :as => :imageable, :dependent => :destroy
-  
-  has_many :authorizations, :dependent => :destroy
-  has_many :bikes, :dependent => :destroy
-  
-  has_many :user_like_bikes, :dependent => :destroy
-  has_many :user_like_promoteds, :dependent => :destroy
-  
-  has_many :comments, :dependent => :destroy
-  
-  has_many :incidents, :dependent => :destroy
+
   has_many :tips, :dependent => :nullify
-  has_many :workshops, :dependent => :nullify
-  has_many :parkings, :dependent => :nullify
+
+  has_many :ownerships
+  has_many :parkings, :through => :ownerships, :source => :owned_object, :source_type => 'Parking', :dependent => :nullify
+  has_many :workshops, :through => :ownerships, :source => :owned_object, :source_type => 'Workshop', :dependent => :nullify
   
   belongs_to :city
   
   has_many :cycling_group_admins
   has_many :cycling_groups, :through => :cycling_group_admins
   
-  
-  devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   attr_accessor :login, :invitation_code
-  attr_accessible :invitation_code, :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   validates_presence_of :username, :full_name
   validates_uniqueness_of :username
   
   before_validation     :validate_format_of_username
-  before_save           :ensure_authentication_token!, :on => :create
-  #before_validation     :validate_invitation_code, :on => :create
   
+  #temporal
+  attr_accessible :invitation_code, :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
+  before_save           :ensure_authentication_token!, :on => :create
+  devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   
   def owns?(object)
     return if object.nil?
@@ -156,5 +150,13 @@ class User < ActiveRecord::Base
   
   def identifier
     "#{id}"
+  end
+  
+  def self.attrs_for_dump
+    %w(city_id email full_name username encrypted_password reset_password_token reset_password_sent_at remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip last_sign_in_ip authentication_token bio personal_page started_cycling_date created_at updated_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    []
   end
 end

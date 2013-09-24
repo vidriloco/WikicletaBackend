@@ -1,6 +1,6 @@
 class Incident < ActiveRecord::Base
-  include Shared::Geography
-  include Shared::Queries
+  include Geography
+  include Queries
   
   include Categories
   include Filtering

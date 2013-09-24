@@ -1,13 +1,17 @@
 class Parking < ActiveRecord::Base
-  include Shared::Categories
-  include Shared::Geography
-  include Shared::Queries
-  include Shared::Api
+  include Categories
+  include Geography
+  include Queries
+  include Api
+  include Dumpable
   
-  validates_presence_of :coordinates, :kind, :user
-  belongs_to :user
+  validates_presence_of :coordinates, :kind
+
+  has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  has_many :users, :through => :ownerships
   
-  attr_accessible :details, :kind, :has_roof, :others_can_edit_it, :created_at, :updated_at, :user
+  #temporal
+  #attr_accessible :details, :kind, :has_roof, :created_at, :updated_at, :user
   
   default_scope order('updated_at DESC')
   
@@ -20,8 +24,9 @@ class Parking < ActiveRecord::Base
   end
   
   def self.new_with(params, coords, user)
-    parking=Parking.new(params.merge(:user => user))
+    parking=Parking.new(params)
     parking.apply_geo(coords)
+    parking.ownerships.build(:user => user, :owned_object => parking, :kind => Ownership.category_for(:owner_types, :submitter))
     parking
   end
   
@@ -39,5 +44,13 @@ class Parking < ActiveRecord::Base
   
   def self.kinds
     { 1 => :government_provided, 2 => :urban_mobiliary, 3 => :venue_provided }
+  end
+  
+  def self.attrs_for_dump
+    %w(details kind has_roof likes_count created_at updated_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(coordinates_to_s)
   end
 end

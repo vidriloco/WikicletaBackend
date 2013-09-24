@@ -7,4 +7,11 @@ class Api::BaseController < ApplicationController
   def find_user_with_token
     @user = User.where(:authentication_token => params[:extras][:auth_token]).first
   end
+  
+  def respond_to_bad_auth
+    if @user.nil?
+      render :json => { :success => false, :message=>I18n.t('devise.failure.invalid_token') }, :status => 403
+      return false
+    end
+  end
 end

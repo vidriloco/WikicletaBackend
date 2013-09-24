@@ -1,13 +1,15 @@
 class Tip < ActiveRecord::Base
-  include Shared::Categories
-  include Shared::Geography
-  include Shared::Queries
-  include Shared::Api
+  include Categories
+  include Geography
+  include Queries
+  include Api
+  include Dumpable
   
   validates_presence_of :coordinates, :content, :category, :user
   belongs_to :user
   
-  attr_accessible :content, :category, :updated_at, :created_at, :user
+  #temporal
+  #attr_accessible :content, :category, :updated_at, :created_at, :user
   
   default_scope order('updated_at DESC')
   
@@ -54,6 +56,23 @@ class Tip < ActiveRecord::Base
   def update_with(params, coordinates, user)
     self.apply_geo(coordinates)
     self.update_attributes(params.merge(:user => user))
+  end
+  
+  def owners 
+    {}
+  end
+  
+  # Dumpables
+  def self.attrs_for_dump
+    %w(content category likes_count updated_at created_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(coordinates_to_s user_id_to_s)
+  end
+  
+  def user_id_to_s
+    "User.where(:username => '#{user.username}').first.id"
   end
   
   private

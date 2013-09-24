@@ -1,11 +1,13 @@
 class Workshop < ActiveRecord::Base
-  include Shared::Geography
-  include Shared::Queries
-  include Shared::Api
+  include Geography
+  include Queries
+  include Api
+  include Dumpable
   
   validates_presence_of :name, :details
-  
-  belongs_to :user
+
+  has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  has_many :users, :through => :ownerships
   
   default_scope order('updated_at DESC')
   
@@ -25,8 +27,9 @@ class Workshop < ActiveRecord::Base
   end
   
   def self.new_with(params, coords, user)
-    workshop=Workshop.new(params.merge(:user => user))
+    workshop=Workshop.new(params)
     workshop.apply_geo(coords)
+    workshop.ownerships.build(:user => user, :owned_object => workshop, :kind => Ownership.category_for(:owner_types, :submitter))
     workshop
   end
   
@@ -34,4 +37,13 @@ class Workshop < ActiveRecord::Base
     self.apply_geo(coordinates)
     self.update_attributes(params)
   end
+  
+  def self.attrs_for_dump
+    %w(name details store phone cell_phone webpage twitter horary likes_count updated_at created_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(coordinates_to_s)
+  end
+
 end

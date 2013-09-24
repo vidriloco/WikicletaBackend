@@ -56,9 +56,7 @@ Spork.prefork do
     #  Capybara::Selenium::Driver.new(app, :browser => :firefox)
     #end
     Capybara.ignore_hidden_elements = false
-    
-    # For Spork
-    ActiveSupport::Dependencies.clear
+
     
   end
   
@@ -67,7 +65,10 @@ Spork.prefork do
   
 end
 
-Spork.each_run do
+Spork.each_run do  
+  # For Spork
+  ActiveSupport::Dependencies.clear
+  
   # This code will be run each time you run your specs.
   # reload factories
   load "#{Rails.root}/config/routes.rb"
@@ -78,4 +79,12 @@ Spork.each_run do
   require 'factory_girl_rails'
 end
 
+# Methods
 
+def should_retrieve_users_as(user)
+  User.should_receive(:where).and_return(user)
+end
+
+def stub_users_as(user)
+  User.stub(:where).and_return([user])
+end

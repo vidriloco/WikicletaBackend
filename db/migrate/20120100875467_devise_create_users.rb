@@ -24,9 +24,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string    :personal_page
       t.date      :started_cycling_date
       
-      t.boolean   :email_visible
-      t.boolean   :externally_registered, :default => :false      
-      t.boolean   :seller_account
       t.integer   :city_id
       
       t.timestamps

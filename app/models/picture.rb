@@ -1,11 +1,15 @@
 require 'carrierwave/orm/activerecord'
 
 class Picture < ActiveRecord::Base
+  include Dumpable
+  
   belongs_to :imageable, :polymorphic => true
   after_create :set_as_main_picture
   after_destroy :unset_as_main_picture
   
+  #temporal
   attr_accessible :image, :remote_image_url, :image_cache, :remove_image
+  
   mount_uploader :image, PictureUploader
   
   def self.new_from(params)
@@ -61,6 +65,30 @@ class Picture < ActiveRecord::Base
   def main_picture?
     return if !imageable.respond_to?(:main_picture)
     imageable.main_picture == self.id
+  end
+  
+  def self.attrs_for_dump
+    %w(caption imageable_type updated_at created_at)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(imageable_id_to_s image_to_s)
+  end
+  
+  def image_to_s
+    return nil if image.nil? || image.url.nil?
+    %-"#{image.url.split('/').last}"-
+  end
+  
+  def imageable_id_to_s
+    return nil if imageable.nil?
+    if imageable.is_a? User
+      "User.where(:username => '#{imageable.username}').first.id"
+    elsif imageable.is_a? CyclingGroup
+      "CyclingGroup.where(:slug => '#{imageable.slug}').first.id"
+    else
+      imageable.id
+    end
   end
   
   private

@@ -1,6 +1,6 @@
 class TripPoi < ActiveRecord::Base
-  include Shared::Categories
-  include Shared::Geography
+  include Categories
+  include Geography
   
   belongs_to :trip
   

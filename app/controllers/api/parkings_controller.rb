@@ -2,18 +2,15 @@ class Api::ParkingsController < Api::BaseController
   
   protect_from_forgery :except => [:update, :destroy, :create]
   before_filter :find_user_with_token, :only => [:create, :destroy, :update]
+  before_filter :respond_to_bad_auth, :only => [:create, :destroy, :update]
   
   def create
-    if @user.nil?
-      render :json => { :success => false, :message=>I18n.t('devise.failure.invalid_token') }, :status => 422
-    else
-      @parking = Parking.new_with(params[:parking], params[:parking].delete(:coordinates), @user)
+    @parking = Parking.new_with(params[:parking], params[:coordinates], @user)
 
-      if @parking.save
-        render :json => { :success => true }, :status => :ok
-      else
-        render :json => { :errors => @parking.errors }, :status => 422
-      end
+    if @parking.save
+      render :json => { :success => true }, :status => :ok
+    else
+      render :json => { :errors => @parking.errors }, :status => 422
     end
   end
   
@@ -22,12 +19,10 @@ class Api::ParkingsController < Api::BaseController
     render :json => {:success => true, :parkings => @parkings.as_json}, :status => :ok
   end
   
-  def update
-    render :status => 403 && return if @user.nil?
-    
+  def update    
     @parking = Parking.find(params[:id])
     
-    if @parking.update_with(params[:parking], params[:parking].delete(:coordinates))
+    if @parking.update_with(params[:parking], params[:coordinates])
       render :json => { :success => true }, :status => :ok
     else
       render :json => { :errors => @parking.errors }, :status => 422
@@ -35,8 +30,6 @@ class Api::ParkingsController < Api::BaseController
   end
   
   def destroy
-    render :status => 403 && return if @user.nil?
-    
     @parking = Parking.find(params[:id]) 
     
     if @parking.destroy

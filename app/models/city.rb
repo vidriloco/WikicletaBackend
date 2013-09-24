@@ -1,5 +1,7 @@
 class City < ActiveRecord::Base
-  include Shared::Geography
+  include Geography
+  include Dumpable
+  
   has_many :users
   
   def self.find_city_on_country_with_code(country, code, user)
@@ -26,5 +28,13 @@ class City < ActiveRecord::Base
     cities = City.all.each.inject([]) do |collected, city|
       collected << city.custom_json
     end
+  end
+  
+  def self.attrs_for_dump
+    %w(name country_code created_at updated_at alt_id)
+  end
+  
+  def self.attrs_for_dump_ex
+    %w(coordinates_to_s)
   end
 end

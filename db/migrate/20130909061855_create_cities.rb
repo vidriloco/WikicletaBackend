@@ -1,6 +1,6 @@
 class CreateCities < ActiveRecord::Migration
   def down
-    drop_table :cities if table_exists?(:cities)
+    drop_table :cities
   end
   
   def up

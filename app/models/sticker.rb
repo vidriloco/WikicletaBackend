@@ -1,5 +1,5 @@
 class Sticker < ActiveRecord::Base
-  include Shared::Categories
+  include Categories
     
   attr_accessor :lat, :lon
   attr_accessible :status, :fake, :banned, :details, :code, :lat, :lon, :email

@@ -11,15 +11,24 @@ class CreateWorkshops < ActiveRecord::Migration
       t.string      :twitter
       
       t.string      :horary
-      t.boolean     :others_can_edit_it
       t.point       :coordinates, :geographic => true
-      t.integer     :user_id
-      t.integer     :promoter_info_id
       t.integer     :likes_count, :default => 0
+      # New fields
+      t.integer     :dislikes_count, :default => 0
+      
+      #t.integer     :user_id
+      #t.integer     :promoter_info_id
+      #t.boolean     :others_can_edit_it
+      
+      
       t.timestamps
     end
     
     add_index(:workshops, :coordinates, spatial: true)  # spatial index
     add_index(:workshops, :coordinates, unique: true, :name => 'unique_coordinates_workshops')
+    
+    # New indexes
+    add_index(:workshops, :likes_count)
+    add_index(:workshops, :dislikes_count)
   end
 end

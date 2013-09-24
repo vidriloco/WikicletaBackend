@@ -1,7 +1,7 @@
 class Trip < ActiveRecord::Base
-  include Shared::Geography
-  include Shared::Categories
-  include Shared::TimingCategories
+  include Geography
+  include Categories
+  include TimingCategories
   
   extend FriendlyId
   friendly_id :name, use: :slugged

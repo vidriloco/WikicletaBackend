@@ -1,6 +1,6 @@
 class Bike < ActiveRecord::Base
-  include Shared::Categories
-  include Shared::Queries
+  include Categories
+  include Queries
   
   include Likes
   
