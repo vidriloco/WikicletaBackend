@@ -8,9 +8,6 @@ class ProfilesController < ApplicationController
       redirect_to root_path
       return
     end
-
-    #Refactor recent method to module of included models
-    @items = (current_user.nil? || current_user != @user) ? Aggregator.all_activity_of(@user) : Aggregator.all_activity_on_wikicleta_as(current_user)
   end
   
   def activity
