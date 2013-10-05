@@ -17,10 +17,17 @@ module Api
   end
   
   def owner
-    if defined?(user)
-      ow = {:username => user.username, :id => user.id}
-      return ow if user.picture.nil? || user.picture.image.nil? 
-      ow.merge(:pic => user.picture.image.url(:mini_thumb))
+    default_user = defined?(user) ? user : nil
+    if default_user.nil?
+      if defined?(cycling_group_admins) && !cycling_group_admins.first.nil?
+        default_user = cycling_group_admins.first.user 
+      end
+    end
+    
+    unless default_user.nil?
+      ow = {:username => default_user.username, :id => default_user.id}
+      return ow if default_user.picture.nil? || default_user.picture.image.nil? 
+      ow.merge(:pic => default_user.picture.image.url(:mini_thumb))
     else
       owner_ = ownerships.where(:kind => Ownership.category_for(:owner_types, :owner)).first
       return owner_.fragments_in_hash unless owner_.nil?

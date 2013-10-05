@@ -38,7 +38,7 @@ Ciudadio::Application.routes.draw do
     resources :workshops, :only => [:create, :update, :index]
     post '/workshops/:id', :to => 'workshops#destroy'
     
-    get '/city_trips', :to => 'cities#index'
+    resources :cycling_groups, :only => [:index]
     get '/trips/:id', :to => 'trips#show'
   end
   

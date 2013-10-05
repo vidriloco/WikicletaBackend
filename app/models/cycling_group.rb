@@ -3,6 +3,7 @@ class CyclingGroup < ActiveRecord::Base
   include TimingCategories
   include Geography
   include Dumpable
+  include Api
   
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -14,10 +15,10 @@ class CyclingGroup < ActiveRecord::Base
   
   validates_presence_of :coordinates, :name
   validates_uniqueness_of :name
-  
+    
   def self.find_nearby_with(viewport, extras)
     groups = extras.has_key?(:slug) ? CyclingGroup.where(:slug => extras[:slug]) : find_nearby(viewport)
-    
+        
     groups.sort_by do |item| 
       item.number_of_days_to_event(Date.parse(extras[:date]))
     end
@@ -100,11 +101,27 @@ class CyclingGroup < ActiveRecord::Base
     end
   end
   
+  #Dumpables
   def self.attrs_for_dump
     %w(name details meeting_time departing_time periodicity twitter_account facebook_url website_url updated_at created_at)
   end
   
   def self.attrs_for_dump_ex
     %w(coordinates_to_s)
+  end
+  
+  # Api
+  
+  def pic
+    if !picture.nil? && !picture.image.nil?
+      return picture.image.url(:thumb)
+    end
+  end
+  
+  def as_json(opts={})
+    super({
+      :only => [:id, :name, :details, :meeting_time, :departing_time, :twitter_account, :facebook_url, :website_url],
+      :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner, :calculated_days_to_event, :pic]
+    })
   end
 end
