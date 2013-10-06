@@ -1,10 +1,8 @@
 class Api::TripsController < Api::BaseController
-  
-  protect_from_forgery :except => [:show]
-  
-  def show
-    @trip = Trip.find(params[:id])
-    render :json => {:success => true, :trip => @trip.custom_json(:detailed) }, :status => :ok
+    
+  def index
+    @trips = Trip.find_nearby_with(params[:viewport], params[:extras])
+    render :json => {:success => true, :trips => @trips.as_json}, :status => :ok
   end
 
 end

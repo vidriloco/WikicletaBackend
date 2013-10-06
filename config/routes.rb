@@ -38,8 +38,8 @@ Ciudadio::Application.routes.draw do
     resources :workshops, :only => [:create, :update, :index]
     post '/workshops/:id', :to => 'workshops#destroy'
     
-    resources :cycling_groups, :only => [:index]
-    get '/trips/:id', :to => 'trips#show'
+    resources :cycling_groups, :only => [:index]    
+    resources :trips, :only => [:index]
   end
   
   namespace :settings do

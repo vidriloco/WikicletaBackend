@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Trip < ActiveRecord::Base
   include Geography
   include Categories
@@ -15,8 +16,8 @@ class Trip < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:id, :name, :details, :periodicity],
-      :include => [:trip_pois, :segments]
+      :only => [:id, :name, :details],
+      :methods => [:pois, :paths, :calculated_days_to_event, :lat, :lon, :pic]
     })
   end
   
@@ -28,26 +29,27 @@ class Trip < ActiveRecord::Base
     end
   end
   
-  
-  def custom_json(morph=:default)
-    if morph.eql?(:light)
-      {:id => id, :name => name, :days_to_event => days_to_event }
-    elsif morph.eql?(:detailed)
-      
-      pois=trip_pois.each.inject([]) do |collected, trip_poi|
-        collected << trip_poi.custom_json
-      end
-      
-      segments_=segments.each.inject([]) do |collected, segment|
-        collected << segment.custom_json
-      end
-      
-      {:details => details, :trip_pois => pois, :segments => segments_ }
+  protected
+
+  def pic
+    return "/assets/trips/dominical.jpg" if name=="Paseo dominical"
+    return "/assets/trips/recreativa.jpg" if name=="Vía recreativa"
+    return "/assets/trips/cicloton.jpg" if name=="Ciclotón"
+    ""
+  end
+
+  def paths
+    segments.each.inject([]) do |collected, segment|
+      collected << segment.custom_json
     end
   end
   
-  protected
-
+  def pois
+    trip_pois.each.inject([]) do |collected, trip_poi|
+      collected << trip_poi.custom_json
+    end
+  end
+  
   def date_of_last_sunday
     date = Date.new(Date.today.year, Date.today.month, -1)
     last_month_day= date-date.wday
