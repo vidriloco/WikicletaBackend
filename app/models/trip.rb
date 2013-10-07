@@ -32,10 +32,7 @@ class Trip < ActiveRecord::Base
   protected
 
   def pic
-    return "/assets/trips/dominical.jpg" if name=="Paseo dominical"
-    return "/assets/trips/recreativa.jpg" if name=="Vía recreativa"
-    return "/assets/trips/cicloton.jpg" if name=="Ciclotón"
-    ""
+    "/assets/trips/#{picture_name}.jpg"
   end
 
   def paths
