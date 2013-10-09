@@ -22,9 +22,13 @@ class Route < ActiveRecord::Base
       line_string_text+="#{instant[:lon].to_f} #{instant[:lat].to_f},"
     end
     
-    route.path="LINESTRING(#{line_string_text.chop!})"
+    route.path = Geos::WktWriter.new.write(simplify_line("LINESTRING(#{line_string_text.chop!})"))
     route.ownerships.build(:user => user, :owned_object => route, :kind => Ownership.category_for(:owner_types, :submitter))
     
     route
+  end
+  
+  def self.simplify_line(line,factor=0.00015)
+    Geos::WktReader.new.read(line).simplify factor
   end
 end

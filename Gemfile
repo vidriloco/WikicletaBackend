@@ -10,6 +10,8 @@ gem 'devise'
 gem 'formtastic'
 # gem 'transport_adder', :require => 'transport_adder', :path => 'vendor/plugins/transport_adder/'
 
+gem 'ffi-geos'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'

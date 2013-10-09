@@ -116,6 +116,8 @@ GEM
       rack-oauth2 (>= 0.14.4)
       tzinfo
     ffi (1.9.0)
+    ffi-geos (0.3.0)
+      ffi (>= 1.0.0)
     fog (1.15.0)
       builder
       excon (~> 0.25.0)
@@ -344,6 +346,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fb_graph
+  ffi-geos
   fog
   formtastic
   friendly_id
