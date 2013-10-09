@@ -40,6 +40,7 @@ Ciudadio::Application.routes.draw do
     
     resources :cycling_groups, :only => [:index]    
     resources :trips, :only => [:index]
+    resources :routes, :only => [:create]
   end
   
   namespace :settings do
