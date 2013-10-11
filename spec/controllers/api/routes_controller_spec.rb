@@ -9,7 +9,7 @@ describe Api::RoutesController do
     @params = {"some" => "params"}
   end
   
-  describe "GET" do
+  describe "GET index" do
     
     before(:each) do
       @routes = []
@@ -21,6 +21,18 @@ describe Api::RoutesController do
     
       #assigns(:routes).should == @routes
       #response.should be_successful
+    end
+    
+  end
+  
+  describe "GET show" do
+    
+    it "should generate a valid json response for a given route" do
+      Route.should_receive(:find).with("1").and_return(@routes)
+      get :show, :id => "1"
+    
+      assigns(:route).should == @route
+      response.should be_successful
     end
     
   end

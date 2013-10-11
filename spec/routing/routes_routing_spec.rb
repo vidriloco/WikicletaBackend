@@ -12,5 +12,9 @@ describe Api::RoutesController do
       { :get => "/api/routes" }.should route_to(:action => "index", :controller => "api/routes")
     end
     
+    it "matches /api/routes/1 with controller :routes action #show" do
+      { :get => "/api/routes/1" }.should route_to(:action => "show", :controller => "api/routes", :id => "1")
+    end
+    
   end
 end

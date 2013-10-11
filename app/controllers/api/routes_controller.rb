@@ -19,4 +19,9 @@ class Api::RoutesController < Api::BaseController
     end
   end
   
+  def show
+    @route = Route.find(params[:id])
+    render :json => {:success => true, :route_path => @route.path_vector }
+  end
+  
 end
