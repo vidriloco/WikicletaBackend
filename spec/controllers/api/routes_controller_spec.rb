@@ -6,8 +6,23 @@ describe Api::RoutesController do
     @user = FactoryGirl.stub(:pipo)
     
     @extras = {"auth_token" => "valid"}
-    
     @params = {"some" => "params"}
+  end
+  
+  describe "GET" do
+    
+    before(:each) do
+      @routes = []
+    end
+    
+    it "should generate a valid json response" do
+      #Route.should_receive(:find_nearby_with).and_return(@routes)
+      #get :index, :viewport => @params
+    
+      #assigns(:routes).should == @routes
+      #response.should be_successful
+    end
+    
   end
   
   describe "POST" do

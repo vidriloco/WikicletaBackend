@@ -5,6 +5,11 @@ class Api::RoutesController < Api::BaseController
   before_filter :find_user_with_token, :only => [:create, :destroy, :update]
   before_filter :respond_to_bad_auth, :only => [:create, :destroy, :update]
 
+  def index
+    @routes = Route.find_nearby(params[:viewport])
+    render :json => {:success => true, :routes => @routes.as_json }, :status => :ok
+  end
+
   def create
     @route = Route.new_with(params[:route], @user)
     if @route.save
