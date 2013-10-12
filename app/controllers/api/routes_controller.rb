@@ -24,4 +24,14 @@ class Api::RoutesController < Api::BaseController
     render :json => {:success => true, :route_path => @route.path_vector }
   end
   
+  def destroy
+    @route = Route.find(params[:id]) 
+    
+    if @route.destroy
+      render :nothing => true, :status => :ok
+    else
+      render :nothing => true, :status => 422
+    end
+  end
+  
 end
