@@ -37,6 +37,18 @@ describe Api::RoutesController do
     
   end
   
+  describe "GET performances" do
+    
+    it "should generate a valid json response for a given route" #do
+      #Route.should_receive(:find).with("1").and_return(@routes)
+      #get :performances, :id => "1"
+    
+      #assigns(:route).should == @route
+      #response.should be_successful
+    #end
+    
+  end
+  
   describe "POST" do
     
     describe "with bad auth token" do

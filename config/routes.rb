@@ -43,7 +43,7 @@ Ciudadio::Application.routes.draw do
 
     resources :routes, :only => [:create, :update, :index, :show]
     post '/routes/:id', :to => 'routes#destroy'
-
+    get '/routes/:id/performances', :to => 'routes#performances'
   end
   
   namespace :settings do

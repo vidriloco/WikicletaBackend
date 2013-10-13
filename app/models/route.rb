@@ -66,6 +66,11 @@ class Route < ActiveRecord::Base
     end_coordinate.lon
   end
   
+  def extras(data=:path)
+    return {:path => path_vector } if(data==:path)
+    return {:performances => route_performances} if(data==:performances)
+  end
+  
   def path_vector
     points_list=[]
     

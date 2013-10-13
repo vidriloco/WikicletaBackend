@@ -24,5 +24,9 @@ describe Api::RoutesController do
       { :put => "/api/routes/1" }.should route_to(:action => "update", :controller => "api/routes", :id => "1")
     end
     
+    it "matcher /api/routes/1/performances with controller :routes action #performances" do
+      { :get => "/api/routes/1/performances" }.should route_to(:action => "performances", :controller => "api/routes", :id => "1")
+    end
+    
   end
 end

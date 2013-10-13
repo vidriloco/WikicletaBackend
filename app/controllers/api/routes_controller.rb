@@ -31,7 +31,12 @@ class Api::RoutesController < Api::BaseController
   
   def show
     @route = Route.find(params[:id])
-    render :json => {:success => true, :route_path => @route.path_vector }
+    render :json => {:success => true, :route => @route.extras }
+  end
+  
+  def performances
+    @route = Route.find(params[:id])
+    render :json => {:success => true, :route => @route.extras(:performances).as_json }
   end
   
   def destroy
