@@ -20,5 +20,9 @@ describe Api::RoutesController do
       { :post => "/api/routes/1" }.should route_to(:action => "destroy", :controller => "api/routes", :id => "1")
     end
     
+    it "matches /api/routes/1 with controller :routes action #update" do
+      { :put => "/api/routes/1" }.should route_to(:action => "update", :controller => "api/routes", :id => "1")
+    end
+    
   end
 end

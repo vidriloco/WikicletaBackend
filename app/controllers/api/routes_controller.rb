@@ -19,6 +19,16 @@ class Api::RoutesController < Api::BaseController
     end
   end
   
+  def update
+    @route = Route.find(params[:id])
+    
+    if @route.update_attributes(params[:route])
+      render :json => { :success => true }, :status => :ok
+    else
+      render :json => { :errors => @route.errors }, :status => 422
+    end
+  end
+  
   def show
     @route = Route.find(params[:id])
     render :json => {:success => true, :route_path => @route.path_vector }
