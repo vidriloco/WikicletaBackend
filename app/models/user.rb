@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :parkings, :through => :ownerships, :source => :owned_object, :source_type => 'Parking', :dependent => :nullify
   has_many :workshops, :through => :ownerships, :source => :owned_object, :source_type => 'Workshop', :dependent => :nullify
   
+  has_many :favorites
+  has_many :favorited_routes, :through => :favorites, :source => :favorited_object, :source_type => 'Route', :dependent => :nullify
+  
   belongs_to :city
   
   has_many :cycling_group_admins

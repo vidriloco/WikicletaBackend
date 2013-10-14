@@ -4,6 +4,7 @@ class Route < ActiveRecord::Base
   
   has_many :route_performances, :dependent => :destroy
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  has_many :favorites, :as => :favorited_object, :dependent => :destroy
   
   validates :name, :details, :presence => true
   

@@ -44,6 +44,10 @@ Ciudadio::Application.routes.draw do
     resources :routes, :only => [:create, :update, :index, :show]
     post '/routes/:id', :to => 'routes#destroy'
     get '/routes/:id/performances', :to => 'routes#performances'
+    
+    post '/favorites/mark', :to => 'favorites#mark'
+    post '/favorites/unmark', :to => 'favorites#unmark'
+    get '/favorites/marked/:favorited_object_id/:favorited_object_type/:user_id', :to => 'favorites#marked?'
   end
   
   namespace :settings do
