@@ -5,6 +5,8 @@ class Tip < ActiveRecord::Base
   include Api
   include Dumpable
   
+  has_many :favorites, :as => :favorited_object, :dependent => :destroy
+  
   validates_presence_of :coordinates, :content, :category, :user
   belongs_to :user
   
@@ -60,6 +62,14 @@ class Tip < ActiveRecord::Base
   
   def owners 
     {}
+  end
+  
+  def light_description
+    content
+  end
+  
+  def light_title
+    category
   end
   
   # Dumpables

@@ -67,6 +67,22 @@ class Route < ActiveRecord::Base
     end_coordinate.lon
   end
   
+  def light_description
+    details
+  end
+  
+  def light_title
+    name
+  end
+  
+  def lat
+    origin_lat
+  end
+  
+  def lon
+    origin_lon
+  end
+  
   def extras(data=:path)
     return {:path => path_vector } if(data==:path)
     return {:performances => route_performances} if(data==:performances)

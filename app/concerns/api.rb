@@ -34,5 +34,17 @@ module Api
       ownerships.where(:kind => Ownership.category_for(:owner_types, :submitter)).first.fragments_in_hash
     end
   end
+  
+  def light_fields
+    { :title => light_title, :description => light_description, :lat => lat, :lon => lon, :str_updated_at => str_updated_at }
+  end
+  
+  def light_title
+    
+  end
+  
+  def light_description
+  
+  end
 
 end

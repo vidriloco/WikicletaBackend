@@ -8,6 +8,8 @@ class Parking < ActiveRecord::Base
   validates_presence_of :coordinates, :kind
 
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  has_many :favorites, :as => :favorited_object, :dependent => :destroy
+  
   has_many :users, :through => :ownerships
   
   #temporal
@@ -40,6 +42,14 @@ class Parking < ActiveRecord::Base
       :only => [:id, :details, :kind, :likes_count, :has_roof, :others_can_edit_it],
       :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
+  end
+  
+  def light_description
+    details
+  end
+  
+  def light_title
+    kind
   end
   
   def self.kinds

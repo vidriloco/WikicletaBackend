@@ -21,4 +21,10 @@ class Api::FavoritesController < Api::BaseController
     
     render :json => {:success => true, :is_favorite => @favorite }, :status => :ok
   end
+  
+  def list
+    @favorites = Favorite.all_from_user(params[:user_id])
+    
+    render :json => {:success => true, :favorites => @favorites }, :status => :ok
+  end
 end

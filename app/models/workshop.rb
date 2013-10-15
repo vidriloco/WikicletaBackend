@@ -7,6 +7,8 @@ class Workshop < ActiveRecord::Base
   validates_presence_of :name, :details
 
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  has_many :favorites, :as => :favorited_object, :dependent => :destroy
+  
   has_many :users, :through => :ownerships
   
   default_scope order('updated_at DESC')
@@ -36,6 +38,14 @@ class Workshop < ActiveRecord::Base
   def update_with(params, coordinates)
     self.apply_geo(coordinates)
     self.update_attributes(params)
+  end
+  
+  def light_description
+    details
+  end
+  
+  def light_title
+    name
   end
   
   def self.attrs_for_dump

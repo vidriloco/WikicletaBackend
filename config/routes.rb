@@ -45,6 +45,7 @@ Ciudadio::Application.routes.draw do
     post '/routes/:id', :to => 'routes#destroy'
     get '/routes/:id/performances', :to => 'routes#performances'
     
+    get '/favorites/list/:user_id', :to => 'favorites#list'
     post '/favorites/mark', :to => 'favorites#mark'
     post '/favorites/unmark', :to => 'favorites#unmark'
     get '/favorites/marked/:favorited_object_id/:favorited_object_type/:user_id', :to => 'favorites#marked?'

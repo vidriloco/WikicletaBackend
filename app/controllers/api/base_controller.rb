@@ -5,6 +5,7 @@ class Api::BaseController < ApplicationController
   
   protected
   def find_user_with_token
+    return nil unless params.has_key?(:extras)
     @user = User.where(:authentication_token => params[:extras][:auth_token]).first
   end
   
