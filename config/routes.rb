@@ -49,6 +49,8 @@ Ciudadio::Application.routes.draw do
     post '/favorites/mark', :to => 'favorites#mark'
     post '/favorites/unmark', :to => 'favorites#unmark'
     get '/favorites/marked/:favorited_object_id/:favorited_object_type/:user_id', :to => 'favorites#marked?'
+    
+    get '/ownerships/list/:user_id', :to => 'ownerships#list'
   end
   
   namespace :settings do

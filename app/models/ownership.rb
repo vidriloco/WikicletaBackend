@@ -1,4 +1,5 @@
 class Ownership < ActiveRecord::Base
+  include Api
   include Categories
   include Dumpable
   
@@ -44,6 +45,11 @@ class Ownership < ActiveRecord::Base
   
   def self.id_for_object(object_)
     %-#{object_.class.to_s}.where('ST_AsBinary(coordinates) = ST_AsBinary(ST_GeometryFromText(?))', "#{object_.coordinates}").first.id-
+  end
+  
+  def self.all_from_user(user_id)
+    owneds = Ownership.select("owned_object_type, owned_object_id, user_id").where(:user_id => user_id).order('updated_at DESC').map(&:owned_object).map(&:light_fields_extra)
+    owneds += Tip.where(:user_id => user_id).order('updated_at DESC').map(&:light_fields_extra)
   end
   
   private

@@ -39,6 +39,10 @@ module Api
     { :title => light_title, :description => light_description, :lat => lat, :lon => lon, :str_updated_at => str_updated_at }
   end
   
+  def light_fields_extra
+    light_fields.merge({:kind => self.class.to_s})
+  end
+  
   def light_title
     
   end
