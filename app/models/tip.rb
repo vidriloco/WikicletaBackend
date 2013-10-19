@@ -43,7 +43,7 @@ class Tip < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:id, :content, :category, :likes_count],
+      :only => [:id, :content, :category, :likes_count, :dislikes_count],
       :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
   end

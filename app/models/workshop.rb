@@ -24,7 +24,7 @@ class Workshop < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:id, :name, :details, :likes_count, :store, :phone, :cell_phone, :webpage, :twitter, :horary, :others_can_edit_it],
+      :only => [:id, :name, :details, :likes_count, :dislikes_count, :store, :phone, :cell_phone, :webpage, :twitter, :horary, :others_can_edit_it],
       :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
   end
