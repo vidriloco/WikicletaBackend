@@ -51,6 +51,8 @@ Ciudadio::Application.routes.draw do
     get '/favorites/marked/:favorited_object_id/:favorited_object_type/:user_id', :to => 'favorites#marked?'
     
     get '/ownerships/list/:user_id', :to => 'ownerships#list'
+    
+    resources :ranked_comments, :only => [:create]
   end
   
   namespace :settings do
