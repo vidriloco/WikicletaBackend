@@ -53,6 +53,7 @@ Ciudadio::Application.routes.draw do
     get '/ownerships/list/:user_id', :to => 'ownerships#list'
     
     resources :ranked_comments, :only => [:create]
+    get '/ranked_comments/list/:ranked_comment_object_id/:ranked_comment_object_type', :to => 'ranked_comments#list'
   end
   
   namespace :settings do

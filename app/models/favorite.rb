@@ -19,7 +19,6 @@ class Favorite < ActiveRecord::Base
   end
   
   def self.favorite?(params)
-    p params
     !Favorite.where({:favorited_object_id => params[:favorited_object_id], :favorited_object_type => params[:favorited_object_type], :user_id => params[:user_id]}).empty?
   end
   
