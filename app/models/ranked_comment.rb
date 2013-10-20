@@ -19,7 +19,7 @@ class RankedComment < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:content, :positive],
+      :only => [:id, :content, :positive],
       :methods => [:str_created_at, :owner]
     })
   end
