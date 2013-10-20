@@ -5,6 +5,7 @@ class Route < ActiveRecord::Base
   has_many :route_performances, :dependent => :destroy
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
   has_many :favorites, :as => :favorited_object, :dependent => :destroy
+  has_many :ranked_comments, :as => :ranked_comment_object, :dependent => :destroy
   
   validates :name, :details, :presence => true
   
@@ -46,7 +47,7 @@ class Route < ActiveRecord::Base
   
   def as_json
     super({
-      :only => [:id, :name, :details, :kilometers],
+      :only => [:id, :name, :details, :kilometers, :likes_count, :dislikes_count],
       :methods => [:str_created_at, :str_updated_at, :origin_lat, :origin_lon, :end_lat, :end_lon, :owner]
     })
   end

@@ -11,4 +11,10 @@ class CreateRankedComments < ActiveRecord::Migration
     
     add_index(:ranked_comments, [:user_id, :ranked_comment_object_id, :ranked_comment_object_type, :content], :unique => true, :name => 'unique_object_ranked_object_index')    
   end
+  
+  def down
+    [Tip, Workshop, Parking, Route].each do |klass|
+      klass.all.each { |item| item.update_attributes({:likes_count => 0, :dislikes_count => 0}) }
+    end
+  end
 end
