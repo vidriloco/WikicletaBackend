@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
   
   def profile_to_json
-    {:city_name => city_name, :user_pic => picture_img, :bio => bio }
+    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio }
   end
   
   protected
