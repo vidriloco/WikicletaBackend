@@ -9,9 +9,12 @@ class CreateRoutes < ActiveRecord::Migration
       t.point           :origin_coordinate, :geographic => true
       t.point           :end_coordinate, :geographic => true
       
-      t.integer         :comfort_index
-      t.integer         :speed_index
-      t.integer         :safety_index   
+      t.integer         :likes_count, :default => 0
+      t.integer         :dislikes_count, :default => 0
+      
+      t.integer         :comfort_index, :default => 0
+      t.integer         :speed_index, :default => 0
+      t.integer         :safety_index, :default => 0
       t.timestamps
     end
   end

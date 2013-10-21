@@ -48,7 +48,7 @@ class Route < ActiveRecord::Base
   
   def as_json
     super({
-      :only => [:id, :name, :details, :kilometers, :likes_count, :dislikes_count],
+      :only => [:id, :name, :details, :kilometers, :likes_count, :dislikes_count, :comfort_index, :safety_index, :speed_index],
       :methods => [:str_created_at, :str_updated_at, :origin_lat, :origin_lon, :end_lat, :end_lon, :owner]
     })
   end
