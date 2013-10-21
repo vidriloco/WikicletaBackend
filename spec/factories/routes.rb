@@ -8,9 +8,6 @@ FactoryGirl.define do
     r.details "Going through all the way long Insurgentes street"
     r.is_public true
     r.kilometers 10
-    r.comfort_index 6
-    r.speed_index 8
-    r.safety_index 7
   end
 
 end

@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :favorited_routes, :through => :favorites, :source => :favorited_object, :source_type => 'Route', :dependent => :nullify
   
+  has_many :route_rankings
+  has_many :routes, :through => :route_rankings
+  
   belongs_to :city
   
   has_many :cycling_group_admins

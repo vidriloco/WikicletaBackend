@@ -6,6 +6,7 @@ class Route < ActiveRecord::Base
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
   has_many :favorites, :as => :favorited_object, :dependent => :destroy
   has_many :ranked_comments, :as => :ranked_comment_object, :dependent => :destroy
+  has_many :route_rankings
   
   validates :name, :details, :presence => true
   

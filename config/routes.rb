@@ -56,6 +56,8 @@ Ciudadio::Application.routes.draw do
     get '/ranked_comments/list/:ranked_comment_object_id/:ranked_comment_object_type', :to => 'ranked_comments#list'
     post '/ranked_comments/:id', :to => 'ranked_comments#destroy'
     
+    resources :route_rankings, :only => [:create]
+    get '/route_rankings/:route_id/:user_id', :to => 'route_rankings#details'
   end
   
   namespace :settings do
