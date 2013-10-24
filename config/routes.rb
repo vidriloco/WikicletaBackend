@@ -28,6 +28,7 @@ Ciudadio::Application.routes.draw do
   namespace :api do
     devise_for :users
     get '/profiles/:id', :to => 'users#profile'
+    post '/profiles/:id', :to => 'users#update'
     
     resources :tips, :only => [:create, :update, :index]
     post '/tips/:id', :to => 'tips#destroy'

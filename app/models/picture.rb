@@ -53,6 +53,11 @@ class Picture < ActiveRecord::Base
     end
   end
   
+  def image_data(data, params)
+    self.image = CarrierStringIO.new(Base64.decode64(data))
+    self.apply_type_from(params)
+  end
+  
   def attached_to_user?
     self.imageable_type == User.to_s
   end

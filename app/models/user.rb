@@ -115,7 +115,30 @@ class User < ActiveRecord::Base
   end
   
   def profile_to_json
-    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio }
+    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db) }
+  end
+  
+  def self.create_with(params)
+    image = params.delete(:image_pic)
+    user = User.new(params)
+    user.save
+    user.assign_picture(image, user.id)
+    user
+  end
+  
+  def update_with(params)
+    image = params.delete(:image_pic)
+    update_attributes!(params) && assign_picture(image, id)
+  end
+  
+  def assign_picture(pic, id)
+    picture_saved = true  
+    unless pic.blank?
+      picture = Picture.new
+      picture.image_data(pic, {:user_id => id})
+      picture_saved = picture.save 
+    end
+    picture_saved
   end
   
   protected
