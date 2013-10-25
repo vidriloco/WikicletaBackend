@@ -17,22 +17,30 @@ module Api
   end
   
   def owner
-    default_user = defined?(user) ? user : nil
-    if default_user.nil?
-      if defined?(cycling_group_admins) && !cycling_group_admins.first.nil?
-        default_user = cycling_group_admins.first.user 
-      end
-    end
-    
-    unless default_user.nil?
-      ow = {:username => default_user.username, :id => default_user.id}
-      return ow if default_user.picture.nil? || default_user.picture.image.nil? 
-      ow.merge(:pic => default_user.picture.image.url(:mini_thumb))
+    if self.is_a?(Tip)
+      return owner_hash_for(fallback_owner) if user.nil?
+      return owner_hash_for(user)
+    elsif self.is_a?(CyclingGroup)
+      return owner_hash_for(cycling_group_admins.first.user) unless cycling_group_admins.empty?
     else
-      owner_ = ownerships.where(:kind => Ownership.category_for(:owner_types, :owner)).first
-      return owner_.fragments_in_hash unless owner_.nil?
-      ownerships.where(:kind => Ownership.category_for(:owner_types, :submitter)).first.fragments_in_hash
+      ownership = ownerships.where(:kind => Ownership.category_for(:owner_types, :owner)).first
+      ownership = ownerships.where(:kind => Ownership.category_for(:owner_types, :submitter)).first if ownership.nil?
+      return owner_hash_for(fallback_owner) if ownership.nil?
+      ownership.fragments_in_hash
     end
+  end
+  
+  def owner_hash_for(default_user)
+    ow = {:username => default_user.username, :id => default_user.id}
+    if default_user.picture.nil? || default_user.picture.image.nil? 
+      ow
+    else
+      ow.merge(:pic => default_user.picture.image.url(:mini_thumb))
+    end
+  end
+  
+  def fallback_owner
+    User.where(:username => AppConfig.name).first
   end
   
   def light_fields

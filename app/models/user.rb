@@ -5,19 +5,19 @@ class User < ActiveRecord::Base
 
   has_many :tips, :dependent => :nullify
 
-  has_many :ownerships
+  has_many :ownerships, :dependent => :destroy
   has_many :parkings, :through => :ownerships, :source => :owned_object, :source_type => 'Parking', :dependent => :nullify
   has_many :workshops, :through => :ownerships, :source => :owned_object, :source_type => 'Workshop', :dependent => :nullify
   
-  has_many :favorites
+  has_many :favorites, :dependent => :destroy
   has_many :favorited_routes, :through => :favorites, :source => :favorited_object, :source_type => 'Route', :dependent => :nullify
   
-  has_many :route_rankings
+  has_many :route_rankings, :dependent => :destroy
   has_many :routes, :through => :route_rankings
   
   belongs_to :city
   
-  has_many :cycling_group_admins
+  has_many :cycling_group_admins, :dependent => :destroy
   has_many :cycling_groups, :through => :cycling_group_admins
   
   attr_accessor :login, :invitation_code
