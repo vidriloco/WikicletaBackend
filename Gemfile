@@ -22,7 +22,7 @@ gem 'acts_as_commentable'
 
 gem 'carrierwave', '0.6.2'
 gem 'rmagick', '2.13.2'
-gem 'fog'
+gem "fog", "~> 1.3.1"
 
 gem 'friendly_id'
 
