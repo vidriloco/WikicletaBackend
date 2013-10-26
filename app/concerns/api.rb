@@ -17,7 +17,7 @@ module Api
   end
   
   def owner
-    if self.is_a?(Tip)
+    if self.is_a?(Tip) || self.is_a?(RoutePerformance)
       return owner_hash_for(fallback_owner) if user.nil?
       return owner_hash_for(user)
     elsif self.is_a?(CyclingGroup)
