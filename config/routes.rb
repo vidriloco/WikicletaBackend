@@ -61,13 +61,10 @@ Ciudadio::Application.routes.draw do
     get '/route_rankings/:route_id/:user_id', :to => 'route_rankings#details'
   end
   
-  namespace :settings do
-    get "profile"
-    get "access"
-    put "changed"
-    put "change_picture"
-    delete "destroy_picture"
-  end
+  get '/profile/:username/settings', :to => 'user_settings#show', :as => 'user_settings'
+  put '/profile/:username/update', :to => 'user_settings#update', :as => 'user_settings_update'
+  put '/profile/:username/update_pic', :to => 'user_settings#update_pic', :as => 'user_settings_update_pic'
+  delete '/profile/:username/destroy_pic', :to => 'user_settings#destroy_pic', :as => 'user_settings_destroy_pic'
 
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
   get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"

@@ -4,6 +4,7 @@ class CyclingGroupsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
   before_filter :set_user
   before_filter :find_cycling_group, :only => [:edit, :update, :destroy]
+  before_filter :authenticate_allowed_users, :only => [:edit, :update, :destroy]
   
   def index
     @cycling_groups = []
@@ -31,10 +32,7 @@ class CyclingGroupsController < ApplicationController
   end
   
   def edit
-    # Only the cycling group registered admins can edit it
-    unless @user.admins_cycling_group?(@cycling_group)
-      redirect_to discover_cycling_groups_path.concat("#/#{@cycling_group.slug}")
-    end
+    
   end
   
   def update
@@ -53,6 +51,12 @@ class CyclingGroupsController < ApplicationController
   private
   def set_user
     @user ||= current_user
+  end
+  
+  def authenticate_allowed_users
+    if !@user.admins_cycling_group?(@cycling_group) && !@user.superuser?
+      redirect_to discover_cycling_groups_path.concat("#/#{@cycling_group.slug}")
+    end
   end
   
   def find_cycling_group

@@ -2,10 +2,12 @@
 <div class="content">
 	<div class="centered-text">
 		<div class="pic-container">
+			<% url = current_user!=user && !current_user.superuser? ? nil : user_settings_path(user.username) %>
+			
 			<% if !user.picture.nil? %>
-				<%= link_to image_tag(user.picture.image.mini_thumb.url, :size => '95x100', :class => 'rounded'), settings_profile_path %>
+				<%= link_to image_tag(user.picture.image.mini_thumb.url, :size => '95x100', :class => 'rounded'), url %>
 			<% else %>
-				<%= link_to image_tag('user_no_pic.png', :size => '95x100', :class => 'rounded'), settings_profile_path %>
+				<%= link_to image_tag('user_no_pic.png', :size => '95x100', :class => 'rounded'), url %>
 			<% end %>
 		</div>
 	

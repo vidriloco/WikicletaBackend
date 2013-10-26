@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :route_rankings, :dependent => :destroy
   has_many :routes, :through => :route_rankings
   
+  has_many :user_roles
+  
   belongs_to :city
   
   has_many :cycling_group_admins, :dependent => :destroy
@@ -139,6 +141,10 @@ class User < ActiveRecord::Base
       picture_saved = picture.save 
     end
     picture_saved
+  end
+  
+  def superuser?
+    !user_roles.where(:ring => UserRole.superuser, :permissions => UserRole.read_write).empty?
   end
   
   protected

@@ -15,7 +15,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "pics/#{model.imageable_type.downcase.pluralize}/#{model.imageable_id}/#{mounted_as.to_s.pluralize}/#{model.id}/"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -34,16 +34,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :mini_thumb do
     process :auto_orient
     process :resize_to_fill => [200, 200, ::Magick::CenterGravity]
-  end
-  
-  version :thumb, :if => :model_not_associates_to_user? do
-    process :auto_orient
-    process :resize_to_limit => [250, nil]
-  end
-  
-  version :preview, :if => :model_not_associates_to_user? do
-    process :auto_orient
-    process :resize_to_fill => [720, 370, ::Magick::CenterGravity]
   end
   
   def model_not_associates_to_user?(new_file=nil)

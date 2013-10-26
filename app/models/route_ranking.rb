@@ -27,8 +27,9 @@ class RouteRanking < ActiveRecord::Base
   
   private
   def recalculate_fields
-    route.update_attribute(:speed_index, RouteRanking.select('avg(speed_index) as speed_index').first.speed_index)
-    route.update_attribute(:comfort_index, RouteRanking.select('avg(comfort_index) as comfort_index').first.comfort_index)
-    route.update_attribute(:safety_index, RouteRanking.select('avg(safety_index) as safety_index').first.safety_index)
+    params = { :route_id => route.id }
+    route.update_attribute(:speed_index, RouteRanking.select('avg(speed_index) as speed_index').where(params).first.speed_index)
+    route.update_attribute(:comfort_index, RouteRanking.select('avg(comfort_index) as comfort_index').where(params).first.comfort_index)
+    route.update_attribute(:safety_index, RouteRanking.select('avg(safety_index) as safety_index').where(params).first.safety_index)
   end
 end
