@@ -114,7 +114,7 @@ class CyclingGroup < ActiveRecord::Base
   
   def pic
     if !picture.nil? && !picture.image.nil?
-      return picture.image.url(:thumb)
+      return picture.image.url(:mini_thumb)
     end
   end
   
