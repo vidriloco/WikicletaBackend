@@ -2,7 +2,7 @@
 <div class="content">
 	<div class="centered-text">
 		<div class="pic-container">
-			<% url = current_user!=user && !current_user.superuser? ? nil : user_settings_path(user.username) %>
+			<% url = !current_user.nil? && current_user!=user && !current_user.superuser? ? nil : user_settings_path(user.username) %>
 			
 			<% if !user.picture.nil? %>
 				<%= link_to image_tag(user.picture.image.mini_thumb.url, :size => '95x100', :class => 'rounded'), url %>
@@ -26,7 +26,7 @@
 		<% if current_user_equals(user) %>
 			<div class="pull-right right-text">
 				<div class="btn-group">
-					<a href="<%= settings_profile_path %>" class="btn btn-info btn-small pull-right"><i class="icon icon-edit"></i> <%= t('states.edit') %></a>
+					<a href="<%= user_settings_path(user.username) %>" class="btn btn-info btn-small pull-right"><i class="icon icon-edit"></i> <%= t('states.edit') %></a>
 				</div>
 			</div>
 		<% end %>

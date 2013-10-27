@@ -54,7 +54,7 @@ class CyclingGroupsController < ApplicationController
   end
   
   def authenticate_allowed_users
-    if !@user.admins_cycling_group?(@cycling_group) && !@user.superuser?
+    if @user.nil? || !@user.admins_cycling_group?(@cycling_group) && !@user.superuser?
       redirect_to discover_cycling_groups_path.concat("#/#{@cycling_group.slug}")
     end
   end

@@ -43,7 +43,8 @@ class UserSettingsController < ApplicationController
   end
   
   def allow_superuser_to_edit
-    if params.has_key?(:username) && current_user.username != params[:username] && current_user.superuser?
+    redirect_to(:back) if current_user.nil?
+    if (params.has_key?(:username) && current_user.username == params[:username]) || current_user.superuser?
       @user = User.where(:username => params[:username]).first
     else
       redirect_to :back

@@ -12,7 +12,7 @@
 					</ul>
 				</div>
 				<ul class="contact">
-					<% if current_user_owns?(cycling_group) || current_user.superuser? %>
+					<% if current_user_owns?(cycling_group) || (!current_user.nil? && current_user.superuser?) %>
 						<li>
 							<a class="btn btn-small edit-cycling-group" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
 						</li>
