@@ -3,6 +3,7 @@ class CreateRoutes < ActiveRecord::Migration
     create_table :routes do |t|
       t.string          :name
       t.string          :details
+      t.string          :extra_references
       t.boolean         :is_public
       t.decimal         :kilometers
       t.line_string     :path, :srid => 4326
