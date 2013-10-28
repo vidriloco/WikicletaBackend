@@ -31,7 +31,12 @@ class Route < ActiveRecord::Base
     route.origin_coordinate = "POINT(#{instants.first["lon"].to_f} #{instants.first["lat"].to_f})"
     route.end_coordinate = "POINT(#{instants.last["lon"].to_f} #{instants.last["lat"].to_f})"
     
-    route.path = Geos::WktWriter.new.write(simplify_line("LINESTRING(#{line_string_text.chop!})"))
+    if(instants.size > 80)
+      route.path = Geos::WktWriter.new.write(simplify_line("LINESTRING(#{line_string_text.chop!})")) 
+    else
+      route.path = "LINESTRING(#{line_string_text.chop!})"
+    end
+    
     route.ownerships.build(:user => user, :owned_object => route, :kind => Ownership.category_for(:owner_types, :submitter))
     
     route
