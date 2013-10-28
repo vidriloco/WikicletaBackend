@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:full_name, :email, :username],
+      :only => [:full_name, :email, :username, :bio],
       :methods => [:identifier, :auth_token, :created_at_ms]
     })
   end
@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
   
   def profile_to_json
-    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db) }
+    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db), :identifier => identifier, :email => email }
   end
   
   def self.create_with(params)
