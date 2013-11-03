@@ -36,7 +36,7 @@ class RoutesController < ApplicationController
   
   def authenticate_allowed_users
     @user = current_user
-    if !@user.superuser?
+    if @user.nil? || !@user.superuser?
       redirect_to root_path
     end
   end
