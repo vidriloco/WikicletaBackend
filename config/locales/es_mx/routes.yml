@@ -1,0 +1,8 @@
+es_MX:
+  routes:
+    views:
+      form:
+        name: "Nombre de la Ruta"
+        details: "Detalles"
+        adjustments: "Ajustes a la Ruta"
+        

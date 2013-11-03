@@ -1,3 +1,56 @@
-// Place all the styles related to the routes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+ *= require map_based/common
+ *= require bootstrap-fileupload.min
+ */
+@import "colors.css.scss";
+
+html, body {
+    height:100%;
+}
+
+.routes {
+	
+	.togglers {
+		margin-left: 10px;
+	}
+	
+	.form-container {
+		margin: 20px;
+	}
+	
+	.section-title {
+		text-align: center;
+		color: $wikicleta_blue;
+	}
+	
+	.route {
+		padding: 20px;
+		
+		p.title {
+			font-size: 14px;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: $wikicleta_orange;
+			
+		}
+		
+		p {
+			font-size: 12px;
+			margin: 0px !important;
+			padding: 0px !important;
+			color: $wikicleta_blue;
+		}
+		
+		.actions {
+			background-color: $wikicleta_light_blue;
+			padding: 5px;
+			border-radius: 5px;
+		}
+	}
+}
+
+.actions {
+	padding: 10px;
+	color: $wikicleta_blue;
+	font-weight: bold;
+}

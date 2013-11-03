@@ -25,6 +25,8 @@ Ciudadio::Application.routes.draw do
     
   end
   
+  resources :routes, :only => [:index, :show, :edit, :update, :destroy]
+  
   namespace :api do
     devise_for :users
     get '/profiles/:id', :to => 'users#profile'

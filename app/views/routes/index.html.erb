@@ -1,0 +1,14 @@
+<% content_for :panel do %>	
+	<div class="top-spaced"></div>
+	<div class="panel routes">
+		<div class="inner-panel inner-panel-big">
+			<div class="row-fluid section-title">
+					<h3>Rutas</h3>
+			</div>
+			<div class="separator"></div>
+			<% @routes.each do |route| %>
+				<%= render :partial => 'routes/route', :locals => { :route => route, :mode => :view } %>
+			<% end %>
+		</div>
+	</div>
+<% end %>

@@ -104,4 +104,19 @@ class Route < ActiveRecord::Base
     
     points_list
   end
+  
+  def to_points_list(style=:plain)
+    points_list = style.eql?(:plain) ? String.new : Array.new
+    return points_list if path.nil?
+    path.points.each do |point|
+      points_list << "#{point.y}|#{point.x} " if style.eql?(:plain)
+      points_list << [point.y, point.x] if style.eql?(:json)
+    end
+    return points_list.chop if style.eql?(:plain)
+    points_list
+  end
+  
+  def update_with(attrs, path)
+    update_attributes(attrs.merge(:path => "LINESTRING(#{path})"))
+  end
 end
