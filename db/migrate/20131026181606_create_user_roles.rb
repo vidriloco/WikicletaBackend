@@ -7,6 +7,6 @@ class CreateUserRoles < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index(:user_roles, [:user_id, :ring], :unique => true, :name => 'user_roles_index')    
+    add_index(:user_roles, [:user_id, :ring], :unique => true, :name => 'user_roles_ring_index')    
   end
 end

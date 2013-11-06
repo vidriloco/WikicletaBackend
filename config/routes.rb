@@ -26,6 +26,7 @@ Ciudadio::Application.routes.draw do
   end
   
   resources :routes, :only => [:index, :show, :edit, :update, :destroy]
+  resources :contacts, :only => [:create]
   
   namespace :api do
     devise_for :users

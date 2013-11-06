@@ -1,5 +1,6 @@
 es_MX:
   app:
+    slogan: "La app para ir en bici por la ciudad"
     firm: "Wikicleta 2013"
     models:
       incident: "Incidente"
@@ -126,6 +127,7 @@ es_MX:
   actions:
     register_or_login: "Registrate o Inicia Sesión"
     register: "Regístrate"
+    send: "Enviar"
     return: "Regresar"
     share: "Compartir"
     contribute_to_map: "Agrega un punto al mapa"

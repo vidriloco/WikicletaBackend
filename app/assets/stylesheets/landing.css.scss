@@ -1,248 +1,101 @@
 /*
  *= require_self
  *= require bootstrap_and_overrides
- *= require shared/main.css
 */
 
 $wikicleta_orange: #fb4e15;
 $wikicleta_blue: #1f3a50;
 $wikicleta_light_blue: #DAE8F1;
 
-html, body {
-	width: 100% !important;
+@font-face{
+font-family: "gothamrndbook-Book";
+   font-style: normal;
+   font-weight: normal;
+   src:url("/assets/gothamrndbook.ttf");
 }
 
-.what-is-details {
+@font-face{
+font-family: "gothamrndbold-Bold";
+   font-style: normal;
+   font-weight: normal;
+   src:url("/assets/gothamrndbold.ttf");
+}
+
+html, body { 
+  background: url('/assets/background.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	font-family: "gothamrndbook-Book" !important;
+}
+
+.title {
+	color: $wikicleta_orange;
+	font-size: 28px;
+	margin-top: 15px;
+}
+
+.content {
+	color: $wikicleta_blue;
+	font-size: 15px;
+}
+
+.all-centered {
 	text-align: center;
 }
 
-.main-container {
-	padding-top: 100px !important;
-	padding-bottom: 100px !important;
-}
-
-.section-title {
-	background-color: $wikicleta_light_blue;
-	font-size: 20px;
-	text-transform: uppercase;
-	padding: 10px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	
-	p {
-		margin-top: 15px;
-		text-align: center;
-		color: $wikicleta_orange;
+.contact-form {
+	submit {
+		margin-top: 8px;
 	}
 }
 
-p.no-margin {
-	margin: 0px !important;
-	padding: 0px;
+.founding {
+	background: url('/assets/fondeo.png');
+	width: 300px;
+	height: 300px;
+	position: fixed;
+	top: 0px;
+	right: 0px;
 }
 
-.box-container {
-	padding-top: 60px;
-	padding-bottom: 60px;
-}
-
-.tiny, .really-tiny {
-	line-height: 16px !important;
-}
-
-.tiny {
-	font-size: 13px !important;
-}
-
-.really-tiny {
-	font-size: 11px !important;
-}
-
-.orange {
-	color: $wikicleta_orange !important;
-}
-
-.blue {
-	color: $wikicleta_blue !important;
-}
-
-.box-container, .box-container-stretch {
-	padding-right: 10px;
-	padding-left: 10px;
-	margin-bottom: 50px;
-	
-	text-align: center;
-	p {
-		font-size: 25px;
-		color: #386B95;
-		line-height: 28px;
-		text-align: center;
-	}
-	
-	p.feature {
-		font-size: 20px;
-		background-color: #E6F1FF;
-		padding: 10px;
-	}
-	
-	p.title {
-		text-align: left;
-		line-height: 20px;
-		color: $wikicleta_orange;
-	}
-	
-	p.text-simple {
-		margin-top: 30px;
-		margin-bottom: 30px;
-		font-size: 16px;
-	}
-		
-	p.foot-image {
-		margin-left: auto;
-		margin-right: auto;
-		width: 70%;
-		font-size: 15px;
-		line-height: 20px;
-		margin-top: 20px;
-		color: $wikicleta_orange;
-	}
-	
-	p.special-top, p.special-bottom {
-		font-size: 20px;
-		line-height: 26px;
-		font-size: 20px;
-	}
-	
-	p.special-top {
-		margin-top: 80px;
-		margin-bottom: 0px;
-	}
-	
-	p.special-bottom {
-		margin-bottom: 80px;
-	}
-	
-	.on-list {
-		margin-top: 100px;
-	}
-	
+.top-bar {
 	ul {
-		text-align: left;
-		margin: 15px;
-		list-style: none;
-		
-		li {
-			font-size: 18px;
-			padding: 10px;
-			color: $wikicleta_blue;
-		}
-	}
-}
-
-.adjust-margin {
-	margin-left: 0px;
-}
-
-.box-decorated {
-	background-color: #EFF4FF;
-	border: 1px solid white;
-	-moz-box-shadow: 0 0 1px #888;
-	-webkit-box-shadow: 0 0 1px#888;
-	box-shadow: 0 0 1px #888;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-
-.sprint {
-	display: none;
-}
-
-.margin-top {
-	margin-top: 100px;
-}
-
-.orange-button:hover {
-	text-decoration: none;
-	color: white;
-	
-	background: -moz-linear-gradient(
-		top,
-		#FF5C0A 0%,
-		#FF753A);
-	background: -webkit-gradient(
-		linear, left top, left bottom, 
-		from(#FF5C0A),
-		to(#FF753A));
-}
-
-.orange-button {
-	font-size: 14px;
-	color: #ffffff;
-	padding: 6px 23px;
-	background: -moz-linear-gradient(
-		top,
-		#ff5900 0%,
-		#ff4400);
-	background: -webkit-gradient(
-		linear, left top, left bottom, 
-		from(#ff5900),
-		to(#ff4400));
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	border: 2px solid #003366;
-	-moz-box-shadow:
-		0px 1px 3px rgba(000,000,000,1),
-		inset 0px 0px 1px rgba(255,255,255,0.5);
-	-webkit-box-shadow:
-		0px 1px 3px rgba(000,000,000,1),
-		inset 0px 0px 1px rgba(255,255,255,0.5);
-	box-shadow:
-		0px 1px 3px rgba(000,000,000,1),
-		inset 0px 0px 1px rgba(255,255,255,0.5);
-	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.1),
-		0px 1px 0px rgba(255,255,255,0.1);
-}
-
-.footer {
-	background-color: $wikicleta_blue;
-	color: $wikicleta_light_blue;
-	padding: 15px;
-	text-align: center;
-	
-	p {
-		line-height: 10px;
-	}
-	
-	p.title {
-		margin-top: 10px;
-		font-size: 15px;
-		text-transform: uppercase;
-	}
-	
-	p.with-love {
-		font-size: 11px;
-		
-		i {
-			color: $wikicleta_orange;
-		}
-	}
-	
-	ul {
-		list-style: none;
-		
 		li {
 			display: inline-block;
+			list-style: none;
+			padding: 10px;
+			a {
+				text-decoration: none;
+				color: $wikicleta_blue;
+			}
 		}
 	}
 }
 
-.logo-container {
-	margin-top: 20px;
+.bottom-bar {
+	left: 0px;
+	bottom: 50px;
+	width: 100%;
+	position: fixed;
 }
 
-a:hover {
-	color: $wikicleta_orange !important;
+a.iphone {
+	text-decoration: none !important;
+}
+
+.logo {
+	background: url('/assets/wikicleta-logo.png');
+	width: 300px;
+	height: 300px;
+	left: 50%;
+	margin-right: 100px;
+	position: fixed;
+}
+
+.email-dialog {
+	.title {
+		font-size: 20px;
+	}
 }
