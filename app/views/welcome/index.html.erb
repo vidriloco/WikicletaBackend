@@ -1,34 +1,26 @@
 <div class="top-bar">
 	<ul>
-		<li><a href="<%= discover_trips_path %>"><i class="icon icon-search"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.explore') %></a></li>
-		<li><a href="<%= rodada_nueva_path %>"><i class="icon icon-arrow-up"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.share_group') %></a></li>
-		<% if 1 == 2 %>
-			<li><a href="<%= rodada_nueva_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
-		<% end %>	
+		<li class="web-only"><a href="<%= discover_trips_path %>"><i class="icon icon-search"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.explore') %></a></li>
+		<li class="web-only"><a href="<%= rodada_nueva_path %>"><i class="icon icon-arrow-up"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.share_group') %></a></li>
+		<li><a href="<%= rodada_nueva_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
 	</ul>
 </div> 
 	
-<%= link_to '', "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>
+<%= link_to image_tag('fondeo.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>
 	
-<div class="container-fluid">
-  <div class="row-fluid">
-  	<div class="span2"></div>
-  	<div class="span8 all-centered">
-			<%= image_tag('wikicleta-logo.png') %>
-			<p class="title"><%= t('app.slogan') %></p>
-		</div>
-  	<div class="span2"></div>
-  </div>
+<div class="logo-container all-centered">
+	<%= image_tag('wikicleta-logo.png') %>
+	<p class="title"><%= t('app.slogan') %></p>
 </div>
 
 <div class="bottom-bar">
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3"></div>
-			<div class="span3 all-centered">
+			<div class="span3 all-centered android">
 				<%= link_to image_tag('android-available.png', :size => '230x230'), 'https://play.google.com/store/apps/details?id=org.wikicleta&hl=en', :target => "_blank" %>
 			</div>
-			<div class="span3 all-centered">
+			<div class="span3 all-centered ios">
 				<a href="javascript:void(0);" class="title iphone" data-toggle="modal" data-target="#myModal"><%= t('app.landing.bottombar.iphone') %> <%= image_tag('iphone-icon.png') %></a>
 			</div>
 			<div class="span3"></div>
