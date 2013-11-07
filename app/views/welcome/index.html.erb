@@ -2,11 +2,19 @@
 	<ul>
 		<li class="web-only"><a href="<%= discover_trips_path %>"><i class="icon icon-search"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.explore') %></a></li>
 		<li class="web-only"><a href="<%= rodada_nueva_path %>"><i class="icon icon-arrow-up"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.share_group') %></a></li>
-		<li><a href="<%= rodada_nueva_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
+		<% if I18n.locale.eql?(:es_MX) %>
+			<li><a href="<%= welcome_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
+		<% elsif I18n.locale.eql?(:en) %>
+			<li><a href="<%= bienvenido_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.spanish') %></a></li>	
+		<% end %>
 	</ul>
 </div> 
-	
-<%= link_to image_tag('fondeo.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>
+
+<% if I18n.locale.eql?(:es_MX) %>
+	<%= link_to image_tag('fondeo_es_MX.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>	
+<% elsif I18n.locale.eql?(:en) %>
+	<%= link_to image_tag('fondeo_en.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>
+<% end %>
 	
 <div class="logo-container all-centered">
 	<%= image_tag('wikicleta-logo.png') %>
@@ -43,7 +51,7 @@
 						<div class="form-group">
 							<%= f.email_field :email, :placeholder => t('app.landing.dialog.email'), :class=>"form-control" %>
 						</div>
-						<%= f.submit t('actions.send'), :class => "btn btn-primary" %>
+						<%= f.submit t('app.landing.dialog.send'), :class => "btn btn-primary" %>
 					<% end %>
 				</div>
       </div>

@@ -128,8 +128,10 @@ Ciudadio::Application.routes.draw do
     end
   end
     
-  get '/welcome' => 'welcome#index'
   get '/about' => 'welcome#about'
+  get '/welcome' => 'welcome#index', :defaults => { :locale => 'en' }
+  get '/bienvenido' => 'welcome#index', :defaults => { :locale => 'es_MX' }
+  get '/signature' => 'welcome#signature'
   
   #resources :comments, :only => [:create, :destroy]
   

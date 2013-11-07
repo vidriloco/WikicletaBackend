@@ -1,7 +1,7 @@
 <div id="navigation-bar">
 	<div class="inner-bar">
 		<div class="pull-left">
-			<%= image_tag('wikicleta_icon.png', :class => 'mini-logo') %>
+			<%= link_to image_tag('wikicleta_icon.png', :class => 'mini-logo'), root_path %>
 		</div>
    	<ul class="nav-items pull-right">
 			<li class="<%= is_section_active?('trips') || is_section_active?('cycling_groups') %>">

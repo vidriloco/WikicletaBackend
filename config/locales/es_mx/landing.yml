@@ -1,8 +1,9 @@
 es_MX:
   app:
+    name: "Wikicleta"
+    slogan: "La app para ir en bici por la ciudad"
+    
     landing:
-      footer:
-        made_in_mexico: "Hecho en México con <i class='icon-heart'></i> para quienes los mueve la bicicleta"
       navbar:
         share_group: "Sube una rodada"
         explore: "Explora"

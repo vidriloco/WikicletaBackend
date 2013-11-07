@@ -1,6 +1,5 @@
 es_MX:
   app:
-    slogan: "La app para ir en bici por la ciudad"
     firm: "Wikicleta 2013"
     models:
       incident: "Incidente"
