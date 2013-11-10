@@ -121,26 +121,19 @@ class User < ActiveRecord::Base
   end
   
   def self.create_with(params)
-    image = params.delete(:image_pic)
     user = User.new(params)
     user.save
-    user.assign_picture(image, user.id)
+    user.set_pic(params)
     user
   end
   
   def update_with(params)
-    image = params.delete(:image_pic)
-    update_attributes!(params) && assign_picture(image, id)
+    set_pic(params)
+    update_attributes!(params)
   end
   
-  def assign_picture(pic, id)
-    picture_saved = true  
-    unless pic.blank?
-      picture = Picture.new
-      picture.image_data(pic, {:user_id => id})
-      picture_saved = picture.save 
-    end
-    picture_saved
+  def set_pic(params)
+    assign_picture(build_dummy_tmp_file_from(params))
   end
   
   def superuser?
@@ -148,6 +141,17 @@ class User < ActiveRecord::Base
   end
   
   protected
+  
+  def build_dummy_tmp_file_from(params)
+    tempfile = Tempfile.new("file")
+    tempfile.binmode
+    tempfile.write(Base64.decode64(params.delete(:image_pic)))
+    ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "tmpfile-name.jpg", :original_filename => "original-tmpfile.jpg")
+  end
+  
+  def assign_picture(pic_on_file)
+    Picture.find_or_create_from({:user_id => id, :file => pic_on_file})
+  end
   
   def validate_invitation_code
     @sticker = Sticker.where(:code => invitation_code).first
