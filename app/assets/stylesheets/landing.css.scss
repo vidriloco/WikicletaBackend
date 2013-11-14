@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require bootstrap_and_overrides
+ *= require jquery.fancybox
 */
 
 $wikicleta_orange: #fb4e15;
@@ -130,6 +131,10 @@ a.iphone {
 		.bottom-bar {
 			bottom: 0px !important;
 		}
+		
+		.play-video {
+			display: none;
+		}
 }
 
 /* Landscape */
@@ -159,6 +164,10 @@ a.iphone {
 				width: 150px;
 			}
 		}
+		
+		.play-video {
+			display: none;
+		}
 }
 
 @media only screen and (min-device-width : 481px) and (min-device-height : 768px) {
@@ -172,5 +181,9 @@ a.iphone {
 	
 	.bottom-bar {
 		bottom: 20px !important;
+	}
+	
+	.play-video {
+		margin-top: 15% !important;
 	}
 }

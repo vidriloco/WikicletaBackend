@@ -1,4 +1,6 @@
 //= require common/base
+//= require jquery.fancybox.pack
+//= require jquery.fancybox-media
 
 $(document).ready(function() {
 	
@@ -47,4 +49,12 @@ $(document).ready(function() {
 	} else if(mobileOS == 'Android') {
 		$('.ios').fadeOut();
 	}
+	
+	$('.fancybox').fancybox({
+		openEffect: 'elastic',
+    helpers: {
+        media: {}
+    }
+   });
+	
 });
