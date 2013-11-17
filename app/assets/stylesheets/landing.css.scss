@@ -184,6 +184,12 @@ a.iphone {
 	}
 	
 	.play-video {
-		margin-top: 15% !important;
+		margin-top: 14% !important;
+	}
+}
+
+@media only screen and (min-device-width : 1280px) and (min-device-height : 800px) {	
+	.play-video {
+		margin-top: 22% !important;
 	}
 }
