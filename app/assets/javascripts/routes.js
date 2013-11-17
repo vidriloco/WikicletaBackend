@@ -89,5 +89,6 @@ $(document).ready(function() {
 			$('.activity').hide();
 		});
 		
+		updatePathField(null, null);
 	}
 });
