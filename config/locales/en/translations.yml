@@ -1,0 +1,38 @@
+en:
+  actions:
+    back_start: "Go to Home"
+    back: "Back"
+    back_arrow: "&larr; Back"
+    details: "Details"
+    hide: "Hide"
+  app:
+    name: Wikicleta
+    navbar:
+      discover: "Discover"
+      close_session: "Logout"
+      login: "Login"
+    models:
+      route:
+        plural: "Routes"
+        singular: "Route"
+      cycling_group:
+        plural: "Rides"
+        singular: "Ride"
+    landing:
+      navbar:
+        share_group: "Upload a ride"
+        explore: "Explore"
+        language:
+          spanish: "Español"
+      bottombar:
+        iphone: Own an iPhone?
+      dialog:
+        title: "We are on it, <b>December</b> is our goal!"
+        call: "Leave an e-mail, we'll ping you when it's ready"
+        email: "Mail"
+        send: "Send"
+
+    profiles:
+      cycling_on: "Rodando en"
+    events:
+      last_updated: "Last updated"

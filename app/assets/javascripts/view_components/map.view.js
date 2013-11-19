@@ -10,7 +10,7 @@ $.extend({
 		return $(dom).length;
 	},
 	assetsURL: function() {
-		return 'http://wikicleta.mx/assets/';
+		return 'http://wikicleta.com/assets/';
 	}
 });
 

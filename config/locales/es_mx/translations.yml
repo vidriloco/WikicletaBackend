@@ -1,0 +1,41 @@
+es_MX:
+  actions:
+    back_start: "Ir a la página principal"
+    back: "Atrás"
+    back_arrow: "&larr; Atrás"
+    details: "A detalle"
+    hide: "Ocultar"
+  app:
+    name: Wikicleta
+    slogan: "La app para ir en bici por la ciudad"
+    navbar:
+      discover: "Descubre"
+      close_session: "Cerrar Sesión"
+      login: "Iniciar Sesión"
+    models:
+      route:
+        plural: "Rutas"
+        singular: "Ruta"
+      cycling_group:
+        plural: "Rodadas"
+        singular: "Rodada"
+    landing:
+      navbar:
+        share_group: "Sube una rodada"
+        explore: "Explora"
+        language:
+          spanish: "English"
+      bottombar:
+        iphone: ¿Tienes iPhone?
+      dialog:
+        title: "¡Ya estamos en ello, <b>Diciembre</b> es la fecha!"
+        call: "Déjanos tu correo, te avisaremos cuando esté lista"
+        email: "E-mail"
+        send: "Enviar"
+    
+    profiles:
+      cycling_on: "Rodando en"
+    events:
+      last_updated: "Última actualización"
+    
+      

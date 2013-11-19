@@ -3,11 +3,13 @@ class Route < ActiveRecord::Base
   include Api
   
   has_many :route_performances, :dependent => :destroy
+  
+  has_many :users, :through => :ownerships
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
+  
   has_many :favorites, :as => :favorited_object, :dependent => :destroy
   has_many :ranked_comments, :as => :ranked_comment_object, :dependent => :destroy
   has_many :route_rankings
-  
   validates :name, :details, :presence => true
   
   def self.new_with(params, user)

@@ -71,6 +71,13 @@ Ciudadio::Application.routes.draw do
 
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
   get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"
+  
+  namespace :profiles do
+    get '/:username/routes' => 'routes#index', :as => 'user_routes'
+    get '/:username/routes/:id' => 'routes#show', :as => 'user_route'
+    
+  end
+  
   #get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
 =begin  
 

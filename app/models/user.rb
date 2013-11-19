@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   before_save           :ensure_authentication_token!, :on => :create
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   
+  def owned_routes
+    Route.joins(:ownerships).where('ownerships.user_id' => id)
+  end
+  
   def owns?(object)
     return if object.nil?
     object.send(:user) == self
@@ -41,11 +45,6 @@ class User < ActiveRecord::Base
   def owns_comment?(comment)
     return false if comment.nil?
     comment.user == self
-  end
-  
-  def owns_bike?(bike)
-    return false if bike.nil?
-    bike.user == self
   end
   
   def admins_cycling_group?(cg)
@@ -170,13 +169,6 @@ class User < ActiveRecord::Base
   def picture_img
     return nil if picture.nil? || picture.image.nil?
     picture.image.url(:mini_thumb)
-  end
-  
-  def bikes_to_json
-    bikes_json = []
-    bikes.each do |bike|
-      bikes_json << bike.as_json
-    end
   end
   
   def auth_token

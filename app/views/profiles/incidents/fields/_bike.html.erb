@@ -1,8 +1,0 @@
-<% if current_user_has_bikes_to_report? %>
-	<div class="control-group">
-		<%= f.label :bike_id, t('incidents.views.new.form.bike'), :class => 'control-label' %>
-		<div class="controls">
-			<%= f.select :bike_id, options_from_collection_for_select(current_user.bikes, :id, :name, incident.bike_id), {:include_blank => true} %>
-		</div>
-	</div>	
-<% end %>

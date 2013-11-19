@@ -1,7 +1,6 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="row-fluid">
-
 			<div class="span2">
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="nav-collapse">
 	        <span class="icon-bar"></span>
@@ -9,19 +8,22 @@
 	        <span class="icon-bar"></span>
 	      </button>
 				<span>
-					<%= image_tag('wikicleta_icon.png', :class => 'mini-logo') %>
+					<%= link_to image_tag('wikicleta_icon.png', :class => 'mini-logo'), root_path %>
 				</span>
 			</div>
 			<div class="span10">
 	      <div class="nav-collapse collapse">
 	        <ul class="nav pull-right">
-						<% unless user_signed_in? %>
-							<li><%= link_to 'Principal', root_path  %></li>
-						<% end %>
 						<li class="<%= is_section_active?('trips') || is_section_active?('cycling_groups') %>">
-							<%= link_to 'Descubre', discover_trips_path  %>
+							<%= link_to t('app.navbar.discover'), discover_trips_path  %>
 						</li>
-						<%= render 'shared/navbar_logged_in_user' %>
+						<% if user_signed_in? %>
+							<li class="<%= is_section_active?('profiles') %>"><%= link_to "<i class='icon-user'></i> #{current_user.username}".html_safe, 
+														user_profile_path(current_user.username) %></li>
+							<li><%= link_to t('app.navbar.close_session'), destroy_user_session_path, :method => :delete %></li>
+						<% else %>
+							<li><%= link_to t('app.navbar.login'), new_user_session_path  %></li>
+						<% end %>
 					</ul>
 	      </div>
 			</div>

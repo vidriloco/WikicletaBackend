@@ -1,44 +1,81 @@
 <% content_for :panel do %>	
 	<div id="user-profile" class="panel" data-url="<%= user_profile_activity_path(@user.username) %>">
+		<% if current_user_equals(@user) %>
+			<%= link_to image_tag('settings_icon_button.png'), user_settings_path(@user.username), :class => "settings-icon" %>
+		<% end %>
 		<div class="inner-panel inner-panel-centered inner-panel-small">
 			<%= render :partial => 'main_user_info', :locals => {:user => @user} %>
 		</div>
+		<div class="activities inner-panel">
+			<p class="title">Tu Actividad</p>
+			<ul>
+				<li id="home" class="section">
+					<%= link_to pluralized_link_name_for(@activities[:routes], :route), profiles_user_routes_path(@user.username) %>
+				</li>
+
+				<li id="places-section" class="centered-text">
+					<%= link_to pluralized_link_name_for(@activities[:cycling_groups], :cycling_group), 'javascript:void(0);' %>
+				</li>
+				
+			</ul>
+		</div>
 		
-		<div class="inner-panel inner-panel-centered inner-panel-big activity-container">
-			<div class="container-fluid activity-list">
-				<% if @user.activities[:cycling_groups].empty? %>
-					<% if current_user_equals(@user) %>
-						<div class="pull-left">
-							<p><%= t('user_profiles.views.main.user_same.no_activity_yet') %> <%= t('user_profiles.views.main.user_same.suggestion') %></p>
-						</div>
-						<div class="pull-right">
-							<div class="btn-group">
-								<a href="<%= discover_cycling_groups_new_path %>" class="btn btn-warning btn-small pull-right new-cycling-group-profile">
-									<i class="icon icon-plus-sign"></i> <%= t('app.models.cycling_group') %>
-								</a>
+		<div class="hidden selected-item inner-panel"></div>
+		
+		<div class="markers">
+			<div class="hidden items">
+				<% @activities[:routes].each do |route| %>
+					<div id="route-<%= route.id %>" 
+						class="route item" data-origin-lat="<%= route.origin_coordinate.lat %>" 
+						data-origin-lon="<%= route.origin_coordinate.lon %>" data-kind="start_flag" data-url="<%= url_for_route_preview(@user, route) %>">
+						<div class="row-fluid">
+							<div class="span2 centered-text">
+								<%= image_tag('routes_icon.png') %>
+								<p class="title"><%= t('app.models.route.singular') %></p>
+							</div>
+							<div class="span8">
+								<p class="name"><%= route.name %></p>
+								<p class="details"><%= route.details %></p>
+							</div>
+							<div class="span2">
+								<%= link_to t('actions.hide'), user_profile_path(@user.username).concat('#/'), :class => 'small' %>
+								<%= link_to t('actions.details'), profiles_user_route_path(@user.username, route.id), :class => "btn btn-info btn-small" %>
 							</div>
 						</div>
-					<% else %>
-						<p><%= t('user_profiles.views.main.user_different.no_activity_yet') %></p>
-					<% end %>
-				<% else %>
-					<% if current_user_equals(@user) %>
-						<div class="pull-left"><p><%=t('user_profiles.views.main.user_same.activity', :number => @user.activities[:cycling_groups].length) %></p></div>
-						<div class="pull-right">
-							<div class="btn-group">
-								<a href="<%= discover_cycling_groups_new_path %>" class="btn btn-warning btn-small pull-right new-cycling-group-profile">
-									<i class="icon icon-plus-sign"></i> <%= t('app.models.cycling_group') %>
-								</a>
+					</div>
+				<% end %>
+				<% @activities[:cycling_groups].each do |cycling_group| %>
+					<div id="<%= cycling_group.slug %>" 
+						data-url="<%= url_for_cycling_group_preview(@user, cycling_group) %>" 
+						data-origin-lat="<%= cycling_group.coordinates.lat %>" 
+						data-origin-lon="<%= cycling_group.coordinates.lon %>"
+						data-kind="cycling_group" class="cycling-group-light item">
+						<div class="row-fluid">
+							<div class="span3 centered-text">
+								<div class="pic">
+									<% if cycling_group.picture.image.url.nil? %>
+										<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
+									<% else %>
+										<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo", :size => "80x80"), 'javascript:void(0);' %>
+									<% end %>
+								</div>
+								<p class="title">Rodada</p>
+							</div>
+							<div class="span7">
+								<p class="name"><%= cycling_group.name %></p>
+								<p class="details"><%= cycling_group.details %></p>
+								<p class="updated-at"><b><%= t('app.events.last_updated') %></b> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></p>
+							</div>
+							<div class="span2">
+								<%= link_to 'Ocultar', user_profile_path(@user.username).concat('#/'), :class => 'small' %>
+								<%= link_to 'A Detalle', discover_cycling_groups_url.concat('#/').concat(cycling_group.slug), :class => "btn btn-info btn-small" %>
 							</div>
 						</div>
-					<% else %>
-						<p class="centered-text"><%= t('user_profiles.views.main.user_different.activity', :number => @user.activities[:cycling_groups].length) %></p>
-					<% end %>
+					</div>				
 				<% end %>
 			</div>
-			<div id="action-selected" class="container-fluid items-list"></div>
+			
 		</div>
 	</div>
 	
-	<div id="tmp-contents" class="hidden"></div>
 <% end %>

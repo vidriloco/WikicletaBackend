@@ -1,7 +1,0 @@
-<%= f.hidden_field :kind, :value => incident.kind %>
-
-<div id="coordinates_lat_both" class="alert alert-error error">
-	<%= "No has seleccionado un punto en el mapa" %>
-</div>
-<%= hidden_field_tag "coordinates[lat]", incident.coordinates.nil? ? "" : incident.coordinates.lat %>
-<%= hidden_field_tag "coordinates[lon]", incident.coordinates.nil? ? "" : incident.coordinates.lon %>

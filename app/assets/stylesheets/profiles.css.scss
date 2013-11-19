@@ -4,7 +4,93 @@
  */
 @import "colors.css.scss";
 
+
 #user-profile {
+	
+	.selected-item {
+		margin-top: 10px;
+		
+		> div {
+			padding: 10px;
+		}
+		
+		.title {
+			text-transform: uppercase;
+			font-weight: bold;
+			color: $wikicleta_orange;
+			margin: 5px 0px 0px 0px;
+			padding: 0px;
+		}
+		
+		.item {
+			p {
+				margin: 0px;
+				padding: 0px;
+				color: $wikicleta_blue;
+			}
+			
+			.name {
+				margin-top: 10px;
+				font-size: 20px;
+				color: $wikicleta_orange;
+			}
+			
+			.details {
+				font-size: 13px;
+			}
+			
+			.small {
+				text-align: center;
+				font-size: 12px;
+			}
+		}
+	}
+	
+	.activities {
+		margin-top: 10px;
+		
+		.title {
+			padding: 10px 0 0 10px;
+			font-size: 13px;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-bottom: 0px;
+		}
+		
+		ul {
+			padding: 15px;
+			li {
+				display: inline-block;
+				a {					
+					text-decoration: none;
+					padding-top: 4px;
+					display: block;
+					margin-right: 50px;
+				}
+				
+				p {
+					padding: 0px;
+					margin: 0px;
+				}
+				.value {
+					text-align: left;
+					font-size: 25px;
+					color: $wikicleta_orange;
+				}
+				
+				.name {
+					font-size: 14px;
+					color: $wikicleta_blue;
+				}
+			}
+		}
+	}
+	
+	.settings-icon {
+		position: absolute;
+		right: 10px;
+		top: 50px;
+	}
 	
 	.pic-container {
 		margin-top: 20px;

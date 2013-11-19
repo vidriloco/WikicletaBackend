@@ -1,29 +1,19 @@
 module ProfilesHelper
-  def authorization_details_for(authorization)
-    out="<div class='#{authorization.provider} inlined'></div>"
-    begin
-    if authorization.provider.eql?("twitter")
-      client = Twitter::Client.new
-      twitter_username = client.user(authorization.uid.to_i).screen_name
-      out += "<span>#{ link_to(twitter_username, "http://www.twitter.com/"+twitter_username, :target => "_blank")}</span>"
-    end
-    if authorization.provider.eql?("facebook")
-      client = FbGraph::User.me authorization.token
-      user_data=client.fetch
-      out += "<span>#{ link_to(user_data.name, "#{user_data.link}", :target => "_blank")}</span>"
-    end
-    rescue
-    end
-    "#{out}</br>".html_safe
-    
+  def url_for_route_preview(user, route)
+    "#/route-preview/#{route.id}"
   end
   
-  def subsection_with(message_logged_out, message_logged_in)
-    html = <<-HTML
-      <ul class="subsection rounded-5">
-		  	<li class="active"><i class="icon-chevron-right"></i> #{ current_user_equals(@user) ? message_logged_out : message_logged_in }</li>
-		  </ul>
-    HTML
-    html.html_safe
+  def url_for_cycling_group_preview(user, cycling_group)
+    "#/cycling-group-preview/#{cycling_group.slug}"
+  end
+  
+  def pluralized_link_name_for(collection, section)
+    if section.eql?(:cycling_group)
+      value = collection.length != 1 ? I18n.t('app.models.cycling_group.plural') : I18n.t('app.models.cycling_group.singular')
+    elsif section.eql?(:route)
+      value = collection.length != 1 ? I18n.t('app.models.route.plural') : I18n.t('app.models.route.singular')
+    end
+    
+    "<p class='value'>#{collection.length}</p><p class='name'>#{value}</p>".html_safe
   end
 end

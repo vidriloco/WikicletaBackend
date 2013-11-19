@@ -8,14 +8,7 @@ class ProfilesController < ApplicationController
       redirect_to root_path
       return
     end
-  end
-  
-  def activity
-    @activities = { :cycling_groups => @user.cycling_groups }
-  end
-  
-  def gear
-    @bikes = Bike.all_from_user(@user)
+    @activities = { :cycling_groups => @user.cycling_groups, :routes => @user.owned_routes }
   end
   
   private 
