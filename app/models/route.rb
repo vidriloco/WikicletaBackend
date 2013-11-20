@@ -96,6 +96,12 @@ class Route < ActiveRecord::Base
     Ownership.where(:user_id => user.id, :owned_object_id => id, :owned_object_type => "Route")
   end
   
+  def visible?(user)
+    return true if is_public
+    return !owned_by?(user).empty? unless user.nil?
+    false
+  end
+  
   def extras(data=:path)
     return {:path => path_vector } if(data==:path)
     return {:performances => route_performances} if(data==:performances)
