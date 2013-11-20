@@ -93,12 +93,18 @@ class Route < ActiveRecord::Base
   end
   
   def owned_by?(user)
-    Ownership.where(:user_id => user.id, :owned_object_id => id, :owned_object_type => "Route")
+    !Ownership.where(:user_id => user.id, :owned_object_id => id, :owned_object_type => "Route").empty?
+  end
+  
+  def first_owner
+    ownership = Ownership.where(:owned_object_id => id, :owned_object_type => "Route").first
+    return nil if ownership.nil?
+    ownership.user
   end
   
   def visible?(user)
     return true if is_public
-    return !owned_by?(user).empty? unless user.nil?
+    return owned_by?(user) unless user.nil?
     false
   end
   

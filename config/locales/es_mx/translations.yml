@@ -6,6 +6,19 @@ es_MX:
     details: "A detalle"
     hide: "Ocultar"
     edit: "Modificar"
+    save: "Guardar"
+    delete: "Eliminar"
+    toggle:
+      hide: "Ocultar"
+      show: "Mostrar"
+  confirmations:
+    route:
+      delete: "¿Eliminar esta ruta?"
+  flash:
+    success:
+      title: "Bien!"
+    alert:
+      title: "Ups :("
   app:
     name: Wikicleta
     slogan: "La app para ir en bici por la ciudad"
@@ -38,5 +51,11 @@ es_MX:
       cycling_on: "Rodando en"
     events:
       last_updated: "Última actualización"
+    routes:
+      notifications:
+        updated:
+          successfully: "Esta ruta fué actualizada correctamente"
+          unsuccessfully: "Esta ruta no pudo ser actualizada"
+      
     
       

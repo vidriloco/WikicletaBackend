@@ -75,7 +75,8 @@ Ciudadio::Application.routes.draw do
   namespace :profiles do
     get '/:username/routes' => 'routes#index', :as => 'user_routes'
     get '/:username/routes/:id' => 'routes#show', :as => 'user_route'
-    
+    get '/:username/routes/:id/edit' => 'routes#edit', :as => 'edit_user_route'
+    resources :routes, :only => [:update, :destroy]
   end
   
   #get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'

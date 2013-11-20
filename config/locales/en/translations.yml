@@ -6,6 +6,19 @@ en:
     details: "Details"
     hide: "Hide"
     edit: "Edit"
+    save: "Save"
+    delete: "Destroy"
+    toggle:
+      hide: "Hide"
+      show: "Show"
+  confirmations:
+    route:
+      delete: "¿Eliminar esta ruta?"
+  flash:
+    success:
+      title: "Good!"
+    alert:
+      title: "Ups :("
   app:
     name: Wikicleta
     navbar:
@@ -37,3 +50,8 @@ en:
       cycling_on: "Rodando en"
     events:
       last_updated: "Last updated"
+    routes:
+      notifications:
+        updated:
+          successfully: "Route updated successfully"
+          unsuccessfully: "Route wasn't updated"

@@ -1,0 +1,25 @@
+es_MX:
+  activerecord:
+    models:
+      user: "Usuario"
+      route: "Ruta"
+    attributes:
+      user:
+        city: "Ciudad"
+        full_name: "Nombre" 
+        password: "Contraseña"
+        password_confirmation: "Confirmación de la contraseña"
+        username: "Nombre de usuario"
+        email: "Correo"
+        remember_me: "Recuérdame"
+        login: "Nombre de Usuario o Correo"
+        personal_page: "Página personal"
+        bio: "Bio"
+        started_cycling_date: "¿Desde cuando andas en bici?"
+        email_visible: "¿Mostrar mi correo en mi perfil?"
+        reset_password_token: "El token para reestablecer contraseña"
+        invitation_code: "Código de invitación"
+      route:
+        name: "Nombre"
+        details: "Detalles"
+        is_public: "¿Es pública?"

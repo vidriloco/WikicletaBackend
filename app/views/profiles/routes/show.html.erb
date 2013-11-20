@@ -1,6 +1,8 @@
 <% content_for :panel do %>	
 	<div class="panel route">
+		
 		<div class="inner-panel inner-panel-centered inner-panel-small">
+			<%= render :partial => 'shared/notifications' %>
 			<div class="row-fluid">
 				<div class="span2 centered-text">
 					<%= image_tag('routes_icon.png') %>
@@ -19,7 +21,8 @@
 		
 		<% if @route.owned_by?(@user) %>
 			<div class="status">
-				<%= link_to t('actions.edit'), nil, :class => 'btn btn-mini btn-warning' %>
+				<%= link_to t('actions.edit'), profiles_edit_user_route_path(@user.username, @route), :class => 'btn btn-small btn-warning' %>
+				<%= link_to t('actions.delete'), route_path(@route), :method => :delete, :class => "btn btn-danger btn-small", :confirm => t('confirmations.route.delete') %>
 			</div>
 		<% end %>
 	</div>
