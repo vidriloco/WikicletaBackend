@@ -44,7 +44,7 @@ $(document).ready(function() {
 			$('#action-selected').html("");
 		});
 		
-		
+		// Loading of markers on user profile
 		if($.isDefined('.markers')) {
 			var markersRoute = $('.items .item');
 			for(var i = 0 ; i < markersRoute.length ; i++) {
@@ -85,6 +85,42 @@ $(document).ready(function() {
 			
 			Path.root("#/");
 			Path.listen();
+		}
+		
+		// Loading of route path on route details
+		if($.isDefined('#route-details')) {
+			var coordinates = $.loadPath($('#route-details').attr('data-path'));
+			
+			var path = new google.maps.Polyline({
+			    path: coordinates,
+			    strokeColor: 'black',
+			    strokeWeight: 3
+			  });
+			path.setMap(map.gMap);
+			
+			var dom = $('#route-details');
+			var latO = parseFloat(dom.attr('data-origin-lat'));
+			var lonO = parseFloat(dom.attr('data-origin-lon'));
+			
+			var latF = parseFloat(dom.attr('data-end-lat'));
+			var lonF = parseFloat(dom.attr('data-end-lon'));
+			
+			map.placeViewportAt({"lat": latO+0.0025, "lon": lonO, "zoom": 15});
+			
+			
+			new google.maps.Marker({
+				position: new google.maps.LatLng(latO, lonO),
+				map: map.gMap,
+				icon: $.assetsURL() + 'start_flag.png',
+				title: 'Inicio'
+			});
+			
+			new google.maps.Marker({
+				position: new google.maps.LatLng(latF, lonF),
+				map: map.gMap,
+				icon: $.assetsURL() + 'finish_flag.png',
+				title: 'Final'
+			});
 		}
 
 	}

@@ -92,6 +92,10 @@ class Route < ActiveRecord::Base
     origin_lon
   end
   
+  def owned_by?(user)
+    Ownership.where(:user_id => user.id, :owned_object_id => id, :owned_object_type => "Route")
+  end
+  
   def extras(data=:path)
     return {:path => path_vector } if(data==:path)
     return {:performances => route_performances} if(data==:performances)

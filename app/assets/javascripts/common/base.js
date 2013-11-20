@@ -67,6 +67,21 @@ $.extend({
 			return "#"+section;
 		}
 		return "#"+section+"/"+id;
+	},
+	
+	loadPath: function(dom) {
+		var points = dom.split(' ');
+		var firstCoord = null;
+
+		var coordinates = [];
+		for(var pointIdx = 0; pointIdx < points.length ; pointIdx++) {
+			var coords = points[pointIdx].split('|');
+			var lat = coords[0];
+			var lon = coords[1];
+
+			coordinates.push(new google.maps.LatLng(lat, lon));
+		}
+		return coordinates;
 	}
 });
 

@@ -4,6 +4,54 @@
  */
 @import "colors.css.scss";
 
+.route {
+	
+	> div > div {
+		margin: 10px;
+	}
+	
+	p {
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	.title {
+		margin-bottom: 2px;
+		font-weight: bold;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+	
+	.name {
+		font-size: 20px;
+		color: $wikicleta_orange;
+	}
+	
+	.details {
+		font-size: 15px;
+		color: $wikicleta_blue;
+	}
+	
+	.distance-in-kms {
+		text-align: right;
+		margin-top: 10px;
+		font-size: 30px;
+		color: $wikicleta_blue;
+	}
+	
+	.unit {
+		text-align: right;
+		margin-top: 5px;
+		font-size: 20px;
+		color: $wikicleta_orange;
+	}
+	
+	.status {
+		margin-top: 10px !important;
+		padding: 5px !important;
+		text-align: right;
+	}
+}
 
 #user-profile {
 	

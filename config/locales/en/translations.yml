@@ -5,6 +5,7 @@ en:
     back_arrow: "&larr; Back"
     details: "Details"
     hide: "Hide"
+    edit: "Edit"
   app:
     name: Wikicleta
     navbar:

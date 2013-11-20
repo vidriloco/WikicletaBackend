@@ -5,6 +5,7 @@ es_MX:
     back_arrow: "&larr; Atrás"
     details: "A detalle"
     hide: "Ocultar"
+    edit: "Modificar"
   app:
     name: Wikicleta
     slogan: "La app para ir en bici por la ciudad"

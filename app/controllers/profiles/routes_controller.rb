@@ -4,4 +4,8 @@ class Profiles::RoutesController < ProfilesController
   def index
     @routes = @user.owned_routes
   end
+  
+  def show
+    @route = Route.find(params[:id])
+  end
 end
