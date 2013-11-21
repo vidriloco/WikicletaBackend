@@ -61,6 +61,7 @@ $(document).ready(function() {
 			Path.map("#/").to(function() {
 				$('.selected-item').html('');
 				$('.selected-item').addClass('hidden');
+				$('.activities').removeClass('hidden');
 			});
 			
 			Path.map("#/route-preview/:id").to(function() {
@@ -71,6 +72,8 @@ $(document).ready(function() {
 				map.placeViewportAt({"lat": lat+0.0025, "lon": lon, "zoom": 17});
 				$('.selected-item').html(dom.clone());
 				$('.selected-item').removeClass('hidden');
+				$('.activities').addClass('hidden');
+				
 			});
 			
 			Path.map("#/cycling-group-preview/:id").to(function() {
@@ -81,6 +84,8 @@ $(document).ready(function() {
 				map.placeViewportAt({"lat": lat+0.0025, "lon": lon, "zoom": 17});
 				$('.selected-item').html(dom.clone());
 				$('.selected-item').removeClass('hidden');
+				$('.activities').addClass('hidden');
+				
 			});
 			
 			Path.root("#/");
@@ -123,5 +128,16 @@ $(document).ready(function() {
 			});
 		}
 
+		$('.show-extra').bind("click", function() {
+			$('.hide-extra').removeClass('hidden');
+			$(this).addClass('hidden');
+			$('.actions').removeClass('hidden');
+		});
+		
+		$('.hide-extra').bind("click", function() {
+			$('.show-extra').removeClass('hidden');
+			$(this).addClass('hidden');
+			$('.actions').addClass('hidden');
+		});
 	}
 });

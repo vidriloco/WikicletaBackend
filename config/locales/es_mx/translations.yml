@@ -8,9 +8,12 @@ es_MX:
     edit: "Modificar"
     save: "Guardar"
     delete: "Eliminar"
+    download: "Descargar"
     toggle:
       hide: "Ocultar"
       show: "Mostrar"
+  connectives:
+    by: "Por"
   confirmations:
     route:
       delete: "¿Eliminar esta ruta?"
@@ -52,10 +55,21 @@ es_MX:
     events:
       last_updated: "Última actualización"
     routes:
+      all: "Ver otras rutas"
+      actions:
+        download:
+          gpx: "Descargar como GPX"
       notifications:
         updated:
           successfully: "Esta ruta fué actualizada correctamente"
           unsuccessfully: "Esta ruta no pudo ser actualizada"
+      rankings:
+        none: "Sin rankings aún"
+        some: "%{value} rankings"
+        from_app: "Rankea desde la app"
+        speed_index: "Velocidad"
+        comfort_index: "Comfort"
+        safety_index: "Seguridad"
       
     
       

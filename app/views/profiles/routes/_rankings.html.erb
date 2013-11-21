@@ -1,0 +1,26 @@
+<div class="separator"></div>
+<div class="side-by-side meta-box">
+	<div class="left-side">
+		<div class="centered-text">
+		<p class="ranking-title"><%= ranking_status_for(@route).html_safe %></p>
+		<ul>
+			<li>
+				<%= circle_color_for(@route.comfort_index) %>
+				<p><%= t('app.routes.rankings.comfort_index') %></p>
+			</li>
+			<li>
+				<%= circle_color_for(@route.safety_index) %>
+				<p><%= t('app.routes.rankings.safety_index') %></p>
+			</li>
+			<li>
+				<%= circle_color_for(@route.speed_index) %>
+				<p><%= t('app.routes.rankings.speed_index') %></p>
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	<div class="right-side">
+		
+	</div>
+</div>

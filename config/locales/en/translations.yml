@@ -11,9 +11,11 @@ en:
     toggle:
       hide: "Hide"
       show: "Show"
+  connectives:
+    by: "By"
   confirmations:
     route:
-      delete: "¿Eliminar esta ruta?"
+      delete: "Delete this route?"
   flash:
     success:
       title: "Good!"
@@ -47,11 +49,21 @@ en:
         send: "Send"
 
     profiles:
-      cycling_on: "Rodando en"
+      cycling_on: "Riding on"
     events:
       last_updated: "Last updated"
     routes:
+      all: "See other routes"
+      actions:
+        download:
+          gpx: "Download as GPX"
       notifications:
         updated:
           successfully: "Route updated successfully"
           unsuccessfully: "Route wasn't updated"
+      rankings:
+        none: "No rankings yet"
+        from_app: "Rank from app"
+        speed_index: "Speed"
+        comfort_index: "Comfort"
+        safety_index: "Safety"

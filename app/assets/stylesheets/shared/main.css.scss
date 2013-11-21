@@ -259,9 +259,9 @@ a.back {
 }
 
 .separator {
-        height: 1px;
-        background-color:#D0D0D0;
-        margin: 5px;
+	height: 1px;
+	background-color: #E7EEF3;
+	margin: 0px 7px 0px 7px !important;
 }
 
 .spacer {
@@ -379,44 +379,65 @@ p.empty {
 // Circular pictures
 
 .circle {
-        -moz-box-shadow: 0 0 8px #A7BDFF;
-        -webkit-box-shadow: 0 0 8px #A7BDFF;
-        box-shadow: 0 0 8px #A7BDFF;
+  -moz-box-shadow: 0 0 2px #A7BDFF;
+  -webkit-box-shadow: 0 0 2px #A7BDFF;
+  box-shadow: 0 0 2px #A7BDFF;
+}
+
+.circle-30 {
+	width: 30px !important;
+  height: 30px !important;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
 }
 
 .circle-60 {
-        width: 60px !important;
-        height: 60px !important;
-        border-radius: 30px;
-        -webkit-border-radius: 30px;
-        -moz-border-radius: 30px;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
 }
 
 .circle-80 {
-        width: 80px !important;
-        height: 80px !important;
-        border-radius: 40px;
-        -webkit-border-radius: 40px;
-        -moz-border-radius: 40px;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 40px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
 }
 
-.circle:hover {
-        -moz-box-shadow: 0 0 8px #FF6800;
-        -webkit-box-shadow: 0 0 8px #FF6800;
-        box-shadow: 0 0 8px #FF6800;
-}
-
-.alert {
+.side-by-side {
+	margin: 0px !important;
+	padding: 0px !important;
+	width: 100%;
+	display: inline-block;
 	
-	.title {
-		font-size: 17px;
+	.left-side-small, .right-side-small {
+		width: 25%;
 	}
 	
-	ul {
-		list-style: none;
+	.left-side-big, .right-side-big {
+		width: 73%;
 	}
-	li {
-		margin-left: 10px;
+	
+	.left-side, .right-side {
+		width: 49%;
 	}
-	margin: 10px;
+	
+	.left-side, .right-side, .left-side-small, .right-side-small, .left-side-big, .right-side-big {
+		display: inline-block;
+		margin: 0px !important;
+		padding: 0px !important;
+		vertical-align: middle;
+	}
+	
+	.right-side {
+		text-align: right;
+	}
+	
+	.left-side {
+		text-align: left;
+	}
 }
