@@ -1,0 +1,16 @@
+<div class="side-by-side">
+	<div class="left-side">
+		<span class="glossy">
+			<%= link_to t('app.routes.all'), routes_path, :class => 'btn-mini' %>
+		</span>
+		&nbsp;
+		<!--<%= link_to "<i class='icon-download-alt'></i> #{t('app.routes.actions.download.kml')}".html_safe, 
+		nil, :class => "btn-mini btn-white btn" %>-->
+	</div>
+	<div class="right-side">
+		<% if @route.owned_by?(@user) %>
+			<%= link_to t('actions.edit'), profiles_edit_user_route_path(@user.username, @route), :class => 'btn btn-mini btn-warning' %>
+			<%= link_to "<i class='icon-remove'></i> #{t('actions.delete')}".html_safe, route_path(@route), :method => :delete, :class => "btn btn-danger btn-mini", :confirm => t('confirmations.route.delete') %>					
+		<% end %>
+	</div>
+</div>

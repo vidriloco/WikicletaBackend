@@ -128,16 +128,28 @@ $(document).ready(function() {
 			});
 		}
 
-		$('.show-extra').bind("click", function() {
+		Path.map("#/timings").to(function() {
+			$('.show-extra').removeClass('hidden');
+			$('.hide-extra').addClass('hidden');
+			$('.temporal-container').html($('#timings').html());
+			$('.temporal-container').removeClass('hidden');
+		});
+
+
+		Path.map("#/actions").to(function() {
 			$('.hide-extra').removeClass('hidden');
-			$(this).addClass('hidden');
-			$('.actions').removeClass('hidden');
+			$('.show-extra').addClass('hidden');
+			$('.temporal-container').html($('#actions').html());
+			$('.temporal-container').removeClass('hidden');
 		});
 		
-		$('.hide-extra').bind("click", function() {
+		Path.map("#/").to(function() {
 			$('.show-extra').removeClass('hidden');
-			$(this).addClass('hidden');
-			$('.actions').addClass('hidden');
+			$('.hide-extra').addClass('hidden');
+			$('.temporal-container').addClass('hidden');
 		});
+		
+		Path.root("#/");
+		Path.listen();
 	}
 });

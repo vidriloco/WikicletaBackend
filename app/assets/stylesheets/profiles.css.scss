@@ -4,6 +4,15 @@
  */
 @import "colors.css.scss";
 
+.panel {
+	.title {
+		margin-bottom: 2px;
+		font-weight: bold;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+}
+
 .route {
 	
 	> div > div {
@@ -13,13 +22,6 @@
 	p {
 		padding: 0px;
 		margin: 0px;
-	}
-	
-	.title {
-		margin-bottom: 2px;
-		font-weight: bold;
-		font-size: 10px;
-		text-transform: uppercase;
 	}
 	
 	.name {
@@ -85,20 +87,37 @@
 	.status-box {
 		margin-top: 10px !important;
 		text-align: right;
-		
-		.by {
-			font-size: 13px;
-			background-color: white;
-			padding: 6px 12px;
-			border-radius: 4px;
-			a {
-				text-decoration: none;
-			}
-		}
 	}
 }
 
-.actions {
+.temporal-container {
+	padding: 10px;
+	color: $wikicleta_blue;
+	
+	.timings-table {
+		padding: 10px;
+		margin-top: 0px !important;
+		margin-bottom: 10px;
+		
+		table {
+			margin: 10px 0 10px 0;
+			
+			th, td {
+				width: 120px;
+				text-align: center;
+			}
+			
+			th {
+				color: $wikicleta_orange;
+				font-weight: 100;
+			}
+			
+			td {
+				font-size: 12px;
+				color: $wikicleta_blue;
+			}
+		}
+	}
 }
 
 #user-profile {

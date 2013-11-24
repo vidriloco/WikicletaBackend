@@ -31,4 +31,27 @@ module ProfilesHelper
       return "#{t('app.routes.rankings.some', :value => route.route_rankings.count)} <i>(#{t('app.routes.rankings.from_app')})</i>"
     end
   end
+  
+  def milliseconds_to_time(milis)
+    seconds = milis / 1000
+    minutes = seconds / 60
+    seconds = seconds % 60
+
+    timeString = ""
+
+    if(minutes > 0 && minutes < 10)
+  	   timeString = "0#{minutes}:"
+    elsif(minutes >= 10) 
+  	   timeString = "#{minutes}:"
+    else
+  	   timeString = "00:"
+    end
+
+    if (seconds < 10)
+  	   timeString += "0#{seconds}"
+    else
+  	   timeString += seconds.to_s
+    end
+    timeString
+  end
 end

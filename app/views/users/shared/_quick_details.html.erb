@@ -1,0 +1,5 @@
+<% if !user.picture.nil? %>
+	<%= link_to image_tag(user.picture.image.mini_thumb.url, :class => 'circle circle-30'), user_profile_path(user.username) %>
+<% else %>
+	<%= link_to image_tag('user_no_pic.png', :class => 'circle circle-30'), user_profile_path(user.username) %>
+<% end %>

@@ -79,6 +79,8 @@ Ciudadio::Application.routes.draw do
     resources :routes, :only => [:update, :destroy]
   end
   
+  get '/routes/:id/performance/:performance_id/download.gpx' => 'routes#download', :as => 'route_download_as_gpx', :format => 'gpx'
+  
   #get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
 =begin  
 

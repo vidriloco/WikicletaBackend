@@ -1,5 +1,6 @@
 es_MX:
   actions:
+    title: "Acciones"
     back_start: "Ir a la página principal"
     back: "Atrás"
     back_arrow: "&larr; Atrás"
@@ -57,8 +58,10 @@ es_MX:
     routes:
       all: "Ver otras rutas"
       actions:
+        timings: "Tiempos"
         download:
-          gpx: "Descargar como GPX"
+          kml: "Descargar KML"
+          gpx: "Descargar GPX"
       notifications:
         updated:
           successfully: "Esta ruta fué actualizada correctamente"
@@ -70,6 +73,14 @@ es_MX:
         speed_index: "Velocidad"
         comfort_index: "Comfort"
         safety_index: "Seguridad"
-      
+      timings:
+        title: "Tiempos en esta ruta"
+        table:
+          header:
+            user: "Usuario"
+            speed: "Velocidad"
+            time: "Tiempo"
+            date: "Fecha"
+            actions: "Acciones"
     
       

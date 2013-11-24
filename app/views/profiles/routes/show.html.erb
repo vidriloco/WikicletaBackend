@@ -24,37 +24,26 @@
 			<div class="side-by-side">
 				<div class="left-side">
 					<p>
-					<% if !@user.picture.nil? %>
-						<%= link_to image_tag(@user.picture.image.mini_thumb.url, :class => 'circle circle-30'), user_profile_path(@user.username) %>
-					<% else %>
-						<%= link_to image_tag('user_no_pic.png', :class => 'circle circle-30'), user_profile_path(@user.username) %>
-					<% end %>
-					<span class="by"><%= t('connectives.by') %> <%= link_to @user.username, user_profile_path(@user.username) %> <i>hace 1 mes</i></span>
+					<%= render :partial => 'users/shared/quick_details', :locals => { :user => @user } %>
+					<span class="glossy"><%= t('connectives.by') %> <%= link_to @user.username, user_profile_path(@user.username) %> <i>hace 1 mes</i></span>
 					</p>
 				</div>
 				<div class="right-side">
-					<%= link_to "<i class='icon-chevron-up'></i> #{t('actions.toggle.hide')}".html_safe, 'javascript:void(0);', :class => "btn-mini btn-inverse btn hide-extra" %>
-					<%= link_to "<i class='icon-chevron-down'></i> #{t('actions.toggle.show')}".html_safe, 'javascript:void(0);', :class => "btn-mini btn-inverse btn hidden show-extra" %>
-					
-					<%= link_to "<i class='icon-download-alt'></i> #{t('actions.download')}".html_safe, nil, :class => "btn-mini btn-white btn" %>
+					<span class="glossy">
+						<%= link_to "<i class='icon-time'></i> #{t('app.routes.actions.timings')}".html_safe, '#/timings', :class => "btn-mini timings-list" %>
+						
+						<%= link_to "<i class='icon-chevron-up'></i> #{t('actions.title')}".html_safe, '#/', :class => "btn-mini hide-extra" %>
+						<%= link_to "<i class='icon-chevron-down'></i> #{t('actions.title')}".html_safe, '#/actions', :class => "btn-mini hidden show-extra" %>
+					</span>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div class="panel actions">
-		<div class="side-by-side">
-			<div class="left-side">
-				<%= link_to t('app.routes.all'), routes_path, :class => 'btn btn-mini btn-info' %>
-			</div>
-			<div class="right-side">
-				<% if @route.owned_by?(@user) %>
-					<%= link_to t('actions.edit'), profiles_edit_user_route_path(@user.username, @route), :class => 'btn btn-mini btn-warning' %>
-					<%= link_to "<i class='icon-remove'></i> #{t('actions.delete')}".html_safe, route_path(@route), :method => :delete, :class => "btn btn-danger btn-mini", :confirm => t('confirmations.route.delete') %>					
-				<% end %>
-			</div>
-		</div>
-	</div>
+	<div class="panel temporal-container"></div>
+	
+	<div id="actions" class="hidden"><%= render 'profiles/routes/actions' %></div>
+	<div id="timings" class="hidden"><%= render 'profiles/routes/timings' %></div>
 	
 	<div id="route-details" 
 	class="hidden"

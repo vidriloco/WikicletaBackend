@@ -1,5 +1,6 @@
 en:
   actions:
+    title: "Actions"
     back_start: "Go to Home"
     back: "Back"
     back_arrow: "&larr; Back"
@@ -55,8 +56,10 @@ en:
     routes:
       all: "See other routes"
       actions:
+        timings: "Timings"
         download:
-          gpx: "Download as GPX"
+          kml: "Download KML"
+          gpx: "Download GPX"
       notifications:
         updated:
           successfully: "Route updated successfully"
@@ -67,3 +70,12 @@ en:
         speed_index: "Speed"
         comfort_index: "Comfort"
         safety_index: "Safety"
+      timings:
+        title: "Timings on this route"
+        table:
+          header:
+            user: "User"
+            speed: "Speed"
+            time: "Time"
+            date: "Date"
+            actions: "Actions"

@@ -25,7 +25,9 @@ class Route < ActiveRecord::Base
       route_performance.instants.build({
         :speed => instant[:speed].to_f, 
         :elapsed_time => instant[:time].to_i, 
-        :coordinates => "POINT(#{instant[:lon].to_f} #{instant[:lat].to_f})" 
+        :coordinates => "POINT(#{instant[:lon].to_f} #{instant[:lat].to_f})",
+        :created_at => instant[:created_at],
+        :updated_at => instant[:updated_at]
       })
       line_string_text+="#{instant[:lon].to_f} #{instant[:lat].to_f},"
     end
@@ -132,6 +134,51 @@ class Route < ActiveRecord::Base
     end
     return points_list.chop if style.eql?(:plain)
     points_list
+  end
+  
+  def to_gpx(performance_id)
+    gpx=<<-eos
+      
+      <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+      <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="Oregon 400t" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+        <metadata>
+          <link href="http://www.garmin.com">
+            <text>Garmin International</text>
+          </link>
+          <time>%total_time%</time>
+        </metadata>
+        <trk>
+          <name>%title%</name>
+          <trkseg>
+            %instants%
+          </trkseg>
+        </trk>
+      </gpx>
+
+    eos
+    
+    frags=<<-eos
+    <trkpt lat="%lat%" lon="%lon%">
+      <ele>0</ele>
+      <time>%time%</time>
+    </trkpt>
+    eos
+    
+    instants_str=String.new
+    
+    performance_instants=route_performances.where(:id => performance_id).first.instants.order('elapsed_time ASC')
+    
+    performance_instants.each do |instant|
+      instants_str << frags.gsub('%lat%', instant.lat.to_s).gsub('%lon%', instant.lon.to_s).gsub('%time%', instant.created_at.strftime("%Y-%m-%dT%TZ"))
+    end
+    
+    gpx=gpx.gsub('%title%', name).gsub('%total_time%', performance_instants.last.created_at.strftime("%Y-%m-%dT%TZ")).gsub('%instants%', instants_str)
+  end
+  
+  def filename_for_performace(performance_id)
+    performance = route_performances.where(:id => performance_id).first
+    "#{name}-#{performance.user.username}-#{performance.created_at.to_s}.gpx"
   end
   
   def update_with(attrs, path)
