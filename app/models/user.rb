@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
   end
   
   def set_pic(params)
-    assign_picture(build_dummy_tmp_file_from(params))
+    assign_picture(build_dummy_tmp_file_from(params)) unless params[:image_pic].blank?
   end
   
   def superuser?
