@@ -10,6 +10,7 @@ es_MX:
     save: "Guardar"
     delete: "Eliminar"
     download: "Descargar"
+    view_on_map: "Ubicar"
     toggle:
       hide: "Ocultar"
       show: "Mostrar"
@@ -35,8 +36,8 @@ es_MX:
         plural: "Rutas"
         singular: "Ruta"
       cycling_group:
-        plural: "Rodadas"
-        singular: "Rodada"
+        plural: "Grupos"
+        singular: "Grupo"
     landing:
       navbar:
         share_group: "Sube una rodada"
@@ -54,10 +55,19 @@ es_MX:
     profiles:
       cycling_on: "Rodando en"
     events:
-      last_updated: "Última actualización"
+      updated: "actualizado"
+      meeting: "Cita a las"
+      departing: "Salida a las"
+      days_to:
+        singular: "día para este evento"
+        plural: "días para este evento"
+    cycling_groups:
+      actions:
+        new: "Nuevo Grupo"
     routes:
       all: "Ver otras rutas"
       actions:
+        new: "Nueva Ruta"
         timings: "Tiempos"
         download:
           kml: "Descargar KML"

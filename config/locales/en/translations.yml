@@ -8,6 +8,7 @@ en:
     hide: "Hide"
     edit: "Edit"
     save: "Save"
+    view_on_map: "Locate"
     delete: "Destroy"
     toggle:
       hide: "Hide"
@@ -33,8 +34,8 @@ en:
         plural: "Routes"
         singular: "Route"
       cycling_group:
-        plural: "Rides"
-        singular: "Ride"
+        plural: "Groups"
+        singular: "Group"
     landing:
       navbar:
         share_group: "Upload a ride"
@@ -52,10 +53,16 @@ en:
     profiles:
       cycling_on: "Riding on"
     events:
-      last_updated: "Last updated"
+      last_updated: "updated"
+      meeting: "Meeting at"
+      departing: "Departing at"
+    cycling_groups:
+      actions:
+        new: "New Group"
     routes:
       all: "See other routes"
       actions:
+        new: "New Route"
         timings: "Timings"
         download:
           kml: "Download KML"

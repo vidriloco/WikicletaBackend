@@ -1,26 +1,11 @@
 class RoutesController < ApplicationController
   layout 'routes'
   
-  before_filter :find_route, :only => [:show, :edit, :update, :destroy, :download]
+  before_filter :find_route, :only => [:destroy, :download]
   before_filter :authenticate_allowed_users, :except => [:download]
   
   def index
     @routes = Route.all
-  end
-  
-  def show
-  end
-  
-  def edit
-    
-  end
-  
-  def update
-    if @route.update_with(params[:route], params[:path])
-      redirect_to route_path(@route)
-    else
-      render :action => 'edit'
-    end
   end
   
   def destroy

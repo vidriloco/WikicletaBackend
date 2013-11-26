@@ -1,10 +1,9 @@
 class Profiles::RoutesController < ProfilesController
   layout 'profiles'
 
-  before_filter :fetch_route, :except => [:index]
+  before_filter :fetch_route, :except => [:index, :new]
   
-  def index
-    @routes = @user.owned_routes
+  def new
   end
   
   def show

@@ -45,7 +45,9 @@ $(document).ready(function() {
 		});
 		
 		// Loading of markers on user profile
-		if($.isDefined('.markers')) {
+		if($.isDefined('#user-profile')) {
+			var selectedEndMarker = null;
+			
 			var markersRoute = $('.items .item');
 			for(var i = 0 ; i < markersRoute.length ; i++) {
 				var lat = parseFloat($(markersRoute[i]).attr('data-origin-lat'));
@@ -58,12 +60,6 @@ $(document).ready(function() {
 				});
 			}
 			
-			Path.map("#/").to(function() {
-				$('.selected-item').html('');
-				$('.selected-item').addClass('hidden');
-				$('.activities').removeClass('hidden');
-			});
-			
 			Path.map("#/route-preview/:id").to(function() {
 				var id = this.params['id'];
 				var dom = $('#route-'+id);
@@ -72,8 +68,9 @@ $(document).ready(function() {
 				map.placeViewportAt({"lat": lat+0.0025, "lon": lon, "zoom": 17});
 				$('.selected-item').html(dom.clone());
 				$('.selected-item').removeClass('hidden');
-				$('.activities').addClass('hidden');
-				
+				$('.individual').fadeIn();
+				$('.grupal').hide();
+				$('#routes-status').addClass('selected');
 			});
 			
 			Path.map("#/cycling-group-preview/:id").to(function() {
@@ -84,16 +81,45 @@ $(document).ready(function() {
 				map.placeViewportAt({"lat": lat+0.0025, "lon": lon, "zoom": 17});
 				$('.selected-item').html(dom.clone());
 				$('.selected-item').removeClass('hidden');
-				$('.activities').addClass('hidden');
+				$('.individual').fadeIn();
+				$('.grupal').hide();
+				$('#cycling-groups-status').addClass('selected');
+			});
+			
+			Path.map("#/cycling-groups").to(function() {
+				var dom = $('#cycling-groups');
+				$('.selected-item').html(dom.clone());
+				$('.selected-item').removeClass('hidden');
+				$('.grupal').fadeIn();
+				$('.individual').hide();
 				
+				$('#routes-status').removeClass('selected');
+				$('#cycling-groups-status').addClass('selected');
+			});
+			
+			Path.map("#/routes").to(function() {
+				var dom = $('#routes');
+				$('.selected-item').html(dom.clone());
+				$('.selected-item').removeClass('hidden');
+				$('.grupal').fadeIn();
+				$('.individual').hide();
+				
+				$('#cycling-groups-status').removeClass('selected');
+				$('#routes-status').addClass('selected');
+			});
+			
+			Path.map("#/clear").to(function() {
+				$('.selected-item').html('');
+				$('.selected-item').addClass('hidden');
+				$('#routes-status').removeClass('selected');
+				$('#cycling-groups-status').removeClass('selected');
+				
+				$.visit('#/');
 			});
 			
 			Path.root("#/");
 			Path.listen();
-		}
-		
-		// Loading of route path on route details
-		if($.isDefined('#route-details')) {
+		} else if($.isDefined('#route-details')) {
 			var coordinates = $.loadPath($('#route-details').attr('data-path'));
 			
 			var path = new google.maps.Polyline({

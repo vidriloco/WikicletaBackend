@@ -14,7 +14,7 @@ module ProfilesHelper
       value = collection.length != 1 ? I18n.t('app.models.route.plural') : I18n.t('app.models.route.singular')
     end
     
-    "<p class='value'>#{collection.length}</p><p class='name'>#{value}</p>".html_safe
+    "<span class='value'>#{collection.length}</span><span class='name'>#{value}</span>".html_safe
   end
   
   def circle_color_for(value)
@@ -53,5 +53,11 @@ module ProfilesHelper
   	   timeString += seconds.to_s
     end
     timeString
+  end
+  
+  def days_to_event(days)
+    text = days==1 ? t('app.events.days_to.singular') : t('app.events.days_to.plural')
+    
+    "<span class='number'>#{days}</span> <i>#{text}</i>".html_safe
   end
 end

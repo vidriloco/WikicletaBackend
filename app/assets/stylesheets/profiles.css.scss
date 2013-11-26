@@ -13,6 +13,31 @@
 	}
 }
 
+a {
+	text-decoration: none !important;
+}
+
+.cycling-group {
+	.timing {
+		color: $wikicleta_blue;
+		font-size: 12px;
+	}
+	
+	.hour {
+		color: $wikicleta_orange !important;
+		font-size: 18px;
+	}
+	
+	.days-to-event {
+		margin-top: 15px !important;
+		
+		.number {
+			color: $wikicleta_orange !important;
+			font-size: 24px;
+		}
+	}
+}
+
 .route {
 	
 	> div > div {
@@ -43,9 +68,9 @@
 	
 	.unit {
 		text-align: right;
-		margin-top: 5px;
+		margin-top: 5px !important;
 		font-size: 20px;
-		color: $wikicleta_orange;
+		color: $wikicleta_orange !important;
 	}
 	
 	.meta-box {
@@ -164,6 +189,13 @@
 	.activities {
 		margin-top: 10px;
 		
+		.selected {
+			a span {
+				color: $wikicleta_orange !important;
+				font-weight: bold;
+			}
+		}
+		
 		.title {
 			padding: 10px 0 0 10px;
 			font-size: 13px;
@@ -173,7 +205,13 @@
 		}
 		
 		ul {
-			padding: 15px;
+			padding: 10px;
+			padding-left: 25px;
+			li.title {
+				font-size: 13px;
+				margin-right: 20px;
+			}
+			
 			li {
 				display: inline-block;
 				a {					
@@ -183,19 +221,21 @@
 					margin-right: 50px;
 				}
 				
-				p {
+				span {
+					font-size: 20px;
 					padding: 0px;
 					margin: 0px;
 				}
+				
 				.value {
 					text-align: left;
-					font-size: 25px;
 					color: $wikicleta_orange;
+					font-weight: bold;
 				}
 				
 				.name {
-					font-size: 14px;
 					color: $wikicleta_blue;
+					margin-left: 10px;
 				}
 			}
 		}
