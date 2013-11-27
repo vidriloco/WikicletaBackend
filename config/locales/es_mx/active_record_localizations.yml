@@ -23,3 +23,4 @@ es_MX:
         name: "Nombre"
         details: "Detalles"
         is_public: "¿Es pública?"
+        kilometers: "Kilómetros"

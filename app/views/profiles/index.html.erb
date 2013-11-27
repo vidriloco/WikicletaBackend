@@ -7,6 +7,8 @@
 			<%= render :partial => 'main_user_info', :locals => {:user => @user} %>
 		</div>
 		<div class="activities inner-panel">
+			<%= render :partial => 'shared/notifications' %>
+			
 			<ul>
 				<li id="routes-status" class="section">
 					<%= link_to pluralized_link_name_for(@activities[:routes], :route), '#/routes' %>
@@ -25,7 +27,7 @@
 				<div id="routes">
 					<p class="pull-right">
 						<%= link_to t('actions.toggle.hide'), '#/clear', :class => 'btn-small' %>
-						<%= link_to "<i class='icon-plus'></i> #{t('app.routes.actions.new')}".html_safe, profiles_new_user_route_path(@user.username), :class => 'btn-small' %>
+						<%= link_to "<i class='icon-plus'></i> #{t('app.routes.actions.new')}".html_safe, new_route_path, :class => 'btn-small' %>
 					</p>
 					<% @activities[:routes].each do |route| %>
 						<div id="route-<%= route.id %>" 

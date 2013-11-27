@@ -63,11 +63,16 @@ en:
       all: "See other routes"
       actions:
         new: "New Route"
+        creating: "Creating Route"
         timings: "Timings"
         download:
           kml: "Download KML"
           gpx: "Download GPX"
       notifications:
+        deleted:
+          successfully: "Your route has been deleted"
+        created:
+          successfully: "Route created successfully"
         updated:
           successfully: "Route updated successfully"
           unsuccessfully: "Route wasn't updated"

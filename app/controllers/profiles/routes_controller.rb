@@ -1,10 +1,7 @@
 class Profiles::RoutesController < ProfilesController
   layout 'profiles'
 
-  before_filter :fetch_route, :except => [:index, :new]
-  
-  def new
-  end
+  before_filter :fetch_route, :except => [:index]
   
   def show
   end

@@ -10,7 +10,7 @@ class Route < ActiveRecord::Base
   has_many :favorites, :as => :favorited_object, :dependent => :destroy
   has_many :ranked_comments, :as => :ranked_comment_object, :dependent => :destroy
   has_many :route_rankings
-  validates :name, :details, :presence => true
+  validates :name, :details, :path, :presence => true
   
   def self.new_with(params, user)
     route_performance = params.delete(:route_performance)
@@ -182,6 +182,25 @@ class Route < ActiveRecord::Base
   end
   
   def update_with(attrs, path)
+    extract_and_set_coordinates(path)
     update_attributes(attrs.merge(:path => "LINESTRING(#{path})"))
+    self
+  end
+  
+  def self.new_with(params, user, path)
+    route=Route.new params.merge({:path => "LINESTRING(#{path})"})
+    unless path.blank?
+      route.extract_and_set_coordinates(path)
+      route.ownerships.build(:user => user, :owned_object => route, :kind => Ownership.category_for(:owner_types, :submitter))
+    end
+    route
+  end
+  
+  def extract_and_set_coordinates(path)
+    origin_coordinate_ = path.split(',')[0]
+    end_coordinate_ = path.split(',')[path.split(',').size-1]
+    
+    self.origin_coordinate = "POINT(#{origin_coordinate_.split(' ')[0].to_f} #{origin_coordinate_.split(' ')[1].to_f})"
+    self.end_coordinate = "POINT(#{end_coordinate_.split(' ')[0].to_f} #{end_coordinate_.split(' ')[1].to_f})"
   end
 end

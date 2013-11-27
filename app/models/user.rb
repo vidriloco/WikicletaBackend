@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
     object.send(:user) == self
   end
   
+  def owns_route?(route)
+    !Ownership.where(:user_id => id, :owned_object_id => route.id, :owned_object_type => "Route").empty?
+  end
+  
   def owns_comment?(comment)
     return false if comment.nil?
     comment.user == self

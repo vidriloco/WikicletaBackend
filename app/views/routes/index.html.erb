@@ -7,7 +7,7 @@
 			</div>
 			<div class="separator"></div>
 			<% @routes.each do |route| %>
-				<%= render :partial => 'routes/route', :locals => { :route => route, :mode => :view } %>
+				<%= render :partial => 'profiles/routes/route_simple', :locals => { :route => route, :mode => :view } %>
 			<% end %>
 		</div>
 	</div>

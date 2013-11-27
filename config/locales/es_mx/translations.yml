@@ -68,11 +68,16 @@ es_MX:
       all: "Ver otras rutas"
       actions:
         new: "Nueva Ruta"
+        creating: "Creando Ruta"
         timings: "Tiempos"
         download:
           kml: "Descargar KML"
           gpx: "Descargar GPX"
       notifications:
+        deleted:
+          successfully: "Tu ruta ha sido eliminada"
+        created:
+          successfully: "Ruta creada correctamente"
         updated:
           successfully: "Esta ruta fué actualizada correctamente"
           unsuccessfully: "Esta ruta no pudo ser actualizada"

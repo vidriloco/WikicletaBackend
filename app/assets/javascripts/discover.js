@@ -18,8 +18,6 @@ $(document).ready(function() {
 		});
 	}
 	
-	
-	
 	if($.isDefined('#cycling-groups-section .listing') || $.isDefined('#trips-section .listing')) {
 		var discover = new Discover();
 		Path.map("#/:item").to(discover.onDetailsFor);

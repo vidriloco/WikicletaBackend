@@ -25,7 +25,6 @@ Ciudadio::Application.routes.draw do
     
   end
   
-  resources :routes, :only => [:index, :show, :edit, :update, :destroy]
   resources :contacts, :only => [:create]
   
   namespace :api do
@@ -73,13 +72,16 @@ Ciudadio::Application.routes.draw do
   get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"
   
   namespace :profiles do
-    get '/:username/routes/new' => 'routes#new', :as => 'new_user_route'
+    
     get '/:username/routes/:id' => 'routes#show', :as => 'user_route'
     get '/:username/routes/:id/edit' => 'routes#edit', :as => 'edit_user_route'
-    resources :routes, :only => [:update, :destroy]
+    
+    resources :routes, :only => [:update]
   end
   
   resources :cycling_groups
+  
+  resources :routes, :only => [:index, :new, :create, :destroy]
   get '/routes/:id/performance/:performance_id/download.gpx' => 'routes#download', :as => 'route_download_as_gpx', :format => 'gpx'
   
   #get '/profiles/:username/gear' => 'profiles#gear', :as => 'user_gear'
