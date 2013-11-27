@@ -183,7 +183,7 @@ class Route < ActiveRecord::Base
   
   def update_with(attrs, path)
     extract_and_set_coordinates(path)
-    update_attributes(attrs.merge(:path => "LINESTRING(#{path})"))
+    update_attributes(attrs.merge(:path => "LINESTRING(#{path})", :updated_at => Time.now))
     self
   end
   

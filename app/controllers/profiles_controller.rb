@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
       redirect_to root_path
       return
     end
-    @activities = { :cycling_groups => @user.cycling_groups, :routes => @user.owned_routes }
+    @activities = { :cycling_groups => @user.cycling_groups, :routes => @user.owned_routes.order('updated_at DESC') }
   end
   
   private 

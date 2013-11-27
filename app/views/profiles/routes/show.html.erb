@@ -10,7 +10,7 @@
 				<div class="left-side">
 					<p>
 					<%= render :partial => 'users/shared/quick_details', :locals => { :user => @user } %>
-					<span class="glossy"><%= t('connectives.by') %> <%= link_to @user.username, user_profile_path(@user.username) %> <i>hace 1 mes</i></span>
+					<span class="glossy"><%= t('connectives.by') %> <%= link_to @user.username, user_profile_path(@user.username) %><i><span class="btn-mini"><%= distance_of_time_in_words_to_now(@route.created_at) %></span></i></span>
 					</p>
 				</div>
 				<div class="right-side">
