@@ -90,6 +90,7 @@ es_MX:
         safety_index: "Seguridad"
       timings:
         title: "Tiempos en esta ruta"
+        empty: "Nadie ha subido sus tiempos en esta ruta todavia"
         table:
           header:
             user: "Usuario"

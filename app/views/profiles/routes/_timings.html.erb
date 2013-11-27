@@ -1,31 +1,35 @@
 <div class="timings-table inner-panel">
 	<p class="title"><%= t('app.routes.timings.title') %></p>
 	
-	<table>
-		<thead>
-			<tr>
-				<th><%= t('app.routes.timings.table.header.user') %></th>
-				<th><%= t('app.routes.timings.table.header.speed') %></th>
-				<th><%= t('app.routes.timings.table.header.time') %></th>
-				<th><%= t('app.routes.timings.table.header.date') %></th>
-				<th><%= t('app.routes.timings.table.header.actions') %></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @route.route_performances.each do |route_p| %>
+	<% if @route.route_performances.empty? %>
+		<p class="note"><%= t('app.routes.timings.empty') %></p>
+	<% else %>
+		<table>
+			<thead>
 				<tr>
-					<td><%= link_to @user.username, user_profile_path(@user.username) %></td>
-					<td><%= number_with_precision(route_p.speed_average, :precision => 2) %> km/h</td>
-					<td><%= milliseconds_to_time route_p.elapsed_time %> </td>
-			
-					<td><%= distance_of_time_in_words_to_now route_p.created_at %></td>
-					<td><%= link_to "<i class='icon-download-alt'></i> #{t('app.routes.actions.download.gpx')}".html_safe, 
-					route_download_as_gpx_path(@route, route_p), :class => "btn-mini btn-white btn" %></td>
-			
+					<th><%= t('app.routes.timings.table.header.user') %></th>
+					<th><%= t('app.routes.timings.table.header.speed') %></th>
+					<th><%= t('app.routes.timings.table.header.time') %></th>
+					<th><%= t('app.routes.timings.table.header.date') %></th>
+					<th><%= t('app.routes.timings.table.header.actions') %></th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<% @route.route_performances.each do |route_p| %>
+					<tr>
+						<td><%= link_to @user.username, user_profile_path(@user.username) %></td>
+						<td><%= number_with_precision(route_p.speed_average, :precision => 2) %> km/h</td>
+						<td><%= milliseconds_to_time route_p.elapsed_time %> </td>
+			
+						<td><%= distance_of_time_in_words_to_now route_p.created_at %></td>
+						<td><%= link_to "<i class='icon-download-alt'></i> #{t('app.routes.actions.download.gpx')}".html_safe, 
+						route_download_as_gpx_path(@route, route_p), :class => "btn-mini btn-white btn" %></td>
+			
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
 </div>
 
 

@@ -84,6 +84,7 @@ en:
         safety_index: "Safety"
       timings:
         title: "Timings on this route"
+        empty: "No one has uploaded their timings on this route yet"
         table:
           header:
             user: "User"
