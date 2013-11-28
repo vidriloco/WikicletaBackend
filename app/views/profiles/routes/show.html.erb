@@ -26,7 +26,7 @@
 	
 	<div class="panel temporal-container"></div>
 	
-	<div id="actions" class="hidden"><%= render 'profiles/routes/actions' %></div>
+	<div id="actions" class="hidden"><%= render :partial => 'profiles/routes/actions', :locals => {:route => @route, :user => @user} %></div>
 	<div id="timings" class="hidden"><%= render 'profiles/routes/timings' %></div>
 	
 	<div id="route-details" 

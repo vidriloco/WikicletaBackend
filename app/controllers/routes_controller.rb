@@ -2,7 +2,7 @@ class RoutesController < ApplicationController
   layout 'routes'
   
   before_filter :find_route, :only => [:destroy, :download]
-  #before_filter :authenticate_allowed_users, :only => [:destroy, :create, :new]
+  before_filter :authenticate_allowed_users, :only => [:destroy, :create, :new]
   
   def index
     @routes = Route.all
@@ -19,13 +19,13 @@ class RoutesController < ApplicationController
     else
       render :action => 'new', :alert => I18n.t('app.routes.notifications.created.unsuccessfully')
     end
-    
   end
   
   def destroy
-    user = @route.first_owner
-    @route.destroy
-    redirect_to user_profile_path(user.username), :notice => I18n.t('app.routes.notifications.deleted.successfully')
+    if @route.owned_by?(@user) || @user.superuser?
+      @route.destroy
+      redirect_to user_profile_path(@user.username), :notice => I18n.t('app.routes.notifications.deleted.successfully')
+    end
   end
   
   def download
@@ -41,7 +41,7 @@ class RoutesController < ApplicationController
   
   def authenticate_allowed_users
     @user = current_user
-    if !(@user.nil? || @user.superuser? || @user.owns_route)
+    if @user.nil?
       redirect_to root_path
     end
   end

@@ -95,6 +95,7 @@ class Route < ActiveRecord::Base
   end
   
   def owned_by?(user)
+    return false if user.nil?
     !Ownership.where(:user_id => user.id, :owned_object_id => id, :owned_object_type => "Route").empty?
   end
   

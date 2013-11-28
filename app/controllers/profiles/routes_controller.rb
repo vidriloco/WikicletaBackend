@@ -1,31 +1,42 @@
 class Profiles::RoutesController < ProfilesController
   layout 'profiles'
 
-  before_filter :fetch_route, :except => [:index]
+  before_filter :fetch_route
+  before_filter :authenticate_allowed_users, :except => [:show]
   
   def show
   end
   
   def edit
-    render :layout => 'routes'
+    if @route.owned_by?(@user)
+      render :layout => 'routes'
+    else
+      redirect_to(:back)
+    end
   end
   
   def update
-    if @route.update_with(params[:route], params[:path])
-      message = {:notice => I18n.t('app.routes.notifications.updated.successfully') }
+    if @route.owned_by?(@user)
+      if @route.update_with(params[:route], params[:path])
+        message = {:notice => I18n.t('app.routes.notifications.updated.successfully') }
+      else
+        message = {:alert => I18n.t('app.routes.notifications.updated.unsuccessfully') }
+      end
+
+      redirect_to profiles_user_route_path(@route.first_owner.username, @route), message
     else
-      message = {:alert => I18n.t('app.routes.notifications.updated.unsuccessfully') }
+      redirect_to(:back)
     end
-    
-    redirect_to profiles_user_route_path(@route.first_owner.username, @route), message
-  end
-  
-  def destroy
-    @route.destroy
-    redirect_to profiles_path(@route.first_owner.username)
   end
   
   protected
+  
+  def authenticate_allowed_users
+    @user = current_user
+    if @user.nil?
+      redirect_to root_path
+    end
+  end
   
   def fetch_route
     @route = Route.find(params[:id])
