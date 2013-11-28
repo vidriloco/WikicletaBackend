@@ -8,7 +8,7 @@
 		nil, :class => "btn-mini btn-white btn" %>-->
 	</div>
 	<div class="right-side">
-		<% if route.owned_by?(user) && current_user.eql?(user) %>
+		<% if (route.owned_by?(user) && current_user.eql?(user)) || current_user.superuser? %>
 			<%= link_to t('actions.edit'), profiles_edit_user_route_path(user.username, route), :class => 'btn btn-mini btn-warning' %>
 			<%= link_to "<i class='icon-remove'></i> #{t('actions.delete')}".html_safe, route_path(route), :method => :delete, :class => "btn btn-danger btn-mini", :confirm => t('confirmations.route.delete') %>					
 		<% end %>

@@ -8,7 +8,7 @@ class Profiles::RoutesController < ProfilesController
   end
   
   def edit
-    if @route.owned_by?(@user)
+    if @route.owned_by?(@user) || @user.superuser?
       render :layout => 'routes'
     else
       redirect_to(:back)
@@ -16,7 +16,7 @@ class Profiles::RoutesController < ProfilesController
   end
   
   def update
-    if @route.owned_by?(@user)
+    if @route.owned_by?(@user) || @user.superuser?
       if @route.update_with(params[:route], params[:path])
         message = {:notice => I18n.t('app.routes.notifications.updated.successfully') }
       else
