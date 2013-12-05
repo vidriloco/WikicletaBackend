@@ -4,7 +4,7 @@ class Api::WorkshopsController < Api::BaseController
   
   before_filter :find_user_with_token, :only => [:create, :destroy, :update]
   before_filter :respond_to_bad_auth, :only => [:create, :destroy, :update]
-  
+    
   def index
     @workshops = Workshop.find_nearby(params[:viewport])
     render :json => {:success => true, :workshops => @workshops.as_json}, :status => :ok
