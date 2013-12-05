@@ -1,0 +1,50 @@
+es_MX:
+  activerecord:
+    models:
+      cycling_group: "Grupo ciclista"
+    attributes:
+      incident:
+        name: "Nombre"
+        details: "Detalles"
+  cycling_groups:
+    views:
+      index:
+        new: "Nuevo"
+        empty:
+          message: "No hay grupos con quien rodar en esta área"
+          suggest: "Registra el tuyo"
+      list:
+        meeting_at: "Se reunen a las "
+        departing_at: "Salen a las "
+      new:
+        title: "Nuevo Grupo Ciclista"
+        steps:
+          one: "Selecciona en el mapa, el punto de partida de tu grupo"
+          two: "Recomendamos que subas un logo de tu grupo"
+          three: "Completa los siguientes datos, no todos son obligatorios"
+      form:
+        commit:
+          failure: "No fué posible guardar este elemento, revisa los campos en rojo"
+        picture_note: "Procura que tu logo mida lo mismo de ancho y largo"
+        picture: "Logo"
+        name: "Nombre"
+        details: "Detalles"
+        city: "Ciudad"
+        meeting_time: "Cita a las"
+        departing_time: "Salida a las"
+        periodicity: "Periodicidad"
+        twitter_account: "Cuenta de twitter"
+        facebook_url: "Liga a Facebook"
+        website_url: "Liga a tu Página"
+        validations:
+          url: "La URL de este campo debe tener la forma de http://www.example.org"
+          name: "Tu grupo debe tener un nombre"
+          details: "Cuéntanos un poco sobre tu grupo"
+          meeting_time: "Te falta poner la hora en la que deben empezar a llegar los amigos del pedal"
+          departing_time: "Debes establecer una hora de salida"
+          coordinates: "Te falta seleccionar el punto de reunión en el mapa"
+          twitter_account: "La cuenta de twitter que proporcionaste no es válida, evita poner el '@'"
+          meeting_time_hour: "No has puesto la hora de reunión"
+          meeting_time_minute: "No has puesto los minutos de la hora de reunión"
+          departing_time_hour: "No has puesto la hora de salida"
+          departing_time_minute: "No has puesto los minutos de la hora de salida"

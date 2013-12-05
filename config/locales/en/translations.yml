@@ -56,6 +56,11 @@ en:
       last_updated: "updated"
       meeting: "Meeting at"
       departing: "Departing at"
+      days_until:
+        zero: "Today"
+        one: "One day for this event"
+        not_provided: "Sorry, we don't have this event exact date"
+        other: "%{days} days to event"
     cycling_groups:
       actions:
         new: "New Group"

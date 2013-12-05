@@ -1,10 +1,11 @@
 class RoutesController < ApplicationController
-  layout 'routes'
+  layout 'on_map_center'
   
   before_filter :find_route, :only => [:destroy, :download]
   before_filter :authenticate_allowed_users, :only => [:destroy, :create, :new]
   
   def index
+    @user = current_user
     @routes = Route.all
   end
   

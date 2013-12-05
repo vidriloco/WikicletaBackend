@@ -9,7 +9,7 @@ class Profiles::RoutesController < ProfilesController
   
   def edit
     if @route.owned_by?(@user) || @user.superuser?
-      render :layout => 'routes'
+      render :layout => 'on_map_center'
     else
       redirect_to(:back)
     end

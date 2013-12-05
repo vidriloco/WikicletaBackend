@@ -7,7 +7,28 @@
 			</div>
 			<div class="separator"></div>
 			<% @routes.each do |route| %>
-				<%= render :partial => 'profiles/routes/route_simple', :locals => { :route => route, :mode => :view } %>
+				<div class="panel route">
+					<%= render :partial => 'profiles/routes/route_simple', :locals => {:route => route	} %>
+
+					<div class="status-box">
+						<div class="side-by-side">
+							<div class="left-side">
+								<p>
+									<%= render :partial => 'users/shared/quick_details', :locals => { :user => @user } %>
+									<span class="glossy">
+										<%= t('connectives.by') %> 
+										<%= link_to @user.username, user_profile_path(@user.username) %>
+											<i>
+												<span class="btn-mini">
+													<%= distance_of_time_in_words_to_now(route.updated_at) %>
+												</span>
+											</i>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			<% end %>
 		</div>
 	</div>

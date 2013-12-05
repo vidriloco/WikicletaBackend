@@ -1,0 +1,13 @@
+<% content_for :panel do %>	
+	<div class="panel cycling-group">
+		<div class="inner-panel inner-panel-small">
+			<%= render :partial => 'shared/notifications' %>
+			<%= render :partial => 'cycling_groups/cycling_group', :locals => {:cycling_group => @cycling_group	} %>
+		</div>
+	</div>
+	
+	<div class="panel temporal-container"></div>
+
+	<div id="route-details" 
+	class="hidden"></div>
+<% end %>

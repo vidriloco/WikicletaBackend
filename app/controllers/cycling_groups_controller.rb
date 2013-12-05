@@ -3,7 +3,7 @@ class CyclingGroupsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index]
   before_filter :set_user
-  before_filter :find_cycling_group, :only => [:edit, :update, :destroy]
+  before_filter :find_cycling_group, :only => [:edit, :update, :destroy, :show]
   before_filter :authenticate_allowed_users, :only => [:edit, :update, :destroy]
   
   def index
@@ -19,6 +19,7 @@ class CyclingGroupsController < ApplicationController
   
   def new
     @cycling_group = CyclingGroup.new
+    render :layout => 'on_map_center'
   end
   
   def create
@@ -32,7 +33,7 @@ class CyclingGroupsController < ApplicationController
   end
   
   def edit
-    
+    render :layout => 'on_map_center'
   end
   
   def update

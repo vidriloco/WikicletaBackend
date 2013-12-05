@@ -57,6 +57,34 @@ module ApplicationHelper
     end
   end
   
+  def days_to_event(item, share_mode=nil)
+    days = item.number_of_days_to_event(Date.parse(cookies[:date] || Date.today.to_s))
+
+    connective = item.is_a?(Trip) ? I18n.t('app.events.connectives.trip') : I18n.t('app.events.connectives.cycling_group')
+    
+    if share_mode.nil?
+      if days==0
+        I18n.t('app.events.days_until.zero')
+      elsif days==1
+        I18n.t('app.events.days_until.one')
+      elsif days==1000
+        I18n.t('app.events.days_until.not_provided')
+      else
+        I18n.t('app.events.days_until.other', :days => days)
+      end
+    else
+      if days==0
+        I18n.t('app.events.share.days_until.zero').concat(connective).concat("#{item.name}")
+      elsif days==1
+        I18n.t('app.events.share.days_until.one').concat(connective).concat("#{item.name}")
+      elsif days==1000
+        String.new
+      else
+        I18n.t('app.events.share.days_until.other', :days => days).concat(connective).concat("#{item.name}")
+      end
+    end
+  end
+  
   def top_section_menu_for(section, subsection=nil)
     render :partial => 'map/shared/top_menu', :locals => { :section => section, :subsection => subsection }
   end

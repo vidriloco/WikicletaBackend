@@ -11,45 +11,14 @@
 						<li class="departing-time"><span class="verb"><%= t('cycling_groups.views.list.departing_at') %></span> <%= cycling_group.departing_time %> hrs</li>
 					</ul>
 				</div>
-				<ul class="contact">
-					<% if current_user_owns?(cycling_group) || (!current_user.nil? && current_user.superuser?) %>
-						<li>
-							<a class="btn btn-small edit-cycling-group" href="<%= discover_cycling_groups_edit_path(cycling_group) %>"><i class="icon icon-edit"></i><%= t('states.edit') %></a>
-						</li>
-					<% end %>
-					<% unless cycling_group.twitter_account.blank? %>
-						<li>
-							<span class="icon"><%= image_tag('twitter-icon.png', :size => '25x25') %></span>
-							<%= link_to("@#{cycling_group.twitter_account}", "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
-						</li>
-					<% end %>
-					<% unless cycling_group.facebook_url.blank? %>
-						<li>
-							<span class="icon"><%= image_tag('facebook-icon.png', :size => '25x25') %></span>
-							<%= link_to('Facebook', check_and_ammend(cycling_group.facebook_url), :target => "_new") %>				
-						</li>
-					<% end %>
-					<% unless cycling_group.website_url.blank? %>
-						<li>
-							<span class="icon"><%= image_tag('web-icon.png', :size => '25x25') %></span>
-							<%= link_to('Sitio web', check_and_ammend(cycling_group.website_url), :target => "_new") %>				
-						</li>
-					<% end %>
-				</ul>
-				<div class="share-media">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= url_to_share(cycling_group) %>" data-text="<%= days_to_event(cycling_group, :share) %>" data-via="wikicleta" data-lang="es" data-related="" data-hashtags="ruedaXTuCiudad">Twittear</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-					<div class="fb-like" data-href="<%= url_to_share(cycling_group) %>" data-width="450" data-layout="button_count" data-action="recommend" data-show-faces="true" data-send="true"></div>
-
-				</div>
+				
+				<%= render :partial => 'cycling_groups/contact', :locals => {:cycling_group => cycling_group } %>
+				<%= render :partial => 'cycling_groups/media', :locals => {:cycling_group => cycling_group } %>
 				
 			</div>
 			<div class="pic">
-				<% if cycling_group.picture.image.url.nil? %>
-					<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo"), 'javascript:void(0);' %>
-				<% else %>
-					<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo"), 'javascript:void(0);' %>
-				<% end %>
+				<%= render :partial => 'cycling_groups/logo', :locals => {:cycling_group => cycling_group } %>
+				
 			</div>
 		</div>
 		

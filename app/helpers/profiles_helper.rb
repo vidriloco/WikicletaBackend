@@ -54,10 +54,4 @@ module ProfilesHelper
     end
     timeString
   end
-  
-  def days_to_event(days)
-    text = days==1 ? t('app.events.days_to.singular') : t('app.events.days_to.plural')
-    
-    "<span class='number'>#{days}</span> <i>#{text}</i>".html_safe
-  end
 end

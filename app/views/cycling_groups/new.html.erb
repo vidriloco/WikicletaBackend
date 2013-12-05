@@ -1,34 +1,30 @@
 <% content_for :map_behavior, "editable" %>
 <% content_for :panel do %>	
-	<div id="cycling-groups-section" class="panel">
-		<div class="inner-panel inner-panel-small">
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="actions-bar">
-						<div class="pull-left"><a class="btn btn-link btn-small" href="<%= discover_cycling_groups_path %>"><i class="icon icon-chevron-left"></i> <%= t('actions.back') %></a></div>
-						<div class="pull-right">
-							<p class="call-to-act">Nuevo Grupo ciclista</p>
-							<div class="btn-group">
-								<a class="btn btn-warning btn-small pull-right locate-me"><i class="icon icon-map-marker"></i> Ubicarme</a>
-							</div>
-							<div class="btn-group">
-								<%= image_tag('mini_spinner.gif', :class => "spinner") %>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="top-spaced"></div>
+	<div class="panel routes edit-mode">
+		<div class="inner-panel inner-panel-big">
+			<%= render :partial => 'shared/notifications' %>
+			
+			<div class="form-container">
+				<h3><i class="icon-edit"></i> <%= t('app.cycling_groups.actions.creating') %></h3>
+				
+				<div class="separator"></div>
+
+				<%= form_for @cycling_group, :html => {:class => "form new", :multipart => true} do |f| %>	
+					<%= render :partial => 'form', :locals => {:cycling_group => @cycling_group, :f => f} %>
+				<% end %>
 			</div>
 		</div>
-	
-		<div class="inner-panel inner-panel-big">
-				<div class="row-fluid">
-					<div id="cycling_groups-form" class="span12 form-horizontal">
-						<%= form_for [:discover, @cycling_group], :html => {:class => "form new", :multipart => true} do |f| %>	
-							<%= render :partial => 'form', :locals => {:cycling_group => @cycling_group, :f => f} %>
-						<% end %>     
-					</div>
-				</div>
-		
+		<div class="actions">
+			<%= link_to t('actions.back_arrow').html_safe, :back %>
+			<span class="togglers">
+				<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+				<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+			</span>
+			<span class="activity label label-warning"><%= t('app.routes.actions.creating') %></span>			
+			<p class="pull-right">
+				<%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %>
+			</p>
 		</div>
 	</div>
 <% end %>

@@ -11,6 +11,9 @@ es_MX:
     delete: "Eliminar"
     download: "Descargar"
     view_on_map: "Ubicar"
+    input_file:
+      select: "Seleccionar"
+      change: "Cambiar"
     toggle:
       hide: "Ocultar"
       show: "Mostrar"
@@ -58,12 +61,18 @@ es_MX:
       updated: "actualizado"
       meeting: "Cita a las"
       departing: "Salida a las"
-      days_to:
-        singular: "día para este evento"
-        plural: "días para este evento"
+      days_until:
+        zero: "Hoy es este evento"
+        one: "Un día para este evento"
+        not_provided: "No tenemos la fecha exacta de este evento"
+        other: "%{days} días para este evento"
     cycling_groups:
+      views:
+        form:
+          picture_note: "Selecciona un logo para tu grupo"
       actions:
         new: "Nuevo Grupo"
+        creating: "Registrando Grupo"
     routes:
       all: "Ver otras rutas"
       actions:
@@ -98,5 +107,34 @@ es_MX:
             time: "Tiempo"
             date: "Fecha"
             actions: "Acciones"
+    categories:
+      trip_pois:
+        categories:
+          start_flag: "Inicio de la Ruta"
+          grouped_services: "Servicios agrupados"
+          bike_lending: "Préstamo de bicis"
+          free_grouped_services: "Servicios gratuitos"
+          cycling_learning: "Bici-escuela"
+          finish_flag: "Fin de Ruta"
+          ambulance: "Ambulancia"
+          paramedic: "Paramédicos"
+          service_station: "Estación de Servicio"
+          km_mark: "Kilómetro"
+      cycling_groups:
+        day_timings:
+          mon: "Lunes"
+          tue: "Martes"
+          wed: "Miércoles"
+          thu: "Jueves"
+          fri: "Viernes"
+          sat: "Sábado"
+          sun: "Domingo"
+        recurrence_timings:
+          monthly: "Cada mes"
+          yearly: "Cada año"
+          weekly: "Cada semana"
+        ocurrence_timings:
+          last: "Último"
+          first: "Primer"
     
       

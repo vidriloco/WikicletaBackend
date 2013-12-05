@@ -56,7 +56,7 @@
 							data-kind="cycling_group" class="cycling-group item">
 							<%= link_to t('actions.back_arrow').html_safe, '#/cycling-groups', :class => 'btn-small individual' %>
 							<%= link_to "<i class='icon-map-marker'></i> #{t('actions.view_on_map')}".html_safe, "#/cycling-group-preview/#{cycling_group.slug}", :class => 'btn-small grupal' %>
-							<%= link_to t('actions.details'), cycling_group_path(cycling_group), :class => 'btn-small individual' %>
+							<%= link_to t('actions.details'), cycling_groups_path.concat("#/#{cycling_group.slug}"), :class => 'btn-small individual' %>
 							<div class="separator"></div>
 							<%= render :partial => 'profiles/cycling_groups/cycling_group_simple', :locals => {:cycling_group => cycling_group} %>
 						</div>				
