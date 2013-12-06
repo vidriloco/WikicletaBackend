@@ -1,4 +1,6 @@
 Ciudadio::Application.routes.draw do    
+  apipie
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" }, :only => [:passwords, :omniauth_callbacks]
 
   resources :languages, :only => [:update]
@@ -73,7 +75,6 @@ Ciudadio::Application.routes.draw do
   get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"
   
   namespace :profiles do
-    
     get '/:username/routes/:id' => 'routes#show', :as => 'user_route'
     get '/:username/routes/:id/edit' => 'routes#edit', :as => 'edit_user_route'
     

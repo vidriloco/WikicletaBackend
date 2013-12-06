@@ -4,7 +4,7 @@ class Api::UsersController < Api::BaseController
   
   before_filter :find_user_with_token, :only => [:update]
   before_filter :respond_to_bad_auth, :only => [:update]
-  
+
   def profile
     @user = User.find(params[:id])
     if @user

@@ -55,7 +55,9 @@ group :test do
 	gem 'spork'
 end
 
+gem 'maruku'
 gem 'cancan'
+gem 'apipie-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
