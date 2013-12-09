@@ -22,14 +22,12 @@ class User < ActiveRecord::Base
   has_many :cycling_group_admins, :dependent => :destroy
   has_many :cycling_groups, :through => :cycling_group_admins
   
-  attr_accessor :login, :invitation_code
-  validates_presence_of :username, :full_name
-  validates_uniqueness_of :username
-  
+  attr_accessor         :login
+  validates             :username, :uniqueness => true
   before_validation     :validate_format_of_username
   
   #temporal
-  attr_accessible :invitation_code, :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
+  attr_accessible       :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   before_save           :ensure_authentication_token!, :on => :create
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   
@@ -63,10 +61,6 @@ class User < ActiveRecord::Base
     city.nil?
   end
   
-  def is_seller?
-    false
-  end
-  
   def email_visible?
     email_visible
   end
@@ -84,39 +78,9 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
   
-  def self.new_from_oauth_params(hash)
-    case hash["provider"]
-      when "twitter"
-        info = hash["info"]
-        new(:full_name => info["name"], :username => info["nickname"])
-      when "facebook"
-        info = hash["extra"]["raw_info"]
-        new(:full_name => info["name"], :email => info["email"])
-    end
-  end
-  
-  def add_authorization(session, attempt_save=false)
-    generated_password = Devise.friendly_token.first(8)
-    self.password, self.password_confirmation = [generated_password]*2
-    authorization=self.authorizations.build(session)
-    authorization.save if attempt_save
-    authorization
-  end
-  
-  def authorization_from(auth)
-    authorizations=self.authorizations.where('provider = :provider', { :provider => auth })
-    return nil if authorizations.empty?
-    authorizations.first
-  end
-  
   def check_parameters_and_password(hash)
     return self.valid_password?(hash["current_password"]) if hash.has_key?("current_password")
     true
-  end
-
-  def validate_format_of_username
-    return if self.username.nil?
-    errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{3,}$/).nil?
   end
   
   def profile_to_json
@@ -145,6 +109,11 @@ class User < ActiveRecord::Base
   
   protected
   
+  def validate_format_of_username
+    return if self.username.nil?
+    errors.add(:username, I18n.t('user_accounts.validations.invalid_username')) if self.username.match(/^\w{3,}$/).nil?
+  end
+  
   def build_dummy_tmp_file_from(params)
     tempfile = Tempfile.new("file")
     tempfile.binmode
@@ -154,15 +123,6 @@ class User < ActiveRecord::Base
   
   def assign_picture(pic_on_file)
     Picture.find_or_create_from({:user_id => id, :file => pic_on_file})
-  end
-  
-  def validate_invitation_code
-    @sticker = Sticker.where(:code => invitation_code).first
-    if !@sticker.nil? and @sticker.available?
-      @sticker.update_attribute(:status, Sticker.category_for(:statuses, :claimed))
-    else
-      errors.add(:invitation_code, I18n.t('user_accounts.validations.invalid_invitation_code'))
-    end
   end
     
   def city_name

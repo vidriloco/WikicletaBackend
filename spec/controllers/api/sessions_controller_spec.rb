@@ -5,7 +5,7 @@ describe Api::SessionsController do
     @user = FactoryGirl.create(:pipo)
   end
   
-  describe "GET" do
+  describe "POST" do
     
     describe "with valid params" do
       
@@ -14,13 +14,13 @@ describe Api::SessionsController do
       end
       
       it "should generate a valid json response" do
-        get :create, :session => @params
+        post :create, :session => @params
 
         response.should be_successful
       end
       
       it "should retrieve the user details" do
-        get :create, :session => @params
+        post :create, :session => @params
 
         response.body.should == @user.to_json
       end
@@ -34,7 +34,7 @@ describe Api::SessionsController do
       end
       
       it "should generate an invalid json response" do
-        get :create, :session => @params
+        post :create, :session => @params
 
         response.should_not be_successful
       end

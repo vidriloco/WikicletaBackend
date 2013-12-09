@@ -2,6 +2,7 @@ Apipie.configure do |config|
   config.app_name                = "Wikicleta"
   config.markup = Apipie::Markup::Markdown.new
   config.api_base_url            = "/api"
+  config.validate                = false
   config.doc_base_url            = "/apidoc"
   # were is your API defined?
   config.api_controllers_matcher = File.join(Rails.root, "app", "controllers", "**","*.rb")

@@ -3,7 +3,7 @@ class Api::RegistrationsController < Api::BaseController
   api :POST, '/users', "Creates a new user"
   
   param :registration, Hash, :required => true do
-    param :name, String, "The user's name", :required => true
+    param :full_name, String, "The user's full name", :required => true
     param :username, String, "The user's username matching this regexp: ^[a-z0-9_-]{3,16}$", :required => true
     param :email, String, "The user's e-mail matching this regexp: [_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})", :required => true
     param :password, String, "The user's password", :required => true
@@ -19,12 +19,12 @@ class Api::RegistrationsController < Api::BaseController
     hash with status *422*
   EOS
   def create
-    user = User.create_with(params[:registration])
-    if user.persisted?
-      render :json=> user.to_json, :status => :ok
+    @user = User.create_with(params[:registration])
+    if @user.persisted?
+      render :json=> @user.to_json, :status => :ok
     else
       warden.custom_failure!
-      render :json=> {:errors => user.errors}, :status=>422
+      render :json=> {:errors => @user.errors}, :status=>422
     end
   end
   
