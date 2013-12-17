@@ -1,6 +1,5 @@
 /*
  *= require_self
- *= require application.css
 */
 
 body, html {
@@ -34,21 +33,6 @@ body, html {
 	text-align: center;
 	width: 700px;
 	margin: 100px auto 0 auto;
-}
-
- a.section:hover {
-	color: #619B54 !important;
-}
-
- a.section {
-	font-weight: bold;
-	width: 150px;
-	background-color:rgba(0,0,0,0.7);
-	border: 1px solid white;
-	padding: 10px 20px;
-	color: #C1FFBC !important;
-	text-align: center;
-	font-size: 19px;
 }
 
 .board:hover {

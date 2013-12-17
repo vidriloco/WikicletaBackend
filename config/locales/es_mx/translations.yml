@@ -33,7 +33,7 @@ es_MX:
     navbar:
       discover: "Descubre"
       close_session: "Cerrar Sesión"
-      login: "Iniciar Sesión"
+      login: "Login"
     models:
       route:
         plural: "Rutas"
@@ -43,12 +43,26 @@ es_MX:
         singular: "Grupo"
     landing:
       navbar:
-        share_group: "Sube una rodada"
-        explore: "Explora"
-        language:
-          spanish: "English"
-      bottombar:
-        iphone: ¿Tienes iPhone?
+        what: "Checa el video"
+        login: "Entrar"
+        register: "Registrate"
+      sections:
+        rides:
+          title: "¿Te gusta rodar en grupo?"
+          options:
+            one: "Organiza y sube una rodada"
+            two: "Encuentra rodadas cercanas"
+            three: "Ubica paseos"
+        routes:
+          title: "Planea tus rutas"
+          options: 
+            one: "Traza tu ruta y descárgala a tu fon"
+            two: "Encuentra otras rutas"
+        real_time:
+          title: "Acompaña a tus amigos"
+          options:
+            one: "Dales tu CyclePin para que vean donde vas"
+            two: "Escoge entre 10 estados: Fixero, Rutero, Multimodal entre otros"
       dialog:
         title: "¡Ya estamos en ello, <b>Diciembre</b> es la fecha!"
         call: "Déjanos tu correo, te avisaremos cuando esté lista"

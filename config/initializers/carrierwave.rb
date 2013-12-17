@@ -1,4 +1,4 @@
-if Rails.env.production?
+unless Rails.env.production?
   #CarrierWave.configure do |config|
   #  config.storage = :fog
   #  config.fog_credentials = {

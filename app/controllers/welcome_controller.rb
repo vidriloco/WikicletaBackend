@@ -4,6 +4,8 @@ class WelcomeController < ApplicationController
   before_filter :set_locale
   
   def index
+    @cycling_groups = CyclingGroup.ten_recent
+    @pois = (Workshop.recent(6)+Tip.recent(4)+Parking.recent(3)).shuffle
     redirect_to user_profile_path(current_user.username) if user_signed_in?
   end
   

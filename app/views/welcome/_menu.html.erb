@@ -1,0 +1,23 @@
+<div class="header">
+	<div class="header-m"><%= image_tag('header-mou.png') %></div>
+	<div class="android"><%= link_to image_tag('android-get.png'), 'https://play.google.com/store/apps/details?id=org.wikicleta&hl=en', :target => "_blank" %></div>
+</div>
+
+<div class="top-bar row-fluid">
+	<ul class="pull-left">
+		<!--<li class="web-only"><a href="javascript:void(0);"><i class="icon icon-leaf"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.friends') %></a></li>
+		<% if I18n.locale.eql?(:es_MX) %>
+			<li><a href="<%= welcome_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.spanish') %></a></li>	
+		<% elsif I18n.locale.eql?(:en) %>
+			<li><a href="<%= bienvenido_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
+		<% end %>
+		<li class="web-only"><a href="javascript:void(0);" class="text-orange" target="_blank"><i class="icon icon-question-sign"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.iphone') %></a></li>-->
+	</ul>
+	<ul class="pull-right">
+
+		<li class="web-only"><a href="http://vimeo.com/54044179" class="fancybox"><i class="icon icon-play"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.what') %></a></li>
+		
+		<li class="web-only"><a href="javascript:void(0);" target="_blank"><i class="icon icon-user"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.register') %></a></li>
+		<li class="web-only"><a href="javascript:void(0);" class="text-orange" target="_blank"><i class="icon icon-user"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.login') %></a></li>
+	</ul>
+</div>

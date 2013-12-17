@@ -4,14 +4,14 @@
  */
 @import "colors.css.scss";
 
-.panel {
+/*.panel {
 	.title {
 		margin-bottom: 2px;
 		font-weight: bold;
 		font-size: 10px;
 		text-transform: uppercase;
 	}
-}
+}*/
 
 a {
 	text-decoration: none !important;
@@ -35,83 +35,6 @@ a {
 			color: $wikicleta_orange !important;
 			font-size: 24px;
 		}
-	}
-}
-
-.route {
-	
-	> div > div {
-		margin: 10px;
-	}
-	
-	p {
-		padding: 0px;
-		margin: 0px;
-	}
-	
-	.name {
-		font-size: 20px;
-		color: $wikicleta_orange;
-	}
-	
-	.details {
-		font-size: 15px;
-		color: $wikicleta_blue;
-	}
-	
-	.distance-in-kms {
-		text-align: right;
-		margin-top: 10px;
-		font-size: 30px;
-		color: $wikicleta_blue;
-	}
-	
-	.unit {
-		text-align: right;
-		margin-top: 5px !important;
-		font-size: 20px;
-		color: $wikicleta_orange !important;
-	}
-	
-	.meta-box {
-		
-		.ranking-title {
-			font-size: 11px;
-			padding: 0px;
-			margin: 10px 0px 4px 15px;
-		}
-		
-		ul {
-			margin: 10px;
-			list-style: none;
-			font-size: 11px;
-			
-			li {
-				display: inline-block;
-				margin: 5px;
-				img {
-					display: block;
-					margin-left: auto;
-					margin-right: auto;
-				}
-				
-				p {
-					margin: 5px 0 0 0 !important;
-					padding: 0px;
-					font-weight: bold;
-				}
-			}
-		}
-	}
-	
-	.main-box {
-		margin-top: 5px !important;
-		margin-bottom: 5px !important;
-	}
-	
-	.status-box {
-		margin-top: 10px !important;
-		text-align: right;
 	}
 }
 

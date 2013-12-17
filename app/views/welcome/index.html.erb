@@ -1,41 +1,47 @@
-<div class="top-bar">
-	<ul>
-		<li class="web-only"><a href="<%= discover_trips_path %>"><i class="icon icon-search"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.explore') %></a></li>
-		<li class="web-only"><a href="<%= rodada_nueva_path %>"><i class="icon icon-arrow-up"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.share_group') %></a></li>
-		<% if I18n.locale.eql?(:es_MX) %>
-			<li><a href="<%= welcome_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.english') %></a></li>	
-		<% elsif I18n.locale.eql?(:en) %>
-			<li><a href="<%= bienvenido_path %>"><i class="icon icon-flag"></i>&nbsp;&nbsp;<%= t('app.landing.navbar.language.spanish') %></a></li>	
-		<% end %>
-	</ul>
-</div> 
-
-<% if I18n.locale.eql?(:es_MX) %>
-	<%= link_to image_tag('fondeo_es_MX.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>	
-<% elsif I18n.locale.eql?(:en) %>
-	<%= link_to image_tag('fondeo_en.png'), "http://fondeadora.mx/projects/wikicleta", :target => "_blank", :class => "founding" %>
-<% end %>
-	
-<div class="logo-container all-centered">
-	<%= image_tag('wikicleta-logo.png') %>
-	<p class="title"><%= t('app.slogan') %></p>
-	
-	<div class="play-video">
-		<%= link_to image_tag('play_icon.png'), 'http://vimeo.com/54044179', :class => "fancybox" %>
-	</div>
+<div id="pois-owl" class="pois owl-carousel owl-theme">
+	<% @pois.each_with_index do |poi, idx| %>
+		<%= render :partial => 'welcome/common/poi', :locals => {:poi => poi, :index => idx} %>
+	<% end %>
 </div>
 
-<div class="bottom-bar">
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3"></div>
-			<div class="span3 all-centered android">
-				<%= link_to image_tag('android-available.png', :size => '230x230'), 'https://play.google.com/store/apps/details?id=org.wikicleta&hl=en', :target => "_blank" %>
+<div class="sections">
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.rides.title') %></p>
+		<div class="content-right">
+			<div id="c-groups">
+				<% @cycling_groups.each_with_index do |cg, idx| %>
+					<%= render :partial => 'welcome/common/cycling_group', :locals => {:cg => cg, :index => idx } %>
+				<% end %>
 			</div>
-			<div class="span3 all-centered ios">
-				<a href="javascript:void(0);" class="title iphone" data-toggle="modal" data-target="#myModal"><%= t('app.landing.bottombar.iphone') %> <%= image_tag('iphone-icon.png') %></a>
-			</div>
-			<div class="span3"></div>
+			<ul>
+				<li><a href="" class="action-box"><i class="icon-eye-open"></i> <span class="big">Explora</span></a></li>
+				<li><a href="" class="action-box"><span class="big">Sube</span> <span class="small">tu grupo</span> <i class="icon-upload"></i></a></li>
+			</ul>
+		</div>
+		<div class="draw-one"><%= image_tag('explore-icon.png') %></div>
+		
+	</div>
+	
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.routes.title') %></p>
+		<div class="draw-two"><%= image_tag('map-icon.png') %></div>
+		<div class="content">
+			<p>Trázalas en la web y revísalas en tu teléfono. Después, compártelas!</p>
+			<a href="" class="action-box iconified">
+				<ul>
+					<li><%= image_tag('icon-route-tracer.png') %></li>
+					<li><span class="big">Traza</span><br/><span class="small">tu ruta</span></li>
+				</ul>
+			</a>
+		</div>
+	</div>
+	
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.real_time.title') %></p>
+		<div class="draw-three"><%= image_tag('gowith-icon.png') %></div>
+		<div class="content">
+			<p>Ubica por donde van y únete a su ruta, para rodar juntos, más seguros!</p>
+			<p class="status"><span class="big">50</span><span class="small">rodando ahora (<b><%= link_to 'Ver', '' %></b>)</span></p>
 		</div>
 	</div>
 </div>
@@ -49,7 +55,7 @@
       </div>
       <div class="modal-body">
         <p class="content all-centered"><%= t('app.landing.dialog.call') %></p>
-				
+
 				<div class="all-centered contact-form">
 					<%= form_for Contact.new, :remote => true do |f| %>
 						<div class="form-group">
@@ -62,4 +68,6 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
 

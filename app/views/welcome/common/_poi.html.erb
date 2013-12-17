@@ -1,0 +1,29 @@
+<div id="poi-<%= index %>" class="poi" data-marker="<%= marker_for_poi(poi) %>" data-lng="<%= poi.coordinates.lon %>" data-lat="<%= poi.coordinates.lat %>">
+	<div class="details">
+		<div>
+			<div><%= image_tag(icon_for_poi(poi), :size => '80x80') %></div>
+			<div>
+				<p class="title"><%= title_for_poi(poi) %></p>
+				<p><%= subtitle_for_poi(poi) %> <span class="link"><%= link_to "<i class='icon-map-marker'></i> Ir".html_safe, nil	%></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="opinion">
+		<p><%= details_for_poi(poi) %></p>
+	</div>
+	<div class="contributor">
+		<div>
+			<div>
+				<% if !poi.owner[:pic].blank? %>
+					<%= link_to image_tag(poi.owner[:pic], :size => '70x70'), nil, :class => 'pic' %>
+				<% else %>
+					<%= link_to image_tag('user_no_pic.png', :size => '70x70'), nil, :class => 'pic' %>
+				<% end %>
+			</div>
+			<div>
+				<p class="name">Por <%= link_to poi.owner[:username], nil %></p>
+				<p><%= distance_of_time_in_words poi.updated_at, Time.now %></p>
+			</div>
+		</div>
+	</div>
+</div>
