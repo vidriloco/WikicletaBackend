@@ -101,8 +101,8 @@ class CyclingGroup < ActiveRecord::Base
     end
   end
   
-  def self.ten_recent
-    self.joins(:picture).where('pictures.image IS NOT NULL').order('updated_at DESC').limit(10)
+  def self.recent(number)
+    self.joins(:picture).where('pictures.image IS NOT NULL').order('updated_at DESC').limit(number)
   end
   
   #Dumpables

@@ -16,3 +16,5 @@ es_MX:
       workshops:
         store: "Taller y Tienda de Bicis"
         workshop: "Taller"
+      cycling_groups:
+        title: "Grupo Ciclista"

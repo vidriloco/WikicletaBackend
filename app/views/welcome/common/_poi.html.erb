@@ -4,7 +4,7 @@
 			<div><%= image_tag(icon_for_poi(poi), :size => '80x80') %></div>
 			<div>
 				<p class="title"><%= title_for_poi(poi) %></p>
-				<p><%= subtitle_for_poi(poi) %> <span class="link"><%= link_to "<i class='icon-map-marker'></i> Ir".html_safe, nil	%></span></p>
+				<%= subtitle_for_poi(poi) %><span class="link"><%= link_to "<i class='icon-map-marker'></i> Ir".html_safe, nil	%></span>
 			</div>
 		</div>
 	</div>
