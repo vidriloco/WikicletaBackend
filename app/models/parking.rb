@@ -22,6 +22,10 @@ class Parking < ActiveRecord::Base
     "parking-#{id}"
   end
   
+  def humanized_kind_symbol
+    Parking.category_symbol_for(:kinds, kind)
+  end
+  
   def humanized_kind
     Parking.humanized_category_for(:kinds, kind)
   end

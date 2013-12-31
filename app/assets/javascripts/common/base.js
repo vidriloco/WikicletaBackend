@@ -7,7 +7,7 @@
 //= require path
 //= require jquery.cookies
 //= require bootstrap-fileupload.min
-
+//= require owl-carrousel
 //= require trackings
 
 // Following are some functions used over the application

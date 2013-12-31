@@ -101,6 +101,10 @@ class CyclingGroup < ActiveRecord::Base
     end
   end
   
+  def self.recent(number)
+    self.joins(:picture).where('pictures.image IS NOT NULL').order('updated_at DESC').limit(number)
+  end
+  
   #Dumpables
   def self.attrs_for_dump
     %w(name details meeting_time departing_time periodicity twitter_account facebook_url website_url updated_at created_at)

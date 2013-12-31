@@ -28,7 +28,7 @@ class CyclingGroupsController < ApplicationController
       @cycling_group.set_logo_and_user(params[:picture], @user)
       redirect_to discover_cycling_groups_path, :notice => I18n.t("cycling_groups.views.created.success") 
     else
-      render :action => :new
+      render :action => :new, :layout => 'on_map_center'
     end
   end
   
@@ -40,7 +40,7 @@ class CyclingGroupsController < ApplicationController
     if @cycling_group.update_with(params, current_user)
       redirect_to discover_cycling_groups_path.concat('#/'+@cycling_group.slug)
     else
-      render :action => 'edit'
+      render :action => 'edit', :layout => 'on_map_center'
     end
   end
   

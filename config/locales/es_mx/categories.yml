@@ -1,0 +1,20 @@
+es_MX:
+  app:
+    categories:
+      tips:
+        title: "Recomendación"
+        categories:
+          alert: "Alerta"
+          danger: "Peligro"
+          sightseeing: "Para ver"
+      parkings:
+        title: "Bici-estacionamiento"
+        kinds:
+          government_provided: "De gobierno"
+          urban_mobiliary: "Mobiliario urbano"
+          venue_provided: "De un establecimiento"
+      workshops:
+        store: "Taller y Tienda de Bicis"
+        workshop: "Taller"
+      cycling_groups:
+        title: "Grupo Ciclista"

@@ -4,9 +4,7 @@
  *= require jquery.fancybox
 */
 
-$wikicleta_orange: #fb4e15;
-$wikicleta_blue: #1f3a50;
-$wikicleta_light_blue: #DAE8F1;
+@import "colors.css.scss";
 
 @font-face{
 font-family: "gothamrndbook-Book";
@@ -22,6 +20,10 @@ font-family: "gothamrndbold-Bold";
    src:url("/assets/gothamrndbold.ttf");
 }
 
+.text-orange {
+	color: $wikicleta_orange !important;
+}
+
 html, body { 
 	height: 100%;
   background: url('/assets/background.jpg') no-repeat center center fixed; 
@@ -32,10 +34,331 @@ html, body {
 	font-family: "gothamrndbook-Book" !important;
 }
 
-.title {
-	color: $wikicleta_orange;
-	margin-top: 15px;
-	font-size: 28px;
+.landing {
+	min-width: 600px !important;
+	
+	#map
+	{
+	  width: 100%;
+	  height: 250px !important;
+	}
+	
+	.menu {
+		background-color: white !important;
+		
+		.header {
+			width: 100%; 
+	    height: 250px;
+			background: url(/assets/header-bg.png) repeat-x;
+			.header-m {
+				text-align: center;
+				position: relative;
+			}
+			
+			.android {
+				width: 180px;
+				right: 100px;
+				position: absolute;
+				top: 50px;
+			}
+		}
+		
+	}
+	
+	.top-bar {
+		position: relative;
+		z-index: 999;
+		border-top: 1px solid #EBF6FF;
+		
+		ul {
+			text-align: right;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 0px;
+		}
+	}
+	
+	.title {
+		color: $wikicleta_orange;
+		margin-top: 15px;
+		font-weight: normal;
+		font-size: 17px;
+		text-transform: uppercase;
+	}
+	
+	.status {
+		margin-top: 30px;
+	}
+	
+	.logo-container {
+		text-align: center;
+		margin-top: 40px;
+	}
+	
+	.pois {
+		min-width: 600px !important;
+		min-height: 80px;
+		background-color: $wikicleta_blue;
+		color: white;
+		
+		.poi { 
+			text-align: center;
+			
+			> div {
+				display: inline-block;
+				vertical-align: top;
+				min-width: 500px;
+				width: 33%;
+				height: 80px;
+				text-align: center;
+				> div {
+					margin-left: auto;
+					margin-right: auto;
+
+					> div {
+						text-align:left;
+						display: inline-block;
+						vertical-align: top;
+					}
+				}
+			}
+			
+			.contributor {
+
+				a.pic {
+					margin-top: 5px;
+					margin-left: 0px;
+					display: block;
+
+					img {
+						border-radius: 35px;
+					}
+				}
+
+				a {
+					color: $wikicleta_orange;
+				}
+
+				.name {
+					font-size: 25px;
+					color: $wikicleta_orange;
+					margin: 10px 0px 0px 20px;
+				}
+
+				p {
+					margin: 0px 0px 0px 20px;
+					font-size: 18px;
+				}
+			}
+
+			.opinion {
+				text-align: center;
+				font-size: 18px;
+				line-height: 80px;
+				
+				p {
+					vertical-align: middle;
+					font-style: italic;
+				}
+				
+				.emph {
+					font-size: 40px;
+					color: $wikicleta_orange;
+				}
+				
+			}
+
+			.details {
+				
+				text-align: center;
+
+				p {
+					margin: 0;
+					padding: 0;
+				}
+
+				padding-left: 5%;
+				padding-right: 5%;
+				
+				.link {
+					margin-left: 20px;
+				}
+				
+				a {
+					color: white;
+					font-size: 18px;
+				}
+				
+				a:hover {
+					color: $wikicleta_orange;
+				}
+				
+				.title {
+					font-size: 20px;
+					color: $wikicleta_orange;
+					margin-top: 10px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	
+	.sections {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		text-align: center;
+		
+		.section {
+			vertical-align: top;
+			border-radius: 0px;
+			-moz-box-shadow: 0 0 2px #BABABA;
+			-webkit-box-shadow: 0 0 2px #BABABA;
+			box-shadow: 0 0 2px #BABABA;
+			background: url(/assets/header-bg.png);
+			width: 600px;
+			display: inline-block;
+			border : 1px solid #D1DEFF;
+			margin: 20px 20px 50px 20px;
+			
+			.title {
+				font-size: 25px;
+				padding: 15px;
+				text-transform: none;
+				color: $wikicleta_orange;
+				text-align: center;
+			}
+			
+			ul {
+				margin-left: 50px;
+			}
+			
+			.draw-two {
+				position: relative;
+				right: 0px;
+				float: right;
+				top: 30px;
+				width: 180px;
+			}
+			
+			.draw-one {
+				position: relative;
+				left: 0px;
+				top: 30px;
+				width: 180px;
+			}
+			
+			.draw-three {
+				position: relative;
+				right: 20px;
+				float: right;
+				top: 50px;
+				width: 180px;
+			}
+			
+			.action-box {
+				background-color: white;
+				border: 1px solid #AFCCFF;
+				border-radius: 5px;
+			}
+			
+			.big, .small {
+				text-transform: uppercase;
+			}
+			
+			.big {
+				color: $wikicleta_orange;
+				font-weight: bold;
+			}
+			
+			.small {
+				color: $wikicleta_blue;
+			}
+			
+			.action-box:hover {
+				-moz-box-shadow: 0 0 2px #BABABA;
+				-webkit-box-shadow: 0 0 2px #BABABA;
+				box-shadow: 0 0 2px #BABABA;
+			}
+			
+			.content-right {
+				width: 70%;
+				float: right;
+				font-size: 18px;
+				
+				.group {
+					width: 70px;
+					height: 70px;
+					overflow: hidden;
+					display: inline-block;
+					margin-left: 5px;
+				}
+				
+				.group-hidden {
+					display: none;
+				}
+				
+				ul {
+					list-style: none;
+					
+					li {
+						display: inline-block;
+						margin-top: 30px;
+						
+						a, a:hover {
+							text-transform: uppercase;
+							padding: 10px;
+							color: $wikicleta_orange;
+						}
+					}
+				}
+			}
+			
+			.content {
+				width: 70%;
+				margin-left: 0px;
+				font-size: 18px;
+				
+				.status {
+					margin: 30px 0 0 0;
+					padding: 0;
+					.big {
+						font-size: 40px;
+					}
+					
+					.small {
+						margin-left: 10px;
+						font-size: 15px;
+					}
+				}
+				
+				.iconified {
+					padding: 8px;
+					display: block;
+					width: 160px;
+					height: 60px;
+					text-align: left;
+					margin-top: 20px;
+					margin-left: auto;
+					margin-right: auto;
+					
+					ul {
+						margin-left: 0;
+						li {
+							margin-left: 5px;
+							vertical-align: top;
+							display: inline-block;
+						}
+					} 
+
+					img {
+						width: 45px;
+					}
+					
+				}
+			}
+		}
+	}
 }
 
 .content {
@@ -53,19 +376,7 @@ html, body {
 	}
 }
 
-.founding {
-	position: fixed;
-	top: 0px;
-	right: 0px;
-}
-
-.logo-container {
-	display: fixed;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.top-bar {
+.top-bar, .bottom-bar {
 	ul {
 		li {
 			display: inline-block;
@@ -82,114 +393,8 @@ html, body {
 	}
 }
 
-.bottom-bar {
-	left: 0px;
-	bottom: 30px;
-	width: 100%;
-	position: fixed;
-}
-
-a.iphone {
-	text-decoration: none !important;
-}
-
-.logo {
-	background: url('/assets/wikicleta-logo.png');
-	width: 300px;
-	height: 300px;
-	left: 50%;
-	margin-right: 100px;
-	position: fixed;
-}
-
 .email-dialog {
 	.title {
 		font-size: 20px;
-	}
-}
-
-/* Portrait */
-@media screen and (orientation:portrait) {
-    .logo-container {
-			width: 70%;
-			margin-top: 40px !important;
-		}
-
-		.founding {
-			width: 40%;
-			height: 40%;
-		}
-
-		.title {
-			font-size: 14px;
-		}
-
-		.web-only {
-			display: none !important;
-		}
-		
-		.bottom-bar {
-			bottom: 0px !important;
-		}
-		
-		.play-video {
-			display: none;
-		}
-}
-
-/* Landscape */
-@media screen and (orientation:landscape) and (max-device-width : 480px) {
-    .logo-container {
-			width: 40%;
-		}
-
-		.founding {
-			width: 30%;
-			height: 30%;
-		}
-
-		.title {
-			font-size: 18px;
-			display: none;
-		}
-
-		.web-only {
-			display: none !important;
-		}
-		
-		.bottom-bar {
-			bottom: 0px !important;
-			
-			img {
-				width: 150px;
-			}
-		}
-		
-		.play-video {
-			display: none;
-		}
-}
-
-@media only screen and (min-device-width : 481px) and (min-device-height : 768px) {
-	.logo-container {
-		width: 30%;
-	}
-
-	.title {
-		font-size: 22px;
-	}
-	
-	.bottom-bar {
-		bottom: 20px !important;
-	}
-	
-	.play-video {
-		margin-top: 14% !important;
-	}
-}
-
-@media only screen and (min-device-width : 1280px) and (min-device-height : 800px) {	
-	.play-video {
-		margin-top: 22% !important;
 	}
 }

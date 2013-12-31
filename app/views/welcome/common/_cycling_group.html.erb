@@ -1,0 +1,7 @@
+<div id="cycling-group-<%= index %>" class="<%= index >= 4 ? 'group-hidden' : 'group' %>">
+	<% if cg.picture.image.url.nil? %>
+		<%= link_to image_tag("cycling_group_logo.png"), nil %>
+	<% else %>
+		<%= link_to image_tag(cg.picture.image.url, :alt => cg.name), nil %>
+	<% end %>
+</div>

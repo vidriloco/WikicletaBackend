@@ -1,16 +1,8 @@
 /*
  *= require_self
  *= require bootstrap_and_overrides
- *= require shared/main.css
- *= require shared/form.css
- *= require shared/blocking.css
- *= require shared/icons.css
- *= require shared/comments.css
- *= require tipsy.css
- *= require reveal.css
- *= require incidents.css
- *= require popover.css
- *= require colorbox.css
- *= require pictures.css
+ *= require owl.carousel
+ *= require owl.theme
+ *= require_tree .
 */
 
