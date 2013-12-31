@@ -46,5 +46,31 @@ describe User do
       }
     end
     
+    describe "upon a picture change" do
+      
+      before(:each) do
+        @pipo.set_pic(:image_pic => "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+        bWFnZVJlYWR5ccllPAAAAA9JREFUeNpiiNIxnA8QYAAC8gFXM+S5IQAAAABJRU5ErkJggg==")
+      end
+      
+      it "should provide the picture when asked" do
+        @pipo.picture.image.url(:mini_thumb).should_not be_nil
+      end
+      
+    end
+    
+    it "should expose itself as a dictionary including extra fields" do
+      @pipo.profile_to_json.should == {
+        :city_name => nil,
+        :user_pic => nil,
+        :username => @pipo.username, 
+        :bio => @pipo.bio,
+        :updated_at => @pipo.updated_at.to_s(:db),
+        :email => @pipo.email,
+        :identifier => @pipo.id.to_s
+      }
+      
+    end
+    
   end
 end
