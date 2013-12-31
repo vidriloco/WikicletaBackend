@@ -14,7 +14,7 @@ class RoutesController < ApplicationController
   end
   
   def create
-    @route = Route.new_with(params[:route], current_user, params[:path])
+    @route = Route.new_with_path(params[:route], current_user, params[:path])
     if @route.save
       redirect_to profiles_user_route_path(current_user.username, @route), :notice => I18n.t('app.routes.notifications.created.successfully')
     else

@@ -118,6 +118,7 @@ class Route < ActiveRecord::Base
   
   def path_vector
     points_list=[]
+    return points_list if path.nil?
     
     path.points.each do |point|
       points_list << [point.x, point.y]
@@ -188,7 +189,7 @@ class Route < ActiveRecord::Base
     self
   end
   
-  def self.new_with(params, user, path)
+  def self.new_with_path(params, user, path)
     route=Route.new params.merge({:path => "LINESTRING(#{path})"})
     unless path.blank?
       route.extract_and_set_coordinates(path)

@@ -6,7 +6,9 @@ describe Api::WorkshopsController do
     @user = FactoryGirl.stub(:pipo)
     
     @coords = {"lat" => "lat", "lon" => "lon"}
-    @extras = {"auth_token" => "valid"}
+    
+    @token_valid = {"auth_token" => "valid"}
+    @token_invalid = {"auth_token" => "invalid"}
     
     @params = {"some" => "params"}
   end
@@ -33,7 +35,7 @@ describe Api::WorkshopsController do
       
       it "should not find a user" do
         stub_users_as(nil)
-        post :create, :workshop => @params, :extras => {"auth_token" => "bad"}, :coordinates => @coords
+        post :create, :workshop => @params, :extras => @token_invalid, :coordinates => @coords
         
         assigns(:user).should be_nil
         response.should_not be_successful
@@ -52,7 +54,7 @@ describe Api::WorkshopsController do
         should_retrieve_users_as([@user])
         Workshop.should_receive(:new_with).with(@params, @coords, @user).and_return(@workshop)
   
-        post :create, :workshop => @params, :extras => @extras, :coordinates => @coords
+        post :create, :workshop => @params, :extras => @token_valid, :coordinates => @coords
         response.should be_successful
       end
       
@@ -68,7 +70,7 @@ describe Api::WorkshopsController do
         stub_users_as(@user)
         Workshop.should_receive(:new_with).with(@params, @coords, @user).and_return(@workshop)
   
-        post :create, :workshop => @params, :extras => @extras, :coordinates => @coords
+        post :create, :workshop => @params, :extras => @token_invalid, :coordinates => @coords
         response.should_not be_successful
       end
       
@@ -82,7 +84,7 @@ describe Api::WorkshopsController do
       
       it "should not find a user" do
         stub_users_as(nil)
-        put :update, :workshop => @params, :extras => {"auth_token" => "bad"}, :coordinates => @coords, :id => "1"
+        put :update, :workshop => @params, :extras => @token_invalid, :coordinates => @coords, :id => "1"
         
         assigns(:user).should be_nil
         response.should_not be_successful
@@ -101,7 +103,7 @@ describe Api::WorkshopsController do
         should_retrieve_users_as([@user])
         Workshop.should_receive(:find).with("1").and_return(@workshop)
   
-        put :update, :workshop => @params, :extras => @extras, :coordinates => @coords, :id => "1"
+        put :update, :workshop => @params, :extras => @token_valid, :coordinates => @coords, :id => "1"
         response.should be_successful
       end
       
@@ -117,7 +119,7 @@ describe Api::WorkshopsController do
         stub_users_as(@user)
         Workshop.should_receive(:find).with("1").and_return(@workshop)
   
-        put :update, :workshop => @params, :extras => @extras, :coordinates => @coords, :id => "1"
+        put :update, :workshop => @params, :extras => @token_invalid, :coordinates => @coords, :id => "1"
         response.should_not be_successful
       end
       
@@ -130,7 +132,7 @@ describe Api::WorkshopsController do
       
       it "should not find a user" do
         stub_users_as(nil)
-        delete :destroy, :extras => @extras, :id => "1"
+        delete :destroy, :extras => @token_invalid, :id => "1"
         
         assigns(:user).should be_nil
         response.should_not be_successful
@@ -154,7 +156,7 @@ describe Api::WorkshopsController do
         it "should respond with success" do
           Workshop.should_receive(:find).with("1").and_return(@workshop)
 
-          delete :destroy, :extras => @extras, :id => "1"
+          delete :destroy, :extras => @token_valid, :id => "1"
           response.should be_successful
         end
         
@@ -169,7 +171,7 @@ describe Api::WorkshopsController do
         it "should respond with success" do
           Workshop.should_receive(:find).with("1").and_return(@workshop)
 
-          delete :destroy, :extras => @extras, :id => "1"
+          delete :destroy, :extras => @token_invalid, :id => "1"
           response.should_not be_successful
         end
         

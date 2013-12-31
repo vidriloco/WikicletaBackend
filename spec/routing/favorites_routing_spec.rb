@@ -13,7 +13,7 @@ describe Api::FavoritesController do
     end
     
     it "matches /api/favorites/marked with controller :favorites action #marked?" do
-      { :get => "/api/favorites/marked/1/1/1" }.should route_to(:action => "marked?", :controller => "api/favorites", :object_id => "1", :object_type => "1", :user_id => "1")
+      { :get => "/api/favorites/marked/1/2/3" }.should route_to(:action => "marked?", :controller => "api/favorites", :favorited_object_id => "1", :favorited_object_type => "2", :user_id => "3")
     end
   end
 end

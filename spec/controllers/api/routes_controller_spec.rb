@@ -5,47 +5,49 @@ describe Api::RoutesController do
     @route = FactoryGirl.build(:route)
     @user = FactoryGirl.stub(:pipo)
     
-    @extras = {"auth_token" => "valid"}
+    @valid_token = {"auth_token" => "valid"}
+    @bad_token = {"auth_token" => "bad"}
+    
     @params = {"some" => "params"}
   end
   
   describe "GET index" do
     
     before(:each) do
-      @routes = []
+      @routes = [@route]
     end
     
-    it "should generate a valid json response"# do
-      #Route.should_receive(:find_nearby_with).and_return(@routes)
-      #get :index, :viewport => @params
+    #it "should generate a valid json response" do
+    #  Route.should_receive(:find_nearby).and_return(@routes)
+    #  get :index, :viewport => @params
     
-      #assigns(:routes).should == @routes
-      #response.should be_successful
+    #  assigns(:routes).should == @routes
+    #  response.should be_successful
     #end
     
   end
   
   describe "GET show" do
     
-    it "should generate a valid json response for a given route"# do
-      #Route.should_receive(:find).with("1").and_return(@routes)
-      #get :show, :id => "1"
+    it "should generate a valid json response for a given route" do
+      Route.should_receive(:find).with("1").and_return(@route)
+      get :show, :id => "1"
     
-      #assigns(:route).should == @route
-      #response.should be_successful
-    #end
+      assigns(:route).should == @route
+      response.should be_successful
+    end
     
   end
   
   describe "GET performances" do
     
-    it "should generate a valid json response for a given route" #do
-      #Route.should_receive(:find).with("1").and_return(@routes)
-      #get :performances, :id => "1"
+    it "should generate a valid json response for a given route" do
+      Route.should_receive(:find).with("1").and_return(@route)
+      get :performances, :id => "1"
     
-      #assigns(:route).should == @route
-      #response.should be_successful
-    #end
+      assigns(:route).should == @route
+      response.should be_successful
+    end
     
   end
   
@@ -74,7 +76,7 @@ describe Api::RoutesController do
         should_retrieve_users_as([@user])
         Route.should_receive(:new_with).with(@params, @user).and_return(@route)
   
-        post :create, :route => @params, :extras => @extras
+        post :create, :route => @params, :extras => @valid_token
         response.should be_successful
       end
       
@@ -90,7 +92,7 @@ describe Api::RoutesController do
         stub_users_as(@user)
         Route.should_receive(:new_with).with(@params, @user).and_return(@route)
   
-        post :create, :route => @params, :extras => @extras
+        post :create, :route => @params, :extras => @bad_token
         response.should_not be_successful
       end
       
@@ -123,7 +125,7 @@ describe Api::RoutesController do
         should_retrieve_users_as([@user])
         Route.should_receive(:find).with("1").and_return(@route)
         
-        put :update, :route => @params, :extras => @extras, :id => "1"
+        put :update, :route => @params, :extras => @valid_token, :id => "1"
         response.should be_successful
       end
       
@@ -139,7 +141,7 @@ describe Api::RoutesController do
         stub_users_as(@user)
         Route.should_receive(:find).with("1").and_return(@route)
         
-        put :update, :route => @params, :extras => @extras, :id => "1"
+        put :update, :route => @params, :extras => @bad_token, :id => "1"
         response.should_not be_successful
       end
       
@@ -152,7 +154,7 @@ describe Api::RoutesController do
       
       it "should not find a user" do
         stub_users_as(nil)
-        delete :destroy, :extras => @extras, :id => "1"
+        delete :destroy, :extras => @valid_token, :id => "1"
         
         assigns(:user).should be_nil
         response.should_not be_successful
@@ -176,7 +178,7 @@ describe Api::RoutesController do
         it "should respond with success" do
           Route.should_receive(:find).with("1").and_return(@route)
 
-          post :destroy, :extras => @extras, :id => "1"
+          post :destroy, :extras => @valid_token, :id => "1"
           response.should be_successful
         end
         
@@ -191,7 +193,7 @@ describe Api::RoutesController do
         it "should respond with success" do
           Route.should_receive(:find).with("1").and_return(@route)
 
-          post :destroy, :extras => @extras, :id => "1"
+          post :destroy, :extras => @bad_token, :id => "1"
           response.should_not be_successful
         end
         

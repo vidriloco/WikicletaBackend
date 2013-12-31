@@ -16,12 +16,35 @@ class Tip < ActiveRecord::Base
   
   default_scope order('updated_at DESC')
   
+  # Methods that generate content for the API
+  
   def self.new_with(params, coords, user)
     tip=Tip.new(params.merge(:user => user))
     tip.apply_geo(coords)
     tip
   end
   
+  def update_with(params, coordinates, user)
+    self.apply_geo(coordinates)
+    self.update_attributes(params.merge(:user => user))
+  end
+  
+  def as_json(opts={})
+    super({
+      :only => [:id, :content, :category, :likes_count, :dislikes_count],
+      :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
+    })
+  end
+  
+  def light_description
+    content
+  end
+  
+  def light_title
+    category
+  end
+  
+  # Methods that generate content for the browser-based version
   def self.categorized_by_kinds(viewport=nil)
     hash = {}
     if viewport.nil?
@@ -41,36 +64,12 @@ class Tip < ActiveRecord::Base
     "#{category_symbol}-#{id}"
   end
   
-  def as_json(opts={})
-    super({
-      :only => [:id, :content, :category, :likes_count, :dislikes_count],
-      :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
-    })
-  end
-  
   def humanized_category
     Tip.humanized_category_for(:categories, category)
   end
   
   def category_symbol
     Tip.category_symbol_for(:categories, category)
-  end
-  
-  def update_with(params, coordinates, user)
-    self.apply_geo(coordinates)
-    self.update_attributes(params.merge(:user => user))
-  end
-  
-  def owners 
-    {}
-  end
-  
-  def light_description
-    content
-  end
-  
-  def light_title
-    category
   end
   
   # Dumpables
