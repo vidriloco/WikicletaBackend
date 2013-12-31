@@ -54,7 +54,7 @@ describe Parking do
       Ownership.first.owned_object.lat.should == 25.6667
     end
     
-    it "should generate a valid response dictionary for the sightseeing tip" do
+    it "should generate a valid response dictionary for the parking" do
       @parking.as_json.should == {
         "id" => @parking.id, 
         "details" => @parking.details,

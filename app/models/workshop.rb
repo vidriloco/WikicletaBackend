@@ -14,17 +14,11 @@ class Workshop < ActiveRecord::Base
   
   default_scope order('updated_at DESC')
   
-  def store?
-    store
-  end 
-  
-  def identifier
-    "workshop-#{id}"
-  end
+  # Methods for content generation for API
   
   def as_json(opts={})
     super({
-      :only => [:id, :name, :details, :likes_count, :dislikes_count, :store, :phone, :cell_phone, :webpage, :twitter, :horary, :others_can_edit_it],
+      :only => [:id, :name, :details, :likes_count, :dislikes_count, :store, :phone, :cell_phone, :webpage, :twitter, :horary],
       :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
   end
@@ -48,6 +42,18 @@ class Workshop < ActiveRecord::Base
   def light_title
     name
   end
+  
+  # Methods for content generation for browser
+  
+  def store?
+    store
+  end 
+  
+  def identifier
+    "workshop-#{id}"
+  end
+  
+  # Dumpables
   
   def self.attrs_for_dump
     %w(name details store phone cell_phone webpage twitter horary likes_count updated_at created_at)
