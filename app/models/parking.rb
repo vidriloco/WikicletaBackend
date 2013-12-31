@@ -18,17 +18,7 @@ class Parking < ActiveRecord::Base
   
   default_scope order('updated_at DESC')
   
-  def identifier
-    "parking-#{id}"
-  end
-  
-  def humanized_kind_symbol
-    Parking.category_symbol_for(:kinds, kind)
-  end
-  
-  def humanized_kind
-    Parking.humanized_category_for(:kinds, kind)
-  end
+  # methods for rendering content for API
   
   def self.new_with(params, coords, user)
     parking=Parking.new(params)
@@ -44,7 +34,7 @@ class Parking < ActiveRecord::Base
   
   def as_json(opts={})
     super({
-      :only => [:id, :details, :kind, :likes_count, :dislikes_count, :has_roof, :others_can_edit_it],
+      :only => [:id, :details, :kind, :likes_count, :dislikes_count, :has_roof],
       :methods => [:str_created_at, :str_updated_at, :lat, :lon, :owner]
     })
   end
@@ -57,9 +47,21 @@ class Parking < ActiveRecord::Base
     kind
   end
   
-  def self.kinds
-    { 1 => :government_provided, 2 => :urban_mobiliary, 3 => :venue_provided }
+  # methods for rendering content for the browser based version
+  
+  def identifier
+    "parking-#{id}"
   end
+  
+  def humanized_kind_symbol
+    Parking.category_symbol_for(:kinds, kind)
+  end
+  
+  def humanized_kind
+    Parking.humanized_category_for(:kinds, kind)
+  end
+  
+  # Dumpables
   
   def self.attrs_for_dump
     %w(details kind has_roof likes_count created_at updated_at)
@@ -67,5 +69,10 @@ class Parking < ActiveRecord::Base
   
   def self.attrs_for_dump_ex
     %w(coordinates_to_s)
+  end
+  
+  private
+  def self.kinds
+    { 1 => :government_provided, 2 => :urban_mobiliary, 3 => :venue_provided }
   end
 end
