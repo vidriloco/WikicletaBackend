@@ -67,6 +67,24 @@ class User < ActiveRecord::Base
     email_visible
   end
   
+  def check_parameters_and_password(hash)
+    return self.valid_password?(hash["current_password"]) if hash.has_key?("current_password")
+    true
+  end
+  
+  def superuser?
+    !user_roles.where(:ring => UserRole.superuser, :permissions => UserRole.read_write).empty?
+  end
+  
+  # Methods that generate content for API
+  
+  def self.create_with(params)
+    user = User.new(params)
+    user.save
+    user.set_pic(params)
+    user
+  end
+  
   def as_json(opts={})
     super({
       :only => [:full_name, :email, :username, :bio],
@@ -80,20 +98,8 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
   
-  def check_parameters_and_password(hash)
-    return self.valid_password?(hash["current_password"]) if hash.has_key?("current_password")
-    true
-  end
-  
   def profile_to_json
     {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db), :identifier => identifier, :email => email }
-  end
-  
-  def self.create_with(params)
-    user = User.new(params)
-    user.save
-    user.set_pic(params)
-    user
   end
   
   def update_with(params)
@@ -105,9 +111,7 @@ class User < ActiveRecord::Base
     assign_picture(build_dummy_tmp_file_from(params)) unless params[:image_pic].blank?
   end
   
-  def superuser?
-    !user_roles.where(:ring => UserRole.superuser, :permissions => UserRole.read_write).empty?
-  end
+  # End methods that generate content for API
   
   protected
   
