@@ -1,5 +1,5 @@
 class UserSettingsController < ApplicationController
-  layout 'profiles'
+  layout 'on_map_center'
   
   before_filter :authenticate_user!
   before_filter :expose_user

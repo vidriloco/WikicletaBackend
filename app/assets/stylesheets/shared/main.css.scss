@@ -12,35 +12,8 @@ font-family: "gothamrndbold-Bold";
    src:url("/assets/gothamrndbold.ttf");
 }
 
-.invite {
-	padding: 50px 10px 0px 10px;
-	text-align: center;
-	border: 1px solid #FFCAB1;
-	margin-bottom: 30px;
-	
-	p.title {
-		color: #1F3C51;
-		font-size: 18px;
-		line-height: 25px;
-		margin-bottom: 20px;
-	}
-}
-
-
-
-.dropdown-menu {
-	li {
-		display: block;
-	}
-}
-
-.nav-pills {
-	li { margin-right: 5px; }
-}
-
 body, html {
 	font-family: "gothamrndbook-Book";
-	
 	height: 100%;
 	width: 100%;
 	background: #f2f7fb !important; /* Old browsers */
@@ -52,7 +25,7 @@ h3 {
 	margin:0 !important;
 }
 
-ul {
+ul, p {
 	margin: 0;
 	padding: 0;
 }
@@ -133,11 +106,6 @@ a.personal {
 
 }
 
-.spinner {
-	margin-right: 10px;
-	display: none;
-}
-
 .centered {
         margin-left: auto !important;
         margin-right: auto !important;
@@ -187,33 +155,6 @@ a.personal {
 	border: 1px solid #A6BDFD;
 }
 
-
-.ml-20 {
-        margin-left: 40px;
-}
-
-.mb-10 {
-        margin-bottom: 10px;
-}
-
-.rounded-bottom-5 {
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-        -moz-border-bottom-left-radius: 5px;
-        -moz-border-bottom-right-radius: 5px;
-        -webkit-border-bottom-left-radius: 5px;
-        -webkit-border-bottom-right-radius: 5px;
-}
-
-.rounded-top-5 {
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        -moz-border-top-left-radius: 5px;
-        -moz-border-top-right-radius: 5px;
-        -webkit-border-top-left-radius: 5px;
-        -webkit-border-top-right-radius: 5px;
-}
-
 a {
         text-decoration: none;
 }
@@ -247,14 +188,6 @@ a.back {
 
 .to-right {
         float: right;
-}
-
-.to-left {
-        float: left;
-}
-
-.inlined {
-        display: inline-block !important;
 }
 
 .separator {
@@ -294,64 +227,12 @@ ul.inlined-list li, ul.inlined-list li * { display: inline-block; }
         opacity: 1 !important;
 }
 
-.simplePagerContainer ul{ display:inline-block;*display:inline;*zoom:1;margin-left:0;margin-bottom:0;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);}
-.simplePagerContainer ul li{ display:inline; }
-.simplePagerContainer ul li a{ float:left;padding:0 14px;line-height:34px;text-decoration:none;border:1px solid #ddd;border-left-width:0; color: #45793B; background-color: white; }
-.simplePagerContainer ul li a:hover, li.currentPage a {background-color:#ECECEC !important;}
-.simplePagerContainer ul li.currentPage a{color:#999999;cursor:default;}
-.simplePagerContainer ul li:first-child a{border-left-width:1px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;}
-.simplePagerContainer ul li:last-child a{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
-
-p.empty {
-        margin-top: 10%;
-        font-style: italic;
-        font-size: 18px;
-        text-align: center;
-}
-
-.loading {
-        width: 180px;
-        margin-top: 20px;
-        font-style: normal;
-        text-align: center;
-        border: none !important;
-        display: none;
-        
-        .spinner {
-                height: 30px;
-                width: 30px;
-                margin-left: 4px;
-                background: url(/assets/spinner.gif);
-        }
-        
-        p {
-                padding-top: 13px !important;
-                font-size: 13px;
-                font-weight: bold;
-                vertical-align: 10px;
-                color: #2B3B63;
-        }
-}
 
 .login-link {
         color: #FF5800 !important;
 }
 
-
-
-
 // Ordered styles
-
-.board-login {
-        margin-top: 0px !important;
-}
-
-.board {
-        margin-top: 50px;
-        background-color: #FFF;
-        padding-top: 20px;
-        border: 0.2px solid #8EC4FF;    
-}
 
 .subsection {
         background-color: white;
@@ -362,17 +243,6 @@ p.empty {
         * {
                 display: inline-block;
         }
-}
-
-
-// Colors
-
-.red {
-        color: #ca1e2f;
-}
-
-.green {
-        color: #008a13;
 }
 
 // Circular pictures
@@ -450,4 +320,29 @@ p.empty {
 	.left-side {
 		text-align: left;
 	}
+}
+
+.submit-button {
+	font-family: "gothamrndbook-Book";
+	font-size: 16px;
+	color: #ffffff;
+	padding: 10px 10px;
+	background: -moz-linear-gradient(
+		top,
+		#fb4e15 0%,
+		#ff3c00);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#fb4e15),
+		to(#ff3c00));
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 0.1px solid white;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.3);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.3);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.3);
 }

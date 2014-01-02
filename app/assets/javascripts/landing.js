@@ -1,10 +1,10 @@
-//= require common/base
 //= require jquery.fancybox.pack
 //= require jquery.fancybox-media
 
 $(document).ready(function() {
 	
 	if($.isDefined('.landing')) {
+		map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {});
 		var marker = null;
 		 $("#pois-owl").owlCarousel({
 			navigation : false,

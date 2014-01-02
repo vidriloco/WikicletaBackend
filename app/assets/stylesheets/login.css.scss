@@ -1,0 +1,50 @@
+/*
+ *= require_self
+ *= require bootstrap_and_overrides
+ *= require shared/main
+ */
+
+/*
+ *  Styles for login view
+ */
+
+.login {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border: 1px solid #C7DBF5;
+	background: white;
+	padding: 20px;
+	.form {
+		margin-top: 60px;
+		h2 {
+			text-align: center;
+		}
+		
+		input[type=text], input[type=password], input[type=email] {
+			font-family: "gothamrndbook-Book";
+			font-size: 14px;
+			width: 300px;
+			height: 30px;
+			margin: 10px;
+		}
+		
+		.submit-area {
+			margin-top: 20px;
+		}
+	}
+	
+	.separator {
+		margin: 20px !important;
+	}
+	
+	a:hover {
+		text-decoration: none !important;
+	}
+}
+
+.login:hover {
+  border: 0.1px solid #8EC4FF;    
+}
+

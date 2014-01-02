@@ -1,7 +1,11 @@
 /*
  *= require_self
- *= require bootstrap_and_overrides
  *= require jquery.fancybox
+ *= require bootstrap_and_overrides
+ *= require owl.carousel
+ *= require owl.theme
+ *= require shared/main
+ *= require map_based/common
 */
 
 @import "colors.css.scss";

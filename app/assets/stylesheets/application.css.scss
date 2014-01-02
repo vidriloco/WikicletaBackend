@@ -3,6 +3,14 @@
  *= require bootstrap_and_overrides
  *= require owl.carousel
  *= require owl.theme
- *= require_tree .
+ *= require colors
+ *= require discover
+ *= require landing
+ *= require login
+ *= require map_based/common
+ *= require profiles
+ *= require routes
+ *= require shared/main
+
 */
 

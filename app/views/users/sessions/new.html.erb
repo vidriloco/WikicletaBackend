@@ -1,56 +1,28 @@
-<div class="row-fluid centered-text"><%= image_tag('wikicleta-logo.png', :size => '250x250') %></div><br/>
-<div class="row-fluid">
-	<div class="span4"></div>
-	<div class="span4 board board-login rounded-5 shadow-light">
+<div class="login rounded-5">
+	<div class="centered-text"><%= image_tag('wikicleta-logo.png', :size => '350x350') %></div><br/>	
+	<div class="form">
 		<h2><%=t "user_accounts.sessions.new.title" %></h2>
-		<br/>
-		<div class="row-fluid">
-			<div class="span2"></div>
-			<div class="span10">
-				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
-					<div class="control-group">
-			    	<label class="control-label"><i class="icon-user"></i></label>
-			    	<div class="controls">
-			    		<%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login'), :size => 32 %>
-			    	</div>
-					</div>
-					<div class="control-group">
-			    	<label class="control-label"><i class="icon-lock"></i></label>
-			    	<div class="controls">
-						  <%= f.password_field :password, :placeholder => t('activerecord.attributes.user.password'), :size => 32 %>	  	
-			    	</div>
-					</div>
-					
-					<div class="row-fluid">
-						<div class="span5"></div>
-						<div class="span2">
-							<%= f.submit t('user_accounts.sessions.new.title'), :class => "btn btn-primary" %>
-						</div>
-						<div class="span5"></div>
-					</div>
-				<% end %>
+		
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+			<div class="fields">
+				<%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login'), :size => 32 %>
+  			<%= f.password_field :password, :placeholder => t('activerecord.attributes.user.password'), :size => 32 %>
+				<div class="submit-area">
+		  		<%= f.submit t('user_accounts.sessions.new.title'), :class => "submit-button" %>
+				</div>
 			</div>
-		</div>
-					
-		<div class="separator"></div>
-		<div class="row-fluid action-links">
-			<ul>
-				<li><%= link_to t("user_accounts.forgot_password"), account_recover_password_path %></li>
-				<li><%= link_to t("user_accounts.sessions.new.sign_up"), sign_up_path %></li>
-			</ul>
-		</div>
+			<div class="separator"></div>
+			<div>
+				<ul class="nav nav-pills">
+					<li class="active"><%= link_to t('actions.back_start').html_safe, root_path, :class => 'back' %></li>
+					<li ><%= link_to t("user_accounts.forgot_password"), account_recover_password_path %></li>
+					<li ><%= link_to t("user_accounts.sessions.new.sign_up"), sign_up_path %></li>
+				</ul>
+			</div>
+		<% end %>
 	</div>
+</div>
 
-</div>
-<div class="row-fluid">
-	<div class="span4"></div>
-	<div class="span4">
-		<br/>
-		<ul class="nav nav-pills">
-			<li class="active"><%= link_to t('actions.back_start').html_safe, root_path, :class => 'back' %></li>
-		</ul>
-	</div>
-	<div class="span4"></div>
-</div>
+
 
 
