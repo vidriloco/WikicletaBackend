@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= t('app.name') %> : Routes </title>
+  <title><%= t('app.name') %> : <%= yield :section %> </title>
 	
   <%= stylesheet_link_tag  "application" %>
 
@@ -13,13 +13,16 @@
 </head>
 
 <body>
-	<%= render 'layouts/shared/navbar' %>
-	
-	<div id="content-centered">
-		<div class="background-logo"></div>	
-		<%= yield :panel %>
+	<%= render 'layouts/shared/commons' %>
+	<div class="on-map-center"><%= render 'layouts/shared/navbar' %></div>
+	<div class="<%= yield :klass %>">
+		<div id="content-centered">
+			<div class="background-logo"></div>	
+			<%= yield :panel %>
+		</div>
+		<div id="map-container"><div id="map" class="show-only edit <%= yield :map_behavior %>"></div></div>
+		<%= yield :free_content %>
 	</div>
-	<div id="map-container"><div id="map" class="show-only edit <%= yield :map_behavior %>"></div></div>
 </body>
 
 </html>

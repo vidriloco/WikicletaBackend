@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130929062249) do
+ActiveRecord::Schema.define(:version => 20131205001357) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -72,6 +72,23 @@ ActiveRecord::Schema.define(:version => 20130929062249) do
   add_index "cities", ["coordinates"], :name => "index_cities_on_coordinates", :spatial => true
   add_index "cities", ["name", "country_code"], :name => "index_cities_on_name_and_country_code", :unique => true
 
+  create_table "contacts", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cycle_stations", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.integer  "free_slots"
+    t.integer  "bikes_available"
+    t.spatial  "coordinates",     :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.string   "agency"
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
+  end
+
   create_table "cycling_group_admins", :force => true do |t|
     t.integer  "cycling_group_id"
     t.integer  "user_id"
@@ -100,6 +117,25 @@ ActiveRecord::Schema.define(:version => 20130929062249) do
 
   add_index "cycling_groups", ["name"], :name => "index_cycling_groups_on_name", :unique => true
   add_index "cycling_groups", ["slug"], :name => "index_cycling_groups_on_slug", :unique => true
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "favorited_object_id"
+    t.string   "favorited_object_type"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "favorites", ["user_id", "favorited_object_id", "favorited_object_type"], :name => "unique_object_favorites_index", :unique => true
+
+  create_table "instants", :force => true do |t|
+    t.spatial  "coordinates",          :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.decimal  "speed"
+    t.integer  "elapsed_time",         :limit => 8
+    t.integer  "route_performance_id"
+    t.datetime "created_at",                                                                       :null => false
+    t.datetime "updated_at",                                                                       :null => false
+  end
 
   create_table "ownerships", :force => true do |t|
     t.integer  "rank"
@@ -136,6 +172,55 @@ ActiveRecord::Schema.define(:version => 20130929062249) do
     t.string   "imageable_type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "ranked_comments", :force => true do |t|
+    t.boolean  "positive"
+    t.string   "content",                    :null => false
+    t.integer  "user_id",                    :null => false
+    t.integer  "ranked_comment_object_id",   :null => false
+    t.string   "ranked_comment_object_type", :null => false
+    t.integer  "ranked_comment_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "ranked_comments", ["user_id", "ranked_comment_object_id", "ranked_comment_object_type", "content"], :name => "unique_object_ranked_object_index", :unique => true
+
+  create_table "route_performances", :force => true do |t|
+    t.decimal  "average_speed"
+    t.integer  "elapsed_time",  :limit => 8
+    t.integer  "user_id"
+    t.integer  "route_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "route_rankings", :force => true do |t|
+    t.integer  "user_id",                      :null => false
+    t.integer  "route_id",                     :null => false
+    t.integer  "speed_index",   :default => 0
+    t.integer  "comfort_index", :default => 0
+    t.integer  "safety_index",  :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "route_rankings", ["user_id", "route_id"], :name => "unique_route_ranking_index", :unique => true
+
+  create_table "routes", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.boolean  "is_public"
+    t.decimal  "kilometers"
+    t.spatial  "origin_coordinate", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.spatial  "end_coordinate",    :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "comfort_index"
+    t.integer  "speed_index"
+    t.integer  "safety_index"
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
+    t.spatial  "path",              :limit => {:srid=>4326, :type=>"line_string"}
   end
 
   create_table "segments", :force => true do |t|
@@ -188,9 +273,19 @@ ActiveRecord::Schema.define(:version => 20130929062249) do
 
   add_index "trips", ["slug"], :name => "index_trips_on_slug", :unique => true
 
+  create_table "user_roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "ring"
+    t.string   "permissions"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "user_roles", ["user_id", "ring"], :name => "user_roles_ring_index", :unique => true
+
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -205,12 +300,9 @@ ActiveRecord::Schema.define(:version => 20130929062249) do
     t.text     "bio"
     t.string   "personal_page"
     t.date     "started_cycling_date"
-    t.boolean  "email_visible"
-    t.boolean  "externally_registered",  :default => false
-    t.boolean  "seller_account"
     t.integer  "city_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

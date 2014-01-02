@@ -19,7 +19,7 @@ class Parking < ActiveRecord::Base
   default_scope order('updated_at DESC')
   
   # methods for rendering content for API
-  
+
   def self.new_with(params, coords, user)
     parking=Parking.new(params)
     parking.apply_geo(coords)
@@ -50,7 +50,7 @@ class Parking < ActiveRecord::Base
   # methods for rendering content for the browser based version
   
   def identifier
-    "parking-#{id}"
+    "parkings-#{id}"
   end
   
   def humanized_kind_symbol

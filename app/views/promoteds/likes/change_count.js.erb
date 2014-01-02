@@ -1,1 +1,0 @@
-$('#p-<%= @promoted.id %> .status .likes-count').replaceWith("<%= escape_javascript( render :partial => 'promoteds/likes_count', :locals => {:promoted => @promoted}) %>");

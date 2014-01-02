@@ -16,21 +16,23 @@ module DiscoverHelper
     html.html_safe
   end
   
-  def trips_of_type_in(trip_pois, type)
-    includes_type = false
-    trip_pois.each do |trip_poi|
-      if(trip_poi.category_symbol == type.to_sym)
-        includes_type = true
-      end
-    end
-    includes_type
+  def cell_phone_for(workshop)
+    cell_phone = workshop.cell_phone.to_i
+    return image_tag('cell_phone_icon.png').concat(" <b>#{cell_phone}</b>".html_safe) if cell_phone != 0
+    ""
   end
   
-  def url_to_share(item)
-    if item.is_a? CyclingGroup
-      discover_cycling_groups_url.concat("#/#{item.slug}")
-    else
-      discover_trips_url.concat("#/#{item.slug}")
-    end
+  def telephone_for(workshop)
+    phone = workshop.phone.to_i
+    return image_tag('telephone_icon.png').concat(" <b>#{phone}</b>".html_safe) if phone != 0 
+    ""
+  end
+  
+  def twitter_for(workshop)
+    link_to(image_tag('twitter_icon.png'), "http://twitter.com/#{workshop.twitter}", :target => "_blank") unless workshop.twitter.blank?
+  end
+  
+  def website_for(workshop)
+    link_to(image_tag('website_icon.png'), workshop.webpage, :target => "_blank") unless workshop.webpage.blank?
   end
 end

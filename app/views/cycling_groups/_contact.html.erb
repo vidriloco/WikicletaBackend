@@ -6,20 +6,17 @@
 	<% end %>
 	<% unless cycling_group.twitter_account.blank? %>
 		<li>
-			<span class="icon"><%= image_tag('twitter-icon.png', :size => '25x25') %></span>
-			<%= link_to("@#{cycling_group.twitter_account}", "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
+			<%= link_to(image_tag('twitter-icon.png'), "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
 		</li>
 	<% end %>
 	<% unless cycling_group.facebook_url.blank? %>
 		<li>
-			<span class="icon"><%= image_tag('facebook-icon.png', :size => '25x25') %></span>
-			<%= link_to('Facebook', check_and_ammend(cycling_group.facebook_url), :target => "_new") %>				
+			<%= link_to(image_tag('facebook-icon.png'), check_and_ammend(cycling_group.facebook_url), :target => "_new") %>				
 		</li>
 	<% end %>
 	<% unless cycling_group.website_url.blank? %>
 		<li>
-			<span class="icon"><%= image_tag('web-icon.png', :size => '25x25') %></span>
-			<%= link_to('Sitio web', check_and_ammend(cycling_group.website_url), :target => "_new") %>				
+			<%= link_to(image_tag('web-icon.png'), check_and_ammend(cycling_group.website_url), :target => "_new") %>				
 		</li>
 	<% end %>
 </ul>

@@ -1,0 +1,2 @@
+$('.discover #listed').html("<%= escape_javascript(render(:partial => 'tip', :collection => @tips)) %>");
+$('.discover #listed').append("<%= escape_javascript(render(:partial => 'tips/header')) %>");

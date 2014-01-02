@@ -61,7 +61,7 @@ class Tip < ActiveRecord::Base
   end
   
   def identifier
-    "#{category_symbol}-#{id}"
+    "tips-#{id}"
   end
   
   def humanized_category

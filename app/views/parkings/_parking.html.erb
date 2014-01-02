@@ -1,0 +1,11 @@
+<div id="<%= parking.identifier %>" class="parking poi" data-kind="<%= parking.humanized_kind_symbol %>_parking-marker" data-lat="<%= parking.lat %>" data-lon="<%= parking.lon %>">
+	<div class="inner-panel">
+		<p class="title"><%= parking.humanized_kind %></p>
+		<p class="content"><%= parking.details %></p>
+		<div class="extras">
+			<p class="emphasize"><%= t('app.parkings.roof')[parking.has_roof] %></p>
+		</div>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => parking.ownerships.first.user, :date => parking.updated_at } %>
+	</div>
+	<%= render 'shared/pois/common_actions' %>
+</div>

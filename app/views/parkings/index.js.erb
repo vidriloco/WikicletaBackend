@@ -1,0 +1,2 @@
+$('.discover #listed').html("<%= escape_javascript(render(:partial => 'parking', :collection => @parkings)) %>");
+$('.discover #listed').append("<%= escape_javascript(render(:partial => 'parkings/header')) %>");

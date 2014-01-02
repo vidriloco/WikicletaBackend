@@ -1,5 +1,0 @@
-<% if promoted.pictures.empty? %>
-	<%= image_tag 'no_promoted.png', :class => "main-picture" %>
-<% else %>
-	<%= image_tag promoted.pictures.first.image.preview.url, :class => "main-picture" %>
-<% end %>

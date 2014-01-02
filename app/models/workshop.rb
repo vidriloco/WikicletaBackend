@@ -50,7 +50,7 @@ class Workshop < ActiveRecord::Base
   end 
   
   def identifier
-    "workshop-#{id}"
+    "workshops-#{id}"
   end
   
   # Dumpables

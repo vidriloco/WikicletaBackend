@@ -12,6 +12,128 @@ html, body {
     height:100%;
 }
 
+#header-container {
+	.logo-img {
+		margin-bottom: 10px;
+		border-radius: 5px;
+		box-shadow: black;
+		background-color: white;
+		width: 100px;
+		height: 100px;
+		padding: 5px;
+		border: 1px solid $wikicleta_light_blue;
+	}
+}
+
+#host-container {
+	margin: 0px;
+	padding: 0px;
+	
+	.controls {
+		padding-top: 5px;
+		
+		a {
+			margin-left: 10px;
+		}
+	}
+	
+	.maximize {
+		display: none;
+	}
+}
+
+.poi {
+	.title {
+		margin-top: 10px;
+		font-size: 24px;
+		color: $wikicleta_orange;
+	}
+	
+	.subtitle {
+		text-align: center;
+		font-size: 14px;
+		font-weight: bold;
+		color: $wikicleta_blue;
+		margin-top: 10px;
+	}
+	
+	.content {
+		font-size: 14px;
+		color: $wikicleta_blue;
+		text-align: justify;
+		margin: 0px 20px 0px 20px;
+	}
+	
+	.extras {
+		margin-top: 5px;
+		
+		ul {
+			li {
+				display: inline-block;
+			}
+		}
+	}
+	
+	.contributor {
+		text-align: right;
+		padding: 5px 10px 5px 0;
+		
+		.details {
+			margin-right: 10px;
+			font-size: 13px;
+		}
+	}
+	
+	.timings {
+		font-size: 13px;
+	}
+	
+	.contact {
+		margin-bottom: 10px;
+		a {
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			display: inline-block;
+		}
+	}
+	
+	.horary {
+		font-size: 13px;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.emphasize {
+		color: $wikicleta_orange;
+	}
+	
+	.availability {
+		
+		.block {
+			display: inline-block;
+			margin: 10px;
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.number {
+				font-size: 25px;
+				font-weight: bold;
+			}
+			
+			.text {
+				color: $wikicleta_orange;
+				font-size: 14px;
+				text-align: center;
+			}
+		}
+		
+	}
+}
+
 .inner-panel {
 	
 	.with-focus {
@@ -125,100 +247,6 @@ html, body {
 			margin-right: 10px;
 			margin-left: 10px;
 		}
-	}
-}
-
-
-.cycling-group, .trip {
-	.share-media {
-		text-align: right;
-		height: 20px !important;
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	  filter: alpha(opacity=0);
-	  -moz-opacity: 0;
-	  -khtml-opacity: 0;
-	  opacity: 0;
-	}
-	
-}
-
-.cycling-group:hover {
-	background-color: rgba(32,59,80,0.1);
-}
-
-.cycling-group {
-	font-family: 'Gotham Rounded';
-	padding: 15px 10px 15px 0px;
-	border-top: 1px solid rgba(32,59,80,0.1);
-	
-	p {
-		padding: 0px;
-		margin: 0px;
-	}
-	
-	.logo {
-		margin-left: 0px;
-		margin-top: 10px;
-		width: 180px !important;
-		height: 180px !important;
-	}
-	
-	.logo-container {
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-	
-	.details {
-		text-align: right;
-		padding: 10px;
-		padding-bottom: 0px;
-		.name {
-			font-size: 20px;
-		}
-		
-		.days-to-event {
-			font-size: 13px;
-		}
-		
-		.info {
-			font-size: 10px;
-			font-weight: 300;
-		}
-		
-		.timings {
-			font-size: 10px;
-			list-style: none;
-			margin-bottom: 15px;
-			li {
-				display: inline-block;
-				margin-left: 20px;
-			}
-			
-			
-			.verb {
-				color: $wikicleta_orange;
-			}
-		}
-	}
-	
-	.contact {
-		text-align: right;
-		font-size: 13px;
-		padding: 5px;
-		margin-bottom: 10px;
-		list-style: none;
-		li {
-			display: inline-block;
-		}
-		.icon {
-			margin-right: 5px;
-			margin-left: 20px;
-		}
-	}
-	
-	.separator {
-		height: 1px !important;
-		background-color: $wikicleta_light_blue;
 	}
 }
 
@@ -390,3 +418,149 @@ html, body {
 	padding-left: 30px;
 	padding-right: 20px;
 }
+
+/* Discover section styles  */
+
+.top-bar {
+	-moz-box-shadow: 0 0 3px #888;
+	-webkit-box-shadow: 0 0 3px#888;
+	box-shadow: 0 0 3px #888;
+	border-radius: 3px;
+	
+	ul {
+		margin: 5px 10px 5px 10px;
+	}
+}
+
+.on-map-center {
+	.top-bar {
+		position: fixed;
+		z-index: 99999;
+		width: 50%;
+		margin: 0 0 0 -25%;
+		left: 50%;
+		height: 50px;
+		min-width: 300px;
+		background-color: white;
+
+		ul {
+
+			li.with-left-divider {
+				border-left: 3px solid $wikicleta_orange;
+				padding-left: 15px;
+			}
+		}
+	}
+}
+
+.discover {
+	
+	.route {
+		text-align: center;
+		
+		p {
+			text-align: center;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+		
+		.metrics {
+			
+			.value {
+				font-size: 40px;
+				color: $wikicleta_blue;
+				margin-right: 10px;
+			}
+			
+			.unit {
+				font-size: 14px;
+				color: $wikicleta_orange;
+			}
+			
+		}
+		
+		.name {
+			margin-top: 20px;
+			font-size: 15px;
+			text-transform: uppercase;
+			color: $wikicleta_orange;
+		}
+		
+	}
+	
+	#content-centered {
+	}
+	
+	.panel {
+		background-color: white;
+		width: 400px;
+		padding-top: 20px !important;
+		margin: 50px auto 0px auto;
+	}
+	
+	.floating-panel {
+		position: fixed;
+		z-index: 99999;
+		right: 70px;
+		top: 90px;
+		background: rgba(255,255,255,0.2);
+		padding: 10px;
+		
+		.half {
+			display: inline-block;
+			width: 50px;
+			padding: 10px;
+			background-color: rgba(255,255,255,0.5) !important;
+		}
+		
+		.half:hover {
+			background-color: rgba(255,255,255,1) !important;
+		}
+		
+		.inner-panel {
+			padding: 5px;
+			margin: 5px;
+		}
+		
+		.panel-white {
+			border-radius: 5px;
+			border: 1px solid #D7E1F8;
+			background-color: white;
+			overflow: scroll;
+		}
+		
+		.panel-scroll {
+			height: 325px;
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: 0px;
+		
+		li {
+			a.selected {
+				opacity: 1;
+			}
+			a:hover {
+				opacity: 0.8;
+				color: $wikicleta_orange;
+			}
+			a {
+				opacity: 0.4;
+				margin: 20px auto 20px auto;
+				text-align: center;
+				display: block;
+				width: 50px;
+				span {
+					display: block;
+					margin-top: 10px;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	
+	
+}
+

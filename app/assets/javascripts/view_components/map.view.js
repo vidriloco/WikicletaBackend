@@ -1,6 +1,6 @@
 //= require view_components/base.view
 
-var defaultZoom = 8;
+var defaultZoom = 13;
 var defaultMiddleZoom = 16;
 var defaultLat = 19.322721;
 var defaultLon = -99.184570;
@@ -10,7 +10,7 @@ $.extend({
 		return $(dom).length;
 	},
 	assetsURL: function() {
-		return 'http://wikicleta.com/assets/';
+		return $('#remote-server').attr('data-assets-url');
 	}
 });
 
@@ -82,19 +82,30 @@ $.extend(ViewComponents, {
 				}
 			},
 			
-			eventsForMapIdle: function(baseDom, callback) {
+			eventsForMapCenterChanged: function(baseDom, callback_function) {
+				var instance = this;
+				this.baseDom = $(baseDom);
+
+				google.maps.event.addListener(this.gMap, "center_changed", function() {
+					instance.setSearchMapParams();
+					if(typeof callback_function == 'function') {
+						callback_function();
+					}
+					return true;
+				});
+			},
+			
+			eventsForMapIdle: function(baseDom, callback_function) {
 				var instance = this;
 				this.baseDom = $(baseDom);
 
 				google.maps.event.addListener(this.gMap, "idle", function() {
 					instance.setSearchMapParams();
-					callback();
+					if(typeof callback_function == 'function') {
+						callback_function();
+					}
 					return true;
 				});
-			},
-			
-			setSearchMapParams: function() {
-				this.gMap.getBounds();				
 			},
 
 			// using the convention for dom_lat and dom_lon retrieve

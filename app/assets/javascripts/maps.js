@@ -8,7 +8,6 @@ var map = null;
 var currentlyOnIndex = false;
 var itemsRoutes = null;
 $(document).ready(function(){
-	
 	if($.isDefined('#map')) {
 		
 		var centerMapFromUserCity = function(callback) {

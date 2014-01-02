@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	if($.isDefined('#cycling-groups-section')) {
 		sectionValue = $('#cycling-groups-section').attr('data-url');
 		
@@ -101,4 +101,4 @@ $(document).ready(function() {
 			initialize();
 		}
 	}
-});
+});*/

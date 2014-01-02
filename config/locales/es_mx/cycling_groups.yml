@@ -14,8 +14,8 @@ es_MX:
           message: "No hay grupos con quien rodar en esta área"
           suggest: "Registra el tuyo"
       list:
-        meeting_at: "Se reunen a las "
-        departing_at: "Salen a las "
+        meeting_at: "Reunión"
+        departing_at: "Salida"
       new:
         title: "Nuevo Grupo Ciclista"
         steps:

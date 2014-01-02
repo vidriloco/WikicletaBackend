@@ -22,31 +22,6 @@ html, body {
 		text-align: center;
 		color: $wikicleta_blue;
 	}
-	
-	.route {
-		padding: 20px;
-		
-		p.title {
-			font-size: 14px;
-			font-weight: bold;
-			text-transform: uppercase;
-			color: $wikicleta_orange;
-			
-		}
-		
-		p {
-			font-size: 12px;
-			margin: 0px !important;
-			padding: 0px !important;
-			color: $wikicleta_blue;
-		}
-		
-		.actions {
-			background-color: $wikicleta_light_blue;
-			padding: 5px;
-			border-radius: 5px;
-		}
-	}
 }
 
 .actions {

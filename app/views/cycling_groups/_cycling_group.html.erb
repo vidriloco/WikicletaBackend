@@ -1,26 +1,32 @@
-<div id="<%= cycling_group.slug %>" class="item-wrapper" data-lat="<%= cycling_group.coordinates.lat %>" data-lon="<%= cycling_group.coordinates.lon %>" data-kind="cycling_group">
-	<div class="cycling-group">
-		<div class="details">
-			<div class="info">
-				<div>
-					<p class="name"><%= link_to cycling_group.name, 'javascript:void(0);' %></p>
-					<p class="days-to-event"><%= days_to_event(cycling_group) %></p>
-					<p><%= cycling_group.details %></p>
-					<ul class="timings">
-						<li class="meeting-time"><span class="verb"><%= t('cycling_groups.views.list.meeting_at') %></span> <%= cycling_group.meeting_time %> hrs</li>
-						<li class="departing-time"><span class="verb"><%= t('cycling_groups.views.list.departing_at') %></span> <%= cycling_group.departing_time %> hrs</li>
-					</ul>
-				</div>
-				
-				<%= render :partial => 'cycling_groups/contact', :locals => {:cycling_group => cycling_group } %>
-				<%= render :partial => 'cycling_groups/media', :locals => {:cycling_group => cycling_group } %>
-				
+<div id="<%= cycling_group.identifier %>" class="cycling-group poi" data-lat="<%= cycling_group.coordinates.lat %>" data-lon="<%= cycling_group.coordinates.lon %>" data-kind="cycling_group-marker">
+	<div class="logo-container">
+		<% if cycling_group.picture.image.url.nil? %>
+			<%= link_to image_tag("cycling_group_logo.png", :size => '100x100', :class => 'logo-img'), 'javascript:void(0);' %>
+		<% else %>
+			<%= link_to image_tag(cycling_group.picture.image.url, :size => '100x100', :class => 'logo-img'), 'javascript:void(0);' %>
+		<% end %>
+	</div>
+	<div class="inner-panel">
+		<p class="title"><%= cycling_group.name %></p>
+		
+		<div class="toggable">
+			<p class="details"><%= cycling_group.details %></p>
+			<%= render :partial => 'cycling_groups/contact', :locals => {:cycling_group => cycling_group } %>
+		</div>
+		<div class="availability">
+			<div class="block">
+				<p class="number"><%= cycling_group.meeting_time %></p>
+				<p class="text"><%= t('cycling_groups.views.list.meeting_at') %></p>
 			</div>
-			<div class="pic">
-				<%= render :partial => 'cycling_groups/logo', :locals => {:cycling_group => cycling_group } %>
-				
+			<div class="block">
+				<p class="number"><%= cycling_group.departing_time %></p>
+				<p class="text"><%= t('cycling_groups.views.list.departing_at') %></p>
 			</div>
 		</div>
+		<p class="subtitle"><%= days_to_event(cycling_group) %></p>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => cycling_group.users.first, :date => cycling_group.updated_at } %>
 		
 	</div>
+	
+	<%= render 'shared/pois/common_actions' %>
 </div>

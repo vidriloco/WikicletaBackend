@@ -67,6 +67,8 @@ html, body {
 	
 	.top-bar {
 		position: relative;
+		width: 100% !important;
+		left: 0px;
 		z-index: 999;
 		border-top: 1px solid #EBF6FF;
 		

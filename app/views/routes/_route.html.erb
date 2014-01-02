@@ -1,0 +1,17 @@
+<div id="<%= route.identifier %>" class="route poi" 
+	data-kind="route_start-marker" 
+	data-lat="<%= route.origin_coordinate.lat %>" 
+	data-lon="<%= route.origin_coordinate.lon %>" 
+	data-path="<%= route.to_points_list %>"
+	data-end-lat="<%= route.end_coordinate.lat %>" 
+	data-end-lon="<%= route.end_coordinate.lon %>">
+	<div class="inner-panel">
+		<p class="metrics"><span class="value"><%= '%.2f' % route.kilometers %></span><span class="unit">KM</span></p>
+
+		<p class="name centered-text"><%= route.name %></p>
+		<p class="centered-text"><%= route.details %></p>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => route.users.first, :date => route.updated_at } %>
+	</div>
+	
+	<%= render 'shared/pois/common_actions' %>
+</div>

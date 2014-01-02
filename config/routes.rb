@@ -150,17 +150,19 @@ Ciudadio::Application.routes.draw do
   
   #resources :comments, :only => [:create, :destroy]
   
-  get '/rodadas' => redirect('/discover/cycling_groups')
-  get '/rodada/nueva' => redirect('/discover/cycling_groups/new')
+  resources :discover, :only => [:index]
   
-  get '/discover/trips' => 'trips#index'
-  get '/discover/trips/:id' => 'trips#show'
-  get '/discover/cycling_groups' => 'cycling_groups#index'
-  get '/discover/cycling_groups/new' => 'cycling_groups#new'
-  post '/discover/cycling_groups' => 'cycling_groups#create'
-  get '/discover/cycling_groups/:id/edit' => 'cycling_groups#edit', :as => 'discover_cycling_groups_edit'
-  put '/discover/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
-  get '/discover/cycling_groups/:id' => 'cycling_groups#destroy', :as => 'discover_cycling_group_destroy'
+  resources :tips, :only => [:index]
+  resources :workshops, :only => [:index]
+  resources :parkings, :only => [:index]
+  resources :cycle_stations, :only => [:index]
+  
+  get '/rodada/nueva' => redirect('/cycling_groups/new')
+  get '/cycling_groups/new' => 'cycling_groups#new'
+  post '/cycling_groups' => 'cycling_groups#create'
+  get '/cycling_groups/:id/edit' => 'cycling_groups#edit', :as => 'discover_cycling_groups_edit'
+  put '/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
+  get '/cycling_groups/:id' => 'cycling_groups#destroy', :as => 'discover_cycling_group_destroy'
   
   #  get "/places/:id" => 'places#show', :as => "place"
   #  get "/places/edit/:id" => 'places#edit', :as => "edit_place"  

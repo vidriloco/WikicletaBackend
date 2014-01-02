@@ -1,0 +1,8 @@
+<div id="<%= tip.identifier %>" class="<%= 'first' if(tip_counter == 0) %> tip poi" data-kind="<%= tip.category_symbol %>-marker" data-lat="<%= tip.lat %>" data-lon="<%= tip.lon %>">
+	<div class="inner-panel">
+		<p class="title"><%= tip.humanized_category %></p>
+		<p class="content"><%= tip.content %></p>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => tip.user, :date => tip.updated_at } %>
+	</div>
+	<%= render 'shared/pois/common_actions' %>
+</div>

@@ -1,5 +1,5 @@
 class Profiles::RoutesController < ProfilesController
-  layout 'profiles'
+  layout 'on_map_center'
 
   before_filter :fetch_route
   before_filter :authenticate_allowed_users, :except => [:show]

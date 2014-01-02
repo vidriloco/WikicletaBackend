@@ -16,11 +16,13 @@ class CyclingGroup < ActiveRecord::Base
   validates_presence_of :coordinates, :name
   validates_uniqueness_of :name
     
-  def self.find_nearby_with(viewport, extras)
+  def self.find_nearby_with(viewport, extras)    
     groups = extras.has_key?(:slug) ? CyclingGroup.where(:slug => extras[:slug]) : find_nearby(viewport)
-        
+    
+    date = extras[:date].blank? ? Date.today : Date.parse(extras[:date])
+    
     groups.sort_by do |item| 
-      item.number_of_days_to_event(Date.parse(extras[:date]))
+      item.number_of_days_to_event()
     end
   end
   
@@ -29,6 +31,10 @@ class CyclingGroup < ActiveRecord::Base
     hold_departing_time = departing_time
     
     self.update_attributes!(:meeting_time => hold_departing_time, :departing_time => hold_meeting_time)
+  end
+  
+  def identifier
+    "cycling_groups-#{id}"
   end
   
   def periodicity_for(symbol)

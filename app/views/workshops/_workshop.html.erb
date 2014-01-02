@@ -1,0 +1,25 @@
+<div id="<%= workshop.identifier %>" class="poi workshop" 
+	data-kind="workshop-marker" 
+	data-lat="<%= workshop.lat %>" 
+	data-lon="<%= workshop.lon %>">
+	<div class="inner-panel">
+		<p class="title"><%= workshop.name %></p>
+		<p class="content"><%= workshop.details %></p>
+		<div class="extras">
+			<% unless workshop.horary.blank? %>
+				<p class="horary"><b><%= t('app.workshops.fields.horary') %></b><br/><%= workshop.horary %></p>
+			<% end %>
+			<% if !workshop.twitter.blank? && !workshop.webpage.blank? %>
+				<ul>
+					<li><%= twitter_for(workshop).html_safe %></li>
+					<li><%= website_for(workshop).html_safe %></li>
+					<li><%= telephone_for(workshop).html_safe %></li>
+					<li><%= cell_phone_for(workshop).html_safe %></li>
+				</ul>
+			<% end %>
+		</div>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => workshop.ownerships.first.user, :date => workshop.updated_at } %>
+	</div>
+	
+	<%= render 'shared/pois/common_actions' %>
+</div>

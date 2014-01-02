@@ -55,6 +55,10 @@ class Route < ActiveRecord::Base
     self.where{st_intersects(end_coordinate, window) | st_intersects(origin_coordinate, window)}
   end
   
+  def identifier
+    "routes-#{id}"
+  end
+  
   def as_json
     super({
       :only => [:id, :name, :details, :kilometers, :likes_count, :dislikes_count, :comfort_index, :safety_index, :speed_index],

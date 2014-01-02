@@ -5,8 +5,13 @@ class RoutesController < ApplicationController
   before_filter :authenticate_allowed_users, :only => [:destroy, :create, :new]
   
   def index
-    @user = current_user
-    @routes = Route.all
+    @routes = []
+    
+    respond_to do |format|
+      format.js do
+        @routes = Route.find_nearby(params[:viewport])
+      end
+    end
   end
   
   def new

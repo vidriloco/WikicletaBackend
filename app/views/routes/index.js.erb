@@ -1,0 +1,3 @@
+$('.discover #listed').html("<%= escape_javascript(render(:partial => 'route', :collection => @routes)) %>");
+
+$('.discover #listed').append("<%= escape_javascript(render(:partial => 'routes/header')) %>");

@@ -1,0 +1,33 @@
+<%= content_for(:section ,"Discover") %>
+<%= content_for(:klass, 'discover') %>
+<% content_for :panel do %>	
+	<div class="panel centered-text">
+		<div id="header-container" class="toggable"></div>
+		<div id="host-container"></div>
+	</div>
+<% end %>
+
+<% content_for :free_content do %>
+	<div class="floating-panel">
+		<div class="inner-panel">
+			<div class="half panel-white">
+				<%= link_to image_tag('reload-icon.png'), 'javascript:void(0);', :id => 'reload-control' %>
+				<%= image_tag('spinner.gif', :id => 'indicator', :class => "hidden") %>
+			</div>
+			<div class="half panel-white"><%= link_to image_tag('locateme-icon.png'), 'javascript:void(0);', :id => 'locate-me-control' %></div>
+		</div>
+		<div class="inner-panel panel-white panel-scroll">
+			<ul>
+				<li><a href="#/routes" id="routes-layer" class="layer"><%= image_tag('discover/routes-icon.png') %><br><span>Rutas</span></a></li>
+				<li><a href="#/parkings" id="parkings-layer" class="layer"><%= image_tag('discover/parkings-icon.png') %><br><span>Bici-e</span></a></li>
+				<li><a href="#/workshops" id="workshops-layer" class="layer"><%= image_tag('discover/workshops-icon.png') %><br><span>Talleres</span></a></li>
+				<li><a href="#/cycle_stations" id="cycle_stations-layer" class="layer"><%= image_tag('discover/bikesharing-icon.png') %><br><span>Bicis Públicas</span></a></li>
+				<li><a href="#/tips" id="tips-layer" class="layer"><%= image_tag('discover/tips-icon.png') %><br><span>Tips</span></a></li>
+				<li><a href="#/cycling_groups" id="cycling_groups-layer" class="layer"><%= image_tag('discover/cyclinggroup-icon.png') %><br><span>Grupos Ciclistas</span></a></li>
+				
+			</ul>
+		</div>
+		
+	</div>
+	<div id="listed" class="hidden"></div>
+<% end %>

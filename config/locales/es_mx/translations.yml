@@ -1,4 +1,6 @@
 es_MX:
+  commons:
+    updated: "actualizado"
   actions:
     title: "Acciones"
     back_start: "Ir a la página principal"
@@ -6,6 +8,8 @@ es_MX:
     back_arrow: "&larr; Atrás"
     details: "A detalle"
     hide: "Ocultar"
+    minimize: "Minimizar"
+    maximize: "Expandir"
     edit: "Modificar"
     save: "Guardar"
     delete: "Eliminar"
@@ -18,7 +22,7 @@ es_MX:
       hide: "Ocultar"
       show: "Mostrar"
   connectives:
-    by: "Por"
+    by: "por"
   confirmations:
     route:
       delete: "¿Eliminar esta ruta?"
@@ -72,7 +76,6 @@ es_MX:
     profiles:
       cycling_on: "Rodando en"
     events:
-      updated: "actualizado"
       meeting: "Cita a las"
       departing: "Salida a las"
       days_until:
@@ -87,6 +90,16 @@ es_MX:
       actions:
         new: "Nuevo Grupo"
         creating: "Registrando Grupo"
+    cycle_stations:
+      free_slots: "Espacios Libres"
+      available_bikes: "Bicicletas"
+    parkings:
+      roof: 
+        true: "Tiene techo"
+        false: "Sin techo"
+    workshops:
+      fields:
+        horary: "Horario de Servicio"
     routes:
       all: "Ver otras rutas"
       actions:

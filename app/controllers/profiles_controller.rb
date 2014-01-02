@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  layout 'profiles'
+  layout 'on_map_center'
   
   before_filter :find_user
   

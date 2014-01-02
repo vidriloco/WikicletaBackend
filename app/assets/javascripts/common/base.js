@@ -25,7 +25,26 @@ $.fn.clearForm = function() {
   });
 };
 
+
 $.extend({
+	
+	fadeInOut: function (div) {
+    var $element = $(div);
+    function fadeInOutCore () {
+        $element.fadeIn(1000, function () {
+            $element.fadeOut(1500, function () {
+                $element.fadeIn(1500, function () {
+										if($(div).attr('data-repeating') == "true") {
+	                    setTimeout(fadeInOutCore, 500);
+										} 
+                });
+            });
+        });
+    }
+
+    fadeInOutCore();
+	},
+	
 	isDefined: function(dom) {
 		return $(dom).length;
 	},
@@ -69,11 +88,10 @@ $.extend({
 		return "#"+section+"/"+id;
 	},
 	
-	loadPath: function(dom) {
-		var points = dom.split(' ');
-		var firstCoord = null;
-
+	drawPath: function(element, map_) {
+		var points = element.split(' ');
 		var coordinates = [];
+		
 		for(var pointIdx = 0; pointIdx < points.length ; pointIdx++) {
 			var coords = points[pointIdx].split('|');
 			var lat = coords[0];
@@ -81,7 +99,14 @@ $.extend({
 
 			coordinates.push(new google.maps.LatLng(lat, lon));
 		}
-		return coordinates;
+		
+		var path = new google.maps.Polyline({
+		    path: coordinates,
+		    strokeColor: 'black',
+		    strokeWeight: 3
+		  });
+		path.setMap(map_);
+		return path;
 	}
 });
 

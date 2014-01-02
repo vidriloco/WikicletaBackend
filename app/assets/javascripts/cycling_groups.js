@@ -7,9 +7,6 @@ $(document).ready(function() {
 		registerTrackWith("On cycling group form");
 		$('.popover-trigger').popover();
 		map.gMap.setZoom(14);
-		google.maps.event.addListenerOnce(map.gMap, 'idle', function(){
-			offsetCenter(map.gMap.getCenter(), 200, -50);
-		});
 
 		// Setup constraints and validations for fields
 		ViewComponents.Counter.forDomElement('#cycling_group_details', 250);

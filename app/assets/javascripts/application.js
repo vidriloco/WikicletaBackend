@@ -1,4 +1,1 @@
-//= require common/base
-//= require routes
-//= require cycling_groups
-//= require landing
+//= require discover

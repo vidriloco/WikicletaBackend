@@ -1,0 +1,17 @@
+<div id="<%= cycle_station.identifier %>" class="poi cyclestation" data-kind="<%= cycle_station.symbolized_status %>-marker" data-lat="<%= cycle_station.lat %>" data-lon="<%= cycle_station.lon %>">
+	<div class="inner-panel">
+		<p class="title"><%= cycle_station.agency %></p>
+		<div class="availability">
+			<div class="block">
+				<p class="number"><%= cycle_station.free_slots %></p>
+				<p class="text"><%= t('app.cycle_stations.free_slots') %></p>
+			</div>
+			<div class="block">
+				<p class="number"><%= cycle_station.bikes_available %></p>
+				<p class="text"><%= t('app.cycle_stations.available_bikes') %></p>
+			</div>
+		</div>
+		<p class="subtitle"><%= cycle_station.name %></p>
+	</div>
+	<%= render 'shared/pois/common_actions' %>
+</div>

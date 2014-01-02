@@ -1,4 +1,6 @@
 en:
+  commons:
+    updated: "updated"
   actions:
     title: "Actions"
     back_start: "Go to Home"
@@ -6,6 +8,8 @@ en:
     back_arrow: "&larr; Back"
     details: "Details"
     hide: "Hide"
+    minimize: "Minimize"
+    maximize: "Expand"
     edit: "Edit"
     save: "Save"
     view_on_map: "Locate"
@@ -14,7 +18,7 @@ en:
       hide: "Hide"
       show: "Show"
   connectives:
-    by: "By"
+    by: "by"
   confirmations:
     route:
       delete: "Delete this route?"
@@ -64,6 +68,16 @@ en:
     cycling_groups:
       actions:
         new: "New Group"
+    parkings:
+      roof: 
+        true: "Has a roof"
+        false: "Has no roof"
+    cycle_stations:
+      free_slots: "Available Slots"
+      available_bikes: "Bicycles"
+    workshops:
+      fields:
+        horary: "Service timings"
     routes:
       all: "See other routes"
       actions:

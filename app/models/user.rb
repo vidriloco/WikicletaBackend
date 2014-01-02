@@ -113,6 +113,11 @@ class User < ActiveRecord::Base
   
   # End methods that generate content for API
   
+  def picture_img
+    return nil if picture.nil? || picture.image.nil?
+    picture.image.url(:mini_thumb)
+  end
+  
   protected
   
   def validate_format_of_username
@@ -134,11 +139,6 @@ class User < ActiveRecord::Base
   def city_name
     return nil if city_unset?
     city.name
-  end
-    
-  def picture_img
-    return nil if picture.nil? || picture.image.nil?
-    picture.image.url(:mini_thumb)
   end
   
   def auth_token
