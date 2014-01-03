@@ -1,4 +1,10 @@
 es_MX:
+  app:
+    cycling_groups:
+      new:
+        title: "Nuevo grupo ciclista"
+      edit:
+        title: "Editar grupo ciclista"
   activerecord:
     models:
       cycling_group: "Grupo ciclista"

@@ -1,4 +1,4 @@
-<%= content_for(:section ,"Edit Route") %>
+<%= content_for(:section , t('app.routes.edit.title')) %>
 <%= content_for(:klass, 'routes') %>
 <% content_for :panel do %>	
 	<div class="panel edit-mode">
@@ -6,7 +6,7 @@
 			<%= render :partial => 'shared/notifications' %>
 			
 			<div class="form">
-				<h2><%= t('app.routes.actions.modifying') %></h2>
+				<h2><%= t('app.routes.edit.title') %></h2>
 
 				<div class="path hidden" data-path="<%= @route.to_points_list %>"></div>
 

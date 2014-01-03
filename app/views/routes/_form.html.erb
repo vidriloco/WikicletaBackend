@@ -14,6 +14,11 @@
 	<%= f.text_field :kilometers, :class=> "span2", :readonly => true %>
 </div>
 
+<div class="small-field-with-label">
+	<%= f.label :inverted, t('activerecord.attributes.route.invert') %>
+	<%= f.check_box :inverted %>
+</div>
+
 <div class="submit-area">
 	<%= f.submit t('actions.save'), :class => "submit-button" %>
 </div>

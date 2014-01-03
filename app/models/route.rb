@@ -12,6 +12,8 @@ class Route < ActiveRecord::Base
   has_many :route_rankings
   validates :name, :details, :path, :presence => true
   
+  attr_accessor :inverted
+  
   def self.new_with(params, user)
     route_performance = params.delete(:route_performance)
     instants = params.delete(:instants)
@@ -188,13 +190,18 @@ class Route < ActiveRecord::Base
   end
   
   def update_with(attrs, path)
+    inverted = attrs.delete(:inverted)
+    path = path.split(',').reverse.join(',') if inverted=="1"
     extract_and_set_coordinates(path)
-    update_attributes(attrs.merge(:path => "LINESTRING(#{path})", :updated_at => Time.now))
+        
+    update_attributes(attrs.merge({:path => "LINESTRING(#{path})", :updated_at => Time.now}))
+
     self
   end
   
   def self.new_with_path(params, user, path)
     route=Route.new params.merge({:path => "LINESTRING(#{path})"})
+    
     unless path.blank?
       route.extract_and_set_coordinates(path)
       route.ownerships.build(:user => user, :owned_object => route, :kind => Ownership.category_for(:owner_types, :submitter))
@@ -203,10 +210,11 @@ class Route < ActiveRecord::Base
   end
   
   def extract_and_set_coordinates(path)
-    origin_coordinate_ = path.split(',')[0]
-    end_coordinate_ = path.split(',')[path.split(',').size-1]
-    
-    self.origin_coordinate = "POINT(#{origin_coordinate_.split(' ')[0].to_f} #{origin_coordinate_.split(' ')[1].to_f})"
-    self.end_coordinate = "POINT(#{end_coordinate_.split(' ')[0].to_f} #{end_coordinate_.split(' ')[1].to_f})"
+    coordinates_list = path.split(',')
+    origin = coordinates_list[0]
+    final = coordinates_list[coordinates_list.size-1]
+
+    self.origin_coordinate = "POINT(#{origin})"
+    self.end_coordinate = "POINT(#{final})"
   end
 end

@@ -1,10 +1,11 @@
 <div class="floating-actions">
 	<ul class="nav nav-pills">
-  	<li class="active"><%= link_to "Explora", discover_index_path, :class => 'back' %></li>
+
 		<% if !current_user.nil? && current_user == @user %>
-  		<li><%= link_to "Traza una ruta", new_route_path, :class => 'back' %></li>
-  		<li><%= link_to "Sube un grupo", new_cycling_group_path, :class => 'back' %></li>
-  		<li class="active"><%= link_to "Preferencias", new_cycling_group_path, :class => 'back' %></li>
+  		<li><%= link_to t('app.profiles.navbar.new_route'), new_route_path, :class => 'back' %></li>
+  		<li><%= link_to t('app.profiles.navbar.new_path'), new_route_path, :class => 'back' %></li>
+  		<li><%= link_to t('app.profiles.navbar.new_group'), new_cycling_group_path, :class => 'back' %></li>
+			<li class="active"><%= link_to t('app.profiles.navbar.sign_out'), destroy_user_session_path, :class => 'back' %></li>
 		<% end %>
   </ul>
 </div>

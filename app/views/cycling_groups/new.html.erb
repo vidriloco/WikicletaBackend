@@ -1,4 +1,4 @@
-<%= content_for(:section ,"New Cycling Group") %>
+<%= content_for(:section , t('app.cycling_groups.new.title')) %>
 <%= content_for(:klass, 'cycling-groups') %>
 <% content_for :map_behavior, "editable" %>
 <% content_for :panel do %>	
@@ -7,7 +7,7 @@
 			<%= render :partial => 'shared/notifications' %>
 			
 			<div class="form">
-				<h2><%= t('app.cycling_groups.actions.creating') %></h2>
+				<h2><%= t('app.cycling_groups.new.title') %></h2>
 				
 				<%= form_for @cycling_group, :html => {:class => "form new", :multipart => true} do |f| %>	
 					<%= render :partial => 'form', :locals => {:cycling_group => @cycling_group, :f => f} %>

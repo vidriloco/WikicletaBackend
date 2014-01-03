@@ -1,0 +1,7 @@
+es_MX:
+  app:
+    routes:
+      new:
+        title: "Añadiendo ruta"
+      edit:
+        title: "Modificando ruta"

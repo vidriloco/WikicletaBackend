@@ -1,0 +1,10 @@
+es_MX:
+  app:
+    profiles:
+      navbar: 
+        explore: "Explora"
+        new_route: "Trazar ruta"
+        new_group: "Subir grupo ciclista"
+        new_path: "Trazar ciclovia"
+        settings: "Preferencias"
+        sign_out: "Salir"
