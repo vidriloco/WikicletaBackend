@@ -1,28 +1,29 @@
+<%= content_for(:section ,"Edit Route") %>
+<%= content_for(:klass, 'routes') %>
 <% content_for :panel do %>	
-	<div class="top-spaced"></div>
-	<div class="panel routes edit-mode">
-		<div class="inner-panel inner-panel-big">
+	<div class="panel edit-mode">
+		<div class="inner-panel">
 			<%= render :partial => 'shared/notifications' %>
 			
-			<div class="form-container">
-				<h3><i class="icon-edit"></i> <%= t('actions.edit') %></h3>
-				<div class="separator"></div>
-				<br/>
+			<div class="form">
+				<h2><%= t('app.routes.actions.modifying') %></h2>
 
 				<div class="path hidden" data-path="<%= @route.to_points_list %>"></div>
 
 				<%= form_for [:profiles, @route], :method => :put do |f| %>
-					<%= render :partial => 'profiles/routes/form', :locals =>  {:f => f} %>
+					<%= render :partial => 'routes/form', :locals =>  {:f => f} %>
 				<% end %>
 			</div>
+			
 		</div>
-		<div class="row-fluid actions">
-			<a href="<%= profiles_user_route_path(@user.username, @route) %>"><%= t('actions.back_arrow').html_safe %></a>
-			<span class="togglers">
-				<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
-				<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
-			</span>
-			<span class="activity label label-warning"><%= t('actions.edit') %></span>
-		</div>
+		
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, user_profile_path(@user.username) %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  </ul>
 	</div>
 <% end %>

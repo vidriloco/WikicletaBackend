@@ -11,7 +11,23 @@
 		
 		<div class="toggable">
 			<p class="details"><%= cycling_group.details %></p>
-			<%= render :partial => 'cycling_groups/contact', :locals => {:cycling_group => cycling_group } %>
+			<ul class="contact">
+				<% unless cycling_group.twitter_account.blank? %>
+					<li>
+						<%= link_to(image_tag('twitter-icon.png'), "http://www.twitter.com/#{cycling_group.twitter_account}", :target => "_new") %>
+					</li>
+				<% end %>
+				<% unless cycling_group.facebook_url.blank? %>
+					<li>
+						<%= link_to(image_tag('facebook-icon.png'), check_and_ammend(cycling_group.facebook_url), :target => "_new") %>				
+					</li>
+				<% end %>
+				<% unless cycling_group.website_url.blank? %>
+					<li>
+						<%= link_to(image_tag('web-icon.png'), check_and_ammend(cycling_group.website_url), :target => "_new") %>				
+					</li>
+				<% end %>
+			</ul>
 		</div>
 		<div class="availability">
 			<div class="block">
@@ -28,5 +44,5 @@
 		
 	</div>
 	
-	<%= render 'shared/pois/common_actions' %>
+	<%= render :partial => 'shared/pois/common_actions', :locals => {:delete_url => cycling_group_path(cycling_group), :url => edit_cycling_group_path(cycling_group), :condition => current_user_owns?(cycling_group) || (!current_user.nil? && current_user.superuser?) } %>
 </div>

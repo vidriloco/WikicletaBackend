@@ -1,5 +1,0 @@
-<% if cycling_group.picture.image.url.nil? %>
-	<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo"), 'javascript:void(0);' %>
-<% else %>
-	<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo"), 'javascript:void(0);' %>
-<% end %>

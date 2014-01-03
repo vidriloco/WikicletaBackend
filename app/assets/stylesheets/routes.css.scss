@@ -10,6 +10,19 @@ html, body {
 
 .routes {
 	
+	.nav {
+		margin: 5px 0 0 0;
+	}
+	
+	.panel {
+		background-color: white;
+		width: 500px;
+		padding-top: 20px !important;
+		margin: 50px auto 0px auto;
+		text-align: center;
+		
+	}
+	
 	.togglers {
 		margin-left: 10px;
 	}
@@ -22,10 +35,4 @@ html, body {
 		text-align: center;
 		color: $wikicleta_blue;
 	}
-}
-
-.actions {
-	padding: 10px;
-	color: $wikicleta_blue;
-	font-weight: bold;
 }

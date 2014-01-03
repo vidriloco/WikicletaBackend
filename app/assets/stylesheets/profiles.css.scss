@@ -1,17 +1,140 @@
-/*
- *= require map_based/common
- *= require bootstrap-fileupload.min
- */
 @import "colors.css.scss";
 
-/*.panel {
-	.title {
-		margin-bottom: 2px;
-		font-weight: bold;
-		font-size: 10px;
-		text-transform: uppercase;
+.profile {
+	width: 500px;
+	margin: 0 auto 0 auto;
+
+	.box {
+		margin-top: 50px;
+		text-align: center;
+		border: 1px solid #C7DBF5;
+		background: white;
+		padding: 20px;
+		
+		h5 {
+			color: #B3CEFA;
+			text-transform: uppercase;
+			margin-bottom: 30px;
+			margin-top: 0px;
+		}
+		
+		.date {
+			font-size: 12px;
+		}
+		
+		.content {
+			margin-top: 10px;
+			padding: 10px;
+			
+			.cycling-group {
+				.days-to-event {
+					color: $wikicleta_orange;
+					text-align: left;
+				}
+			}
+			
+			.cycling-group:hover , .route:hover {
+				border: 1px solid #9BBAF0;
+			}
+			
+			.route, .cycling-group {
+				padding: 5px;
+				border: 1px solid #DEEAF0;
+				margin-bottom: 10px;
+				
+				.actions {
+					text-align: right;
+				}
+				
+				.name {
+					font-size: 15px;
+					color: $wikicleta_blue;
+					text-align: left;
+				}
+				
+				.distance-in-kms {
+					font-size: 20px;
+					color: $wikicleta_orange;
+				}
+				
+				.unit {
+					font-size: 13px;
+					color: $wikicleta_blue;
+				}
+			}
+		}
+		
 	}
-}*/
+	
+	ul.sections-togglers {
+		text-align: left;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #FFD8BD;
+		
+		li:hover, li.selected {
+			a {
+				font-weight: bold !important;
+			}
+		}
+		
+		li {
+			display: inline-block;
+			
+			a {					
+				text-decoration: none;
+				padding-top: 4px;
+				display: block;
+				margin-right: 10px;
+			}
+			
+			span {
+				font-size: 20px;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.value {
+				text-align: left;
+				color: $wikicleta_orange;
+				font-weight: bold;
+			}
+			
+			.name {
+				color: $wikicleta_blue;
+				margin-left: 10px;
+			}
+		}
+	}
+	
+	.info-container {
+		.username {
+			font-size: 30px;
+			margin: 20px 0px 5px 0px;
+			color: $wikicleta_orange;
+		}
+
+		.bio {
+			font-style: italic;
+			font-size: 14px;
+			font-weight: 100;
+			color: $wikicleta_blue;
+		}
+
+		.city {
+			.name {
+				font-size: 12px;
+				text-transform: uppercase;
+				color: $wikicleta_orange;
+				font-weight: bold;
+
+				span {
+					font-weight: normal !important;
+				}
+			}
+		}
+	}
+}
+
 
 a {
 	text-decoration: none !important;
@@ -143,30 +266,7 @@ a {
 			}
 			
 			li {
-				display: inline-block;
-				a {					
-					text-decoration: none;
-					padding-top: 4px;
-					display: block;
-					margin-right: 50px;
-				}
 				
-				span {
-					font-size: 20px;
-					padding: 0px;
-					margin: 0px;
-				}
-				
-				.value {
-					text-align: left;
-					color: $wikicleta_orange;
-					font-weight: bold;
-				}
-				
-				.name {
-					color: $wikicleta_blue;
-					margin-left: 10px;
-				}
 			}
 		}
 	}
@@ -208,37 +308,12 @@ a {
 		background-image: url('/assets/city_cycling.png');
 	}
 	
-	.username {
-		font-weight: 800;
-		font-size: 25px;
-		margin: 20px 0px 5px 0px;
-		color: $wikicleta_blue;
-	}
-	
-	.bio {
-		font-style: italic;
-		font-size: 14px;
-		font-weight: 100;
-		color: $wikicleta_blue;
-	}
-	
 	.user-actions {
 		z-index: 99;	
 		padding: 15px 10px 10px 5px;
 	}
 	
-	.city {
-		.name {
-			font-size: 12px;
-			text-transform: uppercase;
-			color: $wikicleta_orange;
-			font-weight: bold;
-			
-			span {
-				font-weight: normal !important;
-			}
-		}
-	}
+
 	
 	.activity-container {
 		display: none;

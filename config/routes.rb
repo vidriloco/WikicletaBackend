@@ -72,10 +72,8 @@ Ciudadio::Application.routes.draw do
   delete '/profile/:username/destroy_pic', :to => 'user_settings#destroy_pic', :as => 'user_settings_destroy_pic'
 
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
-  get '/profiles/:username/activity' => 'profiles#activity', :as => "user_profile_activity"
   
   namespace :profiles do
-    get '/:username/routes/:id' => 'routes#show', :as => 'user_route'
     get '/:username/routes/:id/edit' => 'routes#edit', :as => 'edit_user_route'
     
     resources :routes, :only => [:update]

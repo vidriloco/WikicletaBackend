@@ -1,5 +1,11 @@
 <div class="controls row-fluid">
 	<p class="pull-right">
+		<% if defined?(delete_url) && defined?(condition) && condition %>
+			<%= link_to t('actions.delete'), delete_url, :method => :delete, :confirm => t('app.confirmation.delete'), :class => 'btn-normal individual' %>
+		<% end %>
+		<% if defined?(url) && defined?(condition) && condition %>
+			<%= link_to "<i class='icon icon-edit'></i> #{t('actions.edit')}".html_safe, url %>
+		<% end %>
 		<%= link_to t('actions.hide'), '#/deselect', :class => 'btn-normal' %>
 		<%= link_to t('actions.minimize'), 'javascript:void(0);', :class => 'btn-normal toggle-header-details-box minimize' %>
 		<%= link_to t('actions.maximize'), 'javascript:void(0);', :class => 'btn-normal toggle-header-details-box maximize' %>

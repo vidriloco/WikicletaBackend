@@ -1,32 +1,29 @@
+<%= content_for(:section ,"New Route") %>
+<%= content_for(:klass, 'routes') %>
 <% content_for :panel do %>	
-	<div class="top-spaced"></div>
-	<div class="panel routes edit-mode">
-		<div class="inner-panel inner-panel-big">
+	<div class="panel edit-mode">
+		<div class="inner-panel">
 			<%= render :partial => 'shared/notifications' %>
 			
-			<div class="form-container">
-				<h3><i class="icon-edit"></i> <%= t('app.routes.actions.creating') %></h3>
-				
-				<div class="separator"></div>
-				<br/>
+			<div class="form">
+				<h2><%= t('app.routes.actions.creating') %></h2>
 
 				<div class="path hidden" data-path="<%= @route.to_points_list %>"></div>
 
 				<%= form_for @route do |f| %>
-					<%= render :partial => 'profiles/routes/form', :locals =>  {:f => f} %>
+					<%= render :partial => 'routes/form', :locals =>  {:f => f} %>
 				<% end %>
 			</div>
+			
 		</div>
-		<div class="actions">
-			<%= link_to t('actions.back_arrow').html_safe, :back %>
-			<span class="togglers">
-				<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
-				<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
-			</span>
-			<span class="activity label label-warning"><%= t('app.routes.actions.creating') %></span>			
-			<p class="pull-right">
-				<%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %>
-			</p>
-		</div>
+		
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, :back %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  </ul>
 	</div>
 <% end %>

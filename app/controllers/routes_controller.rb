@@ -21,7 +21,7 @@ class RoutesController < ApplicationController
   def create
     @route = Route.new_with_path(params[:route], current_user, params[:path])
     if @route.save
-      redirect_to profiles_user_route_path(current_user.username, @route), :notice => I18n.t('app.routes.notifications.created.successfully')
+      redirect_to user_profile_path(current_user.username), :notice => I18n.t('app.routes.notifications.created.successfully')
     else
       render :action => 'new', :alert => I18n.t('app.routes.notifications.created.unsuccessfully')
     end

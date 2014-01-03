@@ -1,7 +1,8 @@
 <div class="toggable">
 	<div class="separator"></div>
 	<div class="contributor">
-		<span class="details"><%= t('commons.updated') %> <%= distance_of_time_in_words_to_now(date) %> <%= t('connectives.by') %> <%= link_to user.username, user_profile_path(user.username) %></span>
+		<span class="details">
+		<%= t('commons.updated') %> <%= distance_of_time_in_words_to_now(date) %> <%= t('connectives.by') %> <%= link_to user.username, user_profile_path(user.username) %></span>
 		<% unless user.picture_img.nil? %>
 			<%= link_to image_tag(user.picture_img, :size => '40x40', :class => 'mini-user-pic'), user_profile_path(user.username) %>
 		<% else %>

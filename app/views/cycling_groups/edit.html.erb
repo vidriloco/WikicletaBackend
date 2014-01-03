@@ -1,34 +1,27 @@
+<%= content_for(:section ,"Edit Cycling Group") %>
+<%= content_for(:klass, 'cycling-groups') %>
 <% content_for :map_behavior, "editable" %>
 <% content_for :panel do %>	
-	<div id="cycling-groups-section" class="panel">
-		<div class="inner-panel inner-panel-small">
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="actions-bar">
-						<div class="pull-left"><a class="btn btn-link btn-small" href="<%= discover_cycling_groups_path %>"><i class="icon icon-chevron-left"></i> <%= t('actions.back') %></a></div>
-						<div class="pull-right">
-							<p class="call-to-act">Modificando <i><%= @cycling_group.name %></i></p>
-							<div class="btn-group">
-								<a class="btn btn-warning btn-small pull-right locate-me"><i class="icon icon-map-marker"></i> Ubicarme</a>
-							</div>
-							<div class="btn-group">
-								<%= image_tag('mini_spinner.gif', :class => "spinner") %>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="panel edit-mode">
+		<div class="inner-panel">
+			<%= render :partial => 'shared/notifications' %>
+			
+			<div class="form editing-cycling-group">
+				<h2><%=  %> <%= @cycling_group.name %></h2>
+				
+				<%= form_for [:discover, @cycling_group], :html => {:multipart => true} do |f| %>	
+					<%= render :partial => 'form', :locals => {:cycling_group => @cycling_group, :f => f} %>
+				<% end %>
 			</div>
 		</div>
-	
-		<div class="inner-panel inner-panel-big">
-				<div class="row-fluid">
-					<div id="cycling_groups-form" class="span12 form-horizontal">
-						<%= form_for [:discover, @cycling_group], :html => {:class => "form edit", :multipart => true}, :method => :put do |f| %>	
-							<%= render :partial => 'form', :locals => {:cycling_group => @cycling_group, :f => f} %>
-						<% end %>     
-					</div>
-				</div>
 		
-		</div>
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, :back %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  </ul>
 	</div>
 <% end %>

@@ -1,0 +1,33 @@
+<div id="<%= cycling_group.slug %>" class="cycling-group rounded-5">
+	<div class="side-by-side">
+		<div class="left-side-small centered-text">
+			<div class="pic">
+				<% if cycling_group.picture.image.url.nil? %>
+					<%= link_to image_tag("cycling_group_logo.png", :class => "rounded logo", :size => "40x40"), 'javascript:void(0);' %>
+				<% else %>
+					<%= link_to image_tag(cycling_group.picture.image.url, :class => "rounded logo", :size => "40x40"), 'javascript:void(0);' %>
+				<% end %>
+			</div>
+		</div>
+		<div class="right-side-big">
+			<div class="left-side-big">
+				<p class="name"><%= cycling_group.name %></p>
+				<p class="days-to-event"><%= days_to_event(cycling_group) %></p>
+			</div>
+			<div class="right-side-small">
+				<p class="timing"><%= t('app.events.meeting') %></p>
+				<p class="hour"><%= cycling_group.meeting_time %></p>
+				<p class="timing"><%= t('app.events.departing') %></p>
+				<p class="hour"><%= cycling_group.departing_time %></p>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<span class="date"><%= t('commons.updated') %> <%= distance_of_time_in_words_to_now(cycling_group.updated_at) %></span>
+		<% if current_user_owns?(cycling_group) || (!current_user.nil? && current_user.superuser?) %>
+			<%= link_to t('actions.delete'), cycling_group_path(cycling_group), :method => :delete, :confirm => t('app.cycling_groups.confirmation.delete'), :class => 'btn-small individual' %>
+			<%= link_to t('actions.edit'), edit_cycling_group_path(cycling_group), :class => 'btn-small individual' %>
+		<% end %>
+		<%= link_to "<i class='icon-map-marker'></i> #{t('actions.view_on_map')}".html_safe, discover_index_path.concat("#/cycling_groups/#{cycling_group.id}"), :class => 'btn-small individual' %>
+	</div>
+</div>

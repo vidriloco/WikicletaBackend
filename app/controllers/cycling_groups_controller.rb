@@ -1,5 +1,4 @@
 class CyclingGroupsController < ApplicationController
-  layout 'discover'
   
   before_filter :authenticate_user!, :except => [:index]
   before_filter :set_user
@@ -13,7 +12,6 @@ class CyclingGroupsController < ApplicationController
       format.js do
         @cycling_groups = CyclingGroup.find_nearby_with(params[:viewport], {:extras => params[:extra], :date => cookies[:date]})
       end
-      format.html { @city = City.find(cookies[:city_id]) unless cookies[:city_id].nil? }
     end
   end
   
@@ -24,9 +22,9 @@ class CyclingGroupsController < ApplicationController
   
   def create
     @cycling_group = CyclingGroup.new_with(params[:cycling_group], params[:coordinates])
-    if @cycling_group.save
+    if @cycling_group.save!
       @cycling_group.set_logo_and_user(params[:picture], @user)
-      redirect_to discover_cycling_groups_path, :notice => I18n.t("cycling_groups.views.created.success") 
+      redirect_to user_profile_path(@user), :notice => I18n.t("cycling_groups.views.created.success")
     else
       render :action => :new, :layout => 'on_map_center'
     end
@@ -38,7 +36,7 @@ class CyclingGroupsController < ApplicationController
   
   def update
     if @cycling_group.update_with(params, current_user)
-      redirect_to discover_cycling_groups_path.concat('#/'+@cycling_group.slug)
+      redirect_to user_profile_path(@user), :notice => I18n.t("cycling_groups.views.updated.success")
     else
       render :action => 'edit', :layout => 'on_map_center'
     end
@@ -46,7 +44,7 @@ class CyclingGroupsController < ApplicationController
   
   def destroy
     @cycling_group.destroy if @user.admins_cycling_group?(@cycling_group)
-    redirect_to :back
+    redirect_to :back,  :notice => I18n.t("cycling_groups.views.destroy.success")
   end
   
   private

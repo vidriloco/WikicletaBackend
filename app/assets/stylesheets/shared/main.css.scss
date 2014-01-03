@@ -1,3 +1,5 @@
+@import "colors.css.scss";
+
 @font-face{
 font-family: "gothamrndbook-Book";
    font-style: normal;
@@ -23,11 +25,6 @@ h3 {
 	font-weight: normal !important;
 	padding:0 !important;
 	margin:0 !important;
-}
-
-ul, p {
-	margin: 0;
-	padding: 0;
 }
 
 .background-logo {
@@ -77,12 +74,6 @@ a.personal {
 	color: #F29721 !important;
 }
 
-.field-counter {
-	margin-top: 5px;
-	font-size: 13px;
-	color: #D95100;
-}
-
 #noticing {
 	width: 100%;
 	color: white;
@@ -128,9 +119,10 @@ a.personal {
 .white-beam { color:white }
 
 .field-counter {
-        margin-top: 5px;
+        padding: 0;
+				margin: 0 0 10px 0;
         font-size: 13px;
-        color: #D95100;
+        color: $wikicleta_blue;
 }
 
 .rounded-5 {
@@ -143,16 +135,6 @@ a.personal {
         border-radius: 10px;
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
-}
-
-.mini-user-pic {
-   border-radius: 20px;
-   -moz-border-radius: 20px;
-   -webkit-border-radius: 20px;
-   -moz-box-shadow: 0 0 2px #A5A5A5;
-   -webkit-box-shadow: 0 0 2px #A5A5A5;
-   box-shadow: 0 0 2px #A5A5A5;
-	border: 1px solid #A6BDFD;
 }
 
 a {
@@ -345,4 +327,36 @@ ul.inlined-list li, ul.inlined-list li * { display: inline-block; }
 		0px 1px 3px rgba(000,000,000,0.3);
 	box-shadow:
 		0px 1px 3px rgba(000,000,000,0.3);
+}
+
+.floating-actions {
+	position: fixed;
+	top: 20px;
+	right: 10px;
+}
+
+.error, .spinner {
+	display: none;
+}
+
+// User styling
+
+.mini-user-pic {
+   border-radius: 20px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   -moz-box-shadow: 0 0 2px #A5A5A5;
+   -webkit-box-shadow: 0 0 2px #A5A5A5;
+   box-shadow: 0 0 2px #A5A5A5;
+	border: 1px solid #A6BDFD;
+}
+
+.normal-user-pic {
+   border-radius: 50px;
+   -moz-border-radius: 50px;
+   -webkit-border-radius: 50px;
+   -moz-box-shadow: 0 0 2px #A5A5A5;
+   -webkit-box-shadow: 0 0 2px #A5A5A5;
+   box-shadow: 0 0 2px #A5A5A5;
+	border: 1px solid #A6BDFD;
 }

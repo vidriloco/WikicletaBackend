@@ -23,7 +23,7 @@ class Profiles::RoutesController < ProfilesController
         message = {:alert => I18n.t('app.routes.notifications.updated.unsuccessfully') }
       end
 
-      redirect_to profiles_user_route_path(@route.first_owner.username, @route), message
+      redirect_to user_profile_path(@route.first_owner.username), message
     else
       redirect_to(:back)
     end
