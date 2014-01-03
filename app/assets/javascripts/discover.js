@@ -10,7 +10,8 @@ $(document).ready(function() {
 			var thisInstance = null;
 			var markers = null;
 			var paths = null;
-
+			
+			var cyclePaths = [];
 			var currentState = {};
 			var map = null;
 
@@ -56,6 +57,7 @@ $(document).ready(function() {
 			this.onIndex = function() {
 				currentState = {};		
 				clearItemSelected();
+				loadCyclePaths();
 			}
 
 			this.deselectItem = function() {
@@ -93,6 +95,69 @@ $(document).ready(function() {
 				$('.toggable').fadeIn();
 				$('.toggle-header-details-box.maximize').hide();
 				$('.toggle-header-details-box.minimize').show();
+			}
+			
+			addCyclePathToMap = function(opts, callback) {
+				if(opts.lat=="" || opts.lon=="") {
+					return false;
+				}
+
+				var markerOpts = {
+					position: new google.maps.LatLng(opts.lat, opts.lon),
+					map: map.gMap
+				};
+
+				if(opts.iconName != undefined) {
+					markerOpts = $.extend(markerOpts, {	icon: $.assetsURL() + opts.iconName + '.png'})
+				}
+
+				var marker = new google.maps.Marker(markerOpts);
+
+				google.maps.event.addListener(marker, 'click', function() {
+					callback(opts);
+				});
+				
+				cyclePaths.push(marker);
+				cyclePaths.push($.drawPath(opts.path, map.gMap, 'green'));
+			}
+			
+			clearCyclePaths = function() {
+				for(var idx in cyclePaths) {
+					cyclePaths[idx].setMap(null);
+				}
+				cyclePaths = [];
+			}
+			
+			loadCyclePaths = function() {
+				var drawCyclePaths = function(paths) {
+					clearCyclePaths();
+					for(idx = 0 ; idx<paths.length ; idx++) {
+						var lat = parseFloat($(paths[idx]).attr('data-lat'));
+						var lon = parseFloat($(paths[idx]).attr('data-lon'));
+						var kind = $(paths[idx]).attr('data-kind');
+						var cyclePath = $(paths[idx]).attr('data-path');
+						var idD = $(paths[idx]).attr('id');
+
+						addCyclePathToMap({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD, path: cyclePath }, function(opts) {
+							window.location.hash='#/cycle-path/'+opts["resourceUrl"].replace('-', '/');
+						});
+					}
+				}
+				
+				fetchPOIs('/cycle_paths.js', undefined, function() {
+					drawCyclePaths($('.discover #cycle-paths-fetched').children('.cycle_path'));
+				});
+			}
+			
+			this.cyclePath = function() {
+				var cyclePathId = this.params['id'];
+				
+				var element = $('#cycle-paths-fetched #'+cyclePathId);
+				
+				var elementClass = element.attr('data-kind').split('-')[0];
+				$('#host-container').html(element.clone());
+				$('#header-container').html(element.siblings('.head').html());
+				$('.panel').fadeIn();
 			}
 
 			this.itemSelected = function() {
@@ -208,6 +273,7 @@ $(document).ready(function() {
 
 		if($.isDefined('.discover')) {		
 			var discover = new Discover();
+			Path.map('#/cycle-path/:id').to(discover.cyclePath);
 			Path.map('#/deselect').to(discover.deselectItem);
 			Path.map("#/:layer").to(discover.layerSelected);
 			Path.map("#/:layer/:item").to(discover.itemSelected);

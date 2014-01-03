@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :ownerships, :dependent => :destroy
   has_many :parkings, :through => :ownerships, :source => :owned_object, :source_type => 'Parking', :dependent => :nullify
   has_many :workshops, :through => :ownerships, :source => :owned_object, :source_type => 'Workshop', :dependent => :nullify
+  has_many :cycle_paths, :through => :ownerships, :source => :owned_object, :source_type => 'CyclePath', :dependent => :nullify
   
   has_many :favorites, :dependent => :destroy
   has_many :favorited_routes, :through => :favorites, :source => :favorited_object, :source_type => 'Route', :dependent => :nullify
@@ -116,6 +117,10 @@ class User < ActiveRecord::Base
   def picture_img
     return nil if picture.nil? || picture.image.nil?
     picture.image.url(:mini_thumb)
+  end
+  
+  def can_contribute_to_city?
+    !user_roles.where(:ring => [UserRole.city_organizer, UserRole.superuser]).empty?
   end
   
   protected

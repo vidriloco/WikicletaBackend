@@ -3,7 +3,7 @@ var sectionValue = null;
 var routeTraced = false;
 
 $(document).ready(function() {	
-	if($.isDefined('.routes')) {
+	if($.isDefined('.cycle-paths')) {
 		$('#path').val('');
 		if($.isDefined('#map')) {
 			mapOptions = {
@@ -44,8 +44,8 @@ $(document).ready(function() {
 			var initializePath = function(coordinates, firstCoord) {
 				var path = new google.maps.Polyline({
 				    path: coordinates,
-				    strokeColor: 'black',
-				    strokeWeight: 3
+				    strokeColor: 'green',
+				    strokeWeight: 5
 				  });
 				path.setMap(map.gMap);
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
 					  if (pointIdx > 0) polylineLength += google.maps.geometry.spherical.computeDistanceBetween(coords[pointIdx], coords[pointIdx-1]);
 					}
 
-					$('#route_kilometers').val(polylineLength*0.001);
+					$('#cycle_path_kilometers').val(polylineLength*0.001);
 					$('#path').val(pointsList.substring(0, pointsList.length-1));
 				}
 

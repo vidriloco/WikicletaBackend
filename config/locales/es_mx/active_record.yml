@@ -4,6 +4,7 @@ es_MX:
       user: "Usuario"
       route: "Ruta"
     attributes:
+      
       user:
         city: "Ciudad"
         full_name: "Nombre" 
@@ -24,3 +25,10 @@ es_MX:
         details: "Detalles"
         is_public: "¿Es pública?"
         kilometers: "Kilómetros"
+        invert: "Invertir puntos de origen-final de la ruta"
+      cycle_path:
+        name: "Nombre"
+        details: "Detalles"
+        kilometers: "Kilómetros"
+        one_way: "¿Es de un solo sentido?"
+        invert: "Invertir sentido de la ciclovia"

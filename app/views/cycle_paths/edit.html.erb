@@ -1,0 +1,29 @@
+<%= content_for(:section , t('app.cycle_paths.edit.title')) %>
+<%= content_for(:klass, 'cycle-paths') %>
+<% content_for :panel do %>	
+	<div class="panel edit-mode">
+		<div class="inner-panel">
+			<%= render :partial => 'shared/notifications' %>
+			
+			<div class="form">
+				<h2><%= t('app.cycle_paths.edit.title') %></h2>
+
+				<div class="path hidden" data-path="<%= @cycle_path.to_points_list %>"></div>
+
+				<%= form_for @cycle_path do |f| %>
+					<%= render :partial => 'cycle_paths/form', :locals =>  {:f => f} %>
+				<% end %>
+			</div>
+			
+		</div>
+		
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, :back %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  </ul>
+	</div>
+<% end %>

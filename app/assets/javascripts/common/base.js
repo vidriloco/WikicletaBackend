@@ -88,7 +88,7 @@ $.extend({
 		return "#"+section+"/"+id;
 	},
 	
-	drawPath: function(element, map_) {
+	drawPath: function(element, map_, color) {
 		var points = element.split(' ');
 		var coordinates = [];
 		
@@ -100,9 +100,14 @@ $.extend({
 			coordinates.push(new google.maps.LatLng(lat, lon));
 		}
 		
+		strokeColor = 'black';
+		if(color != undefined) {
+			strokeColor = color;
+		}
+		
 		var path = new google.maps.Polyline({
 		    path: coordinates,
-		    strokeColor: 'black',
+		    strokeColor: strokeColor,
 		    strokeWeight: 3
 		  });
 		path.setMap(map_);

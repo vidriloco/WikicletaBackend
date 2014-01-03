@@ -1,0 +1,28 @@
+<% if other.is_a? CyclePath %>
+	<div id="cycle_path-<%= other.id %>" class="cycle-path rounded-5">
+		<div class="side-by-side main-box">
+			<div class="left-side-small centered-text">
+				<p><%= image_tag('cycle_path-marker.png') %></p>
+			</div>
+			<div class="right-side-big">
+				<div class="left-side-big">
+					<p class="name"><%= other.name %></p>
+				</div>
+				<div class="right-side-small">
+					<p class="distance-in-kms"><%= '%.2f' % other.kilometers %></p>
+					<p class="unit">KM</p>
+				</div>
+			</div>
+		</div>
+		<div class="actions">
+			<span class="date"><%= t('commons.updated') %> <%= distance_of_time_in_words_to_now(other.updated_at) %></span>
+			<% if user_can_edit_cycle_path?(current_user, other) %>
+				<%= link_to t('actions.delete'), cycle_path_path(other), :method => :delete, :confirm => t('app.cycle_paths.confirmation.delete'), :class => 'btn-small individual' %>
+				<%= link_to t('actions.edit'), edit_cycle_path_path(other), :class => 'btn-small individual' %>
+			<% end %>
+			<%= link_to "<i class='icon-map-marker'></i> #{t('actions.view_on_map')}".html_safe, discover_index_path.concat("#/cycle_paths/#{other.id}"), :class => 'btn-small individual' %>
+		</div>
+	</div>
+<% else %>
+	
+<% end %>

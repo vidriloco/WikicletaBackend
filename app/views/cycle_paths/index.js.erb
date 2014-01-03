@@ -1,0 +1,3 @@
+$('.discover #cycle-paths-fetched').html("<%= escape_javascript(render(:partial => 'cycle_path', :collection => @cycle_paths)) %>");
+
+$('.discover #cycle-paths-fetched').append("<%= escape_javascript(render(:partial => 'cycle_paths/header')) %>");

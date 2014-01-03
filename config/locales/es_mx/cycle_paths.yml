@@ -1,0 +1,16 @@
+es_MX:
+  app:
+    cycle_paths:
+      confirmation:
+        delete: "¿Deseas eliminar esta ciclovia?"
+      notifications:
+        created:
+          successfully: "Has añadido una nueva ciclovia!"
+        updated:
+          successfully: "Has actualizado una ciclovia!"
+        deleted:
+          successfully: "Ciclovia eliminada correctamente"
+      new:
+        title: "Nueva Ciclovia"
+      edit:
+        title: "Modificar Ciclovia"

@@ -1,0 +1,19 @@
+<div id="<%= cycle_path.id %>" class="cycle_path poi" 
+	data-kind="cycle_path-marker" 
+	data-lat="<%= cycle_path.origin_coordinate.lat %>" 
+	data-lon="<%= cycle_path.origin_coordinate.lon %>" 
+	data-path="<%= cycle_path.to_points_list %>">
+	<div class="inner-panel">
+		<p class="metrics"><span class="value"><%= '%.2f' % cycle_path.kilometers %></span><span class="unit">KM</span></p>
+
+		<p class="name centered-text"><%= cycle_path.name %></p>
+		<p class="centered-text"><%= cycle_path.details %></p>
+		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => cycle_path.users.first, :date => cycle_path.updated_at } %>
+	</div>
+	
+	<% if editable_cp=user_can_edit_cycle_path?(current_user, cycle_path) %>
+		<%= render :partial => 'shared/pois/common_actions', :locals => {:delete_url => cycle_path_path(route), :url => edit_cycle_path_path(current_user, route), :condition => editable_cp } %>
+	<% else %>
+		<%= render 'shared/pois/common_actions' %>
+	<% end %>
+</div>

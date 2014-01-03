@@ -12,6 +12,8 @@ module ProfilesHelper
       value = collection.length != 1 ? I18n.t('app.models.cycling_group.plural') : I18n.t('app.models.cycling_group.singular')
     elsif section.eql?(:route)
       value = collection.length != 1 ? I18n.t('app.models.route.plural') : I18n.t('app.models.route.singular')
+    elsif section.eql?(:other)
+      value = collection.length != 1 ? I18n.t('app.models.other.plural') : I18n.t('app.models.other.singular')
     end
     
     "<span class='value'>#{collection.length}</span><span class='name'>#{value}</span>".html_safe

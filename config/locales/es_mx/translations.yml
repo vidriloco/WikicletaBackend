@@ -39,6 +39,9 @@ es_MX:
       close_session: "Cerrar Sesión"
       login: "Login"
     models:
+      other:
+        plural: "Otros"
+        singular: "Otro"
       route:
         plural: "Rutas"
         singular: "Ruta"

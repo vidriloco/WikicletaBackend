@@ -1,0 +1,24 @@
+<%= hidden_field_tag :path, '' %>
+
+<%= f.text_field :name, :class=> "span12", :placeholder => t('activerecord.attributes.cycle_path.name') %>
+
+<%= f.label :details, t('activerecord.attributes.cycle_path.details') %>
+<%= f.text_area :details, :rows => 5, :class=> "span12" %>
+
+<div class="small-field-with-label">
+	<%= f.label :one_way, t('activerecord.attributes.cycle_path.one_way') %>
+	<%= f.check_box :one_way %>
+</div>
+<div class="small-field-with-label">
+	<%= f.label :kilometers, t('activerecord.attributes.cycle_path.kilometers') %>
+	<%= f.text_field :kilometers, :class=> "span2", :readonly => true %>
+</div>
+
+<div class="small-field-with-label">
+	<%= f.label :inverted, t('activerecord.attributes.cycle_path.invert') %>
+	<%= f.check_box :inverted %>
+</div>
+
+<div class="submit-area">
+	<%= f.submit t('actions.save'), :class => "submit-button" %>
+</div>
