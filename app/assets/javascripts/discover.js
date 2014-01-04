@@ -1,5 +1,8 @@
+
+
 $(document).ready(function() {
 	if($.isDefined('.discover')) {
+		
 		var detailedZoomLevel = 18;
 
 		var zoomLevel = null;
@@ -17,7 +20,6 @@ $(document).ready(function() {
 
 			var initialize = function() {
 				thisInstance = this;
-
 				map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {});
 				$.cookie('date', $.stringifiedCurrentDate());
 				//map.gMap.set('scrollwheel', false);
@@ -61,9 +63,14 @@ $(document).ready(function() {
 			}
 
 			this.deselectItem = function() {
-				map.placeViewportAt({"zoom" : currentState.lastZoom});
-				clearItemSelected();
-				window.location.hash='#/'+currentState.layer;
+				if(currentState.layer != undefined && currentState.lastZoom != undefined) {
+					map.placeViewportAt({"zoom" : currentState.lastZoom});
+					clearItemSelected();
+					window.location.hash='#/'+currentState.layer;
+				} else {
+					window.location.hash='#/';
+				}
+				
 			}
 
 			this.layerSelected = function() {
@@ -71,6 +78,25 @@ $(document).ready(function() {
 				currentState.layer = this.params['layer'];
 				updateLayerControl();
 				$('#reload-control').trigger('click');
+			}
+			
+			this.cyclePath = function() {
+				var cyclePathId = this.params['id'];
+				loadCyclePaths(function() {
+					var element = $('#cycle-paths-fetched #'+cyclePathId);
+					var elementClass = element.attr('data-kind').split('-')[0];
+					$('#host-container').html(element.clone());
+					$('#header-container').html(element.siblings('.head').html());
+					$('.panel').fadeIn();
+				});
+			}
+
+			this.itemSelected = function() {
+				showItemBlocks();
+				clearOverlays();
+				currentState = { layer: this.params['layer'], item: this.params['item'] }
+				updateLayerControl();
+				loadPOIsForLayer(afterFetchedPOIs);
 			}
 
 			// Marks the icon associated with the selected layer as selected
@@ -128,7 +154,7 @@ $(document).ready(function() {
 				cyclePaths = [];
 			}
 			
-			loadCyclePaths = function() {
+			loadCyclePaths = function(callback_function) {
 				var drawCyclePaths = function(paths) {
 					clearCyclePaths();
 					for(idx = 0 ; idx<paths.length ; idx++) {
@@ -140,7 +166,12 @@ $(document).ready(function() {
 
 						addCyclePathToMap({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD, path: cyclePath }, function(opts) {
 							window.location.hash='#/cycle-path/'+opts["resourceUrl"].replace('-', '/');
+
 						});
+					}
+					
+					if(typeof callback_function == 'function') {
+						callback_function();
 					}
 				}
 				
@@ -148,28 +179,8 @@ $(document).ready(function() {
 					drawCyclePaths($('.discover #cycle-paths-fetched').children('.cycle_path'));
 				});
 			}
-			
-			this.cyclePath = function() {
-				var cyclePathId = this.params['id'];
-				
-				var element = $('#cycle-paths-fetched #'+cyclePathId);
-				
-				var elementClass = element.attr('data-kind').split('-')[0];
-				$('#host-container').html(element.clone());
-				$('#header-container').html(element.siblings('.head').html());
-				$('.panel').fadeIn();
-			}
-
-			this.itemSelected = function() {
-				showItemBlocks();
-				clearOverlays();
-				currentState = { layer: this.params['layer'], item: this.params['item'] }
-				updateLayerControl();
-				loadPOIsForLayer(afterFetchedPOIs);
-			}
 
 			var afterFetchedPOIs = function() {
-
 				$('.panel').fadeIn();
 				var element = $('#'+currentState.layer+'-'+currentState.item);
 
@@ -204,16 +215,24 @@ $(document).ready(function() {
 			var loadPOIsForLayer = function(callback_function) {
 				$('#indicator').removeClass('hidden');
 				$('#reload-control').addClass('hidden');
-
-				fetchPOIs('/'+currentState.layer+'.js', undefined, function() {
-					drawSelectedItems($('.discover #listed').children());
+				
+				loadCyclePaths(function() {
 					$('#indicator').addClass('hidden');
 					$('#reload-control').removeClass('hidden');
-
-					if(typeof callback_function == 'function') {
-						callback_function();
-					}
 				});
+				
+				if(currentState.layer != undefined) {
+					fetchPOIs('/'+currentState.layer+'.js', undefined, function() {
+						drawSelectedItems($('.discover #listed').children());
+						$('#indicator').addClass('hidden');
+						$('#reload-control').removeClass('hidden');
+
+						if(typeof callback_function == 'function') {
+							callback_function();
+						}
+					});
+				}
+				
 			}
 
 			var drawSelectedItems = function(markers) {

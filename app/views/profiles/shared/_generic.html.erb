@@ -20,7 +20,7 @@
 				<%= link_to t('actions.delete'), cycle_path_path(other), :method => :delete, :confirm => t('app.cycle_paths.confirmation.delete'), :class => 'btn-small individual' %>
 				<%= link_to t('actions.edit'), edit_cycle_path_path(other), :class => 'btn-small individual' %>
 			<% end %>
-			<%= link_to "<i class='icon-map-marker'></i> #{t('actions.view_on_map')}".html_safe, discover_index_path.concat("#/cycle_paths/#{other.id}"), :class => 'btn-small individual' %>
+			<%= link_to "<i class='icon-map-marker'></i> #{t('actions.view_on_map')}".html_safe, discover_index_path.concat("#/cycle-path/#{other.id}"), :class => 'btn-small individual' %>
 		</div>
 	</div>
 <% else %>

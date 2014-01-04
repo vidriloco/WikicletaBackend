@@ -26,6 +26,7 @@ class CyclePathsController < ApplicationController
     end
   end
   
+  # TODO: Dry this code by moving permission check to the model
   def update
     if @cycle_path.owned_by?(@user) || @user.can_contribute_to_city?
       if @cycle_path.update_with(params[:cycle_path], params[:path])

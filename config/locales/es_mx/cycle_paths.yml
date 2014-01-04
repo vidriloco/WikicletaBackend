@@ -1,15 +1,22 @@
 es_MX:
   app:
     cycle_paths:
+      details:
+        one_way:
+          true: "De un sentido"
+          false: "De doble sentido"
       confirmation:
         delete: "¿Deseas eliminar esta ciclovia?"
       notifications:
         created:
           successfully: "Has añadido una nueva ciclovia!"
+          unsuccessfully: "No fué posible guardar esta ciclovia"
         updated:
           successfully: "Has actualizado una ciclovia!"
+          unsuccessfully: "No fué posible actualizar la ciclovia"
         deleted:
           successfully: "Ciclovia eliminada correctamente"
+          unsuccessfully: "No fué posible eliminar la ciclovia"
       new:
         title: "Nueva Ciclovia"
       edit:

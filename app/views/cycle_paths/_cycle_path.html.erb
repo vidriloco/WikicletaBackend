@@ -8,11 +8,12 @@
 
 		<p class="name centered-text"><%= cycle_path.name %></p>
 		<p class="centered-text"><%= cycle_path.details %></p>
+		<p class="centered-text emphasize"><%= t('app.cycle_paths.details.one_way')[cycle_path.one_way] %></p>
 		<%= render :partial => 'shared/pois/contributor_attribution', :locals => { :user => cycle_path.users.first, :date => cycle_path.updated_at } %>
 	</div>
 	
 	<% if editable_cp=user_can_edit_cycle_path?(current_user, cycle_path) %>
-		<%= render :partial => 'shared/pois/common_actions', :locals => {:delete_url => cycle_path_path(route), :url => edit_cycle_path_path(current_user, route), :condition => editable_cp } %>
+		<%= render :partial => 'shared/pois/common_actions', :locals => {:delete_url => cycle_path_path(cycle_path), :url => edit_cycle_path_path(cycle_path), :condition => editable_cp } %>
 	<% else %>
 		<%= render 'shared/pois/common_actions' %>
 	<% end %>

@@ -7,7 +7,14 @@ class CyclePath < ActiveRecord::Base
   has_many :users, :through => :ownerships
   has_many :ownerships, :as => :owned_object, :dependent => :destroy
   
-  validates :name, :details, :path, :one_way, :presence => true
+  attr_accessible :name, :details, :path, :one_way, :kilometers, :updated_at, :inverted
+  
+  validates :name, :details, :path, :presence => true
+  
+  def self.filter_nearby(viewport)
+    window=build_polygon_from_params(viewport)
+    self.where{st_intersects(end_coordinate, window) | st_intersects(origin_coordinate, window)}
+  end
   
   def owned_by?(user)
     return false if user.nil?
@@ -17,8 +24,6 @@ class CyclePath < ActiveRecord::Base
   def update_with(attrs, path)
     extract_and_set_coordinates(path)
     update_attributes(attrs.merge({:path => "LINESTRING(#{path})", :updated_at => Time.now}))
-
-    self
   end
   
   def self.new_with_path(params, user, path)
