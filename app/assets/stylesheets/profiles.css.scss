@@ -33,11 +33,11 @@
 				}
 			}
 			
-			.cycling-group:hover , .route:hover {
+			.cycling-group:hover , .route:hover, .cycle-path:hover {
 				border: 1px solid #9BBAF0;
 			}
 			
-			.route, .cycling-group {
+			.route, .cycling-group, .cycle-path {
 				padding: 5px;
 				border: 1px solid #DEEAF0;
 				margin-bottom: 10px;

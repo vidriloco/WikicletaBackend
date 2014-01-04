@@ -85,6 +85,8 @@ $(document).ready(function() {
 				loadCyclePaths(function() {
 					var element = $('#cycle-paths-fetched #'+cyclePathId);
 					var elementClass = element.attr('data-kind').split('-')[0];
+					map.placeViewportAt({"lat" : element.attr('data-lat'), "lon" : element.attr('data-lon'), "zoom" : detailedZoomLevel});
+					
 					$('#host-container').html(element.clone());
 					$('#header-container').html(element.siblings('.head').html());
 					$('.panel').fadeIn();
