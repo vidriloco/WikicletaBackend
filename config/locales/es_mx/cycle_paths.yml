@@ -3,7 +3,7 @@ es_MX:
     cycle_paths:
       details:
         one_way:
-          true: "De un sentido"
+          true: "De un sentido (El pin es el origen)"
           false: "De doble sentido"
       confirmation:
         delete: "¿Deseas eliminar esta ciclovia?"

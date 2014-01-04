@@ -10,7 +10,7 @@
 
 				<div class="path hidden" data-path="<%= @cycle_path.to_points_list %>"></div>
 
-				<%= form_for @cycle_path, :method => :put do |f| %>
+				<%= form_for @cycle_path do |f| %>
 					<%= render :partial => 'cycle_paths/form', :locals =>  {:f => f} %>
 				<% end %>
 			</div>

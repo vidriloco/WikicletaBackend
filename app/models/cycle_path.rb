@@ -22,6 +22,9 @@ class CyclePath < ActiveRecord::Base
   end
   
   def update_with(attrs, path)
+    inverted = attrs.delete(:inverted)
+    path = path.split(',').reverse.join(',') if inverted=="1"
+    
     extract_and_set_coordinates(path)
     update_attributes(attrs.merge({:path => "LINESTRING(#{path})", :updated_at => Time.now}))
   end
