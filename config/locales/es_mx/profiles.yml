@@ -1,6 +1,10 @@
 es_MX:
   app:
     profiles:
+      settings: 
+        title: "Preferencias"
+        basics:
+          title: "Ajuste de preferencias de perfil"
       navbar: 
         explore: "Explora"
         new_route: "Trazar ruta"

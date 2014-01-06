@@ -12,6 +12,7 @@ es_MX:
     omniauth:
       login: "Iniciar sesión con %{network}"
     forgot_password: "¿Olvidaste tu contraseña?"
+    forgot_password_subtitle: "Al dar click en este formulario, te llegará un correo para recuperar tu contraseña"
     passwords:
       reset_password: "Reestablecer"
       set_password: "Establecer"

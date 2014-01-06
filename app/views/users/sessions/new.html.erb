@@ -1,6 +1,8 @@
+
 <div class="login rounded-5">
 	<div class="centered-text"><%= image_tag('wikicleta-logo.png', :size => '350x350') %></div><br/>	
 	<div class="form">
+		<%= render 'shared/notifications' %>
 		<h2><%=t "user_accounts.sessions.new.title" %></h2>
 		
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>

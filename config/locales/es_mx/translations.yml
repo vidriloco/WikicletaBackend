@@ -11,6 +11,7 @@ es_MX:
     minimize: "Minimizar"
     maximize: "Expandir"
     edit: "Modificar"
+    accept: "Aceptar"
     save: "Guardar"
     delete: "Eliminar"
     download: "Descargar"

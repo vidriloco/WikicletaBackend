@@ -8,7 +8,7 @@
   			<li><%= link_to t('app.profiles.navbar.new_path'), new_cycle_path_path, :class => 'back' %></li>
 			<% end %>
   		<li><%= link_to t('app.profiles.navbar.new_group'), new_cycling_group_path, :class => 'back' %></li>
-			<li class="active"><%= link_to t('app.profiles.navbar.sign_out'), destroy_user_session_path, :class => 'back' %></li>
+			<li class="active"><%= link_to t('app.profiles.navbar.sign_out'), destroy_user_session_path, :method => :delete, :class => 'back' %></li>
 		<% else %>
 			<li class="active"><%= link_to t('app.profiles.navbar.sign_in'), new_user_session_path, :class => 'back' %></li>
 		<% end %>
@@ -17,7 +17,7 @@
 
 <div class="profile">
 	<%= render 'shared/notifications' %>
-	<%= render :partial => 'main_user_info', :locals => {:user => @user} %>
+	<%= render :partial => 'main_user_info', :locals => {:user => @user, :show_preferences_link => true} %>
 	<div class="box rounded-5">
 		<h5><%= t('app.profiles.recent_activity') %></h5>
 		<ul class="sections-togglers">

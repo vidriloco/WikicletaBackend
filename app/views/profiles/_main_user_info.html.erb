@@ -16,6 +16,12 @@
 				<p class="name"><span><%= t('app.profiles.cycling_on') %></span> <%= user.city.name %></p>
 			</div>
 		<% end %>
-		<p class="bio"><%= user.bio %></p>
+		<% unless user.bio.blank? %>
+			<p class="bio"><%= user.bio %></p>
+		<% end %>
+		
+		<% if !current_user.nil? && current_user == @user && defined?(show_preferences_link) && show_preferences_link %>
+			<p class="action-special"><%= link_to t('app.profiles.settings.title'), user_settings_path(user.username) %></p>
+		<% end %>
 	</div>
 </div>
