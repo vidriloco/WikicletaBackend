@@ -1,6 +1,7 @@
 class RoutesController < ApplicationController
   layout 'on_map_center'
   
+  before_filter :authenticate_user!, :only => [:destroy, :create, :new]
   before_filter :find_route, :only => [:destroy, :download]
   before_filter :authenticate_allowed_users, :only => [:destroy, :create, :new]
   

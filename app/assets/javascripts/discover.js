@@ -3,7 +3,7 @@
 $(document).ready(function() {
 	if($.isDefined('.discover')) {
 		
-		var detailedZoomLevel = 18;
+		var detailedZoomLevel = 15;
 
 		var zoomLevel = null;
 		var overlaysOnMap = [];

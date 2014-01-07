@@ -1,0 +1,69 @@
+
+
+<div class="sections">
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.rides.title') %></p>
+		<div class="content-right">
+			<div id="c-groups">
+				<% @cycling_groups.each_with_index do |cg, idx| %>
+					<%= render :partial => 'welcome/common/cycling_group', :locals => {:cg => cg, :index => idx } %>
+				<% end %>
+			</div>
+			<ul>
+				<li><a href="<%= discover_index_path %>" class="action-box"><i class="icon-search"></i> <span class="big">Buscar</span></a></li>
+				<li><a href="" class="action-box"><span class="big">Sube</span> <span class="small">tu grupo</span> <i class="icon-upload"></i></a></li>
+			</ul>
+		</div>
+		<div class="draw-one"><%= image_tag('explore-icon.png') %></div>
+		
+	</div>
+	
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.routes.title') %></p>
+		<div class="draw-two"><%= image_tag('map-icon.png') %></div>
+		<div class="content">
+			<p>Trázalas en la web y revísalas en tu teléfono. Después, compártelas!</p>
+			<a href="" class="action-box iconified">
+				<ul>
+					<li><%= image_tag('icon-route-tracer.png') %></li>
+					<li><span class="big">Traza</span><br/><span class="small">tu ruta</span></li>
+				</ul>
+			</a>
+		</div>
+	</div>
+	
+	<div class="section">
+		<p class="title"><%= t('app.landing.sections.real_time.title') %></p>
+		<div class="draw-three"><%= image_tag('gowith-icon.png') %></div>
+		<div class="content">
+			<p>Ubica por donde van y únete a su ruta, para rodar juntos, más seguros!</p>
+			<p class="status"><span class="big">50</span><span class="small">rodando ahora (<b><%= link_to 'Ver', '' %></b>)</span></p>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog email-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <p class="title all-centered"><%= t('app.landing.dialog.title').html_safe %></p>
+      </div>
+      <div class="modal-body">
+        <p class="content all-centered"><%= t('app.landing.dialog.call') %></p>
+
+				<div class="all-centered contact-form">
+					<%= form_for Contact.new, :remote => true do |f| %>
+						<div class="form-group">
+							<%= f.email_field :email, :placeholder => t('app.landing.dialog.email'), :class=>"form-control" %>
+						</div>
+						<%= f.submit t('app.landing.dialog.send'), :class => "btn btn-primary" %>
+					<% end %>
+				</div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+

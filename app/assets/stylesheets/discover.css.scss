@@ -448,7 +448,17 @@ html, body {
 		background-color: white;
 
 		ul {
-
+			list-style: none;
+			
+			li {
+				padding: 10px;
+				display: inline-block;
+				a, a:hover {
+					font-size: 16px;
+					text-decoration: none !important;
+				}
+			}
+			
 			li.with-left-divider {
 				border-left: 3px solid $wikicleta_orange;
 				padding-left: 15px;

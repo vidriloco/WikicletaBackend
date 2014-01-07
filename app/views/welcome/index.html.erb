@@ -1,73 +1,125 @@
-<div id="pois-owl" class="pois owl-carousel owl-theme">
-	<% @pois.each_with_index do |poi, idx| %>
-		<%= render :partial => 'welcome/common/poi', :locals => {:poi => poi, :index => idx} %>
-	<% end %>
-</div>
-
-<div class="sections">
-	<div class="section">
-		<p class="title"><%= t('app.landing.sections.rides.title') %></p>
-		<div class="content-right">
-			<div id="c-groups">
-				<% @cycling_groups.each_with_index do |cg, idx| %>
-					<%= render :partial => 'welcome/common/cycling_group', :locals => {:cg => cg, :index => idx } %>
-				<% end %>
+<div class="section" data-anchor="main">
+	<div class="container">
+		<div id="owl-demo" class="owl-carousel owl-theme column">
+			<div class="item">
+				<%= image_tag('wikicleta-android.png') %>
 			</div>
-			<ul>
-				<li><a href="<%= discover_index_path %>" class="action-box"><i class="icon-search"></i> <span class="big">Buscar</span></a></li>
-				<li><a href="" class="action-box"><span class="big">Sube</span> <span class="small">tu grupo</span> <i class="icon-upload"></i></a></li>
-			</ul>
+			<div class="item">
+				<%= image_tag('wikicleta-ios.png') %>
+			</div>
+			<div class="item">
+				<%= image_tag('android_pic_main.png') %>
+			</div>
 		</div>
-		<div class="draw-one"><%= image_tag('explore-icon.png') %></div>
-		
+		<div class="column">
+			<div class="content">
+				<%= image_tag('wikicleta-logo.png') %>
+				<p class="slogan"><%= t('app.views.landing.slogan') %></p>
+				<div class="action-box rounded-5">
+					<ul>
+						<li><%= link_to "<i class='icon icon-home'></i> #{t('app.views.landing.enter')}".html_safe, new_user_session_path %></li>
+						<li class="emphasize"><%= link_to "<i class='icon icon-download-alt'></i> #{t('app.views.landing.download')}".html_safe, '#download' %></li>
+						<li><%= link_to "<i class='icon icon-flag'></i> #{t('app.views.landing.video.link_to')}".html_safe, '#video' %></li>
+					</ul>
+				</div>
+				
+				<div class="action-box rounded-5 more-discrete">
+					<ul>
+						<li><%= link_to image_tag('twitter-icon.png', :size => '30x30'), 'http://www.twitter.com/wikicleta', :target => "_blank" %></li>
+						<li><%= link_to image_tag('facebook-icon.png', :size => '30x30'), 'http://www.facebook.com/wikicleta', :target => "_blank" %></li>
+						<li><%= link_to t('app.views.landing.about'), '#about' %></li>
+						<li><%= link_to t('app.views.landing.privacy_policy'), '#about' %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right-positioned">
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#video' %>
+	</div>
+</div>
+<div class="section" data-anchor="video">
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#main' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#discover' %>
+	</div>
+	<p class="title text-center"><%= t('app.views.landing.video.title') %></p>
+	<p class="subtitle text-center"><%= t('app.views.landing.video.subtitle') %></p>
+	<div class="centered-text">
+		<iframe class="centered video-frame shadow-lighter" src="//player.vimeo.com/video/54044179?color=ff9933" width="1000" height="562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	</div>
+</div>
+<div class="section" data-anchor="discover">
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#video' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#routes' %>
+	</div>
+	<%= image_tag('phone_big_icon.png', :class => 'bottom-positioned') %>
+	<p class="title text-center"><b>Explora</b> el mapa más completo de tu ciudad en bici</p>
+	<p class="subtitle text-center">Construido por todos nosotros y que va contigo en tu teléfono</p>
+	<div class="poi-list">
+		<% @pois.each_with_index do |poi, idx| %>
+			<%= render :partial => 'welcome/common/poi', :locals => {:poi => poi, :index => idx} %>
+		<% end %>
+	</div>
+	<div id="poi-details"></div>
+	<div id="map" class="shadow-light hidden rounded-5"></div>
+	<div class="action-box-2 rounded-5">
+		<ul>
+			<li><p><%= t('app.views.landing.discover.title') %></p></li>
+			<li><%= link_to t('app.views.landing.discover.routes'), discover_index_path.concat('/#/routes') %></li>
+			<li><%= link_to t('app.views.landing.discover.cycling_groups'), discover_index_path.concat('/#/cycling_groups') %></li>
+			<li><%= link_to t('app.views.landing.discover.tips'), discover_index_path.concat('/#/tips') %></li>
+			<li><%= link_to t('app.views.landing.discover.workshops'), discover_index_path.concat('/#/workshops') %></li>
+			<li><%= link_to t('app.views.landing.discover.parkings'), discover_index_path.concat('/#/parkings') %></li>
+			<li><%= link_to t('app.views.landing.discover.cycle_stations'), discover_index_path.concat('/#/cycle_stations') %></li>
+			<li><%= link_to t('app.views.landing.discover.cycle_paths'), discover_index_path %></li>
+		</ul>
+	</div>
+</div>
+<div class="section" data-anchor="routes">
+	
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#discover' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#events' %>
 	</div>
 	
-	<div class="section">
-		<p class="title"><%= t('app.landing.sections.routes.title') %></p>
-		<div class="draw-two"><%= image_tag('map-icon.png') %></div>
-		<div class="content">
-			<p>Trázalas en la web y revísalas en tu teléfono. Después, compártelas!</p>
-			<a href="" class="action-box iconified">
-				<ul>
-					<li><%= image_tag('icon-route-tracer.png') %></li>
-					<li><span class="big">Traza</span><br/><span class="small">tu ruta</span></li>
-				</ul>
-			</a>
+	<p class="title text-center"><%= t('app.views.landing.routes.title') %></p>
+	<div class="container">
+		<div class="column">
+			<div class="content content-more-margin">
+				<%= image_tag('map-icon.png') %>
+				<p class="minor"><%= t('app.views.landing.routes.trace') %></p>
+				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.routes.action'), new_cycling_group_path %></p>
+			</div>
 		</div>
-	</div>
-	
-	<div class="section">
-		<p class="title"><%= t('app.landing.sections.real_time.title') %></p>
-		<div class="draw-three"><%= image_tag('gowith-icon.png') %></div>
-		<div class="content">
-			<p>Ubica por donde van y únete a su ruta, para rodar juntos, más seguros!</p>
-			<p class="status"><span class="big">50</span><span class="small">rodando ahora (<b><%= link_to 'Ver', '' %></b>)</span></p>
+		<div class="column">
+			<div class="item">
+				<%= image_tag('route_phone_pic.png', :class => 'content', :size => '400x300') %>
+			</div>
 		</div>
 	</div>
 </div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog email-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <p class="title all-centered"><%= t('app.landing.dialog.title').html_safe %></p>
-      </div>
-      <div class="modal-body">
-        <p class="content all-centered"><%= t('app.landing.dialog.call') %></p>
-
-				<div class="all-centered contact-form">
-					<%= form_for Contact.new, :remote => true do |f| %>
-						<div class="form-group">
-							<%= f.email_field :email, :placeholder => t('app.landing.dialog.email'), :class=>"form-control" %>
-						</div>
-						<%= f.submit t('app.landing.dialog.send'), :class => "btn btn-primary" %>
-					<% end %>
-				</div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
+<div class="section" data-anchor="events">
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#routes' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#about' %>
+	</div>
+	<p class="title text-center"><%= t('app.views.landing.events.title', :number => CyclingGroup.count) %></p>
+	<div class="container">
+		<div class="column">
+			<div class="item">
+				<%= image_tag('android_events_pic.png', :class => 'content', :size => '400x300') %>
+			</div>
+		</div>
+		<div class="column">
+			<div class="content content-more-margin">
+				<%= image_tag('cycling-together.png') %>
+				<p class="minor"><%= t('app.views.landing.events.join') %></p>
+				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.events.action'), new_cycling_group_path %></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section" data-anchor="about">Section 6</div>
+<div class="section" data-anchor="friends">Section 7</div>

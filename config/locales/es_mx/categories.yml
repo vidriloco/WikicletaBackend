@@ -2,11 +2,11 @@ es_MX:
   app:
     categories:
       tips:
-        title: "Recomendación"
+        title: "Tip"
         categories:
-          alert: "Sugerencia"
-          danger: "Peligro"
-          sightseeing: "Para ver"
+          alert: "Recomendación"
+          danger: "Punto de riesgo"
+          sightseeing: "Para visitar en bici"
       parkings:
         title: "Bici-estacionamiento"
         kinds:

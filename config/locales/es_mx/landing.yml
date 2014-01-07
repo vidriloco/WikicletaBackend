@@ -1,0 +1,31 @@
+es_MX:
+  app:
+    views:
+      landing:
+        slogan: "La app para ir en bici por la ciudad"
+        enter: "Entra"
+        download: "Baja la app"
+        about: "Acerca de"
+        privacy_policy: "Aviso de privacidad"
+        video: 
+          link_to: "Ve el video"
+          title: "¿Qué es Wikicleta?"
+          subtitle: "Wikicleta es ... bah, mejor ve el video, que está bien padre"
+        routes:
+          title: "Las rutas como tu las quieras"
+          trace: "Prepara tus rutas desde la web y llévalas en tu teléfono"
+          action: "Traza una ruta"
+        discover:
+          title: "Encuentra cerca de ti: "
+          cycling_groups: "Rodadas"
+          routes: "Rutas"
+          parkings: "Biciestacionamientos"
+          tips: "Tips"
+          workshops: "Talleres y Tiendas"
+          cycle_stations: "Cicloestaciones"
+          cycle_paths: "Ciclovias"
+        events:
+          title: "Únete a alguno de los %{number} grupos ciclistas registrados"
+          join: "Haz amigos, aprende más sobre la bici y cuéntales de Wikicleta"
+          action: "Sube tu grupo"
+          

@@ -17,7 +17,9 @@ module WelcomeHelper
     elsif poi.is_a? Tip
       poi.humanized_category
     elsif poi.is_a?(Workshop) || poi.is_a?(CyclingGroup)
-      poi.name
+      splitted = poi.name.split(' ')
+      return splitted[0,15].join(' ').concat(' ...') if splitted.count > 15 
+      splitted.join(' ')
     end
   end
   
@@ -29,11 +31,16 @@ module WelcomeHelper
       splitted = poi.content.split(' ')
     end
     
-    return splitted[0,13].join(' ').concat(' ...') if splitted.count > 13
+    return splitted[0,20].join(' ').concat(' ...') if splitted.count > 20
     splitted.join(' ')
   end
   
-
+  def url_for_poi(poi)
+    return discover_index_path.concat("/#/cycling_groups/#{poi.id}") if poi.is_a? CyclingGroup
+    return discover_index_path.concat("/#/workshops/#{poi.id}") if poi.is_a? Workshop
+    return discover_index_path.concat("/#/parkings/#{poi.id}") if poi.is_a? Parking
+    return discover_index_path.concat("#/tips/#{poi.id}") if poi.is_a? Tip
+  end
   
   def icon_for_poi(poi)
     graphic_for_poi(poi).gsub('||', '-icon').downcase

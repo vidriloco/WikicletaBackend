@@ -7,3 +7,5 @@
 //= require routes
 //= require cycling_groups
 //= require cycle_paths
+//= require jquery.slimscroll.min
+//= require fullpage.min
