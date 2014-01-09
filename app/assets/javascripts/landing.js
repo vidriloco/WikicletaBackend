@@ -7,7 +7,7 @@ $(document).ready(function() {
 			css3: true,
 			navigation: true,
 			resize : true,
-			anchors:['main', 'video', 'discover', 'routes', 'events', 'about', 'friends', 'partners'], 
+			anchors:['main', 'video', 'discover', 'routes', 'events', 'friends'], 
 			afterLoad: function(anchorLink, index){
 	       //using index
 	       if(index == '2'){

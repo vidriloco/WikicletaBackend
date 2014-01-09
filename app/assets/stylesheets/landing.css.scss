@@ -17,6 +17,10 @@ font-family: "gothamrndbold-Bold";
 }
 
 .landing {
+
+	.btn-action-container {
+		margin-top: 50px;
+	}
 	
 	.right-positioned {
 		position: absolute;
@@ -30,6 +34,13 @@ font-family: "gothamrndbold-Bold";
 		a:hover {
 			opacity: 1 !important;
 		}
+	}
+	
+	.top-left-positioned {
+		position: absolute;
+		top: 30px;
+		left: 15%;
+		opacity: 0.3;
 	}
 	
 	.bottom-positioned {
@@ -240,6 +251,29 @@ font-family: "gothamrndbold-Bold";
 	.video-frame {
 		margin-top: 60px;
 	}
+	
+	.friends {
+		.container {
+			width: 1100px !important;
+			
+			.partners, .allies, .fri {
+				margin: 70px 0 30px 0;
+			}
+			
+		}
+	}
+	
+	.mixpanel-partner {
+		float: right;
+		position: fixed;
+		bottom: 20px;
+		right: 40px;
+	}
+	
+	.invitation {
+		margin-top: 70px !important;
+	}
+
 }
 
 .text-orange {

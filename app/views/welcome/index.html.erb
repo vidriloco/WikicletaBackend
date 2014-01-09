@@ -18,8 +18,8 @@
 				<div class="action-box rounded-5">
 					<ul>
 						<li><%= link_to "<i class='icon icon-home'></i> #{t('app.views.landing.enter')}".html_safe, new_user_session_path %></li>
-						<li class="emphasize"><%= link_to "<i class='icon icon-download-alt'></i> #{t('app.views.landing.download')}".html_safe, '#download' %></li>
-						<li><%= link_to "<i class='icon icon-flag'></i> #{t('app.views.landing.video.link_to')}".html_safe, '#video' %></li>
+						<li class="emphasize"><%= link_to "<i class='icon icon-download-alt'></i> #{t('app.views.landing.download.title')}".html_safe, '#download' %></li>
+						<li><%= link_to "<i class='icon icon-flag'></i> #{t('app.views.landing.explore')}".html_safe, discover_index_path %></li>
 					</ul>
 				</div>
 				
@@ -27,10 +27,15 @@
 					<ul>
 						<li><%= link_to image_tag('twitter-icon.png', :size => '30x30'), 'http://www.twitter.com/wikicleta', :target => "_blank" %></li>
 						<li><%= link_to image_tag('facebook-icon.png', :size => '30x30'), 'http://www.facebook.com/wikicleta', :target => "_blank" %></li>
-						<li><%= link_to t('app.views.landing.about'), '#about' %></li>
-						<li><%= link_to t('app.views.landing.privacy_policy'), '#about' %></li>
+						<li><%= link_to "<i class='icon icon-play'></i> #{t('app.views.landing.video.link_to')}".html_safe, '#video' %></li>
+						<li><%= %></li>
+						<li><%= link_to t('app.views.landing.friends'), '#friends' %></li>
 					</ul>
 				</div>
+			</div>
+			<div class="mixpanel-partner">
+				<span class="text-orange">Hecho en México con <i class="icon-heart"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>			
 			</div>
 		</div>
 	</div>
@@ -43,6 +48,8 @@
 		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#main' %>
 		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#discover' %>
 	</div>
+	<%= image_tag('video_icon.png', :size => '300x300', :class => 'top-left-positioned') %>
+	
 	<p class="title text-center"><%= t('app.views.landing.video.title') %></p>
 	<p class="subtitle text-center"><%= t('app.views.landing.video.subtitle') %></p>
 	<div class="centered-text">
@@ -90,7 +97,7 @@
 			<div class="content content-more-margin">
 				<%= image_tag('map-icon.png') %>
 				<p class="minor"><%= t('app.views.landing.routes.trace') %></p>
-				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.routes.action'), new_cycling_group_path %></p>
+				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.routes.action'), new_route_path %></p>
 			</div>
 		</div>
 		<div class="column">
@@ -103,7 +110,7 @@
 <div class="section" data-anchor="events">
 	<div class="right-positioned">
 		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#routes' %>
-		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#about' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#friends' %>
 	</div>
 	<p class="title text-center"><%= t('app.views.landing.events.title', :number => CyclingGroup.count) %></p>
 	<div class="container">
@@ -116,10 +123,59 @@
 			<div class="content content-more-margin">
 				<%= image_tag('cycling-together.png') %>
 				<p class="minor"><%= t('app.views.landing.events.join') %></p>
-				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.events.action'), new_cycling_group_path %></p>
+				<div class="btn-action-container">
+					<span class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.events.action.join'), discover_index_path.concat('#/cycling_groups') %></span>
+					<span class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.events.action.share'), new_cycling_group_path %></span>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="section" data-anchor="about">Section 6</div>
-<div class="section" data-anchor="friends">Section 7</div>
+<div class="section friends" data-anchor="friends">
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#events' %>
+		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#download' %>
+	</div>
+	<%= image_tag('handshake_icon.png', :class => 'bottom-positioned') %>
+	
+	<div class="container">
+		<p class="title text-center">Socios, Aliados estratégicos y Amigos de Wikicleta</p>
+		
+		<div class="partners">
+			<%= link_to image_tag('friends/vi.png', :size => '200x200'), 'http://www.institute.vc', :target => "_blank" %>
+		</div>
+		<div class="allies">
+			<%= link_to image_tag('friends/ITDP.png', :size => '200x200'), 'http://mexico.itdp.org/', :target => "_blank" %>
+			<%= link_to image_tag('friends/ConectaDF_logo.png', :size => '200x200'), 'http://conectadf.mx/', :target => "_blank" %>
+			<%= link_to image_tag('friends/transformadora-ciel.png', :size => '200x200'), 'https://transformadora.ciel.com.mx', :target => "_blank" %>
+		</div>
+		<div class="fri">
+			<%= link_to image_tag('friends/bicitekas.png', :size => '100x100'), 'http://bicitekas.org/', :target => "_blank" %>
+			<%= link_to image_tag('friends/taller13.png', :size => '100x100'), 'http://www.taller13.com/', :target => "_blank" %>
+			<%= link_to image_tag('friends/bicicooperativa.png', :size => '150x150'), 'http://www.bicienvia.com.mx/somos.html', :target => "_blank" %>
+			<%= link_to image_tag('friends/divisiondelsur.png', :size => '100x100'), 'http://www.divisiondelsur.com/', :target => "_blank" %>
+			<%= link_to image_tag('friends/insolente.png', :size => '100x100'), 'http://insolente.mx', :target => "_blank" %>
+			<%= link_to image_tag('friends/tuola.png', :size => '100x100'), 'http://tuola.mx/', :target => "_blank" %>
+			<%= link_to image_tag('friends/carrot.png', :size => '150x150'), 'http://www.carrot.mx/', :target => "_blank" %>
+			<%= link_to image_tag('friends/aventones.png', :size => '150x150'), 'http://www.aventones.com/', :target => "_blank" %>
+		</div>
+	</div>
+</div>
+<div class="section" data-anchor="download">
+	<div class="right-positioned">
+		<%= link_to image_tag('next_blue.png', :size => '100x100'), '#friends' %>
+	</div>
+	<%= image_tag('download_icon.png', :class => 'top-left-positioned') %>
+	
+	<div class="container">
+		<p class="title text-center"><%= t('app.views.landing.download.title') %></p><br/>
+		<br/><br/>
+		<%= link_to image_tag('android-available.png', :size => '230x230'), 'https://play.google.com/store/apps/details?id=org.wikicleta&hl=en', :target => "_blank" %>
+		<%= link_to image_tag('available-ios.png'), '#download', :target => "_blank" %>
+		<div class="invitation">
+			<p class="subtitle text-center"><%= t('app.views.landing.download.ios') %></p>
+			<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.join'), new_user_session_path %></p>
+			
+		</div>
+	</div>
+</div>

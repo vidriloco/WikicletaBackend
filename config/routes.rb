@@ -64,6 +64,8 @@ Ciudadio::Application.routes.draw do
     resources :route_rankings, :only => [:create]
     get '/route_rankings/:route_id/:user_id', :to => 'route_rankings#details'
     get '/cycle_stations', :to => 'cycle_stations#index'
+    
+    get '/cycle_paths', :to => 'cycle_paths#index'
   end
   
   get '/profile/:username/settings', :to => 'user_settings#show', :as => 'user_settings'

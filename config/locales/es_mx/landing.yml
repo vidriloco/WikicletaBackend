@@ -4,8 +4,9 @@ es_MX:
       landing:
         slogan: "La app para ir en bici por la ciudad"
         enter: "Entra"
-        download: "Baja la app"
-        about: "Acerca de"
+        friends: "Aliados"
+        explore: "Explorar"
+        join: "Únete"
         privacy_policy: "Aviso de privacidad"
         video: 
           link_to: "Ve el video"
@@ -25,7 +26,13 @@ es_MX:
           cycle_stations: "Cicloestaciones"
           cycle_paths: "Ciclovias"
         events:
-          title: "Únete a alguno de los %{number} grupos ciclistas registrados"
+          title: "Rueda con alguno de los grupos ciclistas registrados"
           join: "Haz amigos, aprende más sobre la bici y cuéntales de Wikicleta"
-          action: "Sube tu grupo"
+          action: 
+            share: "Sube tu grupo"
+            join: "Ve grupos" 
+        download:
+          title: "Baja la app!"
+          subtitle: "Por ahora solo disponible en teléfonos Android"
+          ios: "En 2 semanas soltaremos la de iOS, registrate desde ahora"
           

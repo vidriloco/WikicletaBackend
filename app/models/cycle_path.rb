@@ -47,4 +47,30 @@ class CyclePath < ActiveRecord::Base
     self.origin_coordinate = "POINT(#{origin})"
     self.end_coordinate = "POINT(#{final})"
   end
+  
+  def origin_lat
+    origin_coordinate.lat
+  end
+  
+  def origin_lon
+    origin_coordinate.lon
+  end
+  
+  def as_json(opts={})
+    super({
+      :only => [:id, :name, :details, :kilometers, :one_way],
+      :methods => [:path_vector, :str_created_at, :str_updated_at, :origin_lat, :origin_lon, :owner]
+    })
+  end
+  
+  def path_vector
+    points_list=[]
+    return points_list if path.nil?
+    
+    path.points.each do |point|
+      points_list << [point.x, point.y]
+    end
+    
+    points_list
+  end
 end
