@@ -45,8 +45,8 @@ describe CyclePath do
         "one_way" => true,
         :str_created_at => @cycle_path.created_at.to_s(:db),
         :str_updated_at => @cycle_path.updated_at.to_s(:db),
-        :lat => 19.3149293,
-        :lon => -99.34231, :owner => {
+        :origin_lat => 19.3149293,
+        :origin_lon => -99.34231, :owner => {
           :username => @user.username,
           :id => @user.id,
           :kind => 2
