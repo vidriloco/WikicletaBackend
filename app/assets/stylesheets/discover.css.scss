@@ -254,35 +254,47 @@ html, body {
 	}
 }
 
-.items-list {
-	width: 748px !important;
-
-	.cycling-group {
-		.info {
-			width: 500px;
+.trips-list {
+	width: 500px;
+	margin: 30px auto 0 auto;
+	
+	.title {
+		font-size: 27px;
+		font-weight: bold;
+		color: $wikicleta_blue;
+	}
+	
+	.inner-panel {
+		margin-top: 0 !important;
+	}
+	
+	.call-to-action {
+		margin-top: 5px !important;
+		
+	 p {
+		padding: 5px;
+		margin: 5px 0 5px 0;
+		font-size: 18px;
+		.title {
+			font-size: 16px;
+			color: $wikicleta_orange;
 		}
 		
-		.pic {
-			width: 180px;
+		.subtitle {
+			font-size: 14px;
+			color: $wikicleta_blue;
 		}
 	}
-
-	.trip, .cycling-group {
-		.details {
-
-			div {
-				vertical-align: top;
-				display: inline-block;
-				padding: 5px
-			}			
-		}
 	}
+}
 
+.items-list {
 	.trip:hover {
 		background-color: rgba(32,59,80,0.1);
 	}
 	
 	.trip {
+		
 		.closer {
 			width: 100px;
 			height: 100px;
@@ -298,12 +310,21 @@ html, body {
 		margin: 0px 0px 0px 0px;
 		
 		.details {
+			> div {
+				vertical-align: top;
+				display: inline-block;
+			}
+			
+			.info {
+				margin-right: 10px;
+			}
+			
 			padding: 10px 10px 3px 10px;
 			text-align: right;
 			margin-left: 60px;
 			.event-name, .days-to-event {
 				a {
-					color: $wikicleta_blue;
+					color: $wikicleta_orange;
 					text-decoration: none;
 					font-weight: 400;
 				}
@@ -316,18 +337,19 @@ html, body {
 			}
 
 			.event-name {
-				font-size: 20px;
+				font-size: 23px;
 			}
 
 			.days-to-event {
-				font-size: 11px;
+				font-size: 13px;
+				margin-top: 20px !important;
+				text-transform: uppercase;
 			}
 
 			.event-timings {
-				font-size: 10px;
-				color: $wikicleta_orange;
+				font-size: 14px;
+				color: $wikicleta_blue;
 
-				margin-bottom: 30px !important;
 			}
 		}
 		
@@ -543,7 +565,7 @@ html, body {
 		}
 		
 		.panel-scroll {
-			height: 325px;
+			height: 420px;
 		}
 	}
 

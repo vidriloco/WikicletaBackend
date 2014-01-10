@@ -1,0 +1,5 @@
+es_MX:
+  app:
+    views:
+      trips:
+        title: "Paseos por la ciudad"

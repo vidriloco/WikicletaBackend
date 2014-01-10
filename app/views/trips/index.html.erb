@@ -1,14 +1,16 @@
+<%= content_for(:section , t('app.views.trips.title')) %>
+<%= content_for(:klass, 'trips') %>
 <% content_for :panel do %>	
-	<div id="trips-section" class="panel" data-url="<%= discover_trips_path %>">
+	<div class="panel trips-list centered-text">
+		<div class="top-spaced"></div>
+		<p class="title">Paseos por la ciudad</p>
 		<div class="inner-panel inner-panel-small">
-			<div class="row-fluid"><%= render :partial => 'discover/menu' %></div>
+			<%= render :partial => 'trips/listing', :locals => { :trips => @trips } %>
 		</div>
-		
-		<div class="inner-panel inner-panel-big">
-			<div class="content listing">
-				<%= render :partial => 'trips/listing', :locals => { :trips => @trips } %>
-			</div>
-			
+		<div class="inner-panel inner-panel-small call-to-action hidden">
+			<p id="return">
+				<%= link_to t('actions.back_arrow').html_safe, '#/' %>
+			</p>
 		</div>
 	</div>
 <% end %>

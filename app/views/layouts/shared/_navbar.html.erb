@@ -1,6 +1,7 @@
 <div class="top-bar">
-	<%= image_tag('wikicleta-logo-navbar.png', :size => '175x45', :class => 'logo') %>
+	<%= link_to image_tag('wikicleta-logo-navbar.png', :size => '175x45', :class => 'logo'), root_path %>
 	<ul class="to-right">
+		<li><%= link_to t('app.profiles.navbar.curated_trips'), trips_path, :class => 'back' %></li>
 		<li><%= link_to t('app.profiles.navbar.new_route'), new_route_path, :class => 'back' %></li>
 		<li><%= link_to t('app.profiles.navbar.new_group'), new_cycling_group_path, :class => 'back' %></li>
 		<% if user_signed_in? %>

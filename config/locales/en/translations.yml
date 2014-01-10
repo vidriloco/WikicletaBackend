@@ -33,6 +33,7 @@ en:
       discover: "Discover"
       close_session: "Logout"
       login: "Login"
+      curated_trips: "Curated trips"
     models:
       route:
         plural: "Routes"

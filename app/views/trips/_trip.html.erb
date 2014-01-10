@@ -1,23 +1,19 @@
-<div id="<%= trip.slug %>" class="item-wrapper" data-lat="<%= trip.coordinates.lat %>" data-lon="<%= trip.coordinates.lon %>" data-kind="start_flag">
+<div id="<%= trip.slug %>" class="item-wrapper trip-wrap" data-lat="<%= trip.coordinates.lat %>" data-lon="<%= trip.coordinates.lon %>" data-kind="start_flag">
 	<div class="trip box">
 		
 		<div class="details">
 			<div class="info">
-				<p class="event-name"><%= link_to trip.name, 'javascript:void(0);' %></p>
+				<p class="event-name"><%= link_to trip.name, trips_path.concat("#/#{trip.slug}") %></p>
 				<p class="days-to-event"><%= days_to_event(trip) %></p>
 				<p class="event-timings"><%= trip.details %></p>
-				<div class="share-media">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= days_to_event(trip, :share) %>" data-url="<%= url_to_share(trip) %>" data-via="wikicleta" data-lang="es" data-related="bicitekas" data-hashtags="ruedaXTuCiudad">Twittear</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-				</div>
+				
 			</div>
 			<div class="pic">
-				<%= link_to image_tag("trips/#{trip.picture_name}.jpg", :class => "rounded", :size => '150x150'), 'javascript:void(0);' %>
+				<%= link_to image_tag("trips/#{trip.picture_name}.jpg", :class => "rounded", :size => '80x80'), 'javascript:void(0);' %>
 			</div>
 		</div>
 		
 		<div class="extras">
-			<%= render :partial => 'categories_menu', :locals => { :trip => trip } %>
 			<div class="trip-paths">
 				<% trip.segments.each do |segment| %>
 					<div id="<%= segment.id %>" class="segment" data-path="<%= segment.to_points_list %>" data-colour="<%= segment.color %>" data-details="<%= segment.details %>"></div>

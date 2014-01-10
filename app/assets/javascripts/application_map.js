@@ -3,6 +3,7 @@
 //= require geoposition
 //= require landing
 //= require discover
+//= require trips
 //= require polyline.edit
 //= require routes
 //= require cycling_groups
