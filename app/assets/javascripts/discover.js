@@ -196,21 +196,27 @@ $(document).ready(function() {
 
 					// Draw a path for routes only
 					if(currentState.layer == 'routes') {
+						registerTrackWith('A route selected');
+						
 						overlaysOnMap.push($.drawPath($(element).attr('data-path'), map.gMap));
 						overlaysOnMap.push(new google.maps.Marker({
 						 	position: new google.maps.LatLng(element.attr('data-end-lat'), element.attr('data-end-lon')),
 						  map: map.gMap,
 							icon: $.assetsURL()+'finish_flag-marker.png'
 						}));
+					} else {
+						registerTrackWith('A workshop selected');
 					}
 				} else if(currentState.layer != 'cycling_groups') {
 					// Parkings , Tips and CyclingGroups
 					var elementClass = $(element).attr('data-kind').split('-')[0];
-					$('#header-container').html(element.siblings('.'+elementClass+'-head').html());				
+					$('#header-container').html(element.siblings('.'+elementClass+'-head').html());	
+					registerTrackWith('A '+elementClass+' selected');
 				} else {
 					// Cycling Groups
 					var logo = $($('#'+element.attr('id')+' .logo-container')[0]).detach();
 					$('#header-container').html(logo);
+					registerTrackWith('A cycling group selected');
 				}
 			}
 
@@ -246,7 +252,6 @@ $(document).ready(function() {
 					var idD = $(markers[idx]).attr('id');
 
 					map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
-						registerTrackWith("Marker clicked with: " + opts["iconName"] + " " + opts["resourceUrl"]);
 						window.location.hash='#/'+opts["resourceUrl"].replace('-', '/');
 					});
 				}

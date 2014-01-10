@@ -4,6 +4,8 @@ var routeTraced = false;
 
 $(document).ready(function() {	
 	if($.isDefined('.routes')) {
+		registerTrackWith('On route editing');
+
 		$('#path').val('');
 		if($.isDefined('#map')) {
 			mapOptions = {
@@ -28,8 +30,8 @@ $(document).ready(function() {
 
 			// Attempt to center map on location
 			$('.locate-me').bind('click', function() {
+				registerTrackWith('On Locate-me selected');
 				if (geoPosition.init()) {
-
 					$('.spinner').fadeIn();
 				  geoPosition.getCurrentPosition(function(p) {
 						var lat = p.coords.latitude;

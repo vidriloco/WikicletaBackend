@@ -70,7 +70,6 @@ var drawSelectedItems = function(markers) {
 		var idD = $(markers[idx]).attr('id');
 		
 		map.addCoordinatesAsMarkerToList({ lat: lat, lon: lon, iconName: kind, resourceUrl: idD }, function(opts) {
-			registerTrackWith("Marker clicked with: " + opts["iconName"] + " " + opts["resourceUrl"]);
 			itemUrlSwitch($('.listing-view #'+opts["resourceUrl"]), opts["resourceUrl"]);
 		});
 	}

@@ -17,19 +17,18 @@
 				<p class="slogan"><%= t('app.views.landing.slogan') %></p>
 				<div class="action-box rounded-5">
 					<ul>
-						<li><%= link_to "<i class='icon icon-home'></i> #{t('app.views.landing.enter')}".html_safe, new_user_session_path %></li>
-						<li class="emphasize"><%= link_to "<i class='icon icon-download-alt'></i> #{t('app.views.landing.download.title')}".html_safe, '#download' %></li>
-						<li><%= link_to "<i class='icon icon-flag'></i> #{t('app.views.landing.explore')}".html_safe, discover_index_path %></li>
+						<li><%= link_to "<i class='icon icon-home'></i> #{t('app.views.landing.enter')}".html_safe, new_user_session_path, :id => 'enter-wikicleta' %></li>
+						<li class="emphasize"><%= link_to "<i class='icon icon-download-alt'></i> #{t('app.views.landing.download.title')}".html_safe, '#download', :id => 'download-wikicleta' %></li>
+						<li><%= link_to "<i class='icon icon-flag'></i> #{t('app.views.landing.explore')}".html_safe, discover_index_path, :id => 'explore-wikicleta' %></li>
 					</ul>
 				</div>
 				
 				<div class="action-box rounded-5 more-discrete">
 					<ul>
-						<li><%= link_to image_tag('twitter-icon.png', :size => '30x30'), 'http://www.twitter.com/wikicleta', :target => "_blank" %></li>
-						<li><%= link_to image_tag('facebook-icon.png', :size => '30x30'), 'http://www.facebook.com/wikicleta', :target => "_blank" %></li>
-						<li><%= link_to "<i class='icon icon-play'></i> #{t('app.views.landing.video.link_to')}".html_safe, '#video' %></li>
-						<li><%= %></li>
-						<li><%= link_to t('app.views.landing.friends'), '#friends' %></li>
+						<li><%= link_to image_tag('twitter-icon.png', :size => '30x30'), 'http://www.twitter.com/wikicleta', :target => "_blank", :id => 'twitter-wikicleta' %></li>
+						<li><%= link_to image_tag('facebook-icon.png', :size => '30x30'), 'http://www.facebook.com/wikicleta', :target => "_blank", :id => 'facebook-wikicleta' %></li>
+						<li><%= link_to "<i class='icon icon-play'></i> #{t('app.views.landing.video.link_to')}".html_safe, '#video', :id => 'video-wikicleta' %></li>
+						<li><%= link_to t('app.views.landing.friends'), '#friends', :id => 'allies-wikicleta' %></li>
 					</ul>
 				</div>
 			</div>
@@ -174,8 +173,7 @@
 		<%= link_to image_tag('available-ios.png'), '#download', :target => "_blank" %>
 		<div class="invitation">
 			<p class="subtitle text-center"><%= t('app.views.landing.download.ios') %></p>
-			<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.join'), new_user_session_path %></p>
-			
+			<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.join'), new_user_session_path, :id => 'join-wikicleta' %></p>
 		</div>
 	</div>
 </div>

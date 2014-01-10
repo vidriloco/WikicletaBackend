@@ -19,6 +19,7 @@ $(document).ready(function() {
 			clearPOIs();	
 			$('.listing-actions').hide();
 			loadTripsOnMap();
+			registerTrackWith('On Trips list');
 		}
 
 		this.onTripSelected = function() {
@@ -35,6 +36,7 @@ $(document).ready(function() {
 			var location = new google.maps.LatLng(parseFloat($('#'+item).attr('data-lat')), parseFloat($('#'+item).attr('data-lon')));
 			map.gMap.setZoom(14);
 			currentlyOnIndex = false;
+			registerTrackWith('On Trip selected with: '+item);
 		}
 		
 		var drawSelectedItems = function(markers) {
