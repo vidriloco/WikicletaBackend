@@ -224,11 +224,7 @@ $(document).ready(function() {
 				$('#indicator').removeClass('hidden');
 				$('#reload-control').addClass('hidden');
 				
-				loadCyclePaths(function() {
-					$('#indicator').addClass('hidden');
-					$('#reload-control').removeClass('hidden');
-				});
-				
+				loadCyclePaths();
 				if(currentState.layer != undefined) {
 					fetchPOIs('/'+currentState.layer+'.js', undefined, function() {
 						drawSelectedItems($('.discover #listed').children());
@@ -240,6 +236,7 @@ $(document).ready(function() {
 						}
 					});
 				}
+				
 				
 			}
 
