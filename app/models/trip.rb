@@ -24,8 +24,10 @@ class Trip < ActiveRecord::Base
   def self.find_nearby_with(viewport, extras)
     trips = extras.has_key?(:slug) ? Trip.where(:slug => extras[:slug]) : find_nearby(viewport)
     
+    date = extras[:date].nil? ? Date.today : Date.parse(extras[:date])
+
     trips.sort_by do |item| 
-      item.number_of_days_to_event(Date.parse(extras[:date]))
+      item.number_of_days_to_event(date)
     end
   end
   

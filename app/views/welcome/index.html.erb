@@ -10,6 +10,9 @@
 			<div class="item">
 				<%= image_tag('android_pic_main.png') %>
 			</div>
+			<div class="item">
+				<%= image_tag('trips_phone_pic.png') %>
+			</div>
 		</div>
 		<div class="column">
 			<div class="content">
@@ -170,7 +173,7 @@
 		<p class="title text-center"><%= t('app.views.landing.download.title') %></p><br/>
 		<br/><br/>
 		<%= link_to image_tag('android-available.png', :size => '230x230'), 'https://play.google.com/store/apps/details?id=org.wikicleta&hl=en', :target => "_blank" %>
-		<%= link_to image_tag('available-ios.png'), '#download', :target => "_blank" %>
+		<%= link_to image_tag('available-ios.png'), 'javascript:void(0);', :target => "_blank" %>
 		<div class="invitation">
 			<p class="subtitle text-center"><%= t('app.views.landing.download.ios') %></p>
 			<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.join'), new_user_session_path, :id => 'join-wikicleta' %></p>

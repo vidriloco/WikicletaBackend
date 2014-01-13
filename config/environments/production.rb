@@ -47,7 +47,7 @@ Ciudadio::Application.configure do
   # Precompile additional CSS files (excluding application.css)
   #config.assets.precompile += %w(welcome.css settings.css profiles.css)
   config.serve_static_assets = true
-  
+  config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif] 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

@@ -31,9 +31,7 @@ module Ciudadio
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
-    config.assets.precompile += ['thumb_no_promoted.png', 'thumb_no_bike.png', 'no_bike.png', 'no_promoted.png', 'active_admin.css', 'active_admin.js', 'active_admin/print.css',
-      'landing.css', 'landing.js', 'plain.css', 'plain.js', 'discover.js', 'discover.css', 'profiles.css', 'profiles.js', 'routes.css', 'routes.js'] 
+    config.assets.precompile += ['active_admin.css', 'active_admin.js', 'active_admin/print.css', 'application_map.js'] 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Mexico City'
