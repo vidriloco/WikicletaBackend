@@ -45,7 +45,8 @@ Ciudadio::Application.routes.draw do
     
     resources :cycling_groups, :only => [:index]    
     resources :trips, :only => [:index]
-
+    
+    get '/instants/:user_id/:range', :to => 'instants#index'
     resources :instants, :only => [:create]
 
     resources :routes, :only => [:create, :update, :index, :show]

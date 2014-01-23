@@ -39,6 +39,31 @@ describe Instant do
       
     end
     
+    describe "and today were received a couple more" do
+      
+      before(:each) do
+        @bulk = [{:created_at=>DateTime.now.to_s(:db), :distance=>"3.22", :elapsed_time=>"20.22", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>"20.21"}, 
+          {:created_at=>DateTime.now.to_s(:db), :distance=>"6.30", :elapsed_time=>"30.56", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"15.4"}]
+        Instant.bulk_create(@bulk, @user)
+      end
+      
+      it "should bring the list of today's instants including the received ones only" do
+        Instant.all_within_range(@user.id, "today")[:instants].count == 2
+        Instant.all_within_range(@user.id, "today")[:instants].last.distance.should == 6.30
+        Instant.all_within_range(@user.id, "today")[:instants].last.elapsed_time.should == 30
+        Instant.all_within_range(@user.id, "today")[:instants].last.speed.should == 15.4
+        Instant.all_within_range(@user.id, "today")[:instants].last.coordinates.lat.should == 19.346928
+        
+        Instant.all_within_range(@user.id, "today")[:instants].first.distance.should == 3.22
+        Instant.all_within_range(@user.id, "today")[:instants].first.elapsed_time.should == 20
+        Instant.all_within_range(@user.id, "today")[:instants].first.speed.should == 20.21
+        Instant.all_within_range(@user.id, "today")[:instants].first.coordinates.lat.should == 19.318966
+      end
+      
+      it "should bring the stats of today's instants" do
+        Instant.all_within_range(@user.id, "today")[:stats].should == {:speed => 17.805, :distance => 9.52}
+      end
+    end
   end
   
 end

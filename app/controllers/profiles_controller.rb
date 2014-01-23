@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
   
   def trails
     @instants = @user.instants.where(:created_at => Date.today.beginning_of_day..Date.today.end_of_day).order('created_at ASC')
-    @stats = Instant.avg(@user)
+    @stats = Instant.stats(@user.id)
     render :layout => 'on_map_center'
   end
   

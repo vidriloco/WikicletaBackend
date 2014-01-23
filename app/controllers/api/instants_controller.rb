@@ -4,6 +4,11 @@ class Api::InstantsController < Api::BaseController
   before_filter :find_user_with_token, :only => [:create]
   before_filter :respond_to_bad_auth, :only => [:create]
   
+  def index
+    @instants = Instant.all_within_range(params[:user_id], params[:range])
+    render :json => {:success => true }.merge(@instants), :status => :ok
+  end
+  
   def create
     @instants = Instant.bulk_create(params[:instants], @user)
     if @instants.count > 0

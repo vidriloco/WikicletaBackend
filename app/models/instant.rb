@@ -23,19 +23,26 @@ class Instant < ActiveRecord::Base
     instant
   end
   
-  def as_json
-    super({
-      :only => [:id, :elapsed_time],
-      :methods => [:str_created_at, :speed_at, :lat, :lon]
-    })
+
+  
+  def self.stats(user_id, range=nil)
+    if range.nil? || range.eql?("today")
+      {:speed => Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).average('speed') || "0.0", 
+        :distance => Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).sum('distance')}
+    end
   end
   
-  def self.avg(user)
-    {:speed => Instant.where(:user_id => user.id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).average('speed'), 
-     :distance => Instant.where(:user_id => user.id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).sum('distance')}
+  def self.all_within_range(user_id, range)
+    instants = []
+    instants += Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day) if range.eql?("today")
+    {:instants => instants, :stats => Instant.stats(user_id, range) }
   end
   
   def speed_at
     speed.to_s
+  end
+  
+  def distance_at
+    distance.to_s
   end
 end

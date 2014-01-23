@@ -11,6 +11,17 @@ describe Api::InstantsController do
     @params = [{"some" => "params"}]
   end
   
+  describe "GET" do
+    
+    it "should fetch the list of instants" do
+      Instant.should_receive(:all_within_range) { {} }
+      get :index, :user_id => "1", :range => "today" 
+      assigns(:instants).should == {}
+      response.should be_successful
+    end
+    
+  end
+  
   describe "POST" do
     
     describe "with bad auth token" do
