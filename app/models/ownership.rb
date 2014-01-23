@@ -48,7 +48,7 @@ class Ownership < ActiveRecord::Base
   end
   
   def self.all_from_user(user_id)
-    owneds = Ownership.select("owned_object_type, owned_object_id, user_id").where(:user_id => user_id).order('updated_at DESC').map(&:owned_object).map(&:light_fields_extra)
+    owneds = Ownership.select("owned_object_type, owned_object_id, user_id").where(:user_id => user_id, :owned_object_type => ["Route", "Parking", "Workshop"]).order('updated_at DESC').map(&:owned_object).map(&:light_fields_extra)
     owneds += Tip.where(:user_id => user_id).order('updated_at DESC').map(&:light_fields_extra)
   end
   
