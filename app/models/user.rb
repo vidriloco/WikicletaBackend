@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :routes, :through => :route_rankings
   
   has_many :user_roles
+  has_many :instants
   
   belongs_to :city
   
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
   before_validation     :validate_format_of_username
   
   #temporal
-  attr_accessible       :email, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
+  attr_accessible       :email, :distance, :speed, :guru_points, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   before_save           :ensure_authentication_token!, :on => :create
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   
@@ -77,6 +78,12 @@ class User < ActiveRecord::Base
     !user_roles.where(:ring => UserRole.superuser, :permissions => UserRole.read_write).empty?
   end
   
+  def update_rankeables
+    distance=Instant.where(:user_id => id).sum('distance')
+    speed=Instant.where(:user_id => id).average('speed')
+    update_attributes({:distance => distance, :speed => speed})
+  end
+  
   # Methods that generate content for API
   
   def self.create_with(params)
@@ -100,7 +107,10 @@ class User < ActiveRecord::Base
   end
   
   def profile_to_json
-    {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db), :identifier => identifier, :email => email }
+    out = {:city_name => city_name, :user_pic => picture_img, :username => username, :bio => bio, :updated_at => updated_at.to_s(:db), :identifier => identifier, :email => email }
+    out.merge!(:speed => speed.to_s) unless speed.nil?
+    out.merge!(:distance => distance.to_s) unless distance.nil?
+    out
   end
   
   def update_with(params)

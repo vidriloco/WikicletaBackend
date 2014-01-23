@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103081857) do
+ActiveRecord::Schema.define(:version => 20140123004111) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -148,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20140103081857) do
     t.integer  "route_performance_id"
     t.datetime "created_at",                                                                       :null => false
     t.datetime "updated_at",                                                                       :null => false
+    t.decimal  "distance"
+    t.integer  "user_id"
   end
 
   create_table "ownerships", :force => true do |t|
@@ -297,11 +299,11 @@ ActiveRecord::Schema.define(:version => 20140103081857) do
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "user_roles", ["user_id", "ring"], :name => "user_roles_index", :unique => true
+  add_index "user_roles", ["user_id", "ring"], :name => "user_roles_ring_index", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -316,12 +318,12 @@ ActiveRecord::Schema.define(:version => 20140103081857) do
     t.text     "bio"
     t.string   "personal_page"
     t.date     "started_cycling_date"
-    t.boolean  "email_visible"
-    t.boolean  "externally_registered",  :default => false
-    t.boolean  "seller_account"
     t.integer  "city_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.decimal  "distance"
+    t.decimal  "speed"
+    t.decimal  "guru_points"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

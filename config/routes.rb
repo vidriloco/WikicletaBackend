@@ -46,6 +46,8 @@ Ciudadio::Application.routes.draw do
     resources :cycling_groups, :only => [:index]    
     resources :trips, :only => [:index]
 
+    resources :instants, :only => [:create]
+
     resources :routes, :only => [:create, :update, :index, :show]
     post '/routes/:id', :to => 'routes#destroy'
     get '/routes/:id/performances', :to => 'routes#performances'
@@ -98,7 +100,7 @@ Ciudadio::Application.routes.draw do
   get '/welcome' => 'welcome#index', :defaults => { :locale => 'en' }
   get '/bienvenido' => 'welcome#index', :defaults => { :locale => 'es_MX' }
   get '/signature' => 'welcome#signature'
-    
+  
   resources :discover, :only => [:index]
   resources :trips, :only => [:index]
   
