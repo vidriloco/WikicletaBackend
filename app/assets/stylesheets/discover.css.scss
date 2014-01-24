@@ -448,26 +448,31 @@ html, body {
 /* Discover section styles  */
 
 .top-bar {
-	-moz-box-shadow: 0 0 3px #888;
-	-webkit-box-shadow: 0 0 3px#888;
-	box-shadow: 0 0 3px #888;
-	border-radius: 3px;
-	
-	ul {
-		margin: 5px 10px 5px 10px;
+	.content {
+		-moz-box-shadow: 0 0 3px #888;
+		-webkit-box-shadow: 0 0 3px#888;
+		box-shadow: 0 0 3px #888;
+		border-radius: 3px;
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+		min-width: 1100px;
+		background-color: white;
+		
+		ul {
+			margin: 5px 10px 5px 10px;
+		}
 	}
 }
 
 .on-map-center {
 	.top-bar {
+		width: 100%;
 		position: fixed;
 		z-index: 99999;
-		width: 50%;
-		margin: 0 0 0 -20%;
-		left: 50%;
+		top: 0;
+		left: 0;
 		height: 50px;
-		min-width: 1100px;
-		background-color: white;
 
 		ul {
 			list-style: none;
