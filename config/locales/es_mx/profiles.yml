@@ -1,6 +1,10 @@
 es_MX:
   app:
     profiles:
+      performance:
+        distance: "recorridos"
+        speed: "velocidad promedio"
+        trace: "tus recorridos"
       settings: 
         title: "Preferencias"
         basics:

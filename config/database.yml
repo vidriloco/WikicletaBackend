@@ -9,8 +9,8 @@ development:
   encoding: unicode
   database: wikicleta_development
   pool: 5
-  username: spalatin
-  password:
+  username: postgres
+  password: virusdisk
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -36,8 +36,8 @@ test:
   encoding: unicode
   database: wikicleta_test
   pool: 5
-  username: spalatin
-  password:
+  username: postgres
+  password: virusdisk
 
 production:
   adapter: postgis

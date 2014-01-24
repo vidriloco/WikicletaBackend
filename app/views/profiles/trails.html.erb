@@ -1,0 +1,38 @@
+<%= content_for(:section , t('app.trails.title')) %>
+<%= content_for(:klass, 'trails') %>
+<% content_for :panel do %>	
+	<div class="panel edit-mode">
+		<p class="title"><%= t('app.trails.title') %></p>
+		
+		<div class="inner-panel">
+			<p class="subtitle"><%= t('app.trails.today') %></p>
+			
+			<%= render :partial => 'performance', :locals => { :distance => @stats[:distance].round(2).to_f , :speed => @stats[:speed].round(2).to_f } %>
+		</div>
+		
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, :back %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i> Ubicarme".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  </ul>
+	</div>
+<% end %>
+
+<% content_for :free_content do %>	
+	<div id="trail-list" class="hidden">
+		<% @instants.each do |instant| %>
+			<div id="instant-<%= instant.id %>" class="trail" data-lat="<%= instant.coordinates.lat %>" data-lon="<%= instant.coordinates.lon %>" 
+				data-timing="<%= instant.elapsed_time.to_s %>" data-speed="<%= instant.speed.to_s %>" data-distance="<%= instant.distance.to_s %>">
+				<div>
+					<h4><%= t('app.trails.instant.title') %></h4>
+					<p><%= t('app.trails.instant.speed') %>: <%= instant.speed.to_s.to_f.round(2) %> km/h</p>
+					<p><%= t('app.trails.instant.distance') %>: <%= t('app.trails.instant.distance_text', :distance => instant.distance.to_s.to_f.round(2)) %></p>
+					<p><%= t('app.trails.instant.timing') %>: <%= t('app.trails.instant.minutes_text', :minutes => (instant.elapsed_time.to_s.to_f/60).round(2)) %></p>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>

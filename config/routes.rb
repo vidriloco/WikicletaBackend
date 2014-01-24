@@ -70,6 +70,7 @@ Ciudadio::Application.routes.draw do
     get '/cycle_paths', :to => 'cycle_paths#index'
   end
   
+  get '/profile/:username/trails', :to => 'profiles#trails', :as => 'user_trails'
   get '/profile/:username/settings', :to => 'user_settings#show', :as => 'user_settings'
   put '/profile/:username/update', :to => 'user_settings#update', :as => 'user_settings_update'
   put '/profile/:username/update_pic', :to => 'user_settings#update_pic', :as => 'user_settings_update_pic'

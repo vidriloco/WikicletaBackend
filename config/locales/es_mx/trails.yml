@@ -1,0 +1,14 @@
+es_MX:
+  app:
+    trails:
+      title: "Tus recorridos"
+      today: "Hoy"
+      instant:
+        title: "Stats en este punto:"
+        distance_text: "A %{distance} km respecto al checkpoint anterior"
+        minutes_text: "A %{minutes} minutos respecto al checkpoint previo"
+        speed: "Velocidad"
+        distance: "Distancia"
+        timing: "Cronómetraje"
+        
+        

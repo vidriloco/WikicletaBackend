@@ -1,9 +1,67 @@
 @import "colors.css.scss";
 
+.profile, .trails {
+	.performance {
+		margin: 30px auto 0 auto;
+		width: 70%;
+		min-width: 500px;
+		.distance {
+			border-right: 1px solid #D0E1F5;
+		}
+		
+		> div {
+			height: 50px;
+			display: inline-block;
+			width: 40%;
+			min-width: 200px;
+			padding: 20px !important;
+
+			text-align: center;
+			.text {
+				font-size: 13px;
+				text-transform: uppercase;
+				color: $wikicleta_orange;
+			}
+			
+			.value {
+				font-size: 50px;
+				color: $wikicleta_blue;
+				
+				.unit {
+					color: $wikicleta_orange;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+
 .profile {
 	width: 500px;
 	margin: 0 auto 0 auto;
-
+	
+	.actions-panel {
+		background-color: #DDE9EE;
+		list-style: none;
+		padding: 5px;
+		margin-left: auto;
+		margin-right: auto;
+		li {
+			display: inline-block;
+			margin-right: 20px;
+			margin-left: 20px;
+			
+			a {
+				text-transform: uppercase;
+				font-size: 12px;
+			}
+		}
+	}
+	
+	.activity-listing {
+		margin-top: 30px !important;
+	}
+	
 	.box {
 		margin-top: 50px;
 		text-align: center;

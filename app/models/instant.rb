@@ -30,6 +30,11 @@ class Instant < ActiveRecord::Base
     })
   end
   
+  def self.avg(user)
+    {:speed => Instant.where(:user_id => user.id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).average('speed'), 
+     :distance => Instant.where(:user_id => user.id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).sum('distance')}
+  end
+  
   def speed_at
     speed.to_s
   end

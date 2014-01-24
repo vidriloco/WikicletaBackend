@@ -18,10 +18,12 @@
 		<% end %>
 		<% unless user.bio.blank? %>
 			<p class="bio"><%= user.bio %></p>
-		<% end %>
-		
+		<% end %>		
 		<% if !current_user.nil? && current_user == @user && defined?(show_preferences_link) && show_preferences_link %>
-			<p class="action-special"><%= link_to t('app.profiles.settings.title'), user_settings_path(user.username) %></p>
+			<ul class="actions-panel rounded-5">
+				<li class="action-special"><%= link_to "<i class='icon-cog'></i> #{t('app.profiles.settings.title')}".html_safe, user_settings_path(user.username) %></li>
+				<li class="action-special"><%= link_to "<i class='icon-eye-open'></i> #{t('app.profiles.performance.trace')}".html_safe , user_trails_path(user.username) %></li>
+			</ul>
 		<% end %>
 	</div>
 </div>

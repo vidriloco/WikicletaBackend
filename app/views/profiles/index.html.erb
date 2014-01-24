@@ -19,7 +19,9 @@
 <div class="profile">
 	<%= render 'shared/notifications' %>
 	<%= render :partial => 'main_user_info', :locals => {:user => @user, :show_preferences_link => true} %>
-	<div class="box rounded-5">
+	
+	<%= render :partial => 'performance', :locals => { :distance => @user.distance.to_s.to_f.round(2), :speed => @user.speed.to_s.to_f.round(2) } %>
+	<div class="box rounded-5 activity-listing">
 		<h5><%= t('app.profiles.recent_activity') %></h5>
 		<ul class="sections-togglers">
 			<li id="routes-status">
