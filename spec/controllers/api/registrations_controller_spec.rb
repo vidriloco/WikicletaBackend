@@ -31,7 +31,7 @@ describe Api::RegistrationsController do
       
       before(:each) do
         @params = FactoryGirl.attributes_for(:pipo)
-        @params.delete(:full_name)
+        @params.delete(:username)
       end
       
       it "doesn't create a new user" do 
@@ -42,7 +42,7 @@ describe Api::RegistrationsController do
       
       it "generates a json response with the user data" do 
         post :create, registration: @params
-        response.body.should == {:errors => {:full_name => ["no puede estar en blanco", "no puede estar en blanco"] } }.to_json
+        response.body.should == {:errors => {:username => ["no puede estar en blanco", "no puede estar en blanco"] } }.to_json
       end
       
       it "replies with a successful response" do
