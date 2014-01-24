@@ -6,7 +6,7 @@ class Api::InstantsController < Api::BaseController
   
   def index
     @instants = Instant.all_within_range(params[:user_id], params[:range])
-    render :json => {:success => true }.merge(@instants), :status => :ok
+    render :json => {:success => true }.merge(Instant.collection_as_json(@instants)), :status => :ok
   end
   
   def create

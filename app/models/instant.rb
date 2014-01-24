@@ -23,7 +23,26 @@ class Instant < ActiveRecord::Base
     instant
   end
   
-
+  def self.collection_as_json(collection)
+    return collection if collection[:instants].blank?
+    dict_array = []
+    collection[:instants].each do |instant|
+      dict_array << instant.dictionary_to_json
+    end
+    collection[:instants] = dict_array
+    collection
+  end
+  
+  def dictionary_to_json
+    {:id => id, :elapsed_time => elapsed_time, :str_created_at => str_created_at, :speed_at => speed_at, :lat => lat, :lon => lon, :distance_at => distance_at}
+  end
+  
+  def as_json
+    super({
+      :only => [:id, :elapsed_time],
+      :methods => [:str_created_at, :speed_at, :lat, :lon, :distance_at]
+    })
+  end
   
   def self.stats(user_id, range=nil)
     if range.nil? || range.eql?("today")
