@@ -79,19 +79,9 @@ class User < ActiveRecord::Base
   end
   
   def update_rankeables
-    distance=0
-    speed = 0
-    instants_count=0
-    Instant.where(:user_id => id).each do |instant|      
-      timing = instant.elapsed_time || 0
-      
-      if (instant.speed || 0) < 35 && timing < 1000
-        speed += instant.speed || 0
-        instants_count += 1
-        distance += (instant.distance || 0)
-      end
-    end
-    update_attributes({:distance => distance, :speed => speed/instants_count})
+    distance = Instant.instants_with(id, {:speed => 35, :timing => 1000}).sum('distance')
+    speed = Instant.instants_with(id, {:speed => 35, :timing => 1000}).average('speed')
+    update_attributes({:distance => distance,  :speed => speed})
   end
   
   # Methods that generate content for API

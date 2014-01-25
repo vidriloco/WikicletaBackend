@@ -45,18 +45,25 @@ class Instant < ActiveRecord::Base
   end
   
   def self.stats(user_id, start_date, end_date)
-    {:speed => Instant.instants_with(user_id, start_date, end_date).average('speed') || "0.0", 
-        :distance => Instant.instants_with(user_id, start_date, end_date).sum('distance')}
+    {:speed => Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date, :speed => 35, :timing => 1000}).average('speed') || "0.0", 
+        :distance => Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date, :speed => 35, :timing => 1000}).sum('distance')}
   end
   
   def self.all_within_range(user_id, start_date, end_date)
-    instants = []
-    instants += Instant.instants_with(user_id, start_date, end_date)
+    instants = Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date, :speed => 35, :timing => 1000})
     {:instants => instants, :stats => Instant.stats(user_id, start_date, end_date) }
   end
   
-  def self.instants_with(user_id, start_date, end_date)
-    Instant.where(:user_id => user_id, :created_at => DateTime.parse(start_date)..DateTime.parse(end_date))
+  def self.instants_with(user_id, params)
+    query="user_id = :user_id AND speed < :speed AND elapsed_time < :timing"
+    hash= {:user_id => user_id, :speed => params[:speed], :timing => params[:timing]}
+    
+    unless params[:start_date].blank? && params[:end_date].blank?
+      query += " AND created_at > :start_date AND created_at < :end_date"
+      hash.merge!({:start_date => DateTime.parse(params[:start_date]), :end_date => DateTime.parse(params[:end_date])})
+    end
+    
+    Instant.where(query, hash)
   end
   
   def speed_at

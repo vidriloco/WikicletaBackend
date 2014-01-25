@@ -35,7 +35,7 @@ describe Instant do
       Instant.last.user.should == @user
       
       @user.distance.should == 6.2988
-      @user.speed.should == 10
+      @user.speed.should == 15
       
     end
     
@@ -44,22 +44,24 @@ describe Instant do
       before(:each) do
         @bulk = [{:created_at=>DateTime.new(2014, 1, 1, 12, 3, 22), :distance=>"3.22", :elapsed_time=>"20.22", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>"20.21"}, 
           {:created_at=>DateTime.new(2014, 1, 1, 5, 3, 6), :distance=>"6.30", :elapsed_time=>"30.56", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"15.4"},
-          {:created_at=>DateTime.new(2014, 1, 2, 5, 3, 6), :distance=>"3.30", :elapsed_time=>"10.56", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"13.4"}]
+          {:created_at=>DateTime.new(2014, 1, 2, 5, 3, 6), :distance=>"3.30", :elapsed_time=>"10.56", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"13.4"},
+          {:created_at=>DateTime.new(2013, 12, 20, 5, 3, 6), :distance=>"3.30", :elapsed_time=>"10.56", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"13.4"}]
         Instant.bulk_create(@bulk, @user)
       end
       
       it "should bring the list of today's instants including the received ones only" do
         instants = Instant.all_within_range(@user.id, "2014-01-01 00:00:00", "2014-01-01 23:59:59")
         instants[:instants].count == 2
-        instants[:instants].last.distance.should == 6.30
-        instants[:instants].last.elapsed_time.should == 30
-        instants[:instants].last.speed.should == 15.4
-        instants[:instants].last.coordinates.lat.should == 19.346928
         
         instants[:instants].first.distance.should == 3.22
         instants[:instants].first.elapsed_time.should == 20
         instants[:instants].first.speed.should == 20.21
         instants[:instants].first.coordinates.lat.should == 19.318966
+        
+        instants[:instants].last.distance.should == 6.30
+        instants[:instants].last.elapsed_time.should == 30
+        instants[:instants].last.speed.should == 15.4
+        instants[:instants].last.coordinates.lat.should == 19.346928
       end
       
       it "should bring the stats of today's instants" do
@@ -82,7 +84,7 @@ describe Instant do
     
     it "should only count the distance traveled between consecutive points in time" do
       @user.distance.should == 8.5
-      @user.speed.should == 8
+      @user.speed.should == 10
     end
   end
   
