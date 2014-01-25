@@ -5,7 +5,7 @@ class Api::InstantsController < Api::BaseController
   before_filter :respond_to_bad_auth, :only => [:create]
   
   def index
-    @instants = Instant.all_within_range(params[:user_id], params[:start_date], params[:end_date])
+    @instants = Instant.all_within_range(params[:user_id], params[:start_date], params[:end_date], {:speed => 60, :timing => 86400})
     render :json => {:success => true }.merge(Instant.collection_as_json(@instants)), :status => :ok
   end
   

@@ -49,8 +49,8 @@ class Instant < ActiveRecord::Base
         :distance => Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date, :speed => 35, :timing => 1000}).sum('distance')}
   end
   
-  def self.all_within_range(user_id, start_date, end_date)
-    instants = Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date, :speed => 35, :timing => 1000})
+  def self.all_within_range(user_id, start_date, end_date, params={:speed => 35, :timing => 1000})
+    instants = Instant.instants_with(user_id, {:start_date => start_date, :end_date => end_date}.merge(params))
     {:instants => instants, :stats => Instant.stats(user_id, start_date, end_date) }
   end
   
