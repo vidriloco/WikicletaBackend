@@ -6,13 +6,13 @@ describe Instant do
   before(:each) do
     @user = FactoryGirl.create(:user, :username => "lelo")
   end
-  
+    
   describe "Given a group of instants have just been received" do
     
     before(:each) do
       @bulk = [{:created_at=>"2014-01-22 19:25:20", :distance=>"", :elapsed_time=>"", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>""}, 
-        {:created_at=>"2014-01-11 22:3:28", :distance=>"4.6494", :elapsed_time=>"10.727193", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10.425293"},
-        {:created_at=>"2014-01-11 5:27:28", :distance=>"1.6494", :elapsed_time=>"15.727193", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"8165.425293"}]
+        {:created_at=>"2014-01-11 22:3:28", :distance=>"4.6494", :elapsed_time=>"10.727193", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:27:28", :distance=>"1.6494", :elapsed_time=>"15.727193", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"20"}]
     end
     
     it "should save them" do
@@ -31,11 +31,11 @@ describe Instant do
       Instant.last.elapsed_time.should == 15
       Instant.last.coordinates.lat.should == 19.346928
       Instant.last.coordinates.lon.should == -99.111145
-      Instant.last.speed.should == 8165.425293
+      Instant.last.speed.should == 20
       Instant.last.user.should == @user
       
       @user.distance.should == 6.2988
-      @user.speed.should == 4087.925293
+      @user.speed.should == 10
       
     end
     
@@ -68,4 +68,38 @@ describe Instant do
     end
   end
   
+  describe "Given I was cycling and then stopped for more than 1000 seconds and did upload instants" do
+    
+    before(:each) do
+      @bulk = [{:created_at=>"2014-01-22 19:25:20", :distance=>"", :elapsed_time=>"100", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>""}, 
+        {:created_at=>"2014-01-11 22:3:28", :distance=>"5", :elapsed_time=>"23", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:27:28", :distance=>"1", :elapsed_time=>"200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:29:28", :distance=>"1.5", :elapsed_time=>"400", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:44:28", :distance=>"9", :elapsed_time=>"1200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:49:28", :distance=>"1", :elapsed_time=>"322", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"}]
+        Instant.bulk_create(@bulk, @user)
+    end
+    
+    it "should only count the distance traveled between consecutive points in time" do
+      @user.distance.should == 8.5
+      @user.speed.should == 8
+    end
+  end
+  
+  describe "Given I jumped into the train and it tracked my trails" do
+    
+    before(:each) do
+      @bulk = [{:created_at=>"2014-01-22 19:25:20", :distance=>"", :elapsed_time=>"100", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>"40"}, 
+        {:created_at=>"2014-01-11 22:3:28", :distance=>"5", :elapsed_time=>"23", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-11 5:27:28", :distance=>"1", :elapsed_time=>"200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"49"},
+        {:created_at=>"2014-01-11 5:29:28", :distance=>"1.5", :elapsed_time=>"400", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"67"}]
+        Instant.bulk_create(@bulk, @user)
+    end
+    
+    it "should not count them if I was going faster than 35 km/h" do
+      @user.distance.should == 5
+      @user.speed.should == 10
+    end
+    
+  end
 end
