@@ -44,17 +44,19 @@ class Instant < ActiveRecord::Base
     })
   end
   
-  def self.stats(user_id, range=nil)
-    if range.nil? || range.eql?("today")
-      {:speed => Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).average('speed') || "0.0", 
-        :distance => Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day).sum('distance')}
-    end
+  def self.stats(user_id, start_date, end_date)
+    {:speed => Instant.instants_with(user_id, start_date, end_date).average('speed') || "0.0", 
+        :distance => Instant.instants_with(user_id, start_date, end_date).sum('distance')}
   end
   
-  def self.all_within_range(user_id, range)
+  def self.all_within_range(user_id, start_date, end_date)
     instants = []
-    instants += Instant.where(:user_id => user_id, :created_at => Date.today.beginning_of_day..Date.today.end_of_day) if range.eql?("today")
-    {:instants => instants, :stats => Instant.stats(user_id, range) }
+    instants += Instant.instants_with(user_id, start_date, end_date)
+    {:instants => instants, :stats => Instant.stats(user_id, start_date, end_date) }
+  end
+  
+  def self.instants_with(user_id, start_date, end_date)
+    Instant.where(:user_id => user_id, :created_at => DateTime.parse(start_date)..DateTime.parse(end_date))
   end
   
   def speed_at

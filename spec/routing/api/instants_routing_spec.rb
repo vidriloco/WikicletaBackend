@@ -9,7 +9,7 @@ describe Api::InstantsController do
     end
     
     it "matches /api/instants with controller :instants action #index" do
-      { :get => "/api/instants/5/today" }.should route_to(:action => "index", :controller => "api/instants", :user_id => "5", :range => "today")
+      { :get => "/api/instants/5" }.should route_to(:action => "index", :controller => "api/instants", :user_id => "5")
     end
     
   end
