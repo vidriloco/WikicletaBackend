@@ -24,11 +24,10 @@ $(document).ready(function() {
 				$.cookie('date', $.stringifiedCurrentDate());
 				//map.gMap.set('scrollwheel', false);
 				map.eventsForMapCenterChanged('#map', function() {
-					$('#listed').addClass('needs-update');
 					currentState.lastZoom = map.gMap.getZoom();
 				});
 				
-				$('#reload-control').click(loadPOIsForLayer);
+				$('#reload-control').click(forciblyLoadPOIsForLayer);
 
 				$('#locate-me-control').click(function() {
 					if (geoPosition.init()) {
@@ -75,11 +74,13 @@ $(document).ready(function() {
 			}
 
 			this.layerSelected = function() {
-				$('#listed').html('');
+				if(currentState.layer != this.params['layer']) {
+					$('#listed').html('');
+				}
 				clearItemSelected();
 				currentState.layer = this.params['layer'];
 				updateLayerControl();
-				$('#reload-control').trigger('click');
+				loadPOIsForLayer();
 			}
 			
 			this.cyclePath = function() {
@@ -221,7 +222,23 @@ $(document).ready(function() {
 					registerTrackWith('A cycling group selected');
 				}
 			}
+			
+			var forciblyLoadPOIsForLayer = function(callback_function) {
+				$('#indicator').removeClass('hidden');
+				$('#reload-control').addClass('hidden');
+				loadCyclePaths();
+				
+				fetchPOIs('/'+currentState.layer+'.js', undefined, function() {
+					drawSelectedItems($('.discover #listed').children());
+					$('#indicator').addClass('hidden');
+					$('#reload-control').removeClass('hidden');
 
+					if(typeof callback_function == 'function') {
+						callback_function();
+					}
+				});
+			}
+			
 			var loadPOIsForLayer = function(callback_function) {
 				$('#indicator').removeClass('hidden');
 				$('#reload-control').addClass('hidden');
@@ -239,15 +256,12 @@ $(document).ready(function() {
 				}
 				
 				if(currentState.layer != undefined) {
-					if($('#listed').children().length == 0 || $('#listed').hasClass('needs-update')) {
-						$('#listed').removeClass('needs-update');
+					if($('#listed').children().length == 0) {
 						fetchPOIs('/'+currentState.layer+'.js', undefined, afterElementsFetched);
 					} else {
 						afterElementsFetched();
 					}
 				} 
-				
-				
 			}
 
 			var drawSelectedItems = function(markers) {
