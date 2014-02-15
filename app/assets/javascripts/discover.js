@@ -24,7 +24,7 @@ $(document).ready(function() {
 				$.cookie('date', $.stringifiedCurrentDate());
 				//map.gMap.set('scrollwheel', false);
 				map.eventsForMapCenterChanged('#map', function() {
-					console.log(1);
+					$('#listed').addClass('needs-update');
 					currentState.lastZoom = map.gMap.getZoom();
 				});
 				
@@ -75,6 +75,7 @@ $(document).ready(function() {
 			}
 
 			this.layerSelected = function() {
+				$('#listed').html('');
 				clearItemSelected();
 				currentState.layer = this.params['layer'];
 				updateLayerControl();
@@ -238,7 +239,8 @@ $(document).ready(function() {
 				}
 				
 				if(currentState.layer != undefined) {
-					if($('#listed').children().length == 0 || (currentState.item != undefined && !$.isDefined('#'+currentState.layer+'-'+currentState.item))) {
+					if($('#listed').children().length == 0 || $('#listed').hasClass('needs-update')) {
+						$('#listed').removeClass('needs-update');
 						fetchPOIs('/'+currentState.layer+'.js', undefined, afterElementsFetched);
 					} else {
 						afterElementsFetched();
