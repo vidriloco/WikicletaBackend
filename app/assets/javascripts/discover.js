@@ -24,9 +24,10 @@ $(document).ready(function() {
 				$.cookie('date', $.stringifiedCurrentDate());
 				//map.gMap.set('scrollwheel', false);
 				map.eventsForMapCenterChanged('#map', function() {
+					console.log(1);
 					currentState.lastZoom = map.gMap.getZoom();
 				});
-
+				
 				$('#reload-control').click(loadPOIsForLayer);
 
 				$('#locate-me-control').click(function() {
@@ -225,17 +226,24 @@ $(document).ready(function() {
 				$('#reload-control').addClass('hidden');
 				
 				loadCyclePaths();
-				if(currentState.layer != undefined) {
-					fetchPOIs('/'+currentState.layer+'.js', undefined, function() {
-						drawSelectedItems($('.discover #listed').children());
-						$('#indicator').addClass('hidden');
-						$('#reload-control').removeClass('hidden');
+				
+				var afterElementsFetched = function() {
+					drawSelectedItems($('.discover #listed').children());
+					$('#indicator').addClass('hidden');
+					$('#reload-control').removeClass('hidden');
 
-						if(typeof callback_function == 'function') {
-							callback_function();
-						}
-					});
+					if(typeof callback_function == 'function') {
+						callback_function();
+					}
 				}
+				
+				if(currentState.layer != undefined) {
+					if($('#listed').children().length == 0 || (currentState.item != undefined && !$.isDefined('#'+currentState.layer+'-'+currentState.item))) {
+						fetchPOIs('/'+currentState.layer+'.js', undefined, afterElementsFetched);
+					} else {
+						afterElementsFetched();
+					}
+				} 
 				
 				
 			}

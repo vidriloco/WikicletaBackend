@@ -14,6 +14,15 @@ font-family: "gothamrndbold-Bold";
    src:url("/assets/gothamrndbold.ttf");
 }
 
+/* Bootstrap Css Map Fix*/
+#map img { 
+  max-width: none;
+}
+/* Bootstrap Css Map Fix*/
+#map label { 
+  width: auto; display:inline; 
+}
+
 body, html {
 	font-family: "gothamrndbook-Book";
 	height: 100%;
