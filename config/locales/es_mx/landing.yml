@@ -32,7 +32,7 @@ es_MX:
             share: "Sube tu grupo"
             join: "Ve grupos" 
         download:
-          title: "Baja la app!"
+          title: "¡Baja la app!"
           subtitle: "Por ahora solo disponible en teléfonos Android"
-          ios: "En 2 semanas soltaremos la de iOS, registrate desde ahora"
+          stickers: "¡Descarga los stickers y señaliza tu ciudad!"
           
