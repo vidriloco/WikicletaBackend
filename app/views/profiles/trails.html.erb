@@ -7,7 +7,7 @@
 		<div class="inner-panel">
 			<p class="subtitle"><%= t('app.trails.today') %></p>
 			
-			<%= render :partial => 'performance', :locals => { :distance => @stats[:distance].round(2).to_f , :speed => @stats[:speed].round(2).to_f } %>
+			<%= render :partial => 'performance', :locals => { :distance => @stats[:distance].to_f.round(2).to_f , :speed => @stats[:speed].to_f.round(2).to_f } %>
 		</div>
 		
 		<ul class="nav nav-pills">
