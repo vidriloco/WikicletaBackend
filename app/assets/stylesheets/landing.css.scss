@@ -68,6 +68,21 @@ font-family: "gothamrndbold-Bold";
 		color: $wikicleta_orange;
 	}
 	
+	.tiny {
+		margin-top: 20px;
+		font-size: 20px;
+		color: $wikicleta_blue;
+		line-height: 20px;
+		width: 60%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.screenshot {
+		padding: 20px;
+		width: 50%;
+	}
+	
 	.minor {
 		margin-top: 60px;
 		font-size: 30px;

@@ -93,19 +93,24 @@
 		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#events' %>
 	</div>
 	
-	<p class="title text-center"><%= t('app.views.landing.routes.title') %></p>
-	<div class="container">
-		<div class="column">
-			<div class="content content-more-margin">
-				<%= image_tag('map-icon.png') %>
-				<p class="minor"><%= t('app.views.landing.routes.trace') %></p>
-				<p class="action shadow-lighter rounded-5"><%= link_to t('app.views.landing.routes.action'), new_route_path %></p>
-			</div>
+	<div id="owl-routes" class="owl-carousel owl-theme column">
+		<div class="item container">
+			<br/>
+			<p class="title text-center"><%= t('app.views.landing.routes.title') %></p>
+			<p class="tiny"><%= t('app.views.landing.routes.trace.one') %></p>
+			<%= image_tag('route_tracing.png', :class => 'screenshot') %>
 		</div>
-		<div class="column">
-			<div class="item">
-				<%= image_tag('route_phone_pic.png', :class => 'content', :size => '400x300') %>
-			</div>
+		<div class="item container">
+			<br/>
+			<p class="title text-center"><%= t('app.views.landing.routes.title') %></p>
+			<p class="tiny"><%= t('app.views.landing.routes.trace.two') %></p>
+			<%= image_tag('route_share.png', :class => 'screenshot') %>
+		</div>
+		<div class="item container">
+			<br/>
+			<p class="title text-center"><%= t('app.views.landing.routes.title') %></p>
+			<p class="tiny"><%= t('app.views.landing.routes.trace.three') %></p>
+			<%= image_tag('route_phone_pic.png') %>
 		</div>
 	</div>
 </div>

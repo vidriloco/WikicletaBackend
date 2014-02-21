@@ -14,7 +14,10 @@ es_MX:
           subtitle: "Wikicleta es ... bah, mejor ve el video, que está bien padre"
         routes:
           title: "Las rutas como tu las quieras"
-          trace: "Prepara tus rutas desde la web y llévalas en tu teléfono"
+          trace: 
+            one: "Traza tu ruta desde la web en Wikicleta"
+            two: "Comparte el link de la ruta con otros en redes sociales"
+            three: "Ubícala en tu teléfono, como una actividad en tu perfil"
           action: "Traza una ruta"
         discover:
           title: "Encuentra cerca de ti: "

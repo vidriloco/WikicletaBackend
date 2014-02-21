@@ -24,6 +24,16 @@ $(document).ready(function() {
 			transitionStyle : "fade",
 			autoPlay: 3000
 		});
+		
+		$("#owl-routes").owlCarousel({
+			navigation : false, // Show next and prev buttons
+			slideSpeed : 300,
+			paginationSpeed : 400,
+			singleItem:true,
+			transitionStyle : "fade",
+			autoPlay: 3000
+		});
+		
 		var loadMap = function() {
 			if(map == null) {
 				map = new ViewComponents.Map(new google.maps.Map(document.getElementById("map"), mapOptions), {});
