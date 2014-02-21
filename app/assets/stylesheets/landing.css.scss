@@ -23,9 +23,9 @@ font-family: "gothamrndbold-Bold";
 	}
 	
 	.right-positioned {
-		position: absolute;
-		right: 60px;
-		top: 100px;
+		position: absolute !important;
+		right: 60px !important;
+		top: 100px !important;
 		opacity: 1;
 		a {
 			opacity: 0.5 !important;

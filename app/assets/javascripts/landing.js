@@ -7,7 +7,7 @@ $(document).ready(function() {
 			css3: true,
 			navigation: true,
 			resize : true,
-			anchors:['main', 'video', 'discover', 'routes', 'events', 'friends'], 
+			anchors:['main', 'video', 'discover', 'pedal-punch', 'routes', 'events', 'friends'], 
 			afterLoad: function(anchorLink, index){
 	       //using index
 	       if(index == '2'){
@@ -26,6 +26,15 @@ $(document).ready(function() {
 		});
 		
 		$("#owl-routes").owlCarousel({
+			navigation : false, // Show next and prev buttons
+			slideSpeed : 300,
+			paginationSpeed : 400,
+			singleItem:true,
+			transitionStyle : "fade",
+			autoPlay: 3000
+		});
+		
+		$("#owl-pedal-punch").owlCarousel({
 			navigation : false, // Show next and prev buttons
 			slideSpeed : 300,
 			paginationSpeed : 400,

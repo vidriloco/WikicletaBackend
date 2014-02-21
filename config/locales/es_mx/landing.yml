@@ -19,6 +19,11 @@ es_MX:
             two: "Comparte el link de la ruta con otros en redes sociales"
             three: "Ubícala en tu teléfono, como una actividad en tu perfil"
           action: "Traza una ruta"
+        pedal_punch:
+          title: "Pedal-punch, el primer ranking de ciclistas urbanos"
+          one: "Activa el GPS en la app para capturar pedal-punch mientras pedaleas"
+          two: "Observa durante el día tu recorrido y tu pedal-punch acumulado"
+          three: "En tu perfil, consulta tu pedal-punch total"
         discover:
           title: "Encuentra cerca de ti: "
           cycling_groups: "Rodadas"
