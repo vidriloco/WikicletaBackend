@@ -19,7 +19,8 @@ module Geography
 
     def find_nearby(viewport=nil)
       if viewport.nil?
-        self.all
+        return self.all if(self.to_s == "Tip" || self.to_s == "CycleStation")
+        self.all(:include => :users)
       else
         self.filter_nearby(viewport)
       end

@@ -14,6 +14,8 @@ class Route < ActiveRecord::Base
   
   attr_accessor :inverted
   
+  before_save :update_digested_path
+  
   def self.new_with(params, user)
     route_performance = params.delete(:route_performance)
     instants = params.delete(:instants)
@@ -205,5 +207,9 @@ class Route < ActiveRecord::Base
 
     self.origin_coordinate = "POINT(#{origin})"
     self.end_coordinate = "POINT(#{final})"
+  end
+  
+  def update_digested_path
+    self.digested_path = to_points_list(:plain)
   end
 end
