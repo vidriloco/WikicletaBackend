@@ -118,6 +118,8 @@ Ciudadio::Application.routes.draw do
   put '/cycling_groups/:id' => 'cycling_groups#update', :as => 'discover_cycling_group'
   get '/cycling_groups/:id' => 'cycling_groups#destroy', :as => 'discover_cycling_group_destroy'
   
+  get '/lang/:locale' => 'welcome#language', :as => 'set_language' 
+  
   root :to => 'welcome#index'
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config

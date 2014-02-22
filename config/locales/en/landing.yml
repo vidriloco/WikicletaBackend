@@ -1,0 +1,50 @@
+en:
+  app:
+    language:
+      es: "Spanish"
+      en: "English"
+    views:
+      landing:
+        made_in: "Made in Mexico with"
+        slogan: "The app for urban cyclists"
+        enter: "Login"
+        friends: "Allies"
+        explore: "Explore"
+        join: "Join"
+        allies: "Partners, strategic allies and Wikicleta friends"
+        video: 
+          link_to: "Watch the video"
+          title: "What's Wikicleta?"
+          subtitle: "How do we see Wikicleta and why are we building it"
+        routes:
+          title: "Your routes, the way you want them"
+          trace: 
+            one: "Draw a route on the web with Wikicleta"
+            two: "Share a route's link with others on Facebook or Twitter"
+            three: "Review your route on your phone"
+          action: "Draw a route"
+        pedal_punch:
+          title: "Pedal-punch, the first ranking for urban cyclists"
+          one: "Enable the GPS for capturing your pedal-punch as you cycle"
+          two: "Review your daily trails and accumulated pedal-punch"
+          three: "On your profile, review your pedal-punch total"
+        discover:
+          main_title: "Explore the biggest map for cycling on your city"
+          subtitle: "Built by urban cyclists for urban cyclists"
+          title: "Find nearby: "
+          cycling_groups: "Rides"
+          routes: "Routes"
+          parkings: "Bike parkings"
+          tips: "Tips"
+          workshops: "Bikeshops"
+          cycle_stations: "Bike sharing nodes"
+          cycle_paths: "Cyclepaths"
+        events:
+          title: "Ride with some of the registered cycling groups"
+          join: "Make friends, learn more about cycling and spread the word!"
+          action: 
+            share: "Upload a group"
+            join: "See groups" 
+        download:
+          title: "Download app!"
+          stickers: "Download the stickers and tag your city!"

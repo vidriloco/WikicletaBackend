@@ -1,13 +1,17 @@
 es_MX:
   app:
+    language:
+      es: "Español"
+      en: "Inglés"
     views:
       landing:
+        made_in: "Hecho en México con"
         slogan: "La app para ir en bici por la ciudad"
         enter: "Entra"
         friends: "Aliados"
         explore: "Explorar"
         join: "Únete"
-        privacy_policy: "Aviso de privacidad"
+        allies: "Socios, Aliados estratégicos y Amigos de Wikicleta"
         video: 
           link_to: "Ve el video"
           title: "¿Qué es Wikicleta?"
@@ -16,15 +20,17 @@ es_MX:
           title: "Las rutas como tu las quieras"
           trace: 
             one: "Traza tu ruta desde la web en Wikicleta"
-            two: "Comparte el link de la ruta con otros en redes sociales"
-            three: "Ubícala en tu teléfono, como una actividad en tu perfil"
+            two: "Comparte el link de la ruta con otros en Twitter y Facebook"
+            three: "Ubíca la ruta en tu teléfono"
           action: "Traza una ruta"
         pedal_punch:
           title: "Pedal-punch, el primer ranking de ciclistas urbanos"
           one: "Activa el GPS en la app para capturar pedal-punch mientras pedaleas"
-          two: "Observa durante el día tu recorrido y tu pedal-punch acumulado"
+          two: "Revisa tu recorrido y tu pedal-punch acumulado durante el día"
           three: "En tu perfil, consulta tu pedal-punch total"
         discover:
+          main_title: "Explora el mapa más completo de tu ciudad en bici"
+          subtitle: "Construido por ciclistas urbanos, para ciclistas urbanos"
           title: "Encuentra cerca de ti: "
           cycling_groups: "Rodadas"
           routes: "Rutas"
@@ -41,6 +47,5 @@ es_MX:
             join: "Ve grupos" 
         download:
           title: "¡Baja la app!"
-          subtitle: "Por ahora solo disponible en teléfonos Android"
           stickers: "¡Descarga los stickers y señaliza tu ciudad!"
           

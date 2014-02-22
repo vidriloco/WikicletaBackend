@@ -1,0 +1,20 @@
+en:
+  app:
+    categories:
+      tips:
+        title: "Tip"
+        categories:
+          alert: "Tip"
+          danger: "Danger"
+          sightseeing: "Sightseeing"
+      parkings:
+        title: "Bike Parking"
+        kinds:
+          government_provided: "Government"
+          urban_mobiliary: "Urban mobiliary"
+          venue_provided: "From a venue"
+      workshops:
+        store: "Bikeshop"
+        workshop: "Bikeshop"
+      cycling_groups:
+        title: "Cycling Group"

@@ -36,7 +36,9 @@
 				</div>
 			</div>
 			<div class="mixpanel-partner">
-				<span class="text-orange">Hecho en México con <i class="icon-heart"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%= link_to t('app.language.en'), set_language_path('en') %> - 
+				<%= link_to t('app.language.es'), set_language_path('es_MX') %>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="text-orange"><%= t('app.views.landing.made_in') %> <i class="icon-heart"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>			
 			</div>
 		</div>
@@ -64,8 +66,8 @@
 		<%= link_to image_tag('next_orange.png', :size => '100x100'), '#pedal-punch' %>
 	</div>
 	<%= image_tag('phone_big_icon.png', :class => 'bottom-positioned') %>
-	<p class="title text-center"><b>Explora</b> el mapa más completo de tu ciudad en bici</p>
-	<p class="subtitle text-center">Construido por todos nosotros y que va contigo en tu teléfono</p>
+	<p class="title text-center"><%= t('app.views.landing.discover.main_title') %></p>
+	<p class="subtitle text-center"><%= t('app.views.landing.discover.subtitle') %></p>
 	<div class="poi-list">
 		<% @pois.each_with_index do |poi, idx| %>
 			<%= render :partial => 'welcome/common/poi', :locals => {:poi => poi, :index => idx} %>
@@ -174,7 +176,7 @@
 	<%= image_tag('handshake_icon.png', :class => 'bottom-positioned') %>
 	
 	<div class="container">
-		<p class="title text-center">Socios, Aliados estratégicos y Amigos de Wikicleta</p>
+		<p class="title text-center"><%= t('app.views.landing.allies') %></p>
 		
 		<div class="partners">
 			<%= link_to image_tag('friends/vi.png', :size => '200x200'), 'http://www.institute.vc', :target => "_blank" %>
@@ -209,7 +211,8 @@
 		<%= link_to image_tag('ios-available.png', :size => '230x230'), 'https://itunes.apple.com/us/app/wikicleta/id806904029?mt=8', :target => "_blank" %>
 		<div class="invitation">
 			<p class="subtitle text-center"><%= t('app.views.landing.download.stickers') %></p>
-			<%= link_to image_tag('stickers.png', :size => '280x280'), 'https://drive.google.com/a/wikicleta.com/file/d/0B1lCNtgccrdncGNHbzI1S2pCTUU/edit?usp=sharing', :target => "_blank"  %>
+			<% sticker = I18n.locale == :es_MX ? 'https://drive.google.com/file/d/0B1lCNtgccrdnT0Z0cDB4aXBsN0U/edit?usp=sharing' : 'https://drive.google.com/file/d/0B1lCNtgccrdnYnBYUEY3Z1BtWkk/edit?usp=sharing' %>
+			<%= link_to image_tag('stickers.png', :size => '280x280'), sticker, :target => "_blank"  %>
 		</div>
 	</div>
 </div>
