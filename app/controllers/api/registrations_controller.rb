@@ -10,6 +10,13 @@ class Api::RegistrationsController < Api::BaseController
     param :password_confirmation, String, "The user's password confirmation", :required => true
     param :image_pic, String, "Base64 encoded string for the user selected image picture"
   end
+  param :authorization, Hash, :required => true do
+    param :provider, String, "Authorization provider"
+    param :secret, String, "Authorized Secret"
+    param :token, String, "Authorized Token"
+    param :uid, String, "User ID on provider"
+  end
+  
   description <<-EOS
     == About the response
     The response for this API method is either a 
@@ -19,7 +26,7 @@ class Api::RegistrationsController < Api::BaseController
     hash with status *422*
   EOS
   def create
-    @user = User.create_with(params[:registration])
+    @user = User.create_with(params[:registration], params[:authorization])
     if @user.persisted?
       render :json=> @user.to_json, :status => :ok
     else

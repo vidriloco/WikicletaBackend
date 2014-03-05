@@ -73,4 +73,30 @@ describe User do
     end
     
   end
+  
+  describe "with twitter credentials" do
+    
+    it "should register the user with his user credentials" do
+      expect{ 
+        User.create_with(FactoryGirl.attributes_for(:user), FactoryGirl.attributes_for(:authorization))
+      }.to change(Authorization, :count).by(1)
+    end
+    
+    describe "given the credentials provider for the UID given on auth exists" do
+      
+      before(:each) do
+        @pancho = User.create_with(FactoryGirl.attributes_for(:pancho), FactoryGirl.attributes_for(:authorization))
+      end
+      
+      it "should get replaced by the new authorization" do
+        expect{ 
+          User.create_with(FactoryGirl.attributes_for(:user), FactoryGirl.attributes_for(:authorization))
+        }.to change(Authorization, :count).by(0)
+        @pancho.authorizations.count.should == 0
+      end
+      
+    end
+    
+  end
+  
 end

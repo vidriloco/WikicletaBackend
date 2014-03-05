@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_one :picture, :as => :imageable, :dependent => :destroy
 
   has_many :tips, :dependent => :nullify
-
+  has_many :authorizations, :dependent => :destroy
   has_many :ownerships, :dependent => :destroy
   has_many :parkings, :through => :ownerships, :source => :owned_object, :source_type => 'Parking', :dependent => :nullify
   has_many :workshops, :through => :ownerships, :source => :owned_object, :source_type => 'Workshop', :dependent => :nullify
@@ -18,17 +18,17 @@ class User < ActiveRecord::Base
   
   has_many :user_roles
   has_many :instants
-  
+    
   belongs_to :city
   
   has_many :cycling_group_admins, :dependent => :destroy
   has_many :cycling_groups, :through => :cycling_group_admins
   
-  attr_accessor         :login
-  #validates             :full_name, :presence => true
-  validates             :username, :presence => true
-  validates             :username, :uniqueness => true
-  before_validation     :validate_format_of_username
+  attr_accessor             :login
+  #validates                :full_name, :presence => true
+  validates                 :username, :presence => true
+  validates_uniqueness_of   :username, :case_sensitive => false
+  before_validation         :validate_format_of_username
   
   #temporal
   attr_accessible       :email, :distance, :speed, :guru_points, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
@@ -86,10 +86,11 @@ class User < ActiveRecord::Base
   
   # Methods that generate content for API
   
-  def self.create_with(params)
-    user = User.new(params)
+  def self.create_with(registration, authorization=nil)
+    user = User.new(registration)
     user.save
-    user.set_pic(params)
+    user.set_pic(registration)
+    Authorization.create_with(user.id, authorization)
     user
   end
   
