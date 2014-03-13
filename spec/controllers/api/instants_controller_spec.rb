@@ -15,8 +15,15 @@ describe Api::InstantsController do
     
     it "should fetch the list of instants" do
       Instant.should_receive(:all_within_range) { {} }
-      get :index, :user_id => "1", :range => "today" 
+      get :index, :user_id => "1", :start_date => "yesterday", :end_date => "today" 
       assigns(:instants).should == {}
+      response.should be_successful
+    end
+    
+    it "should fetch the list of stats for a given day range" do
+      Instant.should_receive(:stats_for_day_on_range).with("1", "2014-01-20", "5").and_return({})
+      get :stats, :user_id => "1", :date => "2014-01-20", :range => 5
+      assigns(:stats).should == {}
       response.should be_successful
     end
     

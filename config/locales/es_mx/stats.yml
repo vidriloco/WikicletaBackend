@@ -1,0 +1,6 @@
+es_MX:
+  app:
+    views:
+      stats:
+        title: "El <i>#pedalPunch</i> de tu ciudad"
+        title_: "El PedalPunch de tu ciudad"

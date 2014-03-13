@@ -16,6 +16,12 @@ class Instant < ActiveRecord::Base
     user.update_rankeables
     instants
   end
+
+  def self.find_nearby(conditions)
+    return [] if conditions[:viewport].blank?
+    window=build_polygon_from_params(viewport)
+    self.where{st_intersects(coordinates, window) & (:str_created_at > conditions[:begin_date]) & (:str_created_at < conditions[:end_date])}
+  end
   
   def self.new_with(params, coords, user)
     instant=Instant.new(params.merge(:user => user))
@@ -42,6 +48,15 @@ class Instant < ActiveRecord::Base
       :only => [:id, :elapsed_time],
       :methods => [:str_created_at, :speed_at, :lat, :lon, :distance_at]
     })
+  end
+  
+  def self.stats_for_day_on_range(user_id, date_string, range=5)
+    parsed_date = Date.parse(date_string)
+    
+    ((parsed_date-range.to_i.days)..(parsed_date)).each.inject({}) do |list, date|
+      list[date.to_s] = Instant.stats(user_id, date.beginning_of_day.to_s, date.end_of_day.to_s)
+      list
+    end
   end
   
   def self.stats(user_id, start_date, end_date)

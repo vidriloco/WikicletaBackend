@@ -14,8 +14,6 @@ class ProfilesController < ApplicationController
   end
   
   def trails
-    @instants = @user.instants.where(:created_at => Date.today.beginning_of_day..Date.today.end_of_day).order('created_at ASC')
-    @stats = Instant.stats(@user.id, (Date.today-1).to_s, Date.today.to_s)
     render :layout => 'on_map_center'
   end
   

@@ -9,6 +9,11 @@ class Api::InstantsController < Api::BaseController
     render :json => {:success => true }.merge(Instant.collection_as_json(@instants)), :status => :ok
   end
   
+  def stats
+    @stats = Instant.stats_for_day_on_range(params[:user_id], params[:date], params[:range])
+    render :json => @stats, :status => :ok
+  end
+  
   def create
     @instants = Instant.bulk_create(params[:instants], @user)
     if @instants.count > 0

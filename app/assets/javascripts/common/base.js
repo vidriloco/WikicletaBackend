@@ -7,8 +7,11 @@
 //= require path
 //= require jquery.cookies
 //= require bootstrap-fileupload.min
+//= require bootstrap-datepicker
 //= require owl-carrousel
 //= require trackings
+//= require d3.min
+//= require rickshaw.min
 
 // Following are some functions used over the application
 $.fn.clearForm = function() {

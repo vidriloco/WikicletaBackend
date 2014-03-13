@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   attr_accessor             :login
   #validates                :full_name, :presence => true
   validates                 :username, :presence => true
-  validates_uniqueness_of   :username, :case_sensitive => false
+  validates_uniqueness_of   :username, :case_sensitive => false, :on => :create
   before_validation         :validate_format_of_username
   
   #temporal

@@ -1,12 +1,26 @@
 es_MX:
   app:
+    loading:
+      message: "Cargando"
     trails:
-      title: "Tus recorridos"
+      title: "Tu pedal-punch"
       today: "Hoy"
+      showing: "Mostrando pedal punch del:"
+      stats:
+        loading: 
+          title: "Cargando gráfica de rendimiento"
+          subtitle: "De toda la semana"
+        units:
+          distance:
+            text: "Distancia"
+            unit: "Km"
+          speed:
+            text: "Velocidad"
+            unit: "Km/h"
       instant:
         title: "Stats en este punto:"
-        distance_text: "A %{distance} km respecto al checkpoint anterior"
-        minutes_text: "A %{minutes} minutos respecto al checkpoint previo"
+        distance_text: "A <span class='distance'></span> km respecto al checkpoint anterior"
+        minutes_text: "A <span class='timing'></span> minutos respecto al checkpoint previo"
         speed: "Velocidad"
         distance: "Distancia"
         timing: "Cronómetraje"

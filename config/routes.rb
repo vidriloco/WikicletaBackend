@@ -47,6 +47,7 @@ Ciudadio::Application.routes.draw do
     resources :trips, :only => [:index]
     
     get '/instants/:user_id', :to => 'instants#index'
+    get '/instants/:user_id/stats', :to => 'instants#stats'
     resources :instants, :only => [:create]
 
     resources :routes, :only => [:create, :update, :index, :show]
@@ -110,6 +111,8 @@ Ciudadio::Application.routes.draw do
   resources :workshops, :only => [:index]
   resources :parkings, :only => [:index]
   resources :cycle_stations, :only => [:index]
+  
+  get '/stats/' => 'stats#index'
   
   get '/rodada/nueva' => redirect('/cycling_groups/new')
   get '/cycling_groups/new' => 'cycling_groups#new'

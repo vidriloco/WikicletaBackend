@@ -39,4 +39,16 @@ namespace :models do
       user.update_attribute(:username, user.username.downcase)
     end
   end
+  
+  namespace :instants do
+    task :assign_performant_users => :environment do
+      ActiveRecord::Base.record_timestamps = false
+      Instant.where(:user_id => nil).includes(:route_performance).each do |instant|
+        instant.update_attribute(:user_id, instant.route_performance.user_id) unless instant.route_performance.nil?
+        p "Updated instant #{instant.id} for UID: #{instant.user_id}"
+      end
+      ActiveRecord::Base.record_timestamps = true
+    end
+  end
+
 end

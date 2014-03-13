@@ -104,4 +104,57 @@ describe Instant do
     end
     
   end
+  
+  describe "Given I have been cycling some days" do
+    
+    before(:each) do
+      @day_one = [{:created_at=>"2014-01-22 19:25:20", :distance=>"", :elapsed_time=>"100", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>""}, 
+        {:created_at=>"2014-01-22 22:3:28", :distance=>"5", :elapsed_time=>"23", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-22 5:27:28", :distance=>"1", :elapsed_time=>"200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-22 5:29:28", :distance=>"1.5", :elapsed_time=>"400", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-22 5:44:28", :distance=>"2", :elapsed_time=>"700", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-22 5:49:28", :distance=>"1", :elapsed_time=>"322", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"}]
+        Instant.bulk_create(@day_one, @user)
+      @day_two = [{:created_at=>"2014-01-21 19:25:20", :distance=>"", :elapsed_time=>"100", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>""}, 
+        {:created_at=>"2014-01-21 22:3:28", :distance=>"5", :elapsed_time=>"23", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-21 5:27:28", :distance=>"1", :elapsed_time=>"200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-21 5:29:28", :distance=>"1.5", :elapsed_time=>"400", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-21 5:44:28", :distance=>"9", :elapsed_time=>"900", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-21 5:49:28", :distance=>"1", :elapsed_time=>"322", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"}]
+        Instant.bulk_create(@day_two, @user)
+      @day_three = [{:created_at=>"2014-01-19 5:26:10", :distance=>"", :elapsed_time=>"100", :latitude=>"19.318966", :longitude=>"-99.128387", :speed=>""}, 
+        {:created_at=>"2014-01-19 5:27:10", :distance=>"1", :elapsed_time=>"23", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"6"},
+        {:created_at=>"2014-01-19 5:27:28", :distance=>"1", :elapsed_time=>"200", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-19 5:29:28", :distance=>"1", :elapsed_time=>"400", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-19 5:44:28", :distance=>"1", :elapsed_time=>"900", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"10"},
+        {:created_at=>"2014-01-19 5:49:28", :distance=>"1", :elapsed_time=>"322", :latitude=>"19.346928", :longitude=>"-99.111145", :speed=>"4"}]
+        Instant.bulk_create(@day_three, @user)
+    end
+    
+    it "should retrieve the stats for the days I request" do
+      @stats = Instant.stats_for_day_on_range(@user, "2014-01-22", 5)
+      
+      @stats.size.should == 6
+      
+      @stats["2014-01-17"][:speed].to_f.should == 0
+      @stats["2014-01-17"][:distance].to_f.should == 0
+      
+      @stats["2014-01-18"][:speed].to_f.should == 0
+      @stats["2014-01-18"][:distance].to_f.should == 0
+      
+      @stats["2014-01-19"][:distance].to_f.should == 5
+      @stats["2014-01-19"][:speed].to_f.should == 8
+      
+      @stats["2014-01-20"][:speed].to_f.should == 0
+      @stats["2014-01-20"][:distance].to_f.should == 0
+          
+      @stats["2014-01-21"][:speed].to_f.should == 10
+      @stats["2014-01-21"][:distance].to_f.should == 17.5
+      
+      @stats["2014-01-22"][:speed].to_f.should == 10
+      @stats["2014-01-22"][:distance].to_f.should == 10.5
+      
+    end
+    
+  end
 end

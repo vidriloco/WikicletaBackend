@@ -1,6 +1,44 @@
 @import "colors.css.scss";
 
+
+
 .trails {
+	
+	.message-loading {
+		
+		.title, .subtitle {
+			margin: 3px;
+			padding: 0px;
+		}
+		
+		.title {
+			font-size: 17px;
+			margin-top: 10px;
+		}
+		
+		.subtitle {
+			font-size: 13px;
+			margin-bottom: 10px;
+		}
+	}
+	
+	// Graph custom styles
+	.rickshaw_graph .detail .x_label { display: none }
+	.rickshaw_graph .detail .item { line-height: 1.4; padding: 0.5em }
+	.detail_swatch { float: right; display: inline-block; width: 10px; height: 10px; margin: 0 4px 0 0 }
+	.rickshaw_graph .detail .date { color: #a0a0a0 }
+	
+	.loading {
+		padding: 30px;
+		
+		.message {
+			font-size: 18px;
+			color: $wikicleta_blue !important;
+			margin-top: 20px;
+			margin-bottom: 0px;
+			font-weight: bold !important;
+		}
+	}
 	
 	.performance {
 		margin-top: 30px !important;
@@ -17,5 +55,29 @@
 		font-size: 18px;
 		color: $wikicleta_blue;
 		font-weight: bold;
+	}
+	
+	.date {
+		text-align: right;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		.title {
+			font-size: 15px;
+			font-weight: bold;
+			color: $wikicleta_blue;
+		}
+		
+		input {
+			width: 100px;
+		}
+		
+		.spinner {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			vertical-align: -10px;
+			margin-right: 15px;
+			background: url('/assets/spinner.gif');
+		}
 	}
 }
