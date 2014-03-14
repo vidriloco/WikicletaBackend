@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   private 
   
   def find_user
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_username(params[:username].downcase)
   end
   
   def validate_user_can_view

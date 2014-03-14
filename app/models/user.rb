@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   attr_accessible       :email, :distance, :speed, :guru_points, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
   before_save           :ensure_authentication_token!, :on => :create
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
+  before_save           :username_to_downcase
   
   def owned_routes
     Route.joins(:ownerships).where('ownerships.user_id' => id)
@@ -135,6 +136,10 @@ class User < ActiveRecord::Base
   end
   
   protected
+  
+  def username_to_downcase
+    username.downcase!
+  end
   
   def validate_format_of_username
     return if self.username.nil?
