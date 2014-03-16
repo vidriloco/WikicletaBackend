@@ -1,6 +1,12 @@
 es_MX:
   app:
     profiles:
+      tracking:
+        title: "Tu código de seguimiento es: "
+        last_updated: "Actualizado "
+        recommendation: "Actualízalo para controlar el número de personas que pueden ver tu ubicación"
+        should_update: "Actualización recomendada"
+        reset: "Generar nuevo"
       performance:
         distance: "recorridos"
         speed: "velocidad promedio"

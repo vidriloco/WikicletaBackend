@@ -1,0 +1,57 @@
+<%= content_for(:section , t('app.tracking.title')) %>
+<%= content_for(:klass, 'tracking') %>
+<% content_for :panel do %>	
+	<div id="pedal-path-placeholder" class="panel edit-mode">
+		<p class="title"><%= t('app.tracking.title') %></p>
+		<br/>
+		<div class="inner-panel">
+			<div class="loading">
+				<%= image_tag('spinloader.gif', :size => '100x100') %>
+				<p class="message"><%= t('app.tracking.searching') %></p>
+			</div>
+			<div id="replaceable-content"></div>
+		</div>
+		<br/>
+		<ul class="nav nav-pills">
+	  	<li class="active"><%= link_to t('actions.back_arrow').html_safe, :back %></li>
+	  	<li>
+					<a href="javascript:void(0);" class="minimize-view"><%= t('actions.toggle.hide') %></a>
+					<a href="javascript:void(0);" class="maximize-view"><%= t('actions.toggle.show') %></a>
+	  	</li>
+	  	<li><%= link_to "<i class='icon icon-map-marker'></i>#{t('actions.locate_me')}".html_safe, 'javascript:void(0);', :class => 'locate-me' %></li>
+	  	<li><%= link_to "<i class='icon icon-user'></i> #{t('app.tracking.user.profile')}".html_safe, '', :id => 'profile-link' %></li>
+	
+	  </ul>
+	
+	</div>
+<% end %>
+
+<% content_for :free_content do %>	
+	<div class="instant-info hidden">
+		<%= link_to image_tag('reload_icon.png', :size => '40x40', :class => 'reloader', :title => t('app.tracking.instant_info.reloader'), "data-toggle"=>"tooltip", "data-placement"=>"top"), 'javascript:void(0);', :class => 'update-tracking' %>
+		
+		<div class="pic-area">
+			<div class="pic-container">
+					<img width="95" height="100" src="" class="normal-user-pic">
+			</div>
+		</div>
+		<p class="title"></p>
+		<p class="plain"><%= t('app.tracking.stats.last_seen') %></p>
+		<p class="speed">
+			<span class="value"></span><span class="unit"> <%= t('app.trails.stats.units.speed.unit') %></span>
+		</p>
+		<p class="time"><span class="value"></span></p>
+	</div>
+	<div class="seek hidden">
+		<p class="title"><%= t('app.tracking.seek') %></p>
+		
+		<%= form_tag 'javascript:void(0)' do %>
+			<%= text_field_tag 'code', nil, :placeholder => t('app.tracking.form.code'), :id => 'code-input' %>
+			<%= submit_tag t('app.tracking.form.find'), :class => "btn btn-info", :id => 'find-location' %>
+		<% end %>
+	</div>
+	<div class="not-found hidden">
+		<p class="title"><%= t('app.tracking.not_found.title') %></p>
+		<p class="subtitle"><%= t('app.tracking.not_found.subtitle') %></p>
+	</div>
+<% end %>

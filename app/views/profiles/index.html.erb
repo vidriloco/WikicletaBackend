@@ -19,8 +19,10 @@
 <div class="profile">
 	<%= render 'shared/notifications' %>
 	<%= render :partial => 'main_user_info', :locals => {:user => @user, :show_preferences_link => true} %>
-	
 	<%= render :partial => 'performance', :locals => { :distance => @user.distance.to_s.to_f.round(2), :speed => @user.speed.to_s.to_f.round(2) } %>
+	
+	<div id="tracking-placeholder" class="tracking-code reset-number" data-user-id="<%= @user.id %>"><%= render :partial => 'reset_tracking_code', :locals => {:user => @user} %></div>
+	
 	<div class="box rounded-5 activity-listing">
 		<h5><%= t('app.profiles.recent_activity') %></h5>
 		<ul class="sections-togglers">

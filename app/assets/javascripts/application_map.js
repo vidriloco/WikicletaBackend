@@ -6,6 +6,7 @@
 //= require trips
 //= require trails
 //= require stats
+//= require tracking
 //= require polyline.edit
 //= require routes
 //= require cycling_groups

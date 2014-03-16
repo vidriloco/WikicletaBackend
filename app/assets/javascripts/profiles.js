@@ -1,3 +1,13 @@
+var reloadRestEvent = function() {
+	$('#reset-number').bind('click', function() {
+		$.ajax({
+		  url: '/profile/'+$('#tracking-placeholder').attr('data-user-id')+'/reset_code.js',
+		  type: 'PUT',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+		});
+	});
+}
+
 $(document).ready(function() {
 	
 	if($.isDefined('.profile')) {
@@ -9,6 +19,8 @@ $(document).ready(function() {
 		var hideAllContainers = function() {
 			$('.box .content').fadeOut();
 		}
+		
+		reloadRestEvent();
 		
 		Path.map('#/cycling-groups').to(function() {
 			hideAllTogglers();

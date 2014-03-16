@@ -40,6 +40,40 @@
 	width: 500px;
 	margin: 0 auto 0 auto;
 	
+	.tracking-code {
+		opacity: 0.8;
+		margin-top: 20px;
+		background-color: $wikicleta_blue;
+		color: #D1E4F3;
+		padding: 10px;
+		border-radius: 5px;
+		
+		.container {
+			padding: 5px;
+			.title {
+				font-size: 19px;
+				font-weight: bold;
+			}
+
+			.number {
+				color: $wikicleta_orange;
+			}
+		}
+		
+		.separator {
+			height: 1px;
+			width: 460px;
+			background-color: #B5CEFF;
+			opacity: 0.2;
+			margin-bottom: 10px !important;
+		}
+		
+		.action-tracker {
+			width: 470px;
+			text-align: right;
+		}
+	}
+	
 	.actions-panel {
 		background-color: #DDE9EE;
 		list-style: none;

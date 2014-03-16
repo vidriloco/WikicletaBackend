@@ -70,12 +70,16 @@ Ciudadio::Application.routes.draw do
     get '/cycle_stations', :to => 'cycle_stations#index'
     
     get '/cycle_paths', :to => 'cycle_paths#index'
+    
+    get '/tracking/:code', :to => 'tracking#show'
   end
   
   get '/profile/:username/trails', :to => 'profiles#trails', :as => 'user_trails'
   get '/profile/:username/settings', :to => 'user_settings#show', :as => 'user_settings'
   put '/profile/:username/update', :to => 'user_settings#update', :as => 'user_settings_update'
   put '/profile/:username/update_pic', :to => 'user_settings#update_pic', :as => 'user_settings_update_pic'
+  put '/profile/:user_id/reset_code' => 'profiles#reset_tracking_code'
+  
   delete '/profile/:username/destroy_pic', :to => 'user_settings#destroy_pic', :as => 'user_settings_destroy_pic'
 
   get '/profiles/:username' => 'profiles#index', :as => "user_profile"
@@ -111,6 +115,8 @@ Ciudadio::Application.routes.draw do
   resources :workshops, :only => [:index]
   resources :parkings, :only => [:index]
   resources :cycle_stations, :only => [:index]
+  
+  resources :tracking
   
   get '/stats/' => 'stats#index'
   

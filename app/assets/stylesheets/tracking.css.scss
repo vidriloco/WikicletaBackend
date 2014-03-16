@@ -1,6 +1,76 @@
 @import "colors.css.scss";
 
-.trails {
+.tracking {
+	
+	.panel {
+		.seek {
+			.title {
+				margin-top: 20px;
+				font-size: 20px;
+				color: $wikicleta_blue;
+			}
+		}
+		
+		.update-tracking {
+			display: block;
+			text-align: right;
+			margin-right: 5px;
+			margin-top: 2px;
+		}
+		
+		.reloader {
+			opacity: 0.5;
+		}
+		
+		.reloader:hover {
+			opacity: 1;
+		}
+		
+		.not-found {
+			.title {
+				margin-top: 20px;
+				font-size: 20px;
+				color: $wikicleta_orange;
+			}
+			
+			.subtitle {
+				margin-top: 10px;
+				font-size: 17px;
+				color: $wikicleta_blue;
+			}
+		}
+		
+		.instant-info {
+			.pic-area {
+				margin-top: 20px;
+			}
+			
+			.title {
+				margin-top: 20px;
+				font-size: 40px;
+				color: $wikicleta_blue;
+			}
+			
+			.plain {
+				color: $wikicleta_orange;
+			}
+			
+			.speed {
+				margin: 3px;
+				margin-top: 15px;
+				
+				padding: 0;
+				.value {
+					font-size: 25px;
+				}
+				
+				.unit {
+					font-size: 18px;
+					color: $wikicleta_orange;
+				}
+			}
+		}
+	}
 	
 	.message-loading {
 		
@@ -19,12 +89,6 @@
 			margin-bottom: 10px;
 		}
 	}
-	
-	// Graph custom styles
-	.rickshaw_graph .detail .x_label { display: none }
-	.rickshaw_graph .detail .item { line-height: 1.4; padding: 0.5em }
-	.detail_swatch { float: right; display: inline-block; width: 10px; height: 10px; margin: 0 4px 0 0 }
-	.rickshaw_graph .detail .date { color: #a0a0a0 }
 	
 	.loading {
 		padding: 30px;

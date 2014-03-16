@@ -1,0 +1,21 @@
+<% if !current_user.nil? && current_user == user %>
+	<div class="container">
+
+	<% if user.tracking_number.blank? %>
+			<p class="title"></p>
+	<% else %>
+			<p class="title"><%= t('app.profiles.tracking.title') %> <span class="number"><%= user.tracking_number %></span></p>
+			<p class="updated-at">
+				<%= t('app.profiles.tracking.last_updated') %><i><%= distance_of_time_in_words_to_now(user.tracking_number_last_reset_at) %></i>
+				<% if (Date.today-user.tracking_number_last_reset_at.to_date).to_i > 5 %>
+					<span class="label label-warning"><%= t('app.profiles.tracking.should_update') %></span>
+				<% end %>
+			</p>		
+	<% end %>
+		<div class="separator"></div>
+		<div class="action-tracker">
+			<%= link_to t('app.profiles.tracking.reset'), 'javascript:void(0);', :class => "btn btn-danger", :id => "reset-number" %>
+		</div>
+	</div>
+	
+<% end %>

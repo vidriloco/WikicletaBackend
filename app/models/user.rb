@@ -31,10 +31,19 @@ class User < ActiveRecord::Base
   before_validation         :validate_format_of_username
   
   #temporal
-  attr_accessible       :email, :distance, :speed, :guru_points, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id
+  attr_accessible       :email, :distance, :speed, :guru_points, :password, :password_confirmation, :remember_me, :full_name, :username, :login, :bio, :personal_page, :externally_registered, :email_visible, :started_cycling_date, :city_id, :tracking_number, :tracking_number_last_reset_at
   before_save           :ensure_authentication_token!, :on => :create
   devise :omniauthable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => [:login]
   before_save           :username_to_downcase
+  
+  def update_tracking_number
+    number = (('a'..'z').to_a+(0..9).to_a).shuffle[0,6].join
+    update_attributes({ :tracking_number => number, :tracking_number_last_reset_at => DateTime.now })
+  end
+  
+  def last_tracking
+    { :user => { :username => username, :image => picture_img }, :instant => instants.last.as_json  }
+  end
   
   def owned_routes
     Route.joins(:ownerships).where('ownerships.user_id' => id)

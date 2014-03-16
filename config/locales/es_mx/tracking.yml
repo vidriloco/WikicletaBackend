@@ -1,0 +1,19 @@
+es_MX:
+  app:
+    tracking:
+      title: "Pedal Path"
+      searching: "Buscando"
+      seek: "Ubica a alguien por su código lock"
+      instant_info:
+        reloader: "Actualizar ubicación"
+      not_found:
+        title: "No pudimos encontrar a nadie :("
+        subtitle: "Revisa que lo hayas escrito correctamente"
+      user:
+        profile: "Ver perfil"
+      form: 
+        code: "Escribe aquí el código"
+        find: "Encontrar"
+      stats:
+        last_seen: "Pedaleando a "
+        ago: "Ultima ubicación: "
