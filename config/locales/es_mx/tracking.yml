@@ -4,6 +4,7 @@ es_MX:
       title: "Pedal Path"
       searching: "Buscando"
       seek: "Ubica a alguien por su código lock"
+      empty: "No tienes un número de seguimiento"
       instant_info:
         reloader: "Actualizar ubicación"
       not_found:

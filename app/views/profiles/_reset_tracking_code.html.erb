@@ -1,8 +1,8 @@
-<% if !current_user.nil? && current_user == user && user.username == "bicito" %>
+<% if !current_user.nil? && current_user == user && user.username == "bicito_" %>
 	<div class="container">
 
 	<% if user.tracking_number.blank? %>
-			<p class="title"></p>
+	<p class="title"><%= t('app.tracking.empty') %></p>
 	<% else %>
 			<p class="title"><%= t('app.profiles.tracking.title') %> <span class="number"><%= user.tracking_number %></span></p>
 			<p class="updated-at">
